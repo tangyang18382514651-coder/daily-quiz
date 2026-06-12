@@ -58,7 +58,14 @@
         font-size: 13px;
     }
     pre code { background: transparent; padding: 0; }
-    a { color: #576b95; text-decoration: none; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
     ul, ol { padding-left: 20px; }
     hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
     .placeholder { color: #999; font-style: italic; }
@@ -74,6 +81,7 @@
         margin-bottom: 15px;
         color: #576b95;
         font-size: 14px;
+        text-decoration: none;
     }
     .meta {
         text-align: center;
@@ -86,6 +94,14 @@
         color: #666;
         text-align: center;
         margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
     }
     .archive-list {
         list-style: none;
@@ -105,6 +121,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        text-decoration: none;
     }
     .archive-list li span {
         color: #999;
@@ -115,15 +132,32 @@
 </head>
 <body>
     <h1>📚 AI 架构师特训情报总库</h1>
-    <div class="subtitle">当前已沉淀 1 天的面试题与 AI 前沿日报</div>
-    <ul class="archive-list">
-                <li>
-            <a href="posts/2026-06-12.html">
-                📅 AI 备战与前沿情报
-                <span>2026-06-12</span>
-            </a>
-        </li>
-    </ul>
+    <div class="subtitle">面试题 1 篇 · AI 日报 1 篇</div>
+
+    <div class="archive-section">
+        <h2>💡 每日面试题</h2>
+        <ul class="archive-list">
+                        <li>
+                <a href="posts/interview/2026-06-12.html">
+                    📅 每日面试题
+                    <span>2026-06-12</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="archive-section">
+        <h2>🌍 AI 前沿日报</h2>
+        <ul class="archive-list">
+                        <li>
+                <a href="posts/news/2026-06-12.html">
+                    📅 AI 前沿日报
+                    <span>2026-06-12</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
     <div class="footer">自动化知识库资产管理系统 · Agent Sniper</div>
 </body>
 </html>
