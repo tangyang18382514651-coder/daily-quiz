@@ -133,7 +133,7 @@
 <body>
     <a class="home-link" href="../../index.html">← 返回历史归档</a>
     <h1>💡 每日面试题 (2026-06-12)</h1>
-    <div class="meta">更新于 2026-06-12 18:13</div>
+    <div class="meta">更新于 2026-06-12 18:21</div>
 
     <div class="card">
         <h2>💡 随时备战 · 每日面试题</h2>
@@ -141,7 +141,7 @@
 <blockquote>
 <p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
 🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
-🔄 知识片段：#13, #14, #15（自动轮换，避免重复）</p>
+🔄 知识片段：#16, #17, #18（自动轮换，避免重复）</p>
 </blockquote>
 <hr />
 <h1>一、概念题（10 道）</h1>
@@ -149,293 +149,298 @@
 <h3>📌 概念题 · Q1</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>Claude Code · Agent架构</code> · 难度：⭐⭐⭐</small></p>
+<p><small><code>分布式Agent · 状态管理</code> · 难度：⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>Claude Code客户端的核心架构为什么采用AsyncGenerator状态流而非传统的Input→Output模式？</p>
+<p>分布式Agent集群中「状态下沉」的核心定义是什么？它解决了生产环境中的哪些核心痛点？</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>Claude Code采用AsyncGenerator状态流架构，核心是为了实现中断即保存、上下文可回溯的交互式Agent体验，解决传统LLM封装无法处理长流程中断与状态丢失的痛点。</strong></p>
+<p><strong>状态下沉是指将Agent的会话记忆、工作流状态从单台服务器的本地内存转移到共享的分布式存储系统（如Redis Cluster），实现Agent实例的无状态化，解决集群扩容/发布时的状态丢失与算力浪费问题。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>中断持久化：AsyncGenerator的yield特性允许在用户中断时保存当前状态与已执行结果</li>
-<li>观察优先：支持在模型执行错误时实时掐断，降低提示词完美主义门槛</li>
-<li>流式状态管理：将每一轮交互拆分为可暂停的状态片段，而非一次性全量输出</li>
+<li>无状态化改造：Agent实例不再持有会话状态，所有状态数据统一存储在共享存储中</li>
+<li>全局状态共享：新启动的Agent实例可以直接从共享存储读取历史状态，无需重新初始化</li>
+<li>状态持久化：会话状态实时写入持久化存储，避免服务器宕机导致的状态丢失</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>传统LLM封装是单次请求响应模式，用户中断后所有中间结果丢失，必须重新发起请求。而AsyncGenerator是异步生成器，每一次yield都会将当前状态（如已写入的文件、执行的工具结果）持久化到本地，用户按下Ctrl+C后，下次启动可以从上次中断的位置继续执行。这种设计特别适合代码调试、文件编辑等长流程交互式场景，让Agent具备了"记忆断点"的能力，就像视频播放器的进度条，可以随时暂停和续播。此外，观察优先的设计允许用户在模型读取错误文件时立刻终止操作，无需等待全量响应，大幅提升了交互效率。</p>
+<p>传统单节点Agent会将用户对话历史、工作流当前节点等状态存在本地内存中，当集群扩容或发布新版本时，新启动的服务器无法获取老服务器的状态，导致用户对话“失忆”，同时大模型的KV Cache无法复用，需要重新计算所有上下文，造成大量算力浪费。状态下沉后，所有Agent实例通过统一的存储接口读写状态，相当于把Agent的“脑子”放到了公共仓库里，无论服务器怎么更换、扩容，都能瞬间恢复用户的会话上下文，同时配合会话粘滞策略，还能复用大模型的KV Cache，大幅降低推理延迟与算力成本。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能结合Claude Code源码中的Todo短时记忆机制，说明状态流与本地JSON持久化的协同作用</li>
-<li>能对比传统Agent框架（如LangChain）的状态管理方式，突出AsyncGenerator在交互式场景的优势</li>
+<li>结合LangGraph的Checkpointer机制，举例说明如何自定义Redis Checkpointer实现状态下沉</li>
+<li>提到状态下沉与会话粘滞的协同作用，强调二者结合才能最大化提升大模型推理性能</li>
+<li>对比不同存储方案的选型逻辑：Redis适合高频读写的会话状态，PostgreSQL适合需长期存储的用户画像</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为AsyncGenerator只是为了流式输出，忽略其状态持久化与中断恢复的核心价值</li>
-<li>认为这种架构只适用于CLI场景，其实可以扩展到Web端的交互式Agent应用</li>
+<li>误区1：认为状态下沉只需要把数据存在数据库就行，忽略了读写性能要求，导致高并发场景下存储成为瓶颈</li>
+<li>误区2：状态下沉后完全取消会话粘滞，导致大模型KV Cache无法复用，反而降低性能</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q2</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>自媒体Agent · 四层架构</code> · 难度：⭐⭐⭐</small></p>
+<p><small><code>Agent运维 · 优雅终止</code> · 难度：⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>自媒体内容运营Agent的四层企业级架构（数据采集层→智能筛选层→Agent决策层→内容生成交付层）各模块的核心职责是什么？这种架构解决了哪些业务痛点？</p>
+<p>什么是Agent系统的「优雅终止（Graceful Shutdown）」？在FastAPI+LangGraph架构中如何落地？</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>自媒体内容运营Agent的四层架构是为了实现从热点抓取到内容交付的全流程自动化与垂直化，解决通用内容生成缺乏行业精准性、人工效率低、合规风险高等痛点。</strong></p>
+<p><strong>优雅终止是指Agent服务器在收到停机/发布信号时，先拒绝新请求，等待所有在途任务完成并持久化后再关闭，避免任务中断、数据丢失或用户体验受损的运维机制，在FastAPI+LangGraph架构中可通过生命周期钩子与状态持久化实现。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>数据采集层：实现垂直领域热点的实时、增量、防封禁抓取</li>
-<li>智能筛选层：通过行业词库与语义算法过滤无关内容，聚焦垂直赛道</li>
-<li>Agent决策层：基于LangGraph的多节点工作流，自动判断内容角度、风格与合规性</li>
-<li>内容生成交付层：输出符合平台规范的成品内容，支持人工复核与批量发布</li>
+<li>信号捕获：监听服务器的SIGTERM停机信号，触发优雅终止流程</li>
+<li>在途任务等待：通过计数器或状态跟踪，等待所有未完成的Agent工作流任务执行完毕</li>
+<li>状态持久化：利用LangGraph的Checkpointer将当前工作流状态写入存储，确保后续可恢复</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>数据采集层采用Playwright动态渲染爬虫+XHS SDK，解决静态爬虫无法抓取动态内容、易被封禁的问题；智能筛选层通过HR行业专属白名单/黑名单库+语义相似度算法，过滤娱乐八卦等无关热点，确保内容垂直性；Agent决策层的多节点工作流（热点研判、角度决策、风格适配、合规自检）相当于一个虚拟运营总监，自动完成人工需要耗时数小时的决策过程；内容生成交付层则直接输出可发布的成品（含标题、文案、标签、Emoji），减少人工编辑成本。这种架构将"数据-筛选-决策-生成"拆分为独立模块，便于后续扩展视频脚本生成等功能，同时形成了从热点到发布的闭环。</p>
+<p>在自媒体生成、长文本推理等耗时场景中，直接关闭服务器会导致正在生成的内容丢失、用户请求失败。优雅终止的核心逻辑是给服务器一个“收尾时间”：当收到发布新版本或停机的信号时，FastAPI通过<code>lifespan</code>异步钩子通知网关停止转发新请求，同时通过全局计数器跟踪当前在执行的Agent任务数量，直到所有任务完成并通过LangGraph的Checkpointer持久化状态后，才允许服务器关闭。这个过程类似餐厅打烊：先停止接待新顾客，等所有现有顾客吃完结账后再关门。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能结合LangGraph的状态持久化与回溯机制，说明Agent决策层如何支持人工反馈后的内容重生成</li>
-<li>能提到增量更新、Cookie会话维持等工程细节，体现架构的实用性</li>
+<li>举例说明如何结合LangGraph的<code>Checkpointer</code>实现任务状态的持久化，确保中断后可恢复</li>
+<li>提到与Docker/Kubernetes的健康检查配合，实现无损发布</li>
+<li>针对长周期任务，可补充说明如何通过任务分片、断点续传进一步优化优雅终止逻辑</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为四层架构只是简单的模块拆分，忽略各层之间的数据流闭环与协同决策逻辑</li>
-<li>认为智能筛选层只是关键词匹配，忽略语义相似度算法的应用</li>
+<li>误区1：认为优雅终止只需要等待固定时间，忽略了任务的实际执行时长，导致部分长任务仍被中断</li>
+<li>误区2：仅在应用层处理优雅终止，未配置网关的流量截断，导致新请求仍持续进入</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q3</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>LangGraph · 状态持久化</code> · 难度：⭐⭐⭐</small></p>
+<p><small><code>Agent部署 · CI/CD</code> · 难度：⭐⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>LangGraph在生产环境中选择Redis+PostgreSQL作为Checkpoint存储组合的核心逻辑是什么？这种组合相对于单一存储有什么优势？</p>
+<p>企业级Agent集群的「分层发布」策略是什么？为什么要严格遵循依赖拓扑顺序？</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>LangGraph采用Redis+PostgreSQL的Checkpoint存储组合，是为了平衡性能、持久化与成本，解决单一存储无法同时满足热状态高速读写与全量历史归档需求的痛点。</strong></p>
+<p><strong>分层发布是指按照Agent系统的依赖关系，从底层公共服务到上层业务应用分阶段发布的部署策略，通过健康检查确保每一层服务就绪后再发布下一层，避免因依赖未就绪导致的系统崩溃。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>Redis作为热存储：存储高频访问的当前会话状态，保证多实例共享与低延迟读写</li>
-<li>PostgreSQL作为冷存储：归档全量流程日志与历史推理数据，支持长期追溯与数据分析</li>
-<li>分层存储策略：热数据TTL自动过期，冷数据定期清理或迁移至对象存储</li>
+<li>依赖拓扑梳理：将系统拆分为底层MCP服务（LLM调用、RAG检索）、网关、上层业务Agent三个层级</li>
+<li>健康检查触发：每一层服务启动后，通过<code>/health</code>端点验证服务可用性</li>
+<li>顺序控制：只有当前一层服务健康检查通过后，才启动下一层服务的发布流程</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>LangGraph的Checkpoint需要支持两种核心场景：一是实时的状态恢复与节点流转，要求存储具备低延迟与高并发能力；二是历史状态的回溯与审计，要求存储具备持久化与大容量特性。Redis的内存存储特性完美适配热状态的高速读写，而PostgreSQL的磁盘存储与事务特性适合全量历史数据的归档。这种组合就像电脑的内存与硬盘，内存负责当前运行的程序，硬盘负责长期存储文件。同时，Redis设置TTL自动过期可以避免内存溢出，PostgreSQL的冷数据迁移可以降低存储成本，分布式Redis还能支持多实例集群下的状态共享。</p>
+<p>企业级Agent系统通常采用“底层公共服务-网关-业务Agent”的三层架构，底层服务是上层业务的依赖基础。如果先发布业务Agent再发布底层MCP服务，会导致业务Agent无法调用核心能力，出现大面积报错。分层发布通过Docker Compose的<code>depends_on</code>与<code>service_healthy</code>配置，或者CI/CD流水线的阶段化执行，严格控制发布顺序：先启动并验证MCP服务的可用性，再启动网关确保流量路由正常，最后发布业务Agent。这个过程类似搭建高楼：先打地基，再建框架，最后装修，每一步都确保稳固后再推进。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能提到分布式Redis的应用，说明集群部署下的状态共享方案</li>
-<li>能结合LangGraph的Checkpoint ID与trace ID，说明如何实现多版本状态隔离与回滚</li>
+<li>结合实际项目，举例说明分层发布的具体配置（如Docker Compose的健康检查规则）</li>
+<li>提到与优雅终止配合，实现滚动发布时的无感知升级</li>
+<li>补充说明如何通过灰度发布进一步降低分层发布的风险</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为只用Redis就足够，忽略历史状态的持久化与审计需求</li>
-<li>认为PostgreSQL性能不足，忽略其作为冷存储的定位，不需要高并发读写</li>
+<li>误区1：忽略健康检查的严格性，仅依赖服务启动状态判断就绪，导致服务未完全初始化就发布上层应用</li>
+<li>误区2：所有服务同时发布，未考虑依赖关系，导致系统启动混乱</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q4</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>DPO微调 · 模型对齐</code> · 难度：⭐⭐⭐</small></p>
+<p><small><code>RAG优化 · 数据处理</code> · 难度：⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>DPO偏好微调中，解决"过拟合与业务准确率下降"矛盾的核心策略是什么？这些策略的底层逻辑是什么？</p>
+<p>垂直领域RAG中的「确定性Ingestion」是什么？它相对于传统固定切块的核心优势是什么？</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>DPO微调中解决过拟合与业务准确率下降矛盾的核心策略是轻量化微调+数据增强+早停机制，通过约束模型更新范围、丰富训练数据、及时终止训练来平衡对齐效果与泛化能力。</strong></p>
+<p><strong>确定性Ingestion是指针对垂直领域结构化文档（如财务报表、PDF合同），通过多模态物理布局解析技术（如Docling-Studio）进行语义化切块，严格保留文档结构完整性的RAG数据入库策略，解决传统固定切块导致的信息碎片化问题。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>轻量化微调：采用LoRA技术，仅更新模型的部分参数，避免全量微调导致的过拟合</li>
-<li>数据增强：补充高频业务样本，防止模型在对齐风格的同时丧失专业准确度</li>
-<li>早停策略：监控验证集损失，当损失不再下降时及时终止训练，避免过度拟合</li>
+<li>物理布局解析：识别文档的标题、段落、表格、页脚等结构元素</li>
+<li>语义化切块：按照文档的逻辑结构（如表格整体、章节段落）进行切块，而非固定字符数</li>
+<li>元数据保留：为每个切块添加结构元数据（如所属章节、表格类型），便于后续精准检索</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>DPO微调的目标是让模型对齐人类偏好，但如果训练数据不足或训练过度，模型会过度拟合偏好样本，导致泛化能力下降，甚至丢失原有专业知识。LoRA通过冻结基座模型参数，仅更新低秩矩阵，限制了模型的更新范围，减少过拟合风险；补充高频业务样本（如HR场景的公积金、休假制度问答）可以让模型在学习偏好的同时，保留对专业问题的准确回答能力；早停机制则是在模型性能达到最优时及时停止，避免训练后期模型过度记忆训练数据。这些策略就像给模型套上了"安全带"，既让它学会人类偏好，又不让它偏离专业轨道。</p>
+<p>传统RAG采用固定字符数切块，会导致表格被切割成碎片、跨章节的逻辑关系被破坏，在处理财务报表、法律合同等垂直领域文档时，很容易出现检索结果缺失或语义错误。确定性Ingestion通过解析文档的物理布局，比如把整个财务报表的营收表格作为一个完整切块，把章节标题与对应的内容绑定在一起，确保每个切块的语义完整性。这样在检索“2024年Q2营收数据”时，能直接返回完整的表格切块，而非零散的片段，大幅提升回答的准确性。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能提到调整LoRA秩（Rank）与学习率的具体操作，说明如何量化控制微调幅度</li>
-<li>能结合业务场景（如HR客服），说明数据增强的具体方法（如补充高频问答样本）</li>
+<li>举例说明如何结合Docling-Studio实现PDF文档的确定性Ingestion</li>
+<li>提到与Contextual Retrieval配合，为每个切块补充上下文前缀，进一步提升召回率</li>
+<li>对比不同文档类型的切块策略：对纯文本用语义切块，对结构化文档用物理布局切块</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为DPO微调只需要偏好数据，忽略基座模型原有知识的保留</li>
-<li>认为训练次数越多效果越好，忽略早停机制的重要性</li>
+<li>误区1：认为确定性Ingestion只是更精细的固定切块，忽略了结构解析的核心价值</li>
+<li>误区2：过度追求切块完整性，导致切块过大，增加Token消耗</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q5</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>Agent平台 · 低代码</code> · 难度：⭐⭐⭐⭐</small></p>
+<p><small><code>长周期Agent · 状态管理</code> · 难度：⭐⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>拖拽式通用Agent开发平台的核心模块设计需要满足哪些工程化要求？这些要求是如何降低Agent开发门槛的？</p>
+<p>长周期业务场景中Agent的「状态序列化与异步唤醒」机制是什么？如何实现跨数天的业务流程断点续接？</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>拖拽式通用Agent开发平台的核心模块需要满足可视化编排、组件复用、统一管控、可观测性四大工程化要求，通过封装复杂技术细节，让业务人员无需代码即可搭建Agent系统。</strong></p>
+<p><strong>状态序列化与异步唤醒是指将Agent的工作流状态、上下文数据序列化为可持久化格式（如JSON）存入数据库，当外部触发条件满足时（如人工审批完成），再反序列化状态并恢复工作流的机制，实现跨数天的长周期业务流程断点续接。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>可视化编排画布：支持节点拖拽、分支条件、循环及回滚，降低流程设计门槛</li>
-<li>原子组件市场：封装LLM、RAG、爬虫等工具，开箱即用，避免重复造轮子</li>
-<li>统一管控中心：包含知识库、模型路由、权限管理，实现资源统一调度与安全管控</li>
-<li>可观测性模块：提供全链路Trace、日志、成本统计，便于问题排查与优化</li>
+<li>状态序列化：每完成一个业务步骤，将LangGraph的工作流状态、上下文、局部变量序列化为JSON存入数据库</li>
+<li>中断触发：当流程需要等待外部事件（如人工审批）时，抛出Interrupt信号，挂起当前会话并释放资源</li>
+<li>异步唤醒：外部事件触发后（如审批通过），通过Webhook回调读取序列化状态，反序列化后恢复工作流执行</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>传统Agent开发需要掌握LangGraph、RAG等复杂技术，门槛极高。拖拽式平台通过可视化画布将流程设计变成"搭积木"，业务人员只需拖拽节点即可完成工作流设计；原子组件市场将大模型调用、爬虫等技术封装成可视化组件，无需编写代码即可使用；统一管控中心解决了多Agent的资源调度与安全问题，避免每个Agent单独配置；可观测性模块让非技术人员也能监控Agent的运行状态与成本。这种平台就像一个Agent的"乐高工厂"，让业务人员可以快速搭建符合需求的Agent系统，同时保证了系统的规范性与可维护性。</p>
+<p>在员工入职、跨部门审批等长周期业务中，Agent无法持续占用计算资源等待数天。状态序列化相当于给Agent“拍快照”：当流程走到需要总监审批的节点时，Agent将当前的工作流状态、已收集的员工信息等全部序列化存入PostgreSQL，然后释放服务器资源。当总监点击同意后，HR系统通过Webhook发送回调请求，Agent读取快照并反序列化，直接从审批通过的节点继续执行后续流程（如生成劳动合同），无需重新开始整个流程。这个过程类似游戏存档：玩到一半退出，下次打开可以直接从存档点继续。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能提到多租户隔离与版本管理模块，说明平台的企业级适配能力</li>
-<li>能结合实际场景（如HR客服、自媒体运营），说明平台如何快速落地业务需求</li>
+<li>结合LangGraph的<code>Checkpointer</code>与<code>update_state</code>接口，举例说明如何实现状态的序列化与恢复</li>
+<li>提到与企业OA/HR系统的Webhook集成，实现外部事件的触发逻辑</li>
+<li>补充说明如何通过Task ID关联序列化状态与外部事件，确保唤醒的准确性</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为拖拽式平台只是"玩具"，无法满足复杂业务场景的需求</li>
-<li>忽略权限管控与可观测性的重要性，导致平台在生产环境中无法稳定运行</li>
+<li>误区1：序列化时只保存部分状态，导致恢复流程时丢失关键上下文</li>
+<li>误区2：未释放占用的计算资源，导致Agent实例长时间闲置，浪费算力</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q6</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>Agent落地 · 工程化</code> · 难度：⭐⭐⭐⭐</small></p>
+<p><small><code>分布式Agent · 性能优化</code> · 难度：⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>企业级Agent落地中，解决"大模型输出随机性与业务确定性冲突"的技术与工程方案是什么？这些方案的核心逻辑是什么？</p>
+<p>Agent集群中的「会话粘滞（Sticky Sessions）」是什么？它对大模型推理性能的提升逻辑是什么？</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>解决大模型输出随机性与业务确定性冲突的核心方案是技术层面的流程约束与输出校验，加上工程层面的容错机制与可观测性，通过"约束+校验+兜底"三层保障实现业务稳定。</strong></p>
+<p><strong>会话粘滞是指通过网关配置，将同一个用户的所有请求路由到同一台Agent服务器的策略，核心目的是复用大模型的KV Cache，降低推理延迟与算力成本。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>技术层面：用LangGraph做精细化工作流设计，用RAG约束输入边界，用Pydantic做格式强校验</li>
-<li>工程层面：实现重试、熔断、降级机制，用消息队列削峰填谷，建立全链路Trace监控</li>
-<li>业务层面：关键节点引入人工审核，确保高风险操作的确定性</li>
+<li>一致性哈希路由：网关根据用户的Session ID或请求ID进行一致性哈希计算，确定对应的服务器</li>
+<li>KV Cache复用：同一用户的后续请求会被路由到同一台服务器，该服务器已缓存的大模型上下文KV可直接复用</li>
+<li>故障转移：当服务器宕机时，网关将用户请求路由到其他服务器，重新初始化KV Cache</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>大模型的输出天生带有随机性，而企业业务要求绝对稳定。技术层面，LangGraph的工作流设计可以将复杂任务拆分为多个确定性节点，每个节点只负责单一任务，减少大模型的决策范围；RAG通过知识库约束大模型的输入，避免幻觉；Pydantic可以强制大模型输出符合要求的结构化格式。工程层面，重试机制可以处理临时的模型响应错误，熔断降级可以在模型故障时切换到兜底方案，消息队列可以平衡流量峰值；全链路Trace监控可以快速定位问题。业务层面，人工审核可以确保高风险操作（如退款、投诉处理）的正确性。这种三层保障就像"三重保险"，既利用大模型的智能，又保证业务的稳定。</p>
+<p>大模型推理时会将上下文的Key-Value对缓存到GPU显存中，后续请求如果复用相同的前缀上下文，可直接使用缓存的KV，无需重新计算注意力矩阵，大幅降低推理延迟。如果没有会话粘滞，同一个用户的请求会被路由到不同服务器，每个服务器都需要重新计算KV Cache，不仅增加算力消耗，还会导致首字延迟（TTFT）变长。会话粘滞相当于给用户分配一个固定的“专属服务员”，服务员记住用户的历史需求，后续服务无需重新了解情况，响应速度更快。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能结合HR智能客服场景，说明如何用LangGraph实现"反思-校验-重试"循环机制</li>
-<li>能提到KV Cache与模型网关，说明如何优化模型调用的稳定性与成本</li>
+<li>举例说明Nginx的一致性哈希路由配置，实现会话粘滞</li>
+<li>提到与状态下沉的协同作用：状态下沉解决会话记忆共享，会话粘滞解决KV Cache复用</li>
+<li>补充说明如何通过动态权重调整，实现会话粘滞与负载均衡的平衡</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为只用Prompt工程就能解决随机性问题，忽略流程约束与工程保障的重要性</li>
-<li>认为人工审核会降低效率，忽略其在高风险场景中的必要性</li>
+<li>误区1：认为会话粘滞会导致负载不均衡，忽略了大模型KV Cache复用带来的性能提升远大于负载不均衡的影响</li>
+<li>误区2：未配置故障转移机制，导致服务器宕机时用户请求失败</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q7</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>AI辅助编码 · Vibe Coding</code> · 难度：⭐⭐⭐</small></p>
+<p><small><code>Agent架构 · 工程管理</code> · 难度：⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>Vibe Coding（AI辅助编码）中，"事不过三"原则与Git细粒度提交的核心价值是什么？这些原则如何避免AI编码的常见陷阱？</p>
+<p>企业级多Agent系统的「多仓库独立部署」架构是什么？它相对于单仓库部署的核心优势是什么？</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>"事不过三"原则与Git细粒度提交是Vibe Coding的核心保障，前者避免AI陷入思维死胡同，后者保留版本回滚的"后悔药"，共同提升AI编码的效率与可靠性。</strong></p>
+<p><strong>多仓库独立部署是指将Agent系统拆分为底层公共服务仓库（如MCP服务）与上层业务Agent仓库（如HR客服、自媒体Agent），每个仓库独立开发、部署的架构，核心优势是实现团队协作隔离、发布风险降低、业务扩展灵活。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>事不过三原则：连续3次让AI修复同一Bug仍失败时，立刻介入手动排查，避免AI拆东墙补西墙</li>
-<li>Git细粒度提交：每个可运行的阶段性成果立即提交，避免功能全部完成后才提交，便于版本回滚</li>
-<li>上下文管控：维护context.md快照，让AI快速了解项目状态，避免注意力溃散</li>
+<li>分层仓库拆分：底层公共服务仓库负责LLM调用、RAG检索等通用能力，上层业务仓库负责具体业务逻辑</li>
+<li>独立开发部署：每个仓库拥有独立的代码仓库、CI/CD流水线，可单独发布更新</li>
+<li>统一网关调用：上层业务Agent通过统一网关调用底层公共服务，实现能力复用</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>AI编码时经常会陷入思维死胡同，比如连续修改同一个Bug却引入新的错误，此时继续让AI修复只会浪费时间，"事不过三"原则强制开发者介入，手动理清逻辑或重新发起对话。Git细粒度提交则是将大功能拆分为多个小的可运行模块，每个模块完成后立即提交，这样如果AI编码翻车，可以快速回滚到上一个可用版本，避免全部功能作废。此外，context.md快照可以让AI快速了解项目的架构、已实现功能与已知问题，避免长文本注意力溃散导致的错误。这些原则就像AI编码的"安全护栏"，既利用AI的效率，又避免其局限性带来的损失。</p>
+<p>单仓库部署会导致所有Agent代码耦合在一起，修改一个业务Agent可能影响其他Agent，发布风险极高。多仓库独立部署将通用能力抽离到底层公共服务仓库，比如MCP的RAG检索服务，所有业务Agent都可以通过网关调用这个服务；上层的HR客服、自媒体Agent各自拥有独立仓库，开发团队可独立迭代，发布时不会影响其他业务。这个架构类似商场：底层是共享的水电、空调系统，上层是独立的店铺，每个店铺可以单独装修、营业，互不干扰。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能结合Claude的长文本注意力特性，说明严控文件体积（300行以内）的必要性</li>
-<li>能提到私有MCP服务器的建设，说明如何提升AI的本地感知力</li>
+<li>结合实际项目，举例说明仓库拆分的具体逻辑与接口设计</li>
+<li>提到与微服务架构的协同，实现Agent系统的高可扩展性</li>
+<li>补充说明如何通过统一的代码规范与接口文档，确保多仓库协作的一致性</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为AI能解决所有问题，过度依赖AI而忽略手动排查的重要性</li>
-<li>认为Git提交越频繁越好，忽略提交的质量与关联性</li>
+<li>误区1：过度拆分仓库，导致服务过多、维护成本增加</li>
+<li>误区2：底层公共服务与上层业务Agent耦合过紧，失去独立部署的优势</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q8</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>Transformer · 位置编码</code> · 难度：⭐⭐⭐</small></p>
+<p><small><code>Agent安全 · 鉴权</code> · 难度：⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>Transformer架构中，位置编码的核心作用是什么？主流的两种位置编码方案（正弦余弦编码与可训练位置编码）有什么差异？</p>
-<p><strong>💡 参考答案</strong></p>
+<p>Agent与企业传统系统鉴权的「托管代理人模式」是什么？它如何保证权限最小化与数据安全？</p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>位置编码的核心作用是为Transformer提供序列顺序信息，弥补其无法捕捉词序的缺陷；正弦余弦编码与可训练位置编码的差异在于是否固定、泛化能力与训练成本。</strong></p>
+<p><strong>托管代理人模式是指Agent以用户的身份令牌（如JWT）调用企业传统系统的鉴权方案，核心是复用企业现有权限体系，确保Agent只能访问用户自身有权限的数据，实现权限最小化与数据安全。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>核心作用：Transformer的自注意力机制是无序的，位置编码通过给每个词添加位置向量，让模型知道词的顺序</li>
-<li>正弦余弦编码：固定的数学函数生成，无需训练，泛化能力强，适合长文本</li>
-<li>可训练位置编码：随模型一起训练，能学习到更贴合任务的位置信息，但泛化能力弱，训练成本高</li>
+<li>用户身份认证：用户通过企业统一认证中心（如LDAP、飞书）登录Agent系统</li>
+<li>令牌传递：认证中心颁发带有用户权限的Access Token给Agent</li>
+<li>权限校验：Agent调用传统系统时，将Token放入请求头，传统系统校验Token的权限后放行</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>Transformer的自注意力机制计算每个词与其他词的关联权重时，不考虑词的顺序，因此如果没有位置编码，模型无法区分"我吃苹果"与"苹果吃我"的差异。正弦余弦编码通过正弦和余弦函数生成不同频率的向量，每个位置对应唯一的向量，这种编码方式是固定的，无需训练，而且可以泛化到训练时未见过的长序列。可训练位置编码则是将位置向量作为模型参数，随模型一起训练，能学习到更适合特定任务的位置信息，但如果训练数据中的序列长度有限，泛化到更长序列时效果会下降，而且增加了训练参数。目前主流大模型（如LLaMA）采用的RoPE旋转位置编码，结合了正弦余弦编码的泛化能力与可训练编码的灵活性。</p>
+<p>传统的Agent鉴权可能会使用共享的超级管理员账号，存在越权访问的风险。托管代理人模式相当于Agent是用户的“代办人”：用户登录时，企业认证中心给Agent颁发一张“授权委托书”（带有用户权限的JWT），Agent调用ERP系统查询订单时，把委托书交给ERP系统，ERP系统验证委托书的权限后，只返回用户自己的订单数据。这样即使Agent被攻击，也只能访问该用户的权限范围内的数据，不会导致全系统的数据泄露。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能提到RoPE（旋转位置编码），说明其在大模型中的应用优势</li>
-<li>能结合自注意力机制的计算过程，说明位置编码如何融入词向量</li>
+<li>举例说明如何结合OAuth 2.0实现托管代理人模式</li>
+<li>提到与企业统一身份认证体系的集成，避免重复开发鉴权逻辑</li>
+<li>补充说明如何通过Token过期、刷新机制，进一步提升安全性</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为Transformer本身能捕捉词序，忽略位置编码的必要性</li>
-<li>认为可训练位置编码一定优于正弦余弦编码，忽略其泛化能力的缺陷</li>
+<li>误区1：让Agent持有用户的明文密码，导致密码泄露风险</li>
+<li>误区2：未校验Token的权限，导致Agent越权访问数据</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q9</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>大模型可解释性 · NLA</code> · 难度：⭐⭐⭐⭐</small></p>
+<p><small><code>RAG优化 · 检索增强</code> · 难度：⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>Claude的自然语言自编码器（NLA）是如何实现大模型内部状态可解释性的？这种技术的核心价值是什么？</p>
-<p><strong>💡 参考答案</strong></p>
+<p>垂直领域RAG中的「Contextual Retrieval（上下文前缀拼接）」是什么？它解决了传统RAG的什么核心问题？</p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>Claude的自然语言自编码器（NLA）通过两个微型AI模型（激活值口述器与重构器）将大模型内部的高维激活值翻译成人类可理解的语言，实现了大模型内部状态的可解释性，核心价值是安全审计与模型优化。</strong></p>
+<p><strong>Contextual Retrieval是指在RAG数据入库前，为每个切块自动生成包含母档核心信息的上下文前缀，补充切块的语义背景，解决传统RAG切块后信息碎片化、丢失上下文的问题。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>激活值口述器（AV）：将大模型内部的高维激活值（神经元的输出）翻译成人类语言解释</li>
-<li>激活值重构器（AR）：将人类语言解释还原为激活值，校验AV解释的准确性</li>
-<li>闭环校验：通过AV与AR的协同工作，确保解释的可靠性，避免误判</li>
+<li>母档语义提取：通过小模型提取文档的核心主题、所属领域、关键实体等信息</li>
+<li>前缀拼接：将提取的核心信息作为前缀，拼接在每个切块的前面</li>
+<li>增强检索：检索时，前缀与切块内容一起参与向量计算，提升模糊查询的召回率</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>大模型的内部状态是高维向量，人类无法直接理解，NLA技术相当于给大模型安装了"翻译器"。激活值口述器负责将这些向量翻译成人类能看懂的语言，比如"这个神经元正在思考关于劳动法的合规问题"；激活值重构器则负责将这段语言再翻译回向量，如果还原度高，说明AV的解释是准确的。这种闭环校验机制确保了解释的可靠性，让开发者能清晰看到大模型的"思考过程"。核心价值在于安全审计，比如在黑客攻击演练中，可以检测大模型是否有欺骗意图；同时也可以用于模型优化，比如发现哪些神经元负责特定任务，从而针对性地调整模型结构。</p>
+<p>传统RAG的切块是独立的，比如从财务报表中切割出“Q2营收100万”的切块，这个切块没有上下文信息，当用户查询“2024年公司营收情况”时，可能无法准确召回该切块。Contextual Retrieval会为这个切块生成前缀：“文档主题：2024年公司财务报表；所属季度：Q2；核心指标：营收”，拼接后的切块包含了完整的上下文背景，向量检索时能更准确地匹配用户的查询意图，避免因信息碎片化导致的召回失败。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能结合Claude Code的源码，说明NLA技术在模型安全防御中的应用</li>
-<li>能提到机械可解释性的研究方向，说明NLA是该方向的重要突破</li>
+<li>举例说明如何通过小模型（如Gemma 4）自动生成上下文前缀</li>
+<li>提到与确定性Ingestion配合，进一步提升RAG的检索准确性</li>
+<li>补充说明如何通过前缀长度控制，平衡上下文补充与Token消耗的关系</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为NLA能完全解释大模型的所有行为，忽略其只能解释部分神经元的局限性</li>
-<li>认为可解释性技术只是学术研究，忽略其在企业级应用中的安全价值</li>
+<li>误区1：前缀生成过于冗长，增加Token消耗与推理成本</li>
+<li>误区2：前缀信息与切块内容无关，反而降低检索准确性</li>
 </ul>
 <hr />
 <h3>📌 概念题 · Q10</h3>
 <blockquote>
 <p><strong>考点标签</strong></p>
-<p><small><code>RAG · 文档切片</code> · 难度：⭐⭐⭐</small></p>
+<p><small><code>Agent运维 · 可观测性</code> · 难度：⭐⭐⭐⭐</small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>HR智能客服系统中，采用Python代码做文档切片而非大模型切片的核心原因是什么？这种切片方案的优势是什么？</p>
-<p><strong>💡 参考答案</strong></p>
+<p>企业级Agent系统的「全链路可观测性」核心内容是什么？为什么它是生产环境的必选组件？</p>
 <p><strong>▎一句话结论</strong></p>
-<p><strong>HR智能客服系统采用Python代码做文档切片而非大模型切片，核心是为了保证切片的准确性、低成本与稳定性，解决大模型切片带来的幻觉、高成本与格式不稳定问题。</strong></p>
+<p><strong>全链路可观测性是指通过工具（如LangSmith、Arize Phoenix）完整记录Agent执行任务的全流程数据，包括Prompt调用、RAG检索结果、Token消耗、工作流节点执行情况等，核心价值是实现问题排查、性能优化、合规审计，是生产环境中驯服大模型不确定性的必选组件。</strong></p>
 <p><strong>▎核心原理</strong></p>
 <ul>
-<li>准确性：Python代码基于Markdown标题或版面解析库切片，100%忠于原文，无丢数据或幻觉</li>
-<li>低成本：纯Python字符串正则或轻量级CV/OCR库，无需调用大模型，成本为0</li>
-<li>稳定性：输出格式固定，不会出现格式残缺或错别字，避免后端Pipeline崩溃</li>
+<li>全链路Trace：记录Agent从接收请求到输出结果的每一个步骤，包括工具调用、大模型推理、状态转换</li>
+<li>量化指标监控：跟踪Token消耗、推理延迟、检索准确率等核心指标</li>
+<li>合规审计：记录所有交互数据，满足金融、政务等领域的合规要求</li>
 </ul>
 <p><strong>▎深入解释</strong></p>
-<p>HR场景对文档内容的准确性要求极高，比如公积金缴纳比例、休假制度等信息不能有任何错误。大模型切片容易出现漏字、幻觉或魔改内容，无法满足HR场景的要求；同时大模型切片需要输入输出双倍Token，成本极高，尤其是海量文档时账单惊人；此外大模型输出格式不稳定，偶尔会出现格式残缺，导致后端Pipeline崩溃。Python代码切片则基于Markdown标题的正则匹配，速度微秒级，100%忠于原文；对于复杂排版文档，调用版面解析库（如MinerU、Unstructured）返回区块列表，格式固定，成本极低。这种方案就像用精密的手术刀切片，而非大模型的"粗剪刀"，既准确又高效。此外，大模型在切片阶段的正确角色是对切好的片进行语义增强（如图片总结、表格QA生成），而非直接切片。</p>
+<p>大模型是具有概率论属性的“不确定性CPU”，生产环境中容易出现幻觉、推理卡顿、Token暴涨等问题，传统的日志监控无法定位根因。全链路可观测性相当于给Agent系统安装了“全景监控摄像头”：可以看到Agent在处理用户请求时，调用了哪些Prompt、RAG检索了哪些切块、大模型生成了什么内容、哪一步出现了延迟，甚至可以回放整个工作流的执行过程。通过这些数据，工程师可以快速排查幻觉问题的根源（如RAG检索到错误的切块）、优化推理性能（如减少不必要的工具调用）、满足合规审计要求（如记录所有用户交互数据）。</p>
 <p><strong>▎面试加分点</strong></p>
 <ul>
-<li>能提到大模型在切片阶段的正确角色，即对切好的片进行语义增强</li>
-<li>能结合HR场景的特殊性，说明准确性是第一优先级的原因</li>
+<li>举例说明如何结合LangSmith实现Agent系统的全链路可观测性</li>
+<li>提到与LLM-as-a-Judge配合，实现自动化的性能评估与问题发现</li>
+<li>补充说明如何通过可观测性数据优化Prompt与RAG策略，提升系统准确率</li>
 </ul>
 <p><strong>▎常见误区</strong></p>
 <ul>
-<li>误以为大模型切片更智能，忽略其在准确性与成本上的缺陷</li>
-<li>认为Python切片只能做简单的标题拆分，忽略版面解析库的复杂排版处理能力</li>
+<li>误区1：认为全链路可观测性只是记录日志，忽略了量化指标与Trace分析的核心价值</li>
+<li>误区2：收集过多无关数据，导致存储成本过高且难以分析</li>
 </ul>
 <hr />
 <h1>二、应用题（5 道 · 分类型）</h1>
@@ -445,35 +450,36 @@
 <p><strong>题型</strong></p>
 <p><small>架构设计</small></p>
 <p><strong>场景标签</strong></p>
-<p><small><code>本地开发Agent</code>、<code>上下文压缩</code>、<code>状态持久化</code></small></p>
+<p><small><code>分布式Agent集群</code> <code>多业务线隔离</code> <code>无损发布</code></small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>请设计一个面向开发者的本地AI编程Agent架构，要求支持中断后状态无损恢复、自动控制Token成本、避免陷入死循环刷爆API账单，同时兼容主流大模型API（OpenAI/Claude/通义千问）。</p>
+<p>某企业需要搭建支持HR智能客服、财务报销审批、自媒体内容运营三条业务线的分布式Agent集群，要求满足：1. 单业务线版本发布不影响其他业务正常运行；2. 高并发下用户会话记忆不丢失、首字响应延迟≤2s；3. 版本更新时无在途任务（如自媒体文案生成、报销审批）丢失。请设计该集群的核心架构并说明技术选型与落地逻辑。</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎解题思路</strong></p>
 <ol>
-<li>锚定核心需求优先级：状态持久化解决中断丢失问题→上下文压缩控制Token成本→熔断机制防止死循环→多模型兼容保证灵活性；</li>
-<li>参考Claude Code的工程架构，拆解为状态管理层、上下文压缩层、Agent协作层、模型适配层四个核心模块；</li>
-<li>优先落地防御性机制（熔断、权限控制），再实现功能模块，最后做兼容性适配。</li>
+<li>拆分底层公共服务与上层业务Agent，实现多仓库独立部署，避免业务耦合；</li>
+<li>设计统一网关层，实现流量路由、会话粘滞与权限控制，解决高并发下的KV Cache复用问题；</li>
+<li>下沉Agent状态到共享存储，实现服务器无状态化，解决会话记忆丢失问题；</li>
+<li>制定分层发布与优雅终止策略，保障版本更新时的无损过渡。</li>
 </ol>
 <p><strong>▎详细方案</strong></p>
-<ul>
-<li><strong>状态管理层</strong>：采用AsyncGenerator异步生成器作为核心状态流，所有操作（文件读写、工具调用）都通过yield断点保存；同时在本地<code>~/.dev-agent/state/</code>目录下用NDJSON格式持久化每一轮对话的上下文、工具执行结果、当前节点状态，绑定唯一<code>session_id</code>和<code>checkpoint_id</code>，中断后可通过<code>session_id</code>快速恢复。</li>
-<li><strong>上下文压缩层</strong>：实现四阶段递进式压缩机制：Stage1自动移除重复代码片段（AST语法树对比）；Stage2清理已失效的缓存数据；Stage3调用轻量模型生成历史对话语义摘要；Stage4生成全量压缩基线。每阶段压缩失败自动降级到下一阶段，连续5次失败触发熔断。</li>
-<li><strong>Agent协作层</strong>：主Agent负责核心编程任务，派生隔离的Sub Agent处理目录扫描、依赖安装等非核心任务，Sub Agent仅返回摘要结果；用本地JSON Todo文件管理短时任务列表，每轮执行前读取确保任务不遗漏。</li>
-<li><strong>模型适配层</strong>：封装统一模型API接口，支持一键切换不同大模型，同时配置模型参数硬限制（最大Token数、超时时间），避免单次请求成本过高。</li>
-</ul>
+<p>采用四层架构设计：<br />
+1. <strong>底层MCP公共服务层</strong>：将LLM调用、RAG检索、状态存储、Prompt管理抽离为独立的公共服务，部署为无状态Pod，用Redis Cluster做分布式会话状态存储，PostgreSQL做持久化备份，确保所有业务Agent共享统一底座；<br />
+2. <strong>统一网关层</strong>：用FastAPI+Nginx构建双网关，FastAPI负责权限校验、流量统计，Nginx实现基于<code>session_id</code>的一致性哈希路由，确保同一用户的请求始终打到同一服务器，复用大模型KV Cache；<br />
+3. <strong>上层业务Agent层</strong>：三条业务线分别创建独立Git仓库，各自编写LangGraph工作流，部署为独立无状态Pod，仅通过网关调用底层MCP服务，实现业务隔离；<br />
+4. <strong>发布运维层</strong>：用Kubernetes编排部署，配置<code>depends_on</code>与<code>service_healthy</code>规则，严格按照「MCP服务→网关→业务Agent」的顺序分层发布；每个服务配置健康检查接口，发布前验证服务可用性。</p>
 <p><strong>▎关键细节 &amp; 踩坑点</strong></p>
 <ul>
-<li>异步生成器必须捕获<code>KeyboardInterrupt</code>异常，确保状态写入本地后再退出，避免数据丢失；</li>
-<li>上下文压缩的Stage3/4必须使用轻量模型（如Claude Sonnet/GPT-3.5），不能用大模型，否则反而增加成本；</li>
-<li>所有自定义工具默认设置<code>isReadOnly=true</code>，写操作必须手动开启权限，防止Agent误删本地文件。</li>
+<li>网关会话粘滞必须用<strong>一致性哈希</strong>而非简单轮询，否则无法稳定复用KV Cache；</li>
+<li>Redis Cluster必须开启持久化（RDB+AOF），避免重启导致会话状态丢失；</li>
+<li>优雅终止需配合Kubernetes的<code>terminationGracePeriodSeconds</code>参数（设置≥30s），给在途任务足够的完成时间；</li>
+<li>业务Agent的LangGraph必须配置分布式Checkpointer，禁止使用默认内存Checkpointer。</li>
 </ul>
 <p><strong>▎可扩展优化</strong></p>
 <ul>
-<li>引入本地向量检索，将历史对话压缩后的摘要存入向量库，快速召回相关上下文，进一步减少Token消耗；</li>
-<li>支持多会话并行管理，通过<code>session_id</code>隔离不同项目的状态，实现多项目同时开发；</li>
-<li>增加本地代码静态检查工具集成，让Agent在生成代码后自动运行lint检查，减少人工修复成本。</li>
+<li>引入Istio服务网格，实现流量灰度发布、熔断降级与全链路监控；</li>
+<li>添加自动扩缩容规则，基于会话数、GPU利用率动态调整业务Agent的Pod数量；</li>
+<li>集成LangSmith做全链路Trace，实时监控Agent的推理过程、Token消耗与错误率。</li>
 </ul>
 <hr />
 <h3>🛠 应用题 · Q2 · 场景分析</h3>
@@ -481,39 +487,44 @@
 <p><strong>题型</strong></p>
 <p><small>场景分析</small></p>
 <p><strong>场景标签</strong></p>
-<p><small><code>HR自媒体运营</code>、<code>Agent工作流回溯</code>、<code>合规内容生成</code></small></p>
+<p><small><code>长周期Agent</code> <code>人工审批</code> <code>企业OA集成</code></small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>某HR服务公司的自媒体运营团队使用AI Agent生成小红书垂直内容，运营人员在审核时经常遇到两种需求：一是直接修改文案中的错别字或格式问题；二是要求Agent调整文案风格（如从严肃改为活泼）或补充特定内容。请分析这两种需求的差异，设计对应的Agent处理流程，并说明各自的适用场景和业务价值。</p>
+<p>某企业需要开发员工入职全流程Agent，涵盖「简历核验→背景调查→总监审批→合同签署→入职培训安排」五大环节，其中总监审批环节需要等待人工操作，最长可能延迟3天。请分析该场景下Agent的核心技术挑战，并对比两种落地方案的优劣：A. 基于LangGraph的状态持久化+Webhook唤醒；B. 基于传统Workflow引擎+大模型辅助。</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎解题思路</strong></p>
 <ol>
-<li>先区分两种需求的本质差异：直接修改是确定性局部文本修正，无需大模型介入；风格调整是不确定性语义重构，需要基于历史上下文重新生成；</li>
-<li>结合LangGraph的状态管理机制，分别设计轻量修改流程和回溯重生成流程，确保流程高效且不破坏原有状态；</li>
-<li>分析每种流程的适用场景，明确业务价值（效率提升、合规性保障、成本控制）。</li>
+<li>先明确场景核心挑战：长周期状态保存、人工介入的中断唤醒、流程一致性保障、算力资源优化；</li>
+<li>分别拆解两种方案的核心逻辑、适配性与局限性；</li>
+<li>结合企业业务需求给出最优方案的落地补充策略。</li>
 </ol>
 <p><strong>▎详细方案</strong></p>
+<h4>核心技术挑战</h4>
 <ul>
-<li><strong>需求一：直接修改文案（局部修正）</strong></li>
-<li>流程：运营在前端富文本编辑器修改后，直接调用后端API更新数据库中的最终文案字段，无需触发LangGraph工作流。后端仅做双重合规检查（敏感词过滤+劳动法违规表述校验），通过后直接保存。</li>
-<li>适用场景：错别字修正、格式调整（如Emoji替换）、少量内容删减，属于无需大模型介入的确定性修改。</li>
-<li>业务价值：秒级响应，避免不必要的大模型调用成本，同时保证修改内容完全符合运营意图，无幻觉风险。</li>
-<li><strong>需求二：调整风格/补充内容（语义重构）</strong></li>
-<li>流程：运营输入修改建议（如“语气太严肃，增加打工人共鸣”），后端通过<code>graph.update_state()</code>将建议写入当前LangGraph状态机，利用<code>conditional_edges</code>条件边将流程回溯到“文案生成Agent”节点；Agent基于历史文案、热点话题和新建议重新生成内容，再返回给运营审核。</li>
-<li>适用场景：风格调整、内容补充、角度转换（如从企业视角改为员工视角），属于需要大模型语义理解的不确定性修改。</li>
-<li>业务价值：保留历史上下文，确保修改后的内容与原有主题和风格一致，同时减少运营的重复输入成本。</li>
+<li>长周期运行导致的算力浪费：Agent不能常驻内存等待人工操作；</li>
+<li>状态丢失风险：跨多天的流程需确保上下文、节点进度不丢失；</li>
+<li>人工衔接的无缝性：审批完成后需自动唤醒Agent继续执行后续流程；</li>
+<li>流程可追溯性：需记录每个节点的操作日志，满足企业合规要求。</li>
 </ul>
+<h4>方案对比</h4>
+<ul>
+<li><strong>方案A（LangGraph+Webhook）</strong>：核心逻辑是用LangGraph的PostgreSQL Checkpointer序列化Agent状态，每个节点完成后持久化到数据库；审批节点触发Tool调用OA系统生成审批单，抛出<code>Interrupt</code>信号挂起会话；OA审批完成后发送带签名的Webhook请求，Agent反序列化状态并从断点继续执行。优势：Agent具备自主决策能力（如背景调查异常时自动触发二次核验），流程灵活性高；劣势：状态序列化需兼容LangGraph的版本迭代，Webhook需做签名校验防止伪造。</li>
+<li><strong>方案B（传统Workflow+大模型）</strong>：核心逻辑是用Activiti等Workflow引擎定义固定流程节点，大模型仅作为节点内的任务处理工具（如简历信息提取），流程流转由引擎控制。优势：流程确定性强，符合企业现有OA审批习惯；劣势：大模型的自主性受限，无法应对非标准化场景（如简历信息缺失时的主动询问）。</li>
+</ul>
+<h4>最优方案</h4>
+<p>选择方案A，并补充Workflow引擎的审批节点做互补：用LangGraph实现Agent的自主推理，用企业现有OA引擎处理人工审批流程，通过Webhook实现两者的状态同步。</p>
 <p><strong>▎关键细节 &amp; 踩坑点</strong></p>
 <ul>
-<li>直接修改时必须加前端校验和后端双重合规检查，防止运营输入违规内容（如敏感劳动法表述）；</li>
-<li>流程回溯时必须绑定唯一<code>thread_id</code>和<code>checkpoint_id</code>，确保回到正确的历史节点，避免状态错乱；</li>
-<li>风格调整时必须将历史文案、热点话题和修改建议作为上下文同时喂给大模型，否则生成的内容可能偏离原有主题。</li>
+<li>状态序列化需包含<strong>所有上下文、局部变量、节点位置</strong>，避免唤醒后流程错乱；</li>
+<li>Webhook必须做签名校验（如HMAC-SHA256），防止恶意请求触发流程；</li>
+<li>需设置审批超时机制（如7天未审批自动触发邮件提醒），避免流程停滞；</li>
+<li>状态持久化数据库需做加密存储，保护员工隐私数据。</li>
 </ul>
 <p><strong>▎可扩展优化</strong></p>
 <ul>
-<li>增加“一键回滚”功能，运营可以选择回到任意历史版本的文案，进一步提升灵活性；</li>
-<li>训练HR垂直领域的风格偏好模型，让Agent自动识别运营的修改风格，后续生成内容自动匹配，减少人工干预；</li>
-<li>集成小红书平台的风格分析工具，实时获取平台热门风格，让Agent生成的内容更符合平台趋势。</li>
+<li>添加状态可视化面板，让管理员查看会话进度与节点详情；</li>
+<li>引入LLM-as-a-Judge自动校验流程节点的合规性（如简历核验结果是否符合企业要求）；</li>
+<li>支持多渠道唤醒（如企业微信消息、邮件触发），提升流程衔接效率。</li>
 </ul>
 <hr />
 <h3>🛠 应用题 · Q3 · 工程实现</h3>
@@ -521,59 +532,92 @@
 <p><strong>题型</strong></p>
 <p><small>工程实现</small></p>
 <p><strong>场景标签</strong></p>
-<p><small><code>Vib Coding</code>、<code>LangGraph回滚</code>、<code>AI编码规范</code></small></p>
+<p><small><code>优雅终止</code> <code>FastAPI</code> <code>LangGraph</code> <code>Docker</code></small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>请基于Vib Coding的实践原则，实现LangGraph自媒体内容运营Agent的节点回滚功能，要求支持指定版本回滚、自动生成测试脚本、每次修改后自动回归测试。请给出核心代码逻辑和工程规范。</p>
+<p>在自媒体内容运营Agent系统中，生成一篇带配图的小红书文案需要5-10秒，版本更新时经常出现用户请求中断、文案生成到一半丢失的问题。请基于FastAPI和LangGraph实现优雅终止机制，确保在途任务完成后再关闭服务，并给出关键代码逻辑。</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎解题思路</strong></p>
 <ol>
-<li>锚定Vib Coding核心原则：细粒度Git提交、动态上下文快照、AI友好的工程规范、防御性Prompt；</li>
-<li>围绕LangGraph的Checkpoint机制，实现版本回滚功能，同时集成AI辅助测试；</li>
-<li>先搭建AI友好的工程规范，再实现核心回滚逻辑，最后集成测试自动化流程。</li>
+<li>用FastAPI的<code>lifespan</code>异步钩子捕获服务器终止信号（SIGTERM）；</li>
+<li>维护线程安全的在途任务计数器，确保并发场景下计数准确；</li>
+<li>结合LangGraph的分布式Checkpointer，实时持久化在途任务状态；</li>
+<li>配置Docker健康检查，配合优雅终止逻辑实现无损发布。</li>
 </ol>
 <p><strong>▎详细方案</strong></p>
-<ul>
-<li><strong>AI友好的工程规范</strong>：</li>
-<li>项目根目录维护<code>context.md</code>，实时记录当前架构、已实现功能、正在攻坚的模块、已知坑；</li>
-<li>代码严格分层：<code>agent/</code>（LangGraph节点）、<code>utils/</code>（工具函数）、<code>test/</code>（测试脚本），每个文件不超过300行；</li>
-<li>配置<code>.cursorrules</code>文件，固化代码风格、目录结构、命名规范，让AI生成代码时自动遵循。</li>
-<li><strong>核心回滚功能实现（伪代码）</strong>：<br />
-  ```python<br />
-  from langgraph.checkpoint.sqlite import SqliteCheckpoint<br />
-  import git</li>
-</ul>
-<p># 初始化Checkpoint，绑定Git commit hash<br />
-  checkpoint = SqliteCheckpoint.from_conn_string("checkpoints.db")<br />
-  app = graph.compile(checkpointer=checkpoint)</p>
-<p>def rollback_to_version(thread_id, target_checkpoint_id):<br />
-      # 1. 从Checkpoint中获取目标版本状态<br />
-      history = checkpoint.get_history(thread_id)<br />
-      target_state = next(cp for cp in history if cp["checkpoint_id"] == target_checkpoint_id)["state"]<br />
-      # 2. 重置当前状态到目标版本<br />
-      app.update_state(thread_id, target_state, checkpoint_id=target_checkpoint_id)<br />
-      # 3. 同步Git回滚到对应提交（checkpoint_id与commit hash绑定）<br />
-      repo = git.Repo(".")<br />
-      repo.git.reset("--hard", target_checkpoint_id)<br />
-      # 4. 自动生成测试脚本并执行<br />
-      generate_test_script(target_state)<br />
-      run_regression_test()<br />
-      return "回滚成功，当前状态已恢复到指定版本，测试已通过"<br />
-<code>``
-- **AI辅助测试流程**：
-  - 每次回滚后，调用Claude生成测试脚本：</code>请基于当前context.md中的业务逻辑，生成针对文案生成节点的单元测试脚本，输入测试数据为HR热点话题列表<code>；
-  - 自动运行测试脚本，检查回滚后的功能是否正常，若失败则触发AI修复：</code>请修复以下测试失败的问题：[错误日志]`。</p>
+<h4>关键代码实现</h4>
+<pre><code class="language-python">import asyncio
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
+from langgraph.checkpoint.redis import RedisCheckpointer
+import redis
+
+# 初始化Redis Checkpointer
+redis_client = redis.from_url(&quot;redis://cluster-ip:6379&quot;)
+checkpointer = RedisCheckpointer(redis_client)
+
+app = FastAPI()
+# 线程安全的在途任务计数器与锁
+active_tasks = 0
+task_lock = asyncio.Lock()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 启动逻辑：初始化LangGraph工作流
+    yield
+    # 终止逻辑：捕获SIGTERM信号，优雅关闭
+    print(&quot;收到终止信号，停止接收新请求...&quot;)
+    # 循环等待所有在途任务完成
+    global active_tasks
+    while True:
+        async with task_lock:
+            if active_tasks == 0:
+                break
+        print(f&quot;当前还有{active_tasks}个任务在执行，等待1秒...&quot;)
+        await asyncio.sleep(1)
+    print(&quot;所有在途任务已完成，服务器安全关闭&quot;)
+
+app = FastAPI(lifespan=lifespan)
+
+@app.post(&quot;/generate/redbook&quot;)
+async def generate_redbook():
+    global active_tasks
+    async with task_lock:
+        active_tasks += 1
+    try:
+        # 执行LangGraph工作流：选题→写作→配图
+        workflow = build_redbook_workflow(checkpointer=checkpointer)
+        result = await workflow.invoke({&quot;user_query&quot;: &quot;生成一篇美妆小红书文案&quot;})
+        return result
+    finally:
+        async with task_lock:
+            active_tasks -= 1
+</code></pre>
+<h4>Docker配置补充</h4>
+<pre><code class="language-yaml">version: '3.8'
+services:
+  media-agent:
+    image: media-agent:latest
+    ports:
+      - &quot;8000:8000&quot;
+    healthcheck:
+      test: [&quot;CMD&quot;, &quot;curl&quot;, &quot;-f&quot;, &quot;http://localhost:8000/health&quot;]
+      interval: 5s
+      retries: 3
+    stop_grace_period: 30s # 给在途任务足够的完成时间
+</code></pre>
 <p><strong>▎关键细节 &amp; 踩坑点</strong></p>
 <ul>
-<li>必须将LangGraph的<code>checkpoint_id</code>与Git的commit hash绑定，确保代码状态和Agent状态完全同步，避免出现代码和状态不一致的情况；</li>
-<li><code>context.md</code>必须实时更新，每次修改后都要同步，否则AI生成测试脚本时会出现上下文缺失；</li>
-<li>单个文件严格控制在300行以内，否则AI生成或修改代码时容易出现注意力溃散，引入新Bug。</li>
+<li>必须用<code>asyncio.Lock</code>保证计数器的线程安全，否则高并发下会出现计数错误；</li>
+<li>LangGraph的Checkpointer需设置自动持久化间隔（如每生成一段文案就保存状态），避免任务中断后丢失进度；</li>
+<li>Docker的<code>stop_grace_period</code>必须设置≥最长任务耗时（如15秒），否则Docker会强制杀死进程；</li>
+<li>不能用全局变量存储计数器，推荐用<code>app.state</code>存储，避免多进程场景下的变量隔离问题。</li>
 </ul>
 <p><strong>▎可扩展优化</strong></p>
 <ul>
-<li>集成CI/CD流程，每次回滚后自动触发流水线，运行全量测试和静态检查；</li>
-<li>实现自动回滚机制，当测试失败时自动回滚到上一个可用版本，减少人工干预；</li>
-<li>增加版本对比功能，AI自动生成两个版本之间的差异报告，帮助运营快速了解修改内容。</li>
+<li>引入Celery任务队列处理异步生成任务，优雅终止时停止消费新任务并等待队列清空；</li>
+<li>添加任务进度保存功能，中断后可从断点继续生成，无需从头开始；</li>
+<li>集成Prometheus监控在途任务数量与完成时间，触发超时告警。</li>
 </ul>
 <hr />
 <h3>🛠 应用题 · Q4 · 排障优化</h3>
@@ -581,42 +625,46 @@
 <p><strong>题型</strong></p>
 <p><small>排障优化</small></p>
 <p><strong>场景标签</strong></p>
-<p><small><code>Agent熔断机制</code>、<code>上下文压缩优化</code>、<code>成本控制</code></small></p>
+<p><small><code>分布式Agent集群</code> <code>KV Cache失效</code> <code>状态丢失</code></small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>某公司部署的本地AI编程Agent频繁触发熔断机制，进入只读模式，导致无法正常生成代码。排查日志发现是四阶段上下文压缩连续失败3次，触发了<code>CompactionError</code>。请分析问题原因，给出排查步骤和优化方案，要求降低熔断触发率90%以上。</p>
+<p>某企业的分布式HR智能客服集群上线后，用户反馈两个核心问题：1. 服务器扩容或切换后，之前的对话记忆完全丢失；2. 同一用户连续请求的响应时间从2秒突然涨到15秒。请定位问题根源，并给出具体的优化方案。</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎解题思路</strong></p>
 <ol>
-<li>先梳理四阶段上下文压缩的流程，从Stage1到Stage4依次排查失败原因；</li>
-<li>分析可能的根因：重复代码识别逻辑缺陷、缓存清理不彻底、语义摘要模型能力不足、大模型API调用不稳定；</li>
-<li>针对性优化每个阶段的压缩逻辑，同时调整熔断阈值的动态控制策略。</li>
+<li>定位记忆丢失问题：排查Agent状态存储方式，确认是否存在单服务器内存存储的情况；</li>
+<li>定位响应变慢问题：分析网关路由策略与大模型KV Cache的复用逻辑；</li>
+<li>针对性给出状态下沉与网关优化方案，并验证效果。</li>
 </ol>
 <p><strong>▎详细方案</strong></p>
-<ul>
-<li><strong>排查步骤</strong>：<br />
-  1. 查看压缩日志，确定哪个阶段失败：若Stage1失败，说明重复代码识别逻辑有问题；若Stage4失败，说明大模型API调用不稳定或摘要能力不足；<br />
-  2. 检查本地状态文件，看是否存在大量重复或无效的上下文数据；<br />
-  3. 测试大模型API的可用性，检查是否有超时、限流等问题；<br />
-  4. 验证语义摘要的质量，看是否存在摘要丢失关键信息的情况。</li>
-<li><strong>优化方案</strong>：</li>
-<li><strong>Stage1优化</strong>：替换简单字符串匹配为AST语法树对比，排除注释、空格等非关键内容，避免误删有效代码；</li>
-<li><strong>Stage2优化</strong>：增加缓存失效时间（7天），自动清理过期缓存，同时保留最近3轮的关键缓存；</li>
-<li><strong>Stage3优化</strong>：替换为更稳定的轻量模型（如通义千问14B），优化摘要Prompt：<code>请提炼以下对话的核心内容，保留代码关键逻辑和需求描述，控制在100字以内</code>；</li>
-<li><strong>Stage4优化</strong>：增加重试机制（每阶段失败后重试2次），若仍失败则跳过该阶段，直接进入下一阶段；</li>
-<li><strong>熔断机制优化</strong>：将连续失败阈值从3次调整为5次，同时增加动态阈值，根据最近7天的压缩成功率自动调整阈值（最低3次，最高10次）。</li>
-</ul>
+<h4>问题根源定位</h4>
+<ol>
+<li><strong>会话记忆丢失</strong>：Agent的会话状态默认存储在单服务器的内存中，未下沉到共享存储，服务器扩容或切换后，新服务器无法读取原服务器的内存状态；</li>
+<li><strong>响应时间暴涨</strong>：网关采用轮询策略分发请求，同一用户的请求被分到不同服务器，每个服务器都需重新计算大模型的KV Cache，无法复用前缀缓存（Prefix Caching），导致每次请求都需重新处理所有上下文。</li>
+</ol>
+<h4>优化方案</h4>
+<ol>
+<li><strong>状态下沉解决记忆丢失</strong>：<br />
+   - 替换LangGraph默认的内存Checkpointer为Redis Cluster Checkpointer，将所有会话状态序列化后存入Redis，会话ID作为Key；<br />
+   - 配置Redis Cluster的持久化策略（RDB+AOF），避免重启导致状态丢失；<br />
+   - 修改业务Agent代码，启动时从Redis读取会话状态，结束时更新状态。</li>
+<li><strong>网关优化解决KV Cache失效</strong>：<br />
+   - 修改Nginx配置，采用基于<code>session_id</code>的一致性哈希路由，确保同一用户的请求始终打到同一服务器；<br />
+   - 固定System Prompt与RAG检索结果的排序，确保请求的前缀Token完全一致，触发大模型的Prefix Caching；<br />
+   - 配置网关的会话粘滞超时机制（如30分钟无操作后释放绑定），避免服务器负载不均。</li>
+</ol>
 <p><strong>▎关键细节 &amp; 踩坑点</strong></p>
 <ul>
-<li>Stage1的AST对比必须排除非关键内容，否则会误判重复代码，导致压缩失败；</li>
-<li>Stage3的摘要Prompt必须明确要求保留核心信息，否则生成的摘要无法支撑后续的代码生成；</li>
-<li>动态阈值调整必须设置上下限，避免阈值过高导致Token成本失控。</li>
+<li>Redis Cluster的哈希槽分配需均匀，避免热点Key导致性能瓶颈；</li>
+<li>一致性哈希的哈希因子必须选稳定的<code>session_id</code>，不能用用户IP（用户可能切换网络）；</li>
+<li>Prefix Caching要求请求的前缀Token完全一致，因此RAG检索结果必须按固定规则排序（如相关性从高到低），不能随机返回；</li>
+<li>需监控Redis的命中率与网关的路由命中率，确保优化效果。</li>
 </ul>
 <p><strong>▎可扩展优化</strong></p>
 <ul>
-<li>引入本地向量检索，将历史上下文的摘要存入向量库，当压缩失败时直接从向量库召回相关上下文，替代压缩流程；</li>
-<li>增加压缩成功率监控，设置告警阈值（如成功率低于80%），自动通知运维人员；</li>
-<li>实现上下文自动清理功能，定期清理无效的历史上下文，减少压缩的工作量。</li>
+<li>引入分布式KV Cache共享方案（如用Redis存储大模型的KV Cache），实现跨服务器的Cache复用；</li>
+<li>添加服务器负载均衡策略，当绑定服务器负载过高时，自动将用户请求切换到其他服务器，并同步KV Cache；</li>
+<li>用Prometheus监控响应时间、Cache命中率与Redis性能，设置告警阈值。</li>
 </ul>
 <hr />
 <h3>🛠 应用题 · Q5 · 综合落地</h3>
@@ -624,44 +672,54 @@
 <p><strong>题型</strong></p>
 <p><small>综合落地</small></p>
 <p><strong>场景标签</strong></p>
-<p><small><code>HR内容运营Agent</code>、<code>从0到1落地</code>、<code>多Agent协同</code></small></p>
+<p><small><code>企业合规Agent</code> <code>金融审计</code> <code>LLM-as-a-Judge</code> <code>Guardrails</code></small></p>
 </blockquote>
 <p><strong>📝 题目</strong></p>
-<p>请从0到1落地一套HR垂直领域的智能内容运营Agent系统，支持每日自动抓取小红书热点、筛选HR相关内容、生成合规文案、人工审核、定时发布全流程。要求系统模块化可扩展，后续可新增视频脚本生成、多平台发布功能。请给出完整的落地思路和核心模块设计。</p>
+<p>某银行需要从0到1落地一套合规审计Agent，要求自动扫描员工的交易记录、邮件往来，识别违规操作（如内幕交易、利益输送），并生成符合监管要求的合规报告。请给出完整的落地思路，包括技术选型、流程设计、合规保障与运维方案。</p>
 <p><strong>💡 参考答案</strong></p>
 <p><strong>▎解题思路</strong></p>
 <ol>
-<li>拆解业务流程为：热点抓取→行业筛选→内容生成→人工审核→定时发布，对应四层架构：数据采集层→语义筛选层→Agent决策层→内容交付层；</li>
-<li>选择适配垂直场景的技术栈：Playwright做动态爬虫，LangGraph做工作流编排，Claude做内容生成，PostgreSQL做状态存储；</li>
-<li>优先落地核心功能，再考虑可扩展性，最后强化合规性保障。</li>
+<li>明确核心需求：数据隐私合规、高准确率、可追溯、自动化评估；</li>
+<li>技术选型围绕合规性与准确率展开，优先选择支持结构化解析、GraphRAG与安全护栏的工具；</li>
+<li>设计分阶段的流程：数据 ingestion→RAG检索→Agent推理→报告生成→合规校验；</li>
+<li>落地保障涵盖数据隔离、权限控制、全链路日志与自动化评测。</li>
 </ol>
 <p><strong>▎详细方案</strong></p>
+<h4>1. 技术选型</h4>
 <ul>
-<li><strong>核心模块设计</strong>：<br />
-  1. <strong>数据采集层</strong>：用Playwright+小红书开源SDK实现定时抓取，每日09:00抓取早间热榜，12:30补抓午间热点；支持防封禁（Cookie会话维持、限速、代理池）、增量更新，采集字段包括热点话题、热度值、爆款标题、标签。<br />
-  2. <strong>语义筛选层</strong>：自建HR行业白名单（社保、劳动法、求职）和黑名单（娱乐、明星），用Sentence-BERT语义相似度算法过滤非相关内容，仅保留HR垂直热点。<br />
-  3. <strong>Agent决策层</strong>：基于LangGraph构建多节点工作流：<ul>
-<li>热点研判节点：判断热点是否适合企业账号发布（如避免敏感话题）；</li>
-<li>角度决策节点：自动选择企业HR视角/打工人视角/政策解读视角；</li>
-<li>风格适配节点：匹配小红书轻量化/干货型/种草型风格；</li>
-<li>合规自检节点：过滤劳动法敏感表述、违规话术，调用大模型做二次校验；<br />
-  4. <strong>内容交付层</strong>：生成爆款标题+首图文案+正文+话题Tag，存入PostgreSQL；前端展示审核界面，支持运营直接修改或触发Agent重写；集成定时发布功能，每日15:00自动发布到小红书。</li>
+<li><strong>数据层</strong>：用Docling-Studio做结构化解析（保护表格、段落完整性），Neo4j构建知识图谱（GraphRAG）关联交易实体与邮件关键词，加密PostgreSQL+pgvector存储向量与结构化数据；</li>
+<li><strong>Agent层</strong>：用LangGraph构建状态机，拆分三个子Agent：检索Agent（查GraphRAG与向量库）、推理Agent（识别违规模式）、报告Agent（生成结构化报告）；</li>
+<li><strong>合规层</strong>：用LlamaGuard做输入输出安全护栏，Ragas框架做LLM-as-a-Judge自动化评测；</li>
+<li><strong>部署层</strong>：用Kubernetes部署分布式Agent集群，状态下沉到Redis，网关做权限控制。</li>
 </ul>
-</li>
-<li><strong>技术选型</strong>：LangGraph做工作流编排，Claude 3 Sonnet做内容生成，PostgreSQL+pgvector做状态和向量存储，Playwright做爬虫，FastAPI做后端接口。</li>
+<h4>2. 流程设计</h4>
+<ol>
+<li><strong>数据Ingestion</strong>：自动同步员工交易记录、邮件数据，用Docling-Studio解析为结构化数据，提取实体（员工ID、交易对手、金额），构建知识图谱关联关系；</li>
+<li><strong>RAG检索</strong>：检索Agent同时查询GraphRAG（关联关系）与向量库（语义相似度），返回相关的交易记录与邮件内容；</li>
+<li><strong>Agent推理</strong>：推理Agent基于检索结果，结合银行合规规则，识别违规操作（如员工与交易对手的亲属关系、异常大额交易）；</li>
+<li><strong>报告生成</strong>：报告Agent生成结构化合规报告，包含违规事实、证据、整改建议；</li>
+<li><strong>合规校验</strong>：Guardrails校验报告是否泄露敏感数据，LLM-as-a-Judge验证报告的Groundedness（基于事实）与Faithfulness（忠实于规则）。</li>
+</ol>
+<h4>3. 合规保障</h4>
+<ul>
+<li>数据脱敏：员工姓名、交易对手名称用假名替换，仅审计人员可查看真实数据；</li>
+<li>权限控制：网关基于RBAC权限模型，仅审计部门人员可访问Agent系统；</li>
+<li>全链路Trace：用LangSmith记录每一步的检索结果、推理过程、Token消耗，满足监管追溯要求；</li>
+<li>安全护栏：输入层过滤敏感词、检测越狱请求，输出层禁止泄露客户隐私数据。</li>
 </ul>
 <p><strong>▎关键细节 &amp; 踩坑点</strong></p>
 <ul>
-<li>爬虫必须设置限速和代理池，避免被小红书封禁IP；同时要处理动态渲染内容，不能用静态抓取；</li>
-<li>合规自检节点必须接入HR行业的敏感词库，同时调用大模型做二次校验，避免遗漏违规内容；</li>
-<li>LangGraph的状态必须持久化到PostgreSQL，支持断点续跑和版本回滚，避免流程中断后丢失数据。</li>
+<li>GraphRAG的实体关联必须人工校验，避免错误关联导致误判；</li>
+<li>Guardrails规则需与银行的合规政策同步，定期更新（如新增监管要求）；</li>
+<li>LLM-as-a-Judge的测试用例需包含真实的违规场景与正常场景，确保评测准确率；</li>
+<li>数据存储需符合金融行业的加密标准（如AES-256），避免数据泄露。</li>
 </ul>
 <p><strong>▎可扩展优化</strong></p>
 <ul>
-<li>新增视频脚本生成模块：在内容生成节点后增加视频脚本Agent，根据文案生成分镜脚本和配音文案；</li>
-<li>新增多平台发布模块：集成微信公众号、抖音等平台的API，支持一键发布到多个平台；</li>
-<li>引入用户反馈机制：收集用户对内容的点赞、评论数据，训练个性化推荐模型，让Agent生成更符合用户喜好的内容；</li>
-<li>搭建Agent管理平台：支持配置抓取时间、生成数量、风格偏好，无需修改代码即可调整业务规则。</li>
+<li>引入多模态支持，扫描纸质审计报告与票据，扩展数据来源；</li>
+<li>添加实时监控，触发异常交易时自动发送告警给审计人员；</li>
+<li>集成OA系统，自动推送审计报告给审批人员，实现整改流程闭环；</li>
+<li>用PEFT微调小模型做初步违规识别，降低大模型的算力成本。</li>
 </ul>
 <hr />
 <blockquote>
