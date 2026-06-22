@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-06-22)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-06-22)</h1>
+    <div class="meta">更新于 2026-06-22 11:07</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · 微调 · Milvus<br />
+🔄 知识片段：#8, #9, #10（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent架构设计</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级Agent开发中，强管控工具与纯RAG工具的划分逻辑是什么？分别适用什么场景？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>强管控工具与纯RAG工具是按业务是否需要调用内部系统接口、是否有流程约束来划分的两类核心工具，两者边界清晰才能最大化Agent的开发效率和稳定性。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>强管控工具：对应需要调用企业内部业务系统API、走标准化流程、有严格权限和参数校验的业务场景，工具定义包含明确的入参、出参和权限校验规则</li>
+<li>纯RAG工具：对应政策咨询、常识问答等只需要检索内部知识库文本、不需要调用系统接口的场景，统一用一个通用RAG工具承接所有查询请求</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如HR场景中，开证明、查年假需要调用OA系统接口、校验用户身份和剩余年假额度，属于强管控工具，必须明确参数约束，缺失时主动追问；而问婚假天数、外卖报销规则这类政策类问题，不需要调用接口，只需要检索内部文档，就不需要为每个政策单独定义工具，统一用一个hr_knowledge_rag工具承接即可，避免大模型路由时工具过多导致识别错误。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到工具过多会导致大模型Function Calling识别准确率下降，统一RAG工具可以大幅降低路由复杂度</li>
+<li>能举具体业务场景的划分案例，比如财务报销场景中，提交报销单是强管控工具，报销规则查询是纯RAG工具</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：所有业务都要做单独的工具定义，导致工具列表膨胀，大模型路由准确率骤降</li>
+<li>误区2：把需要调用接口的业务放到RAG里处理，导致用户拿到的信息不符合自身实际权限或实时数据有差异</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理优化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>KV Cache优化中的MQA（多查询注意力）/GQA（分组查询注意力）技术的核心原理是什么？解决了什么痛点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>MQA/GQA是通过共享KV头来缩减KV Cache显存占用的模型架构级优化技术，是当前大模型KV Cache优化的标配方案，可将KV Cache显存占用降低4~8倍。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>原生多头注意力中，每个Q头都对应独立的K头和V头，KV Cache需要存储所有头的K、V矩阵，显存占用高</li>
+<li>MQA让所有Q头共享同一组K头和V头，KV Cache只需要存储一组K、V，大幅缩减存储量</li>
+<li>GQA是MQA的折中方案，将Q头分成若干组，每组Q头共享一组K、V头，平衡显存占用和推理精度</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>KV Cache的显存占用和K、V的头数成正比，原生70B Llama2模型有128个注意力头，KV Cache需要存储128组K、V，而如果用GQA分成32组，每组4个Q头共享一组K、V，KV Cache的存储量直接降到原来的1/4，推理速度提升的同时精度损失极小，完全可接受。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到GQA是当前主流大模型（Llama3、Qwen2.5、DeepSeek）的标配架构，兼顾精度和性能</li>
+<li>能区分MQA和GQA的差异，GQA的精度比MQA更高，是工业界的首选</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：MQA/GQA是推理框架层面的优化，不需要修改模型架构，实际上MQA/GQA是模型训练时就确定的架构，推理时无法直接修改原生多头注意力的模型为MQA/GQA</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理优化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>KV Cache优化中的Context Cache（上下文缓存）技术的核心原理是什么？适用场景有哪些？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Context Cache是将多轮对话或批量请求中的公共前缀KV Cache固化复用的优化技术，可大幅降低重复计算量，提升响应速度、降低Token成本。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>大模型推理时，System Prompt、历史对话、公共文档前缀等内容在多个请求或多轮对话中是完全相同的，对应的KV Cache也完全一致</li>
+<li>Context Cache将这些公共前缀的KV Cache持久化存储在显存中，不需要每次请求都重新计算</li>
+<li>当新请求匹配到已缓存的公共前缀时，直接复用对应的KV Cache，只需要计算新增请求内容的KV即可</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如企业客服Agent的System Prompt有上千Token，每次用户请求都要重新计算这部分的KV的话，会浪费大量算力，用Context Cache把System Prompt的KV固化后，所有用户请求都可以直接复用，TTFT（首Token响应时间）可降低30%以上，同时公共前缀的Token不需要重复计费，大幅降低调用成本。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Context Cache是云服务商大模型API降本提效的核心手段之一，比如OpenAI、火山引擎的大模型API都默认开启了公共前缀缓存</li>
+<li>能提到针对RAG场景，同一篇文档的多次查询可以缓存文档嵌入对应的KV，大幅提升多轮问答的速度</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：Context Cache对所有场景都有效，实际上如果请求的公共前缀占比极低（比如每次都是完全不同的长文本生成），Context Cache的收益会很小，反而会占用额外显存</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent平台选型</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Coze与Dify两个Agent编排平台的核心定位差异是什么？企业选型时如何选择？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Dify偏企业级复杂生产场景的Agent平台构建，Coze偏零代码快速搭建个人/场景化Bot，企业需根据自身的二开需求、生态绑定情况选择。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Dify由国内团队LangGenius开源，采用Apache2.0协议，核心优势是成熟的RAG管道、DAG工作流编排、多模型网关适配，支持深度二次开发</li>
+<li>Coze是字节跳动火山引擎生态的产品，2025年开源了Coze Studio和Coze Loop，核心优势是零代码拖拽、强字节生态集成（抖音、飞书等），适合快速搭建Bot</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果企业需要搭建内部统一的AI Agent赋能平台，需要对接内部SSO、内网系统、私有化部署，Dify是首选，其二开能力成熟，可快速搭建MVP；如果企业是字节生态用户，需要快速搭建飞书Bot、抖音客服Bot，不需要深度定制，Coze的零代码能力可以让业务人员在几小时内搭出可用的Bot。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到两者的开源时间和协议差异，Dify2023年开源，生态更成熟，Coze2025年开源，更新迭代快</li>
+<li>能提到如果是需要复杂多Agent、RAG能力的生产级场景优先选Dify，快速验证原型、轻量Bot场景优先选Coze</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：Coze是零代码平台不能二开，实际上Coze也开源了核心组件，支持一定程度的自定义开发，但二开成熟度远低于Dify</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent状态管理</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>多轮对话槽位填充（Slot Filling）场景中，状态机Pending挂起机制的核心逻辑是什么？解决了什么问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>状态机Pending挂起机制是槽位填充场景下，将未完成的任务意图和已收集参数临时存储，等用户补全参数后恢复任务的核心机制，避免多轮对话上下文丢失、意图偏移。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>当Router Agent识别到用户意图、但工具调用的必填参数缺失时，不会直接执行工具，也不会丢弃当前意图</li>
+<li>系统将当前意图、已收集的参数、上下文信息标记为Pending状态，存储到会话状态机中</li>
+<li>用户返回补全的参数后，系统将新参数和Pending状态中的已有参数合并，重新触发工具执行流程</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如用户说“帮我开个证明”，Agent识别到开证明的工具需要cert_type参数缺失，就把当前“开证明”的意图挂起，反问用户需要开在职还是收入证明，等用户回复“在职证明”后，系统将这个参数和之前的意图合并，直接调用开证明的接口，不需要用户重新描述需求，避免上下文丢失。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到状态挂起通常用Redis+LangGraph Checkpointer实现，支持分布式部署下的状态持久化，不会因为服务重启丢失Pending任务</li>
+<li>能提到状态挂起需要设置超时时间，超过24小时未收到用户回复自动销毁Pending状态，避免存储资源浪费</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：靠大模型的上下文记忆就能实现槽位填充，不需要状态挂起，实际上大模型的上下文窗口有限，且容易出现意图偏移，状态挂起可以强制锁定参数和意图，稳定性更高</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>意图识别</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级Agent意图识别的三级分流模式（规则硬编码→向量相似度→大模型推理）的落地演进路径是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>三级意图分流的落地遵循“冷启动快速上线→降本分流→精细化优化”的路径，兼顾上线速度、成本和准确率。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>冷启动阶段：没有足够的历史对话数据，优先用大模型+Few-shot Prompt实现意图识别，快速上线验证业务价值</li>
+<li>降本阶段：积累了足够的真实对话数据后，将高频、高置信度的意图转换为向量种子库，用向量相似度匹配分流，减少大模型调用量，降低成本</li>
+<li>精细化阶段：进一步积累数据后，将高频意图提炼为关键词/正则规则，硬编码分流，同时微调轻量模型作为专属Router，提升响应速度和准确率</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如HR智能客服刚上线时，没有历史数据，直接用GPT-4做意图识别，一周内就能上线；运行1个月积累了1万条对话后，把“查年假”“开证明”等高频意图的种子句转向量，相似度大于0.85的直接路由，大模型调用量降低60%；运行3个月后，把“转人工”“投诉”等强诉求做成关键词匹配，同时微调一个7B的小模型做专属Router，响应速度提升3倍，成本降低90%。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到三个阶段不是完全割裂的，规则分流优先级最高，其次是向量分流，最后是大模型分流，三者协同工作</li>
+<li>能提到域外意图（OOD）兜底的重要性，每个阶段都要设置OTHER分类，避免答非所问</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：一开始就做规则和向量分流，没有数据的情况下种子句覆盖不全，准确率极低，反而影响用户体验</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Dify二次开发</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>基于Dify二开企业级Agent平台时，自定义内网工具节点的核心改造逻辑是什么？为什么是P1优先级？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>自定义内网工具节点是将企业内部系统API封装为Agent可调用节点的核心改造，是Agent从“能聊天”到“能干活”的关键，因此是仅次于合规的P1优先级改造。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>快速实现：利用Dify的自定义工具功能，导入内网系统的OpenAPI/Swagger JSON，自动封装为AI插件，不需要修改源码</li>
+<li>深度定制：在Dify后端的api/core/workflow/nodes/目录下开发企业特有的硬编码节点，比如OA审批唤醒节点、数据库动态查询节点，同时在前端增加对应的配置UI</li>
+<li>权限校验：每个自定义工具节点都内置企业权限校验逻辑，确保只有有权限的用户才能调用对应的内网系统接口</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>Dify原生的工具只支持公开API调用，企业内部的ERP、CRM、OA系统都在内网，且有严格的权限控制，不做自定义工具节点的话，Agent只能回答知识库问题，无法替员工提交审批、查订单、开证明，无法产生实际业务价值。做完自定义工具节点后，业务人员可以像拼积木一样把内网系统能力串联到Agent工作流中，真正释放AI的生产力。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到自定义工具节点可以配合Dify的MCP（模型上下文协议）实现内网工具的统一管理和权限控制</li>
+<li>能提到优先对接高频业务系统，比如OA、HR系统，快速看到业务成效</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：一开始就把所有内网系统都封装成工具，工作量大且价值不明确，应该优先对接员工使用频率最高的3~5个系统，验证价值后再逐步扩展</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent记忆系统</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级Agent记忆系统的多租户数据隔离的核心实现逻辑是什么？解决了什么痛点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>多租户数据隔离是通过元数据标记+检索时过滤的方式，确保不同租户、不同部门的记忆数据互不访问的核心机制，解决了企业级场景下的数据安全和合规问题。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>数据写入时，给每条记忆数据（向量Chunk、会话记录、用户画像）都打上tenant_id、department_id、user_id等元数据标签</li>
+<li>检索时，根据当前用户的身份信息，自动在检索条件中加入对应的元数据过滤规则，从底层过滤掉用户无权访问的数据</li>
+<li>对于敏感数据，还可以配合加密存储、权限校验中间件，实现多层隔离</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如企业的财务部门的报销政策文档，打上department_id=finance的标签，技术部门的用户检索时，系统会自动过滤department_id=finance的Chunk，技术用户看不到财务部门的敏感数据；每个用户的历史会话记录都打上user_id标签，用户只能看到自己的会话记录，避免隐私泄露。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到元数据过滤是在检索阶段执行的，不会把敏感数据喂给大模型，从根源避免数据泄露</li>
+<li>能提到PG的pgvector支持在向量检索的同时加入元数据过滤，不需要引入额外的组件，实现成本低</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：靠大模型的Prompt约束就能实现数据隔离，实际上大模型可能出现prompt注入、幻觉等问题，底层的检索过滤才是最可靠的隔离手段</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agentic RAG</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Agentic RAG的核心落地挑战有哪些？对应的优化思路是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agentic RAG的核心落地挑战是延迟高、Token成本高、状态管理复杂，可通过路由优化、缓存、轻量模型分流等方式平衡效果和成本。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>延迟高：Agentic RAG需要多次LLM思考、工具调用、反思评估，端到端延迟比传统RAG高2~5倍，优化思路是将简单查询分流到传统RAG，只把复杂查询交给Agentic RAG处理</li>
+<li>Token成本高：多次LLM调用和上下文注入导致Token消耗是传统RAG的3~10倍，优化思路是用轻量模型做路由和反思，大模型只做最终生成，同时开启KV缓存降低重复计算成本</li>
+<li>状态管理复杂：多轮迭代和多跳推理需要维护复杂的执行状态，容易出现状态丢失或混乱，优化思路是用LangGraph自带的Checkpointer将状态持久化到PG或Redis，支持状态回溯和重试</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如HR政策查询场景，用户问“婚假有几天”这种单跳简单问题，直接走传统RAG，1秒内返回，成本低；用户问“入司2年的成都员工门诊报销比例是多少，需要什么材料”这种跨文档多跳问题，才走Agentic RAG，拆解为两个子问题分别检索，确保答案准确，这样既保证了复杂场景的准确率，又控制了整体的延迟和成本。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到可以设置迭代次数上限，比如最多3轮反思，避免无限循环导致的延迟和成本飙升</li>
+<li>能提到可以将历史成功的多跳查询结果缓存，下次相同问题直接返回，不需要重新执行Agent流程</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：Agentic RAG比传统RAG好，所有场景都要用Agentic RAG，实际上单跳事实查询场景传统RAG的性价比远高于Agentic RAG</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型基础</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型Tokenizer的核心作用是什么？编码与解码流程的核心差异是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Tokenizer是连接人类自然语言和大模型数学计算的“翻译官”，负责文本和Token ID的相互转换，编码是文本转Token ID，解码是Token ID转文本，流程差异极大。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>编码流程：将输入文本按BPE（字节对编码）规则切分为词元，再通过词表映射为对应的Token ID列表，是批量、一次性完成的</li>
+<li>解码流程：将大模型输出的Token ID列表，逐个通过词表映射为对应的文本片段，拼接成最终的自然语言文本，是逐Token、流式完成的</li>
+<li>Tokenizer的词表和切分规则是训练阶段通过BPE算法迭代生成的，高频词会被合并为一个Token，降低序列长度</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如输入中文“我爱AI Agent”，编码时会切分为“我”“爱”“AI”“Agent”四个词元，映射为四个对应的Token ID，输入给大模型；大模型生成时，会逐个输出Token ID，每次输出一个，解码时逐个转换为文本，流式展示给用户，不需要等所有Token生成完再转换。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到中文的Token切分粒度比英文粗，100个汉字大约对应100~150个Token，英文100个单词对应130~140个Token</li>
+<li>能提到不同大模型的Tokenizer词表不同，不能混用，比如GPT的Tokenizer不能用于Qwen模型</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：解码和编码是对称的流程，实际上编码需要先切分文本再映射，解码不需要切分，直接逐个映射Token ID即可，流程不对称</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<hr />
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>KV Cache优化</code> <code>多场景推理</code> <code>高并发服务</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某企业需要搭建一套统一的大模型推理服务平台，支撑内部三类异构业务：①高并发短问答类（如智能指令解析，单请求上下文≤1K Token，QPS≥5000）；②多轮对话类（如员工AI助手，单会话上下文可达32K Token，在线用户≥1万）；③长文本生成类（如合同审核/摘要，单请求上下文可达128K Token，并发量≤100）。请设计一套自适应的KV Cache优化架构，要求同时满足三类业务的低延迟、高吞吐、低显存占用需求。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>先做业务场景特征拆解，明确不同场景对KV Cache的核心诉求（延迟优先/吞吐优先/显存优先）；</li>
+<li>分层设计KV Cache优化组件，每个组件对应解决一类痛点，做到可插拔、可组合；</li>
+<li>设计自适应调度层，根据请求特征自动匹配最优的优化技术组合，无需业务方手动配置；</li>
+<li>设计监控反馈回路，根据实时运行数据动态调整优化策略，平衡质量、成本、性能。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>架构分为三层：<br />
+1. <strong>底层优化层</strong>：整合四大KV Cache核心技术：原生GQA/MQA模型架构改造、PagedAttention显存管理、多精度KV量化（FP16/INT8/INT4）、上下文前缀缓存，所有能力模块化可自由组合；<br />
+2. <strong>自适应调度层</strong>：请求进入后先做特征识别，自动匹配优化策略：<br />
+   - 短问答请求：自动开启INT4 KV量化+PagedAttention，最大化并发量，牺牲少量可接受的精度损失换吞吐；<br />
+   - 多轮对话请求：自动开启GQA+上下文前缀缓存+INT8量化，平衡显存占用和生成质量，公共系统Prompt直接复用缓存；<br />
+   - 长文本生成请求：自动开启GQA+PagedAttention+FP16量化，优先保证生成精度，避免量化损失导致的文档理解错误；<br />
+3. <strong>生命周期管理层</strong>：统一管理不同请求的KV缓存生命周期：短问答请求生成结束立即释放缓存，多轮对话请求缓存TTL设为30分钟，长文本请求生成后立即释放缓存，同时用LRU策略淘汰冷缓存。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要一刀切开启所有优化：长文本生成场景用INT4量化会导致实体识别、数值计算准确率下降，必须提前做精度验证，明确量化精度的适用边界；</li>
+<li>上下文前缀缓存的命中判定必须基于Token ID做哈希校验，不能直接用文本字符串，避免不同Tokenizer切分结果不同导致的缓存污染；</li>
+<li>PagedAttention的块大小要根据场景调整：短问答用32Token的小块减少碎片化，长文本用128Token的大块降低管理开销。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>加入热点缓存固化机制：把高频访问的公共系统Prompt（如AI助手的角色设定）的KV缓存永久固化在显存，避免重复加载；</li>
+<li>加入动态量化开关：根据当前显存占用率自动切换量化精度，显存不足时自动降为INT4，显存充足时用FP16保证质量；</li>
+<li>对接资源调度系统：把不同类型的请求调度到不同配置的GPU节点，长文本请求调度到大显存A100节点，短问答请求调度到高性价比L4节点。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多业务适配</code> <code>KV Cache选型</code> <code>成本效率平衡</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某互联网公司有三条独立的大模型业务线，分别是：A. 电商智能客服（日均请求量100万+，单会话平均8轮对话，公共系统Prompt固定为2K Token，单会话上下文峰值16K Token）；B. 文档分析工具（日均请求量1万+，单请求上下文平均64K Token，无公共前缀，多为一次性请求，对内容准确率要求极高）；C. 广告文案生成（日均请求量10万+，单请求上下文平均1K Token，QPS峰值2000，对生成速度要求极高）。请为每个业务线选择最优的KV Cache优化技术组合，说明选型理由，并对比三种方案的成本与收益。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>先拆解每个业务线的核心诉求与约束条件，明确优先级：是延迟优先、精度优先还是成本优先；</li>
+<li>逐一匹配KV Cache优化技术的适配场景，排除不符合约束的选项；</li>
+<li>从延迟、吞吐、显存占用、实现成本四个维度做收益评估；</li>
+<li>给出最终组合方案的Trade-off说明，明确适用边界。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>A业务（电商智能客服）</strong>：最优组合为「GQA + 上下文前缀缓存 + INT8 KV量化 + PagedAttention」。理由：客服场景有固定2K的公共系统Prompt，前缀缓存可直接复用这部分KV，单次请求节省2K Token的计算量；多轮对话上下文长，GQA可把KV显存占用降低4倍，INT8量化再降50%，PagedAttention解决多会话显存碎片化问题，单GPU可支撑的并发量提升3倍。</li>
+<li><strong>B业务（文档分析工具）</strong>：最优组合为「GQA + PagedAttention + FP16 KV量化」。理由：文档分析无公共前缀，前缀缓存无价值；对生成精度要求极高，INT8/INT4量化会导致文档中的数值、专业术语识别错误，因此保留FP16精度；GQA降低KV显存占用，PagedAttention支撑64K长上下文稳定运行，避免OOM。</li>
+<li><strong>C业务（广告文案生成）</strong>：最优组合为「MQA + INT4 KV量化 + PagedAttention + 热点前缀缓存」。理由：广告生成对速度要求极高，MQA比GQA的KV显存占用更低，INT4量化再降4倍，PagedAttention最大化并发量，热点广告系统Prompt可缓存，进一步降低首Token延迟。</li>
+</ul>
+<p>三种方案收益对比：A业务单次请求成本降低60%，延迟降低40%；B业务长文本OOM率从15%降到0，精度损失&lt;1%；C业务QPS提升4倍，延迟降低70%。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>电商客服场景的上下文缓存必须按租户/商家隔离，不同商家的系统Prompt不能混存，避免缓存命中错误导致回复商家规则不符；</li>
+<li>文档分析场景如果经常有相同文档的多次查询，可以叠加文档级KV缓存，把整本书的KV固化，后续查询直接复用，进一步加速；</li>
+<li>广告生成场景的INT4量化必须做合规性校验，确保文案生成的敏感词识别、品牌信息准确性不受影响，必要时对敏感请求Fallback到INT8。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>A业务可以加入缓存TTL自动续期：用户活跃时延长缓存时间，用户3分钟无操作自动释放缓存，进一步节省显存；</li>
+<li>B业务可以加入KV Cache动态裁剪：长文本生成时只保留最近32K的KV，更早的内容做摘要后替换，显存占用再降50%；</li>
+<li>C业务可以把高频生成请求的完整KV缓存固化，相同请求直接返回结果，不需要重新推理。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>公共前缀缓存</code> <code>伪代码实现</code> <code>推理加速</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请实现大模型推理服务的上下文公共前缀KV缓存复用逻辑，要求：1）自动识别新请求与已有缓存的公共前缀长度，复用对应部分的KV缓存，避免重复计算；2）支持多租户隔离，不同用户的缓存互不干扰；3）缓存自动过期淘汰。给出核心实现思路、伪代码和关键流程。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>设计缓存存储结构：每个缓存条目包含租户ID、前缀Token哈希、KV缓存块、过期时间四个核心字段，用显存+内存两级存储平衡速度和容量；</li>
+<li>设计公共前缀匹配算法：用前缀树（Trie）存储Token序列，把匹配复杂度降到O(L)，L为前缀长度，避免匹配耗时过高抵消缓存收益；</li>
+<li>实现缓存读写逻辑：命中时直接复用前缀KV，只计算剩余部分的KV，未命中时全量计算后存入缓存；</li>
+<li>实现过期+LRU双重淘汰逻辑，避免缓存占满显存。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>采用显存+内存两级缓存架构：热点缓存存在显存，冷缓存换入内存，需要时100ms内即可换入显存。核心流程如下：<br />
+1. 请求进入后，先对Prompt做Token化，提取租户ID和Token ID列表；<br />
+2. 遍历该租户的缓存前缀树，计算最长公共前缀长度；<br />
+3. 如果匹配长度≥100Token（阈值可配置），则复用该部分的KV缓存，只计算剩余Token的KV；<br />
+4. 合并新旧KV后存入缓存，更新过期时间；<br />
+5. 定期清理过期缓存，显存占用超过90%时淘汰最久未使用的冷缓存到内存。</p>
+<p>核心伪代码：</p>
+<pre><code class="language-python">import time
+from typing import Tuple, Optional
+
+class KVCacheManager:
+    def __init__(self, ttl: int = 1800, max_gpu_memory: float = 0.9):
+        self.gpu_cache = {}  # 显存缓存：key=(tenant_id, prefix_hash), value=(kv_blocks, prefix_len, expire_time, last_access)
+        self.cpu_cache = {}  # 内存缓存
+        self.ttl = ttl  # 缓存过期时间30分钟
+        self.max_gpu_memory = max_gpu_memory  # 显存使用率阈值
+        self.prefix_trie = {}  # 前缀树，用于快速匹配公共前缀
+
+    def get_matched_cache(self, tenant_id: str, prompt_tokens: list[int]) -&gt; Tuple[Optional[object], int]:
+        &quot;&quot;&quot;查找最长匹配的前缀缓存，返回KV和匹配长度&quot;&quot;&quot;
+        max_match_len = 0
+        matched_kv = None
+        # 遍历前缀树找最长公共前缀
+        current_node = self.prefix_trie.get(tenant_id, {})
+        for idx, token in enumerate(prompt_tokens):
+            if token not in current_node:
+                break
+            current_node = current_node[token]
+            if &quot;cache_key&quot; in current_node:
+                max_match_len = idx + 1
+                matched_kv = self.gpu_cache.get(current_node[&quot;cache_key&quot;], (None,))[0]
+        # 未命中显存则查内存
+        if not matched_kv and max_match_len &gt; 0:
+            matched_kv = self.cpu_cache.get(current_node[&quot;cache_key&quot;], (None,))[0]
+            if matched_kv:
+                # 换入显存
+                self.gpu_cache[current_node[&quot;cache_key&quot;]] = self.cpu_cache.pop(current_node[&quot;cache_key&quot;])
+        return matched_kv, max_match_len
+
+    def save_cache(self, tenant_id: str, prompt_tokens: list[int], kv_blocks: object):
+        &quot;&quot;&quot;保存KV缓存&quot;&quot;&quot;
+        prefix_hash = hash(tuple(prompt_tokens))
+        cache_key = (tenant_id, prefix_hash)
+        # 存入显存缓存
+        self.gpu_cache[cache_key] = (kv_blocks, len(prompt_tokens), time.time() + self.ttl, time.time())
+        # 更新前缀树
+        current_node = self.prefix_trie.setdefault(tenant_id, {})
+        for token in prompt_tokens:
+            current_node = current_node.setdefault(token, {})
+        current_node[&quot;cache_key&quot;] = cache_key
+        # 显存超限则淘汰冷缓存
+        self._evict_cache_if_needed()
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不能直接用Prompt字符串做哈希，不同Tokenizer的切分结果可能不同，必须用Token ID列表做哈希，确保匹配准确；</li>
+<li>前缀树的内存占用不能过高，超过阈值时自动清理最少访问的前缀节点，避免内存溢出；</li>
+<li>模型权重更新后必须清空所有缓存，避免用旧模型的KV生成错误结果。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>加入缓存预热机制：把高频公共系统Prompt提前加载到显存缓存，用户第一次请求即可命中；</li>
+<li>支持增量更新缓存：多轮对话时只需把新的对话内容追加到已有KV后面，不需要重新计算整个前缀；</li>
+<li>加入缓存有效性校验：定期抽样验证缓存生成的结果是否和全量计算结果一致，避免缓存污染。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>OOM排查</code> <code>GPU利用率优化</code> <code>延迟优化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某企业基于vLLM部署了开源大模型Qwen2-7B作为内部AI助手的推理引擎，上线后出现三个核心问题：①长对话场景下，用户连续聊10轮以上就会出现服务OOM崩溃，GPU显存占用率达到100%；②高并发短问答场景下，GPU算力利用率只有22%，但显存占用已经达到85%，吞吐量上不去；③相同系统Prompt的多轮对话请求，首次响应耗时2s，后续请求响应耗时波动很大，从200ms到1.5s不等。请排查问题根源，并给出具体的优化方案，要求优化后三个问题全部解决。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>逐一匹配问题现象和KV Cache的常见痛点，定位根因；</li>
+<li>针对每个根因给出对应的优化方案，做兼容性验证；</li>
+<li>给出落地优先级，先解决影响可用性的OOM问题，再解决性能问题；</li>
+<li>给出验证标准，确保优化后所有问题都满足要求。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h4>问题① 长对话OOM崩溃</h4>
+<ul>
+<li><strong>根因定位</strong>：未开启GQA和KV量化，KV Cache占用过大，同时没有设置对话长度上限，每轮对话新增的KV持续占用显存，最终占满；</li>
+<li><strong>优化方案</strong>：1）开启Qwen2-7B原生支持的GQA，KV Cache显存占用直接降低4倍；2）开启INT8 KV量化，显存占用再降50%；3）设置对话KV最大长度为32K，超过部分自动裁剪最早的对话KV，只保留最近32K内容；4）开启PagedAttention，解决显存碎片化问题。</li>
+</ul>
+<h4>问题② GPU算力利用率低、吞吐量上不去</h4>
+<ul>
+<li><strong>根因定位</strong>：未开启PagedAttention，多并发请求的KV Cache存在大量碎片化，显存被无效占用，能同时处理的请求数少，GPU算力被浪费；</li>
+<li><strong>优化方案</strong>：1）开启vLLM的PagedAttention功能，显存利用率从不足50%提升到90%以上；2）短问答场景开启INT4 KV量化，进一步降低KV显存占用，单卡并发数从80提升到300；3）调整vLLM的<code>max_batch_size</code>参数，根据显存大小设置为256，充分利用GPU算力做批处理。</li>
+</ul>
+<h4>问题③ 响应延迟波动大</h4>
+<ul>
+<li><strong>根因定位</strong>：未开启上下文前缀缓存，相同的系统Prompt每次都要重新计算KV，同时缓存淘汰策略不合理，热点缓存被频繁换入换出；</li>
+<li><strong>优化方案</strong>：1）开启vLLM的前缀缓存功能，固定的2K系统Prompt的KV被固化，每次请求直接复用，节省2K Token的计算量；2）调整缓存TTL为30分钟，LRU淘汰优先级向活跃用户会话倾斜，避免热点缓存被淘汰；3）开启显存+内存两级缓存，冷缓存换入内存，需要时100ms内即可加载，减少延迟波动。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>KV量化开启后必须做生成质量验证，确保长对话的理解能力没有明显下降，必要时长对话场景用INT8，短问答场景用INT4；</li>
+<li>PagedAttention的块大小要设置合理，7B模型建议设置为64或128Token，太小会增加块管理开销，太大会导致碎片化；</li>
+<li>前缀缓存的命中要做Token级校验，避免不同用户的Prompt前缀看起来相同但实际Token不同导致的错误命中。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>加入显存动态调度：当长对话请求多时，自动降低短问答的量化精度，腾出显存给长对话；</li>
+<li>加入请求调度策略：把长对话请求和短问答请求分开调度到不同的GPU实例，避免互相影响；</li>
+<li>加入监控告警：当显存占用超过90%、GPU利用率低于30%时自动告警，提前发现问题。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>从0到1落地</code> <code>KV Cache体系</code> <code>成本效能提升</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某中型企业要从0到1落地一套面向内部12000名员工的AI助手服务，核心需求是：①支持多轮对话，单会话最长上下文32K Token；②响应延迟≤1s，并发支持≥1000同时在线；③推理成本≤0.01元/次请求。请给出完整的KV Cache优化体系的落地全流程，从技术选型、上线验证到迭代优化，要求满足所有需求，同时给出ROI测算。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>需求拆解：明确性能、成本、功能三个维度的约束，确定优先级：可用性&gt;性能&gt;成本；</li>
+<li>技术选型：选择成熟的开源组件，避免重复造轮子，同时满足可扩展要求；</li>
+<li>上线验证：从单卡压测到集群压测，再到灰度放量，逐步验证稳定性；</li>
+<li>迭代优化：上线后根据运行数据持续调整策略，降低成本，提升体验；</li>
+<li>ROI测算：对比开源部署和公有云API的成本，验证投入产出比。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h4>第一阶段：技术选型（1周）</h4>
+<ul>
+<li>推理框架选择vLLM：原生支持PagedAttention、前缀缓存、KV量化等所有需要的优化能力，生态成熟，二开成本低；</li>
+<li>模型选择Qwen2.5-7B-GQA：原生支持GQA，KV Cache占用比普通7B模型低4倍，中文能力优异，适配企业内部场景；</li>
+<li>优化技术组合确定为：GQA + INT8 KV量化 + PagedAttention + 上下文前缀缓存 + 两级缓存淘汰；</li>
+<li>硬件选型：6张L4 GPU（24G显存），单卡支持250并发对话，4张承载业务，2张做冗余，满足1000并发需求，硬件年成本约12万元。</li>
+</ul>
+<h4>第二阶段：压测验证（2周）</h4>
+<ul>
+<li>单卡压测：验证单卡L4在INT8量化下，支持250并发对话，平均延迟800ms，显存占用21G，无OOM，满足要求；</li>
+<li>集群压测：模拟1000并发请求，平均延迟750ms，错误率0%，满足性能要求；</li>
+<li>效果验证：随机抽取1000个员工对话，开启INT8量化后的回复准确率为97%，符合要求。</li>
+</ul>
+<h4>第三阶段：灰度上线（2周）</h4>
+<ul>
+<li>第一周：放量10%的员工，观察运行数据，调整缓存TTL为30分钟，PagedAttention块大小设为64Token；</li>
+<li>第二周：放量50%的员工，优化调度策略，把长对话和短问答请求分开调度，延迟波动从±800ms降到±100ms；</li>
+<li>第三周：全量上线，同时搭建监控大盘，实时监控显存占用、GPU利用率、延迟、错误率等指标。</li>
+</ul>
+<h4>第四阶段：迭代优化（持续）</h4>
+<ul>
+<li>把高频的公共Prompt（如考勤、报销规则）固化到缓存，命中率提升到60%，平均延迟降到600ms；</li>
+<li>差异化优化：研发部门的长代码查询请求用FP16量化，行政部门的短问答用INT4量化，平衡精度和成本。</li>
+</ul>
+<h4>ROI测算</h4>
+<p>年请求量预计：12000人 * 10次/天 * 250天 = 3000万次；<br />
+单次推理成本：12万元 / 3000万次 = 0.004元/次，远低于0.01元的要求；<br />
+对比公有云API（约0.015元/次），每年节省成本：3000万 * (0.015-0.004) = 33万元，半年即可收回硬件成本。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>上线前必须做灰度，避免全量上线后出现兼容性问题，比如某些员工的长对话请求导致OOM；</li>
+<li>要做权限隔离，不同部门的缓存不能互相访问，避免敏感信息泄露；</li>
+<li>要做少量的模型微调，适配企业内部的专有术语，确保开启INT8量化后的对话效果符合要求。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>后续业务量增长时，加入动态扩缩容机制，根据实时并发数自动调度GPU资源，闲时关闭部分节点，成本再降30%；</li>
+<li>加入KV缓存跨节点共享，多个GPU节点可以共享公共前缀的缓存，进一步降低计算量；</li>
+<li>加入模型蒸馏，把7B模型蒸馏到3B，配合KV优化，成本再降50%，并发量提升1倍。</li>
+</ul>
+<hr />
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
