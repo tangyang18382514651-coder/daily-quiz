@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-06-24)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-06-24)</h1>
+    <div class="meta">更新于 2026-06-24 11:06</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
+🔄 知识片段：#14, #15, #16（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<hr />
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent运维</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Agent系统的三层健康检查体系（服务存活、工具连通性、逻辑合规性）的核心设计思路是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>Agent三层健康检查是从基础设施到业务逻辑的逐层校验体系，覆盖服务进程、依赖资源、推理逻辑全链路，保障Agent服务稳定可用，避免异常状态影响业务。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>基础设施层：校验Agent服务进程是否存活、接口是否可访问，是最基础的可用性校验。</li>
+<li>依赖资源层：校验Agent依赖的工具接口、大模型API、知识库、数据库等外部资源是否连通、格式是否符合预期。</li>
+<li>业务逻辑层：校验Agent的推理执行逻辑是否正常，包括是否陷入死循环、输出结果是否符合业务标准、工具调用是否成功。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以类比给人做体检：第一层是测心跳、呼吸，确认人还活着；第二层是测手脚能不能动、器官功能是否正常，确认没有硬件缺陷；第三层是让被检人做一套标准化考题，确认认知能力、逻辑能力没有问题，能正常完成工作。三层检查逐层递进，缺一不可，任何一层出问题都要及时告警处置。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>三层检查几乎可以零代码落地：服务存活可以用Uptime Kuma等拨测工具实现，工具连通性可以用简单的定时脚本实现，逻辑校验可以复用LangGraph等框架自带的最大迭代次数配置、Langfuse等观测平台的自动评测能力，不需要重复造轮子。</li>
+<li>可以和企业现有告警体系（飞书/钉钉机器人）联动，异常时自动推送告警信息给负责人。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>只做接口通断检查，忽略逻辑校验：很多团队只检查Agent接口返回200就算正常，实际上Agent可能已经陷入死循环、输出幻觉结果、工具调用全部失败，这些问题只有逻辑层校验才能发现。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent安全</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业Agent调用内部传统系统时，托管代理人模式和服务账号模式的核心差异是什么？分别适用什么场景？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>两者是Agent调用传统系统的两类主流鉴权方案，核心差异是权限归属主体不同，分别面向有用户在场的交互场景和无用户的定时自动化场景，共同遵循最小权限原则保障数据安全。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>托管代理人模式：权限归属于触发操作的真实用户，Agent仅作为用户的代办人，复用企业现有身份权限体系，用户拥有什么权限，Agent就能调用什么接口。</li>
+<li>服务账号模式：权限归属于Agent本身，企业给Agent单独创建独立的服务身份，仅授予Agent完成自身任务所需的最小权限，和用户权限完全隔离。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>托管代理人模式就像你把身份证交给代办人，代办人拿着你的身份证去办事，窗口只认你的身份，你能办的事代办人才能办，你办不了的事代办人也办不了，完全不会越权。服务账号模式就像企业给专门负责跑外勤的员工单独办一张工作证，只给他开进出仓库、查库存的权限，其他权限一律没有，避免他接触到不需要的敏感数据。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>两种方案都应该配合API网关统一管控，Agent和传统系统不直接通信，所有请求经过网关做身份校验、限流、审计，进一步提升安全性。</li>
+<li>不管用哪种模式，都绝对不能把账号、密钥写在Prompt里，所有鉴权逻辑都要在工具层的工程代码中实现，避免Prompt注入导致敏感信息泄露。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>给服务账号开超管权限：很多团队为了省事，给Agent的服务账号开通全部接口权限，一旦Agent被攻击或者出现逻辑错误，会对企业内部系统造成毁灭性破坏。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>AI研发效能</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Vibe Coding（AI辅助编码）中AI友好工程规范的核心设计逻辑是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>AI友好工程规范是适配大模型长文本注意力特性、降低AI生成代码Bug率、提升AI编码效率的规则体系，核心是给AI明确的编码边界和格式要求，避免大模型注意力溃散、生成不符合预期的代码。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>分层原则：组件与业务逻辑严格分层，单个模块职责单一，让AI生成代码时可以聚焦单个小功能，不需要理解全量复杂业务逻辑。</li>
+<li>体积原则：单个文件代码量控制在300行以内，避免大模型处理长文件时注意力丢失，漏掉关键细节、引入新Bug。</li>
+<li>规则固化原则：通过.cursorrules、项目上下文文件context.md等方式固化全局编码规范、业务规则，新开Chat时直接喂给大模型，实现秒级热启动。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比给学生准备考试：分层原则就是把一张大试卷拆成一个个小题，每次只让AI做一道小题，不会因为题太多做不完、做不对；体积原则就是每道题的题干不超过300字，避免AI读题读漏了；规则固化原则就是提前把考试范围、答题格式、评分标准告诉AI，让它不用反复问你要求，直接按照标准答题即可。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>配合私有MCP服务器使用，让AI拥有本地文件读写、日志分析、数据库状态读取等能力，不需要人工复制粘贴本地环境信息，进一步提升编码效率。</li>
+<li>核心业务逻辑、状态机、安全边界等代码必须人工Code Review，UI、工具函数等非核心代码可以完全交给AI生成，平衡效率和稳定性。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>把所有代码塞在一个大文件里，没有分层和规则约束，AI每次生成代码都要理解上千行上下文，很容易出现逻辑错误、风格混乱的问题。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型上下文处理中的KV Cache核心原理是什么？它和传统业务缓存的核心差异是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>KV Cache是大模型推理时用来缓存历史上下文的键值矩阵的技术，用来减少重复计算、提升推理速度，和传统业务缓存的缓存对象、更新逻辑、失效策略完全不同。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>KV Cache存储的是上下文每个Token计算生成的Key、Value矩阵，是大模型自注意力计算的中间结果，每新增一个Token只需要计算新Token的KV，和历史缓存合并即可完成注意力计算。</li>
+<li>传统业务缓存存储的是业务数据的查询结果，缓存的是静态的最终数据，命中时直接返回即可，不需要额外计算。</li>
+<li>KV Cache的生命周期和会话完全绑定，会话结束缓存就可以删除；传统业务缓存的生命周期是根据数据的冷热程度设置的，和会话无关。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比你看书时做读书笔记：你读完整本书后把核心知识点、人物关系整理成笔记（KV Cache），下次要续写书评时，不用重新读整本书，只需要看笔记就能接着写，节省了大量时间；传统业务缓存就是你把之前查过的参考资料打印出来放在手边，下次需要引用时直接拿过来用，不用重新上网查。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>配合vLLM的PagedAttention技术可以解决KV Cache显存碎片化的问题，把显存切成一个个页动态分配，大幅提升单GPU能支撑的长上下文并发量。</li>
+<li>会话粘滞机制可以让同一个用户的请求始终打到同一台GPU服务器上，复用KV Cache，减少重复计算，提升推理速度30%以上。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>把KV Cache当成普通业务缓存来设置TTL自动过期，会导致推理上下文丢失，大模型生成的内容前后矛盾、错乱。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent安全</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Claude Code采用保守工具权限设计的核心逻辑是什么？有什么落地价值？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>保守工具权限设计是Claude Code为了避免Agent误操作破坏用户本地环境、提升系统安全性的核心设计，所有自定义工具默认关闭高危权限，按需开启，从根源上降低Agent的操作风险。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>所有自定义工具的三个核心属性（isReadOnly是否只读、isConcurrencySafe是否支持并发、isDestructive是否会修改/删除数据）默认全部为false，任何工具调用前都要经过权限校验。</li>
+<li>对于修改文件、删除数据、执行命令等高危操作，默认需要用户二次确认才能执行，Agent没有自动执行高危操作的权限。</li>
+<li>严格遵循最小权限原则，仅给Agent开通完成当前任务所需的最小权限，任务完成后权限自动回收。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比企业给新员工开通系统权限：新员工入职时默认什么权限都没有，需要什么权限就申请什么，用完就回收，不会给新员工开超管权限，避免他误删数据、越权操作。Claude Code的保守权限设计就是把大模型当成刚入职的新员工，不给它多余的权限，从根源上避免风险。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>配合Human-in-the-Loop（人在回路）机制使用，所有修改类、删除类操作必须人工确认后再执行，完全避免Agent被Prompt注入后执行高危操作、损坏用户数据的风险。</li>
+<li>所有工具调用都会留下审计日志，出现问题可以快速追溯原因。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>为了省事给Agent开所有权限，尤其是文件读写、命令执行等高危权限，一旦Agent被Prompt注入，会删除本地文件、泄露敏感数据，造成不可挽回的损失。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent部署</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>从0到1打包Agent服务为Docker镜像部署的核心注意事项是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>Agent服务Docker化部署的核心是做好依赖隔离、配置分离、资源管控和日志持久化，保证服务可复现、可运维，避免本地能跑、线上不能跑的问题。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>依赖精准原则：导出的requirements.txt要只包含生产环境必需的依赖，剔除开发依赖、测试依赖，避免镜像体积过大、存在不必要的安全漏洞。</li>
+<li>配置分离原则：配置文件、大模型密钥、数据库密码等敏感信息要通过环境变量或挂载数据卷注入，不要硬编码在镜像里，避免敏感信息泄露。</li>
+<li>运维适配原则：要配置容器资源限制、自启动策略、日志持久化，适配线上运维的监控、告警、排查需求。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比你打包行李搬家：核心的生活用品（生产依赖）打包进行李箱，贵重物品（密钥、配置）随身带不要放行李箱，避免丢行李导致贵重物品丢失；给行李限重（资源限制）避免超重，贴上标签（日志配置）方便后续找东西。这样不管搬到哪里，你都能快速恢复正常生活，和之前的环境完全一致。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>采用分阶段构建镜像，第一阶段用构建镜像安装依赖、打包代码，第二阶段用运行时镜像拷贝构建好的代码和依赖，大幅减小镜像体积，通常能缩小70%以上。</li>
+<li>配合CI/CD流水线实现代码提交后自动构建镜像、推送镜像仓库、自动发布到线上环境，提升发布效率，避免人工操作出错。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>把本地开发环境的所有依赖、测试代码、敏感配置全部打进镜像，导致镜像体积动辄几个G，而且存在严重的安全隐患，线上运行时还会出现依赖冲突的问题。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>ReAct范式和普通的LLM直接调用/Chain调用的核心差异是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>ReAct范式是让Agent同时具备思考、行动、观察能力的推理框架，和普通调用的核心差异是引入了工具调用和迭代推理的闭环，能够有效解决大模型幻觉、知识过时的问题。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>ReAct的推理流程是闭环的：先生成思考步骤（Thought），判断是否需要调用工具，如果需要就调用工具获取外部结果（Action），再观察工具返回的结果（Observation），基于结果进行下一轮推理，直到得到最终答案。</li>
+<li>普通LLM调用/Chain调用是单次推理流程：大模型直接基于输入Prompt和自身参数生成答案，没有工具调用和迭代推理的过程，完全依赖大模型本身的知识。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比你做数学题：普通调用就是你直接凭记忆写答案，如果你记不住公式、记错了知识点，答案就会错，很容易出现幻觉；ReAct就是你先想这道题需要用到什么公式，然后翻教材（工具调用）查到正确的公式，再基于公式计算答案，正确率会高很多，而且不会出现知识过时的问题。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>ReAct只有在使用Agent框架（比如LangChain的create_react_agent）时才会启用，普通的Chain、Prompt调用不会触发ReAct逻辑，不要混淆两者的适用场景。</li>
+<li>对于不需要外部知识、逻辑简单的场景，用普通Chain调用成本更低、速度更快；对于需要实时信息、外部工具、复杂推理的场景，用ReAct范式效果更好。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>只要用了工具调用就叫ReAct：很多团队只是在Chain里加了一步工具调用，没有思考、行动、观察的完整闭环，这并不是真正的ReAct范式，依然会出现逻辑错误、结果不准确的问题。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型架构</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型超长上下文处理中的位置编码外推技术的核心目标是什么？常用实现方案有哪些？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>位置编码外推技术是为了让大模型能够处理超出训练时最大上下文长度的文本，避免位置错乱、理解能力下降的问题，是现在长上下文大模型的核心技术之一。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>大模型训练时的位置编码是固定长度的，比如训练时最大上下文是4k，那么模型只能识别0~4095的位置编号，超出这个范围的位置编号模型从来没见过，就无法识别词的先后顺序，理解能力会大幅下降。</li>
+<li>位置编码外推通过对训练好的位置编码进行缩放、拉伸，把更长的位置编号映射到模型训练时见过的范围内，让模型能够识别更长的上下文的位置关系。</li>
+<li>主流实现方案有Linear Scaling（线性内插）、YARN等，Linear Scaling适合短距离外推，YARN适合长距离外推，对模型效果的影响更小。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比你上学时用的尺子只有15cm，现在要量30cm的长度，你把尺子的刻度按比例放大一倍，原来的1cm刻度代表2cm，这样你就能用15cm的尺子量出30cm的长度，不用重新做新尺子。位置编码外推就是用同样的逻辑，不用重新训练大模型，就能让它处理更长的上下文。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>旋转位置编码（RoPE）天生支持外推，是现在长上下文大模型的首选位置编码方案，配合FlashAttention、vLLM等工程优化，可以实现百万级上下文的高效处理。</li>
+<li>位置编码外推的长度不是无限的，外推长度超过训练长度的8倍以上时，模型的理解能力会明显下降，需要结合长上下文微调才能保证效果。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>认为位置编码外推可以无限拉长上下文：实际上外推长度过大时，模型的注意力计算会出现偏差，理解能力会大幅下降，甚至出现前后逻辑矛盾的问题。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>多Agent架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级多Agent通信的核心本质是什么？主流的通信模式有哪些？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>多Agent通信的本质是Agent之间通过工程代码封装结构化消息，通过网络传输实现指令和数据的交互，大模型本身不负责通信传输，所有通信逻辑都由工程代码实现。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>发送方Agent的大模型输出指令后，由工程代码封装为标准的结构化格式（如JSON），包含指令类型、参数、上下文等信息，通过网络传输给接收方Agent。</li>
+<li>接收方Agent的工程代码收到消息后，解析消息内容，作为上下文喂给自身的大模型进行推理，推理完成后再按照同样的流程返回结果。</li>
+<li>主流通信模式有两种：内部异步消息队列模式，适合同一企业内部的Agent通信，异步解耦、可靠性高；外部HTTP接口模式，适合跨企业的Agent通信，兼容性好、实现简单。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比两个人打电话：你脑子里想的话（大模型输出）要通过你的嘴（工程代码）说出来，转换成声波通过电话线（网络）传给对方，对方的耳朵（工程代码）接收到声波后转换成语言，传给对方的大脑（大模型）处理，对方想回复的时候也是同样的流程。大模型本身就像人的大脑，不能直接和另一个人的大脑对话，必须通过肢体、语言等外部工具才能实现通信。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>采用消息队列异步解耦，避免因为某个Agent繁忙导致通信阻塞，同时支持消息持久化、重试、死信队列，保证通信可靠性，不会因为网络波动、服务宕机丢失消息。</li>
+<li>通信协议要标准化，最好用开源的Agent通信协议，避免不同Agent之间的格式不兼容，提升扩展性。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>认为大模型可以直接和其他大模型对话：很多人以为Agent通信就是大模型直接把生成的文本发给另一个大模型，实际上中间需要工程代码做封装、传输、解析、异常处理等大量工作，大模型本身不具备网络通信能力。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LangGraph</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>LangGraph的Interrupt（中断）特性的核心作用是什么？适用哪些业务场景？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p>LangGraph的Interrupt特性是实现人工介入工作流的核心能力，支持在指定节点暂停执行，等待人工操作后再继续流转，适配需要人工审核、干预的长链路企业级Agent场景。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>工作流执行到配置了Interrupt的节点时，会自动暂停执行，把当前的完整状态持久化到Checkpoint中，不会丢失任何上下文信息。</li>
+<li>人工操作后可以通过传入trace ID、配置ID恢复状态，继续执行后续节点，也可以修改当前状态后再继续执行，甚至可以回滚到之前的节点重新执行。</li>
+<li>Interrupt特性和LangGraph的Checkpoint、Memory能力深度绑定，支持断点续跑、状态回滚、时间旅行等高级特性。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比你走企业审批流程：流程走到领导审批节点时会自动暂停，领导可以同意、驳回、修改内容，领导操作后流程继续往下走，不用重新走一遍之前的提交、审核节点。Interrupt特性就是给Agent工作流加了审批节点，支持人工随时介入干预，不用重新执行整个工作流。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>Interrupt特性是LangGraph区别于LangChain普通Chain的核心优势之一，普通Chain无法实现中途暂停、人工介入的能力，非常适合内容审核、审批、人工标注、客服人工接管等需要人机协作的企业级Agent场景。</li>
+<li>配合前端页面可以实现非常顺滑的人机交互体验，用户操作完成后点击按钮即可继续执行工作流，不需要刷新页面、重新提交请求。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 认为Interrupt会丢失当前流程状态：实际上中断时所有状态都会被持久化到Checkpoint中，不管中断多长时间，只要传入对应的配置ID就能恢复到中断时的完整状态，不会丢失任何信息。</h2>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<hr />
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多Agent协同</code> <code>AI编程助手</code> <code>Sub-Agent</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某企业要搭建内部专属的AI编程助手，要求支持100+开发人员同时使用、跨项目上下文隔离、自动派生Sub-Agent处理目录扫描、依赖分析等低价值子任务、严格控制Token成本、支持用户随时中断任务不丢失状态，请设计这套系统的核心架构。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>角色拆分：明确主Agent与Sub-Agent的职责边界，避免核心上下文被冗余信息污染</li>
+<li>上下文分层：设计分级压缩与隔离机制，从根源控制Token消耗</li>
+<li>状态持久化：双层存储实现中断无损恢复，兼顾性能与可靠性</li>
+<li>权限管控：最小权限原则约束Agent操作范围，保障代码资产安全</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整体采用「1主N从」的多Agent协同架构：<br />
+1. 主Agent层：每个用户每个项目对应独立的主Agent实例，仅负责核心需求理解、任务调度、最终结果汇总，上下文仅保留核心任务目标、关键代码片段、Sub-Agent返回的结构化摘要，冗余内容实时清理<br />
+2. Sub-Agent层：做成无状态原子服务池，专门承接目录扫描、依赖版本检查、单文件语法修复、单元测试生成等低价值子任务，执行完成后仅返回摘要信息给主Agent，自身不保留任何上下文<br />
+3. 上下文管理层：复用Claude Code的四阶段压缩机制，按优先级依次清理陈旧片段、墓碑缓存、历史摘要，极端场景调用轻量模型做全量上下文压缩<br />
+4. 状态存储层：采用本地JSON文件+Redis双层存储，用户主动中断或服务异常时自动快照当前进度，下次进入时通过项目ID+用户ID定位快照直接恢复<br />
+5. 权限管控层：所有Sub-Agent默认仅开启代码只读权限，涉及文件修改的操作必须经过主Agent校验后由工程层统一执行，禁止Agent直接操作磁盘文件</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>Sub-Agent的执行结果必须做长度校验，超过500字的结果强制做摘要，避免冗余内容涌入主上下文推高Token成本</li>
+<li>主Agent与Sub-Agent的上下文必须严格隔离，禁止子任务的上下文直接同步到主Agent，防止子任务的错误信息污染核心逻辑</li>
+<li>必须设置Sub-Agent的最大执行时长与最大调用次数，避免子任务死循环占用资源，甚至触发大模型接口限流</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入MCP工具链，扩展Sub-Agent的本地工具调用能力，支持日志分析、数据库查询、Linter自动检查等功能</li>
+<li>接入Langfuse做全链路Token消耗统计，细化到每个Sub-Agent的单次调用成本，实现成本精细化核算</li>
+<li>支持自定义Sub-Agent模板，开发人员可以根据自身需求扩展子任务能力，无需修改核心架构</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agent鉴权</code> <code>企业系统集成</code> <code>HR业务</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某中型企业要上线HR智能Agent，包含三类核心场景：① 员工日常自助查询：查询个人考勤、工资、社保；② 后台定时任务：凌晨1点自动核算全员工资、生成排班表，自动写入HR系统；③ 外部对接：每月10号自动调用社保局公开接口提交参保数据。现有托管代理人模式、服务账号模式、API网关统一拦截三种鉴权方案，请给出不同场景的选型组合，并说明理由。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>拆解每个场景的核心特性：是否有真实用户在场、权限范围是个人级还是系统级、交互对象是内部系统还是外部第三方</li>
+<li>匹配三种鉴权方案的适配场景，优先选择复用现有权限体系、满足最小权限原则的方案</li>
+<li>设计全局双层鉴权架构，所有请求统一经过网关二次校验，兼顾安全与合规要求</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>采用「场景化选型+全局网关兜底」的组合方案：<br />
+1. 场景①（员工自助查询）：选用<strong>托管代理人模式</strong>，员工登录Agent时通过企业统一身份认证中心（飞书/钉钉/LDAP）完成身份校验，获取带有个人权限的JWT令牌，Agent调用HR系统接口时由工具层自动将令牌注入请求头，HR系统直接校验员工个人权限，员工看不到的敏感数据（如他人工资）Agent也无法查询，从根源避免越权<br />
+2. 场景②（后台定时任务）：选用<strong>服务账号模式</strong>，为工资核算、排班两个定时任务分别创建独立的服务账号，严格遵循最小权限原则，工资核算账号仅开放工资数据查询、核算结果写入权限，排班账号仅开放考勤数据读取、排班表写入权限，采用AppKey+HMAC-SHA256动态签名的方式鉴权，无需人工参与即可自动执行<br />
+3. 场景③（外部社保对接）：选用<strong>API网关统一拦截模式</strong>，社保局接口不直接暴露给Agent，所有外部请求统一走公司API网关，网关上配置IP白名单、请求频率限制、敏感数据脱敏规则，校验通过后再转发到社保局接口，同时自动留存所有请求审计日志<br />
+4. 全局兜底：所有Agent的请求不管是内部还是外部，全部经过API网关做二次权限校验，异常请求直接拦截，形成双层防护</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>服务账号的权限必须定期巡检，每季度复核一次权限范围，避免权限溢出，绝对禁止给Agent分配超管权限</li>
+<li>JWT令牌、AppSecret等敏感信息必须存在环境变量或凭据中心（如HashiCorp Vault），绝对禁止写在Prompt或代码注释中，防止Prompt注入泄露</li>
+<li>外部对接的请求日志必须留存6个月以上，满足等保合规要求，敏感数据（如身份证号、银行卡号）必须脱敏后再存储</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入权限审计平台，自动巡检Agent的权限是否有溢出，异常权限自动回收</li>
+<li>支持临时权限申请流程，Agent需要超出默认范围的权限时，自动发起审批流程，审批通过后临时授予权限，任务完成后自动回收</li>
+<li>接入敏感操作审计，所有修改数据的操作自动记录操作人、操作时间、修改内容，支持回溯</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agent监控</code> <code>健康检查</code> <code>生产级运维</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你基于LangGraph开发了一款客服Agent，已经上线到生产环境，需要实现一套生产级健康检查体系，覆盖服务存活、工具连通性、逻辑合规三个维度，异常时自动推送钉钉告警，请给出核心实现思路和伪代码。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>分层校验：从基础服务可用性到工具链路连通性再到业务逻辑合规性，逐层校验，避免漏判</li>
+<li>复用工具：优先用开源成熟组件实现基础能力，减少自定义开发量，降低维护成本</li>
+<li>告警分级：不同级别异常推送给不同责任人，配置频率抑制避免消息轰炸</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>三个维度分层实现：<br />
+1. <strong>服务存活检查</strong>：用开源拨测工具Uptime Kuma实现，每分钟请求Agent的健康检查接口，返回非200状态码则触发告警，核心伪代码：</p>
+<pre><code class="language-python">from fastapi import FastAPI
+app = FastAPI()
+
+# 服务存活检查接口，无业务逻辑，仅返回服务状态
+@app.get(&quot;/health&quot;)
+async def health_check():
+    return {&quot;status&quot;: &quot;ok&quot;, &quot;service&quot;: &quot;customer_service_agent&quot;, &quot;version&quot;: &quot;v1.0.0&quot;}
+</code></pre>
+<ol start="2">
+<li><strong>工具连通性检查</strong>：用APScheduler实现定时脚本，每10分钟调用一次Agent依赖的所有工具接口，校验返回状态与格式，异常则告警，核心伪代码：</li>
+</ol>
+<pre><code class="language-python">import requests
+from dingtalkchatbot.chatbot import DingtalkChatbot
+
+# 初始化钉钉机器人
+ding_bot = DingtalkChatbot(&quot;https://oapi.dingtalk.com/robot/send?access_token=xxx&quot;)
+
+async def check_tool_connectivity():
+    # 检查RAG检索工具
+    try:
+        rag_resp = requests.post(&quot;http://rag-server/api/query&quot;, json={&quot;query&quot;: &quot;测试问题&quot;}, timeout=5)
+        if rag_resp.status_code != 200 or &quot;content&quot; not in rag_resp.json():
+            ding_bot.send_text(&quot;【告警】客服Agent RAG工具异常&quot;)
+    except Exception as e:
+        ding_bot.send_text(f&quot;【告警】客服Agent RAG工具调用失败：{str(e)}&quot;)
+
+    # 检查大模型调用工具
+    try:
+        llm_resp = requests.post(&quot;http://llm-gateway/api/chat&quot;, json={&quot;prompt&quot;: &quot;你好&quot;, &quot;model&quot;: &quot;qwen-7b&quot;}, timeout=10)
+        if llm_resp.status_code != 200 or &quot;response&quot; not in llm_resp.json():
+            ding_bot.send_text(&quot;【告警】客服Agent大模型接口异常&quot;)
+    except Exception as e:
+        ding_bot.send_text(f&quot;【告警】客服Agent大模型接口调用失败：{str(e)}&quot;)
+</code></pre>
+<ol start="3">
+<li><strong>逻辑合规检查</strong>：基于LangGraph原生能力+Langfuse实现，一是配置最大迭代次数防止死循环，二是定时跑黄金测试集校验业务准确率，核心伪代码：</li>
+</ol>
+<pre><code class="language-python">from langgraph.graph import StateGraph
+from langgraph.checkpoint.redis import RedisCheckpoint
+
+# 初始化LangGraph，配置最大递归次数为5，防止死循环
+graph = StateGraph(AgentState)
+graph.add_node(&quot;intent_recognition&quot;, intent_recognition_node)
+graph.add_node(&quot;rag_query&quot;, rag_query_node)
+graph.add_node(&quot;generate_answer&quot;, generate_answer_node)
+graph.set_entry_point(&quot;intent_recognition&quot;)
+graph.add_edge(&quot;intent_recognition&quot;, &quot;rag_query&quot;)
+graph.add_edge(&quot;rag_query&quot;, &quot;generate_answer&quot;)
+graph.set_finish_point(&quot;generate_answer&quot;)
+runnable = graph.compile(checkpointer=RedisCheckpoint(redis_url=&quot;redis://localhost:6379/0&quot;))
+
+# 业务逻辑检查，捕获递归超限异常
+async def check_agent_logic():
+    try:
+        config = {&quot;configurable&quot;: {&quot;thread_id&quot;: &quot;health_check_test&quot;}, &quot;recursion_limit&quot;: 5}
+        result = await runnable.ainvoke({&quot;query&quot;: &quot;社保断缴有什么影响？&quot;}, config=config)
+        # 调用Langfuse的评估接口校验答案准确率
+        accuracy = langfuse.evaluate(result[&quot;answer&quot;], expected_answer=&quot;社保断缴会影响医保报销、养老金累计...&quot;)
+        if accuracy &lt; 0.9:
+            ding_bot.send_text(f&quot;【告警】客服Agent业务准确率低于90%，当前准确率：{accuracy}&quot;)
+    except RecursionError as e:
+        ding_bot.send_text(f&quot;【告警】客服Agent陷入死循环：{str(e)}&quot;)
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>健康检查的请求必须在大模型网关侧标记为测试流量，不计入业务统计和Token消耗，避免产生不必要的成本</li>
+<li>告警必须配置频率抑制，同一异常5分钟内只推送一次，避免消息轰炸运维群</li>
+<li>健康检查逻辑必须和Agent主业务逻辑解耦，禁止在主流程中嵌入健康检查代码，避免健康检查异常影响正常业务</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入Prometheus+Grafana做健康状态可视化，展示服务可用率、工具响应时长、业务准确率等核心指标的趋势图</li>
+<li>支持自定义告警阈值，不同业务线可以配置不同的检查频率和告警规则</li>
+<li>增加故障自愈能力，简单异常（如大模型接口超时）自动重试，无需人工干预</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>成本优化</code> <code>Token消耗</code> <code>上下文压缩</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你负责的自媒体内容运营Agent上线半个月后，运营反馈每天的大模型Token成本比刚上线时涨了3倍，但是生成内容的数量没有变化，排查日志发现是上下文压缩机制失效，历史对话状态没有及时清理，请给出问题排查步骤和优化方案，要求将Token成本降低到上线初期的水平。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>根因排查：从Token消耗明细、压缩执行日志、状态存储三个维度逐层定位问题根源</li>
+<li>三维优化：从上下文压缩逻辑、状态过期清理、通用内容缓存三个方向做优化，兼顾成本与内容质量</li>
+<li>长效监控：上线成本监控告警体系，避免后续再出现类似问题</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h4>排查步骤</h4>
+<ol>
+<li>先拉取最近半个月的Token消耗明细，拆分输入Token和输出Token的占比，确认是输入Token增长导致成本上升</li>
+<li>检查四阶段上下文压缩的执行日志，发现压缩逻辑在遇到特殊字符（如Emoji、自定义标签）时会抛出异常，导致压缩流程被跳过，上下文长度持续累积</li>
+<li>检查Checkpoint存储，发现已完成、已终止的任务状态没有被清理，重复加载历史状态导致输入Token翻倍</li>
+</ol>
+<h4>优化方案</h4>
+<ol>
+<li><strong>修复上下文压缩逻辑</strong>：完善异常捕获机制，压缩遇到异常时自动降级，连续失败2次就主动清理7天前的历史状态，同时优化压缩规则，优先清理已完成的任务状态、重复的热点数据、运营已驳回的废弃内容，严格保留当前任务的核心需求、行业词库、已生成的合格内容</li>
+<li><strong>配置状态过期清理规则</strong>：Redis存储的热Checkpoint设置24小时TTL，已完成的任务状态24小时后自动删除；PostgreSQL归档的冷状态设置7天自动清理，超过7天的状态自动迁移到对象存储；定时任务每天凌晨批量清理已终止、已驳回的任务状态</li>
+<li><strong>通用内容缓存复用</strong>：将每日抓取的热点数据、HR行业词库、企业风格模板等通用内容提前向量化缓存，不需要每次生成内容都重新加载到上下文，减少重复Token消耗</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>清理历史状态前必须先备份到对象存储，避免误删正在运行的任务状态，导致业务中断</li>
+<li>上下文压缩不能过度，必须设置压缩后的上下文长度阈值，不能低于模型上下文窗口的10%，避免丢失关键信息导致生成内容质量下降</li>
+<li>要区分运行中任务和已完成任务的过期规则，运行中任务的状态不能自动清理，必须等任务完成或终止后再清理</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入Token消耗实时监控，单任务Token消耗超过阈值就自动告警，运营可以选择手动清理历史状态或终止任务</li>
+<li>支持按任务类型配置不同的压缩策略，短文案生成任务可以更激进地压缩上下文，长报告生成任务保留更多历史上下文</li>
+<li>接入模型路由，非核心场景（如文案润色、标签生成）自动切换到更小参数的模型，进一步降低成本</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多Agent通信</code> <code>消息队列</code> <code>跨系统协同</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某零售企业要从0到1落地一套多Agent协同平台，包含库存Agent、采购Agent、财务Agent、供应商外部Agent四类角色，要实现库存不足自动触发采购、采购确认后自动打款、供应商发货后自动同步库存的全流程自动化，请给出完整的落地思路、核心模块设计和上线节奏。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>业务先行：先梳理全业务流程的节点、交互逻辑、风险点，明确每个Agent的职责边界</li>
+<li>架构解耦：采用分层架构设计，通信层、调度层、业务层完全解耦，支持后续扩展</li>
+<li>灰度上线：分阶段上线，先跑通核心链路再逐步开放自动化能力，降低上线风险</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h4>落地思路</h4>
+<p>按照「业务拆解→架构设计→模块开发→灰度上线→全量运营」的流程落地，优先保障核心链路的稳定性，敏感操作先人工审核再逐步放开自动化。</p>
+<h4>核心模块设计</h4>
+<ol>
+<li><strong>通信层</strong>：用RabbitMQ做内部Agent的消息中间件，定义统一的结构化消息协议（JSON格式，包含任务ID、发送方、接收方、消息类型、消息内容、超时时间、幂等ID），内部Agent之间通过MQ异步通信，解耦发送方和接收方；外部供应商Agent通过API网关用HTTP通信，网关上配置签名校验、IP白名单、限流规则</li>
+<li><strong>调度层</strong>：用XXL-Job做分布式任务调度中心，统一管理所有定时任务（如库存巡检、定时对账、消息重试），同时负责任务路由、状态同步、异常重试，任务执行状态统一存在数据库，支持全链路追溯</li>
+<li><strong>业务层</strong>：四个Agent独立开发部署，职责完全隔离：<br />
+   - 库存Agent：每小时巡检所有商品库存，低于预设水位线就生成采购需求，发送消息给采购Agent<br />
+   - 采购Agent：收到采购需求后自动匹配供应商，生成采购单，发送消息给供应商Agent和财务Agent<br />
+   - 供应商Agent：收到采购单后返回确认回执，发货后发送发货通知给库存Agent<br />
+   - 财务Agent：收到采购确认回执后自动走付款流程，付款完成后发送付款通知给采购Agent和供应商Agent</li>
+<li><strong>审核层</strong>：所有敏感操作（如付款、批量修改库存）默认需要人工审核，配置审核规则，低价值商品（单价&lt;100元、采购量&lt;10）自动审核通过，高价值商品人工审核</li>
+</ol>
+<h4>上线节奏</h4>
+<ol>
+<li>第一阶段（1-2周）：跑通手动触发的核心链路，库存不足人工确认后触发采购，所有敏感操作100%人工审核，验证流程的正确性</li>
+<li>第二阶段（2-3周）：灰度开放自动化能力，先给低价值商品开通自动采购、自动审核，验证流程稳定性、数据准确性，逐步扩大灰度范围，验证稳定后再放开高价值商品的自动化</li>
+<li>第三阶段（1周）：全量上线，接入监控告警体系，实现全流程可视化监控，异常自动告警</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>所有消息必须配置幂等ID，消费方根据幂等ID去重，避免重复消费导致重复采购、重复付款</li>
+<li>所有敏感操作必须留存操作日志，支持全链路回溯，出现问题可以快速定位责任方</li>
+<li>外部Agent通信必须做签名校验，防止伪造消息发起恶意请求，所有外部请求必须审计日志留存6个月以上</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入可视化流程编排面板，业务人员可以拖拽调整Agent交互链路，不需要修改代码即可适配新的业务场景</li>
+<li>支持自定义Agent扩展，后续可以新增物流Agent、客服Agent、运营Agent等角色，快速接入平台</li>
+<li>接入数据看板，实时展示采购完成率、库存周转率、付款及时率等核心业务指标，辅助业务决策</li>
+</ul>
+<hr />
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
