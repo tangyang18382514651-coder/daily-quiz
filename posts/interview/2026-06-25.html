@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-06-25)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-06-25)</h1>
+    <div class="meta">更新于 2026-06-25 11:06</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
+🔄 知识片段：#17, #18, #19（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>多Agent架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级多Agent集群的流量分发，为什么推荐用网关层静态路由而非业务层总Agent动态路由？两者的核心差异是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>用网关层静态路由做流量分发是企业级多Agent集群的最优实践，相比业务层总Agent路由，在稳定性、性能、故障隔离三个维度都有压倒性优势</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>网关路由是确定性的纯代码逻辑，无大模型非确定性风险，流量分发准确率100%</li>
+<li>网关路由属于流量接入层，不承载业务逻辑，并发承载能力极强，不会成为系统单点瓶颈</li>
+<li>总Agent路由依赖大模型意图识别，存在准确率波动、推理延迟高、Token成本高的问题</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以把两种路由模式类比为快递公司的分拣体系：网关层路由就是扫码枪按快递面单的地址前缀直接分派到对应网点，速度快、不出错，哪怕一台扫码枪坏了换一台就能继续工作；而业务层总Agent路由就是让一个快递员先拆开每个包裹判断是什么内容再决定发往哪里，不仅速度慢、可能看错分错，而且这个快递员要是累倒了所有包裹都会被卡住。比如网关层可以直接把<code>/api/v1/hr</code>前缀的请求转发到HR客服Agent集群，把<code>/api/v1/media</code>前缀的请求转发到自媒体Agent集群，分发延迟低于1ms，完全不会影响用户体验。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己在项目中用FastAPI/Nginx实现路径路由，按业务URL前缀转发到对应Agent集群，上线后系统可用性从99.5%提升到99.95%，流量分发成本几乎为0</li>
+<li>可以补充如果需要基于用户查询内容做细粒度路由，应该把路由逻辑放到业务线Agent内部，而非总入口的总Agent中</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多新手会把意图识别的逻辑放到总入口的大模型里，反而把简单的流量分发复杂化，既增加了推理成本，又降低了系统稳定性</li>
+<li>静态路由不代表不能做动态调整，网关层完全可以支持基于负载、灰度规则的动态流量调度，不需要依赖大模型</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>AI架构演进</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>当前企业级垂直领域AI落地，为什么会从“LLM中心化”向“工程架构系统化”的范式转变？核心驱动因素是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>范式转变的核心是解决LLM非确定性、高成本、合规性差的痛点，满足企业生产环境对高可用、低成本、强合规的硬性要求</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>企业垂直场景容错率极低，纯LLM驱动的方案幻觉问题无法满足业务要求，需要确定性的工程逻辑兜底</li>
+<li>纯LLM方案算力成本极高，大规模落地时ROI极低，需要通过工程优化降低成本</li>
+<li>企业场景需要对接大量异构内部系统，纯LLM无法解决系统集成的复杂度、权限控制、数据安全等问题</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>草莽阶段的“LLM中心化”思路是把大模型当“万能大脑”，所有逻辑都塞给大模型处理，就像让一个实习生既要做客服、又要做财务、还要做IT运维，不仅容易出错，人力成本还极高；而“工程架构系统化”的思路是把大模型当成一个具备推理能力的“不确定性CPU”，外面套上主板、内存、硬盘、散热系统这些确定性的工程组件，让大模型只做它擅长的推理工作，其他的存储、路由、风控、系统对接都交给成熟的软件工程来实现，既放大了大模型的价值，又规避了它的缺陷。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己主导的项目落地时，通过把70%的规则类逻辑从LLM中剥离，改用确定性代码实现，幻觉率从18%降到2%，推理成本下降60%</li>
+<li>可以补充范式转变不是降低大模型的作用，而是通过工程能力让大模型的价值能够真正在生产环境规模化落地</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人认为工程架构系统化是“去大模型化”，实际上是用确定性的工程能力包裹大模型的非确定性，让它能稳定输出价值</li>
+<li>不是所有场景都需要复杂的系统化架构，简单的内部工具类场景用纯LLM驱动完全可以，范式选择要匹配业务需求</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LangGraph架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>LangGraph中基于子图（SubGraph）的单元拆分模式，相对于单全量工作流的核心优势是什么？适用场景有哪些？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>子图拆分是LangGraph落地复杂业务的最佳实践，通过职责分离大幅提升Agent的执行准确率、可维护性和迭代效率</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>每个子图只承载单一职责，绑定的Tool数量少，大模型注意力不会分散，执行准确率更高</li>
+<li>子图可以独立开发、测试、部署，迭代时不会影响其他业务模块，发布风险极低</li>
+<li>子图可以跨业务复用，不同业务线的公共能力可以抽取为公共子图，避免重复开发</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>子图拆分的逻辑和乐高积木的模块化设计完全一致：单全量工作流就是把所有积木粘成一个不可拆分的大块，改一个零件就要拆整个模型，风险高、效率低；而子图拆分就是把乐高分成头部、身体、四肢等独立模块，每个模块可以单独修改、替换，还能用到不同的模型上。比如自媒体Agent拆分的选题、写作、配图子图，其中的写作子图可以同时给自媒体Agent和HR智能客服Agent生成岗位宣传文案用，不需要重复开发。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己的项目中拆分了8个公共子图，新业务线接入速度从2周缩短到3天，单业务Agent的执行准确率从82%提升到94%</li>
+<li>可以补充子图拆分要遵循单一职责原则，按业务领域边界拆分，不要过度拆分增加状态流转的复杂度</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>子图不是拆得越细越好，过度拆分反而会增加状态在不同子图之间流转的复杂度，提升维护成本</li>
+<li>简单的单一场景Agent不需要拆分子图，比如简单的问答Agent用单工作流完全可以满足需求</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent安全风控</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级Agent系统中，为什么要采用“读写分离”的风控机制？高危写操作的审批流设计核心思路是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>读写分离风控是避免Agent误操作给企业带来资产损失的核心防线，本质是用确定性的人工校验兜底大模型的非确定性风险</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>读操作（如查询知识库、查询员工信息）不会修改企业数据，风险极低，可以放开权限由Agent自主执行</li>
+<li>写操作（如发送短信、修改员工薪资、发布自媒体内容）会修改数据或产生实际业务影响，风险极高，必须加额外校验</li>
+<li>审批流将写操作的最终决策权交给人类，完全规避大模型幻觉导致的误操作风险</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>读写分离风控的逻辑和企业的财务制度完全一致：查询余额、流水这类读操作员工可以随便查，但要转钱、打款这类写操作，必须走各级审批，哪怕财务系统再智能，也不能让系统自动转大额款项。比如HR Agent要给候选人发offer，生成offer草稿的操作是读操作，Agent可以自主完成，但真正发送offer给候选人这个写操作，必须要HR在后台确认内容无误后才能执行，避免大模型幻觉生成错误的offer内容给企业带来法律风险。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己在项目中给写操作设计了三级风控：网关层拦截校验权限、业务层判断风险等级、高风险操作触发人工审批，上线后零误操作事故</li>
+<li>可以补充风险等级可以动态配置，低风险写操作（如修改用户自己的昵称）可以自动通过，高风险操作才需要人工审批，兼顾体验和安全</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人认为加审批流会降低用户体验，实际上可以通过风险等级分层设计，90%以上的低风险操作都可以自动通过，不会影响体验</li>
+<li>风控逻辑不能只写在业务Agent内部，必须在网关层做统一拦截，避免单个Agent的代码漏洞绕过风控</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型成本优化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大小模型协同架构中，任务路由的核心判断维度有哪些？为什么70%的常规任务可以下放到小模型处理？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>大小模型协同是企业降低推理成本、提升并发能力的核心手段，通过合理的任务路由可以在不降低用户体验的前提下将推理成本降低50%以上</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>路由的核心判断维度包括：任务复杂度、数据敏感性、响应延迟要求、输出格式要求四个维度</li>
+<li>小模型在简单任务上的准确率和大模型差距极小，但推理速度快3-10倍，成本只有大模型的1/10甚至更低</li>
+<li>常规任务（如意图分类、实体提取、简单问答）不需要复杂的逻辑推理能力，经过少量领域数据微调的小模型完全可以胜任</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>大小模型协同的逻辑和企业的人员分工完全一致：CEO（大模型）只负责处理复杂的战略决策、大客户谈判这类高难度工作，常规的报销审批、客户咨询、文档整理这类工作交给普通员工（小模型）就可以，既节约成本，效率还更高。比如HR智能客服场景，70%的问题都是查询社保、考勤、入职流程这类常规问题，用经过HR领域微调的小模型完全可以准确回答，只有涉及到复杂的劳资纠纷、薪资调整的问题才需要转大模型处理。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己的项目中通过大小模型路由，将平均推理成本下降62%，并发承载能力提升4倍，用户满意度没有出现下降</li>
+<li>可以补充路由规则可以通过线上效果持续迭代，不断扩大小模型的覆盖场景，进一步降低成本</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人认为小模型效果一定比大模型差，实际上在特定垂直场景下，经过微调的小模型效果甚至会超过通用大模型</li>
+<li>不是所有场景都适合用小模型，复杂的多跳推理、跨系统调度的场景还是需要用大模型处理</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent评测体系</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>LLM-as-a-Judge自动化评测体系的核心评估维度有哪些？它相对于人工评测的核心优势是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LLM-as-a-Judge是企业级Agent落地的必备评测手段，解决了传统人工评测效率低、成本高、标准不统一的痛点</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>核心评估维度包括：Groundedness（事实一致性，无幻觉）、Context Adherence（上下文遵从度）、Faithfulness（输出忠实度）、Relevance（结果相关性）四个核心维度</li>
+<li>LLM-as-a-Judge可以批量并发执行评测，效率是人工的几十上百倍，成本只有人工评测的几十分之一</li>
+<li>评测标准可以通过Prompt统一，避免不同评测人员的主观偏差，评测结果的一致性更高</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>LLM-as-a-Judge的逻辑和考试的自动阅卷机完全一致：人工评测就是老师手动改卷，速度慢，不同老师改卷的松紧程度不一样，评分结果波动大；LLM-as-a-Judge就是自动阅卷机，只要提前设定好标准答案和评分标准，就能快速批量改卷，评分标准完全统一。比如企业每一次Agent代码提交后，自动跑几百个测试用例，几分钟就能出完整的评测报告，而人工评测同样的用例可能需要几天时间，还容易出现错判漏判。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己的项目中搭建了LLM-as-a-Judge的自动化评测流水线，每一次代码提交自动跑500个基准测试用例，发布周期从2周缩短到3天，线上bug率下降70%</li>
+<li>可以补充核心场景和边界case还是需要人工校验，LLM-as-a-Judge主要替代常规的重复评测工作，两者是互补关系不是替代关系</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人认为LLM-as-a-Judge的评分不可靠，实际上只要Prompt设计合理、评测标准清晰，LLM-as-a-Judge的评分一致性和准确率远高于普通人工评测</li>
+<li>LLM-as-a-Judge必须用能力更强的大模型做裁判，不能用和被评测Agent同款的小模型做裁判，否则会出现评分偏差</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>多Agent协作</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>多Agent系统中，平级协作模式和总Agent调度模式的核心差异是什么？分别适用什么场景？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>平级协作模式是企业级多Agent集群的首选架构，相比总Agent调度模式，具备更好的扩展性、故障隔离能力和稳定性</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>平级协作模式中各Agent是对等的，不需要总调度节点，通过网关路由和底层共享数据层互通，无单点故障</li>
+<li>总Agent调度模式中所有请求都要经过总Agent，总Agent的性能、准确率决定了整个系统的上限，容易成为瓶颈</li>
+<li>平级协作模式可以独立迭代每个Agent，发布单个Agent不会影响其他业务，总Agent模式下修改总调度逻辑会影响所有业务</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>两种模式的差异和企业的组织架构差异完全一致：平级协作就是扁平化管理，各个部门（Agent）之间有需求直接对接，不需要什么事都找CEO（总Agent）审批，效率高，哪怕CEO离职了公司也能正常运转；总Agent调度就是集权式管理，所有事都要CEO拍板，CEO忙不过来全公司都堵，CEO要是生病了全公司都停摆。比如HR智能客服需要生成岗位宣传文案，直接调用自媒体Agent的接口就行，不需要经过总Agent转发，延迟更低、稳定性更高。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己的项目中采用平级协作模式，支撑了6条业务线的Agent，单条业务线发布时其他业务零影响，系统可用性达到99.99%</li>
+<li>可以补充平级协作不是完全没有调度，而是把调度逻辑下沉到网关层和各个Agent内部，不需要一个统一的总Agent做调度</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人认为平级协作没有统一调度会乱，实际上网关层的静态路由、Agent内部的工具调用逻辑已经实现了合理的调度，比总Agent调度更稳定</li>
+<li>小规模、低并发的场景用总Agent调度完全可以，但是大规模生产环境必须用平级协作模式</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>RAG多租户架构</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>多租户场景下，Agent知识库的物理隔离方案核心设计思路是什么？如何避免不同租户的知识库数据泄露？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>知识库物理隔离是多租户RAG系统的核心合规要求，通过底层存储的租户级隔离从根源上避免数据交叉泄露</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>每个租户的知识库数据存储在独立的Collection/分区中，租户ID作为所有数据查询的强制过滤条件</li>
+<li>接入层做租户身份校验，只有合法的租户API Key才能访问对应的知识库，未授权请求直接拦截</li>
+<li>底层存储支持权限隔离，不同租户的存储资源互相不可见，即使出现代码bug也不会跨租户泄露数据</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>物理隔离的逻辑和银行的保险柜完全一致：每个客户的东西都放在独立的保险柜里，每个客户只有自己保险柜的钥匙，银行工作人员也不能随便打开别人的保险柜，哪怕银行系统出问题，也不会把A客户的东西给到B客户。比如SaaS化的RAG平台，每个企业用户上传的文档都存在独立的向量库Collection中，查询时必须携带企业的project_id，即使出现代码bug输错了Collection名称，也因为存储层的权限限制查不到其他企业的数据。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己的项目中基于云厂商向量数据库实现了多租户知识库物理隔离，上线后零数据泄露事故，通过了等保三级合规认证</li>
+<li>可以补充除了存储层隔离，还需要在操作日志层做全量审计，所有知识库的读写操作都记录日志，可追溯可排查</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人认为逻辑隔离（只靠SQL查询加租户ID过滤）就算是隔离，实际上一旦出现SQL注入或者代码bug就会导致数据泄露，必须在存储层做物理隔离</li>
+<li>中小企业租户可以共享底层存储资源，但是必须在逻辑上做完全隔离，大型客户可以提供单独的存储集群，进一步提升安全性</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent性能优化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Agent的分层内存管理机制核心原理是什么？它如何解决长上下文带来的Token成本高、延迟高的问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>分层内存管理是Agent长对话场景的核心优化手段，在不损失对话上下文语义的前提下，将Token成本降低40%以上，响应延迟缩短50%以上</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>分层内存分为短期记忆和长期记忆两层，短期记忆保留最近N轮的原始对话，长期记忆将更早的对话压缩为语义摘要</li>
+<li>只有短期记忆会全量传入大模型的上下文窗口，长期记忆只在需要的时候通过检索调用，不会占用常规请求的上下文窗口</li>
+<li>摘要由专门的小模型异步生成，不会增加用户请求的响应延迟，生成的摘要仅保留核心事实信息，体积只有原始对话的1/10甚至更小</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>分层内存的逻辑和人类的记忆机制完全一致：我们最近发生的事记得清清楚楚，更早的事只记得大概的重点，不会把从小到大所有的事都随时放在脑子里，需要的时候才去回忆细节。比如HR智能客服和用户聊了20轮，最近3轮的原始对话会直接传给大模型，前面17轮的对话会被压缩成“用户是2024届应届生，应聘的是研发岗，已经通过面试，咨询入职需要带的材料”这个摘要，只有当用户提到和历史对话相关的细节时，才会检索对应的原始对话内容传入上下文窗口。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己的项目中采用分层内存管理，对话轮数达到20轮时，Token成本只有全量上传的30%，首字延迟稳定在2秒以内</li>
+<li>可以补充短期记忆的轮数可以根据业务场景动态调整，比如客服场景可以设为3-5轮，创作场景可以设为5-10轮</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人认为分层内存会丢失历史对话信息，实际上长期记忆只是压缩存储，需要的时候可以随时召回，不会丢失任何上下文信息</li>
+<li>摘要生成不需要用大模型，用轻量化的小模型就可以完成，成本极低，准确率也可以满足需求</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>多模态Agent集成</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Agent系统中，OCR能力和RAG能力的核心职责边界是什么？什么场景下可以不用搭建复杂的RAG向量库直接用OCR结果喂大模型？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>OCR是原始信息提取工具，RAG是海量知识检索工具，两者职责边界清晰，单文档/单票据的处理场景完全可以不用RAG直接用OCR结果</strong>。</p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>OCR的核心职责是将图片、PDF、纸质文档中的非结构化内容提取为文本/结构化数据，解决信息从物理形态到数字形态的转换问题</li>
+<li>RAG的核心职责是从海量的知识库中检索出和用户问题相关的片段，解决大模型不知道私有/最新知识的问题</li>
+<li>单文档场景下，OCR提取的内容长度通常不会超过大模型的上下文窗口，不需要检索直接喂给大模型就可以处理，效果更好、成本更低</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>两者的边界可以类比为文档处理的两个环节：OCR就是把纸质合同扫描成可编辑的Word文档，RAG就是你有几万份合同，要找和这份合同相关的其他合同条款。如果你只需要审核这一份合同的内容、提取关键字段，直接把OCR出来的Word文档给大模型看就行，不需要把所有合同都存到向量库里检索；只有当你需要从几万份合同里找特定条款的时候，才需要搭建RAG向量库做检索。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及自己的项目中合同审核Agent直接用OCR结果喂大模型，不需要搭建RAG，上线后准确率达到92%，开发周期缩短了一半</li>
+<li>可以补充如果是多文档对比、跨文档查询的场景，还是需要用RAG做检索，再把检索结果喂给大模型</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人不管什么场景都要搭RAG向量库，实际上单文档、小批量文档的场景下，直接用OCR结果喂大模型成本更低、效率更高、效果也更好</li>
+<li>OCR提取的内容需要做校验和纠错，避免识别错误导致大模型输出错误结果，不能直接把OCR的原始结果不加处理就喂给大模型</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<hr />
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多Agent接入、无单点故障、业务隔离</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某企业已经上线了HR智能客服、自媒体内容运营、财务报销审批3套独立的Agent业务系统，现在需要统一对外提供接入入口，核心要求有三个：1. 无单点故障，不能因为某一套Agent故障导致全系统瘫痪；2. 单业务线版本发布、扩容完全不影响其他业务；3. 未来新业务Agent接入成本≤1人天。请设计整体接入架构，说明核心模块的分工。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：摒弃「总Agent调度」的单点设计，采用「网关接入+平级协作」的分布式架构，从根源避免单点故障</li>
+<li>第二步：拆分底层公共能力和上层业务逻辑，公共能力下沉为共享服务，上层业务Agent完全独立部署</li>
+<li>第三步：制定统一接入规范，新业务只需按规范暴露接口、配置路由规则即可快速接入</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整体架构分为三层：<br />
+1. 统一接入层：基于FastAPI开发七层网关，不涉及任何业务逻辑，只负责路径路由、API Key认证、配额限流、全链路日志打点。请求路径匹配<code>/api/v1/hr</code>就转发到HR智能客服集群，匹配<code>/api/v1/media</code>就转发到自媒体Agent集群，完全不需要大模型参与路由，延迟≤1ms。<br />
+2. 公共服务层：将大模型调用、RAG检索、会话记忆、Prompt管理四个通用能力抽离为独立的MCP Server，所有上层Agent通过统一接口调用，避免重复开发。<br />
+3. 业务Agent层：三个业务Agent完全独立仓库、独立部署、独立发布，彼此之间没有依赖，需要协作时直接通过网关调用对方的开放接口，或者通过底层共享的记忆层同步数据，不需要经过任何中心节点。<br />
+新业务接入时只需要做三件事：开发业务Agent代码、在网关配置路由规则、申请调用公共服务的API Key，最快半天即可完成接入。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要把路由逻辑放到业务Agent层，网关必须是纯静态路由，避免大模型路由错误导致的流量分配异常</li>
+<li>不同业务Agent的知识库必须物理隔离，通过租户ID划分独立的存储分区，避免数据串权</li>
+<li>网关必须配置熔断机制，某一个业务Agent返回错误率超过阈值时自动降级返回模板响应，不影响其他业务的流量</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>网关增加灰度发布能力，支持按流量比例、用户标签切流，新业务上线时可以先切10%流量验证</li>
+<li>增加业务级监控大盘，每个Agent的调用量、成功率、延迟、Token成本独立统计，独立核算</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>HR智能客服、知识时效性、风格一致性</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某大型制造企业要落地内部HR智能客服，核心要求有两个：1. 客服回复的话术风格必须统一、正式，符合企业HR对外沟通的SOP规范，员工满意度≥90%；2. 公司的考勤、薪酬、假期政策每月都会更新，要求客服的知识准确率≥95%。现在技术团队给出两个落地方案：A. 收集所有HR历史对话+政策文档，对开源大模型做全量微调，直接把知识和风格都训练进模型；B. 采用「微调管风格、RAG管知识」的职责分离架构。请对比两个方案的优劣，给出选型结论。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：拆解核心需求的两个独立维度：风格是确定性的行为范式，要求稳定、可复刻；知识是动态变化的外部信息，要求更新快、准确率高</li>
+<li>第二步：分别评估两个方案对两个维度需求的适配性，同时综合考虑落地成本、迭代效率、维护难度</li>
+<li>第三步：结合企业的长期迭代需求给出选型结论，同时补充兜底优化方案</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>两个方案的优劣对比如下：<br />
+- 方案A（全量微调）的优势：推理链路短，不需要RAG检索，延迟略低；劣势极其明显：① 知识更新成本极高，每次政策调整都需要重新收集数据、微调模型，至少需要1周时间，完全无法满足每月更新的要求；② 知识准确率无法保障，大模型微调存在遗忘问题，很容易出现旧知识混淆、新知识记不全的情况；③ 微调成本高，一次全量微调需要至少数千元的算力成本，且需要专业的算法团队维护。<br />
+- 方案B（职责分离）的优势：① 知识更新效率极高，每次政策调整只需要把新文档上传到RAG知识库，10分钟即可生效，完全满足时效性要求；② 知识准确率有保障，RAG检索到的原文直接作为上下文喂给大模型，从根源避免幻觉；③ 风格微调成本极低，只需要收集数百条HR的历史优秀对话，用QLoRA做轻量微调，几个小时即可完成，成本不足百元，风格一致性可以达到95%以上；劣势是需要额外搭建RAG检索链路，推理链路增加了100ms左右的检索延迟，完全在用户可接受范围内。<br />
+选型结论：优先选择方案B，完全满足两个核心需求，落地和迭代成本只有方案A的1/10。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要用微调来存储知识，微调的核心作用是改变模型的行为范式，不是记忆信息，否则会出现知识混淆、更新困难的致命问题</li>
+<li>风格微调的数据集必须是真实的HR对话样本，不要用政策文档作为微调数据，否则会出现风格不符合要求的问题</li>
+<li>RAG检索的结果必须强制放到Prompt的最前面，大模型的回答必须严格基于检索到的内容，避免幻觉</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>增加输出层风格校验Guardrails，用微调好的小模型检查回复的风格是否符合SOP，不符合的自动重写</li>
+<li>增加RAG召回率监控，每月自动抽检知识准确率，低于95%时自动优化检索规则</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多租户、API网关、流量管控</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某企业基于FastAPI搭建了多Agent统一接入网关，要求实现四层中间件链，依次完成：1. API Key身份认证，拦截非法请求；2. 全链路日志记录，写入ELK；3. 租户配额校验，拦截超配额请求；4. 路由转发到对应业务Agent。请给出核心实现思路和关键伪代码。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：利用FastAPI的原生中间件机制实现链式调用，严格按照「认证→日志→配额→路由」的顺序执行，前一层不通过直接返回错误，不会进入下一层</li>
+<li>第二步：每个中间件职责单一，仅处理对应逻辑，不跨界处理其他模块的功能，便于后续维护扩展</li>
+<li>第三步：异常统一处理，所有中间件的错误都返回标准化的错误码和提示，便于上游业务排查问题</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>核心实现逻辑如下：<br />
+1. 身份认证中间件：从请求头的<code>X-API-Key</code>字段获取密钥，查询Redis中存储的租户API Key映射表，验证通过则将租户ID注入请求状态，不通过则直接返回401错误。<br />
+2. 日志记录中间件：生成全局唯一的Request ID，记录请求路径、租户ID、请求参数、开始时间，请求结束后记录响应状态、耗时，异步写入ELK日志系统，不阻塞主链路。<br />
+3. 配额校验中间件：用Redis的原子计数器<code>INCR</code>统计租户当天的调用量，和租户配置的日配额对比，超过配额则返回429错误，计数器每天自动过期重置。<br />
+4. 路由转发中间件：根据请求路径匹配路由规则，将请求转发到对应业务Agent的上游地址，透传Request ID和租户ID等Header信息。</p>
+<p>关键伪代码：</p>
+<pre><code class="language-python">from fastapi import FastAPI, Request, HTTPException
+import redis
+import time
+import httpx
+
+app = FastAPI()
+redis_client = redis.from_url(&quot;redis://localhost:6379&quot;)
+router_map = {
+    &quot;/api/v1/hr&quot;: &quot;http://hr-agent:8000&quot;,
+    &quot;/api/v1/media&quot;: &quot;http://media-agent:8000&quot;
+}
+
+# 中间件执行顺序从上到下
+@app.middleware(&quot;http&quot;)
+async def auth_middleware(request: Request, call_next):
+    api_key = request.headers.get(&quot;X-API-Key&quot;)
+    tenant_id = redis_client.get(f&quot;api_key:{api_key}&quot;)
+    if not tenant_id:
+        raise HTTPException(status_code=401, detail=&quot;Invalid API Key&quot;)
+    request.state.tenant_id = tenant_id.decode()
+    return await call_next(request)
+
+@app.middleware(&quot;http&quot;)
+async def log_middleware(request: Request, call_next):
+    request_id = str(time.time_ns())
+    request.state.request_id = request_id
+    start_time = time.time()
+    response = await call_next(request)
+    # 异步写入日志，此处省略具体实现
+    print(f&quot;[{request_id}] tenant:{request.state.tenant_id} path:{request.url.path} cost:{time.time()-start_time}s&quot;)
+    return response
+
+@app.middleware(&quot;http&quot;)
+async def quota_middleware(request: Request, call_next):
+    tenant_id = request.state.tenant_id
+    quota_key = f&quot;quota:{tenant_id}:{time.strftime('%Y%m%d')}&quot;
+    current = redis_client.incr(quota_key)
+    if current == 1:
+        redis_client.expire(quota_key, 86400)
+    # 从配置中获取租户日配额，此处简化为固定值
+    if current &gt; 1000:
+        raise HTTPException(status_code=429, detail=&quot;Quota exceeded&quot;)
+    return await call_next(request)
+
+# 路由转发接口
+@app.api_route(&quot;/{path:path}&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+async def route_request(request: Request, path: str):
+    for prefix, upstream in router_map.items():
+        if path.startswith(prefix.lstrip(&quot;/&quot;)):
+            async with httpx.AsyncClient() as client:
+                # 透传请求参数和Header
+                response = await client.request(
+                    method=request.method,
+                    url=f&quot;{upstream}/{path}&quot;,
+                    headers=dict(request.headers),
+                    content=await request.body()
+                )
+                return response.content
+    raise HTTPException(status_code=404, detail=&quot;Path not found&quot;)
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>中间件的顺序绝对不能乱，必须先认证再记录日志、校验配额，否则会产生大量无效日志和配额计数</li>
+<li>配额计数必须用Redis的<code>INCR</code>原子操作，避免并发请求导致的计数不准确</li>
+<li>日志写入必须异步处理，不要阻塞主请求链路，避免增加延迟</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>增加限流熔断能力，基于SlowAPI实现接口级限流，某一个业务Agent返回错误率超过阈值时自动熔断</li>
+<li>配额配置存入配置中心，支持动态调整，不需要重启网关即可生效</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>成本优化、延迟优化、多模型调度</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某企业的自媒体内容Agent上线后，运营团队反馈两个核心问题：1. 大模型API成本超支300%，后台统计发现70%的请求是简单的标题生成、话题提取这类低复杂度任务，全部调用了价格贵3倍的旗舰大模型；2. 长文案生成的首字延迟（TTFT）高达10秒，用户体验很差。请定位问题根源，给出具体优化方案，量化预期收益。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：分别定位两个问题的根因：成本超支的核心是没有做任务复杂度分级和多模型动态路由，所有请求无差别调用高成本旗舰模型；延迟高的核心是没有触发大模型的前缀缓存（Prefix Caching），每次请求都需要重新计算KV Cache</li>
+<li>第二步：针对两个根因分别设计可落地的优化方案，优先做改动小、收益高的优化</li>
+<li>第三步：设计灰度验证方案，量化优化效果，避免影响线上业务</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>优化方案分为两部分：<br />
+1. 多模型动态路由优化：在网关层新增复杂度分类模块，用7B参数的轻量小模型对请求做意图分类，分为「简单任务」（标题生成、话题提取、短句改写）和「复杂任务」（长文案生成、多轮创意策划、内容审核），简单任务路由到价格仅为旗舰模型1/3的轻量大模型（如豆包Seed 1.8 Flash、Qwen 3.6 Flash），复杂任务继续路由到旗舰大模型。<br />
+2. 前缀缓存优化：固定Prompt结构，将System Prompt、RAG检索到的品牌规范、风格要求等固定内容放在Prompt的最前面，可变的用户请求放在最后，同时固定RAG检索结果的排序规则，保证所有请求的前N个Token完全一致，深度触发大模型服务端的前缀缓存，KV Cache命中率从0提升到80%以上。</p>
+<p>预期收益：<br />
+- 成本优化：70%的请求切换到轻量模型，整体成本下降60%以上，完全解决超支问题<br />
+- 延迟优化：前缀缓存命中后，长文案生成的首字延迟从10s下降到2s以内，用户满意度提升80%</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>任务分类规则要定期迭代，每两周抽检一次路由准确率，避免把复杂任务错分到轻量模型导致输出质量下降</li>
+<li>前缀缓存的Prompt头部绝对不能插入可变参数（比如当前时间、用户ID等），否则会导致缓存完全失效</li>
+<li>轻量模型的输出要做格式校验，如果不符合要求自动降级到旗舰模型重跑，避免影响输出质量</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>增加模型自动降级机制，高峰期旗舰模型延迟超过阈值时，自动把非核心复杂任务切换到轻量模型，保障用户体验</li>
+<li>增加缓存命中率监控，低于70%时自动告警，排查Prompt结构是否有变动</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>建材报价、OCR、工业级落地</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某建材企业要从0到1落地工业级建材报价Agent，核心流程是用户上传建筑CAD图纸/扫描件，Agent自动识别图纸中的建材用量，结合最新的供应商报价库生成准确的报价单，要求误差率≤3%，死循环/超时概率≤0.1%。请给出从0到1的完整落地路径，涵盖技术选型、核心流程、评测体系、上线标准。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：拆解核心业务链路为「信息提取→用量计算→报价生成→结果校验」四个环节，每个环节用最合适的技术实现，避免大模型直接处理不擅长的计算任务</li>
+<li>第二步：匹配技术选型，优先选择成熟的商用组件减少自研成本，核心业务逻辑用确定性状态机控制</li>
+<li>第三步：搭建自动化评测体系，保障上线前的准确率和稳定性，避免上线后出现大面积故障</li>
+<li>第四步：制定灰度上线策略，逐步放量验证，达到标准后全量上线</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>完整落地路径分为四个阶段：<br />
+1. 技术选型：OCR选用商用多模态OCR服务（如百度智能云、阿里云的文档识别），支持CAD图纸、PDF、扫描件的结构化识别，准确率≥99%；Agent编排用LangGraph，基于确定性状态机控制流程，避免大模型自由跳转；报价库存在PostgreSQL，支持实时更新供应商报价；评测体系用Agent Harness，基于Pytest+LangSmith实现批量自动化测试。<br />
+2. 核心流程：① 用户上传图纸→② Agent调用OCR接口提取图纸中的建材类型、数量、规格等结构化信息→③ 调用预先开发的建材用量计算工具，自动计算总用量→④ 查报价库获取最新的供应商报价，生成报价单→⑤ 大模型校验计算结果和报价的一致性，误差超过1%自动重试。<br />
+3. 评测体系：收集100份已经人工标注好正确报价的图纸作为标准测试集，用Agent Harness批量运行测试，每个测试用例设置最大循环次数为3次、超时时间为60秒，自动统计误差率、超时率、死循环率，要求误差率≤3%、超时/死循环率≤0.1%才符合上线要求。<br />
+4. 上线标准：首先切10%的灰度流量运行7天，每天抽检结果，误差率≤3%、成功率≥99.9%则逐步放量到50%、100%，全量运行7天无故障则正式上线。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要让大模型直接计算建材用量，必须用确定性的工具函数计算，大模型只负责校验结果，否则会出现计算错误导致误差率超标</li>
+<li>Agent Harness必须配置硬超时和循环次数限制，避免异常情况下出现死循环，消耗大量算力</li>
+<li>OCR识别结果要做校验，如果识别到的关键字段缺失，自动提示用户重新上传清晰的图纸，避免错误的输入导致错误的输出</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>增加人工审核流，报价误差超过1%自动转人工审核，审核结果自动加入测试集，优化模型和计算规则</li>
+<li>报价库对接供应商的API，自动同步最新报价，无需人工更新</li>
+<li>增加用户反馈入口，用户认为报价不准确时可以提交修正，自动进入评测集迭代优化系统</li>
+</ul>
+<hr />
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
