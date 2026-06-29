@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-06-29)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-06-29)</h1>
+    <div class="meta">更新于 2026-06-29 11:06</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · 微调 · Milvus<br />
+🔄 知识片段：#7, #8, #9（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<hr />
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Linux基础</code> · <code>AI Agent落地</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>为什么AI Agent开发者只需要掌握Linux核心运维能力，不需要像运维工程师一样精通内核调优？你怎么理解Linux在AI Agent落地中的定位？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Linux是AI Agent生产落地的核心底座，开发者只需要掌握服务稳定、算力调度、安全隔离相关的核心能力即可，内核调优属于专业运维领域，投入产出比极低。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>AI Agent的核心价值是业务逻辑编排与大模型能力落地，开发者的核心精力应该放在业务场景而非底层基础设施调优上。</li>
+<li>绝大多数云厂商或企业运维团队已经完成了Linux服务器的内核优化、硬件驱动适配等底层工作，不需要Agent开发者重复投入。</li>
+<li>AI Agent开发所需的Linux能力集中在环境管理、进程托管、资源调度、故障排查四个维度，和运维工程师的核心能力边界完全不同。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以类比成手机App开发者不需要精通安卓内核源码，只需要掌握安卓系统的API调用、权限管理、后台保活机制即可。AI Agent开发者只要能把服务稳定跑在Linux上、能排查线上故障、能合理分配算力就足够，内核调优等专业工作交给专门的运维团队即可。在实际落地中，Linux更像Agent的「生产车间」，能提供稳定的运行环境、安全的隔离机制、灵活的资源调度，帮助开发者把原型快速落地为可用的生产服务。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及自己常用的Linux工具组合，比如Miniconda+Docker+Tmux+Systemd这套Agent开发黄金组合，说明自己有实际生产落地经验。</li>
+<li>可以结合具体项目举例，比如用Systemd托管HR客服Agent实现崩溃秒级重启，用Docker做代码解释器沙箱隔离，证明你对Linux的定位有清晰的认知。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多开发者误以为要把Linux学到精通才能做AI Agent开发，花费大量时间学习内核编译、shell脚本高级技巧等和Agent落地无关的内容，反而耽误了业务能力的提升。</h2>
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Linux运维</code> · <code>Agent部署</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Tmux和Systemd都是Linux下实现Agent后台常驻的工具，两者的核心适用场景有什么区别？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Tmux面向开发调试阶段的临时会话保活，Systemd面向生产环境的服务级托管，两者的定位完全不同，没有替代关系。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Tmux是终端会话管理工具，核心是保存SSH连接断开后的会话状态，方便开发者随时恢复调试现场，不需要额外配置。</li>
+<li>Systemd是Linux系统级的服务管理工具，核心是实现服务的开机自启、崩溃自动重启、资源限制等生产级特性，需要编写配置文件。</li>
+<li>Tmux的生命周期和服务器的用户态绑定，服务器重启后会话就会消失，而Systemd的服务是系统级的，重启后会自动拉起。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>举个实际场景的例子，你开发调试一个自媒体Agent的时候，需要跑几个小时的热点爬取任务，这时候用Tmux开个会话丢进去，你关掉电脑回家第二天还能连上去看运行日志、修改代码。而当这个Agent要上线给全公司用的时候，就必须用Systemd托管，保证不管是程序崩溃还是服务器重启，服务都能自动恢复，不会影响用户使用。两者是互补关系，开发阶段用Tmux提升效率，生产阶段用Systemd保障稳定性。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及两者的组合使用方案，比如开发阶段用Tmux快速验证，确认逻辑没问题后再编写Systemd配置文件上线，同时配合日志轮转工具管理Agent的运行日志。</li>
+<li>可以提到Tmux的分屏功能，开发时可以同时开多个窗口看日志、改代码、监控显存，大幅提升调试效率。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多新手会用Tmux来托管生产环境的Agent服务，一旦服务器重启或者Tmux进程意外挂掉，服务就会中断，这是非常不规范的生产部署行为。</h2>
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>安全沙箱</code> · <code>代码解释器</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>如果你的Agent具备代码解释器功能，用Docker做沙箱隔离时，有哪些核心配置要点？为什么不能直接给容器root权限？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agent代码解释器的Docker沙箱必须从权限、资源、网络、存储四个维度做严格限制，root权限会导致容器逃逸风险，可能破坏宿主机系统。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>权限限制：启动容器时必须用非root用户运行，禁止挂载宿主机的系统目录和敏感数据目录，禁止添加特权权限。</li>
+<li>资源限制：启动时必须加<code>--memory</code>、<code>--cpus</code>参数限制容器的内存和CPU使用率，防止Agent生成死循环代码耗尽宿主机资源。</li>
+<li>网络限制：如果不需要调用外部接口，直接用<code>--network none</code>关闭容器的网络访问能力，防止Agent生成恶意代码窃取数据或发起网络攻击。</li>
+<li>存储限制：设置容器根文件系统为只读模式，只挂载临时目录作为工作区，容器销毁后自动清空所有数据，避免残留恶意文件。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>大模型存在幻觉问题，极端情况下可能生成<code>rm -rf /</code>的删除命令或者挖矿病毒代码，如果容器有root权限且挂载了宿主机目录，就可能直接删除宿主机的核心数据，或者利用容器逃逸漏洞控制整台服务器。严格的Docker配置相当于给Agent套了一层紧箍咒，不管它怎么折腾都不会影响宿主机。比如你可以限制容器最大内存为2G、CPU为1核，完全关闭网络，即使Agent生成死循环代码，最多也只会把容器内的资源占满，不会对宿主机造成任何影响。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及Kata Containers等更安全的沙箱方案，适合对安全要求极高的金融、政务场景，同时可以说明你在实际项目中是如何配置沙箱的。</li>
+<li>可以提到每次代码执行完成后立即销毁容器，避免多个任务的数据互相干扰，同时防止恶意代码残留。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多开发者为了方便，启动容器时直接加<code>--privileged</code>参数给最高权限，或者挂载整个宿主机根目录，相当于直接把服务器的控制权交给了Agent，风险极高。</h2>
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>算力调度</code> · <code>多卡管理</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>多卡GPU服务器上，用<code>CUDA_VISIBLE_DEVICES</code>环境变量做算力调度的核心原理是什么？相比代码层指定显卡有什么优劣？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong><code>CUDA_VISIBLE_DEVICES</code>是Linux系统层的显卡可见性控制机制，能在不修改代码的前提下实现多项目算力隔离，比代码层指定显卡灵活性更高、适配性更强。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>CUDA驱动会读取<code>CUDA_VISIBLE_DEVICES</code>环境变量的值，只把变量中指定的显卡暴露给当前进程，进程看不到其他显卡的存在，自然不会抢占其他显卡的显存。</li>
+<li>代码层指定显卡通常是调用PyTorch的<code>torch.cuda.set_device()</code>方法，硬编码指定要使用的显卡ID，灵活性差。</li>
+<li>环境变量调度属于系统层配置，对代码完全无侵入，不管你用什么框架，只要基于CUDA开发都能生效。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>举个实际例子，你服务器上有两张显卡，0号卡要跑HR语音客服的生产服务，1号卡要跑自媒体Agent的测试任务，你只要在启动自媒体Agent的终端执行<code>export CUDA_VISIBLE_DEVICES=1</code>，它就只会用1号卡，完全不会影响0号卡的生产服务，不需要改一行代码。如果是代码层写死用0号卡，你就得修改代码重新上线，非常麻烦。而且如果后续服务器换了显卡配置，环境变量的方案只需要改启动参数即可，完全不需要修改代码，适配成本极低。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及配合<code>nvidia-smi</code>和<code>watch</code>命令实时监控显存使用情况，同时可以配合<code>docker run</code>的<code>--gpus</code>参数，直接在容器启动时指定允许使用的显卡，实现更严格的算力隔离。</li>
+<li>可以提到对于多卡推理的场景，可以通过设置<code>CUDA_VISIBLE_DEVICES=0,1</code>让进程同时使用两张卡，不需要修改代码即可实现分布式推理。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多开发者误以为<code>CUDA_VISIBLE_DEVICES</code>是虚拟显卡或者显存分配工具，实际上它只是控制显卡的可见性，并不会切分显存，如果单个进程把指定的显卡显存占满，还是会出现OOM问题。</h2>
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>业务落地</code> · <code>工具定义</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>什么是企业级Agent场景下的「强管控工具」和「纯RAG文本工具」？两者的边界划分原则是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>强管控工具是需要调用企业内部系统接口、修改数据、触发业务流程的工具，纯RAG工具是只查询企业知识库、不修改任何数据的工具，两者的核心边界是是否会产生业务侧的副作用。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>强管控工具：比如OA审批触发、在职证明开具、工资查询等，这类工具的执行会直接影响企业的业务流程或者数据，必须做严格的权限校验、参数校验和操作审计。</li>
+<li>纯RAG文本工具：比如政策咨询、年假天数查询、报销流程说明等，这类工具只是从向量数据库中检索公开的政策文档，不会修改任何数据，没有业务副作用，不需要复杂的权限校验。</li>
+<li>边界划分原则：看工具执行后是否会产生不可逆的业务影响，是就归为强管控工具，否则归为纯RAG工具。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如员工问“婚假有几天”，这个属于纯RAG查询，直接检索知识库返回结果即可，不需要额外校验。但如果员工说“帮我申请婚假”，这个就属于强管控工具，需要校验员工的剩余年假天数、提交审批流、通知部门领导，产生了实际的业务流程流转，必须做严格的管控。在实际落地时，不会给每个政策都单独定义工具，只会定义一个统一的<code>hr_knowledge_rag</code>工具处理所有纯查询类需求，减少大模型的工具选择压力，提升准确率。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及在落地时不会给每个政策都单独定义工具，只会定义一个统一的<code>hr_knowledge_rag</code>工具处理所有纯查询类需求，减少大模型的工具选择压力，提升准确率。</li>
+<li>可以提到强管控工具需要做二次确认，比如用户申请婚假时，Agent先返回确认信息，用户确认后再触发审批流程，避免误操作。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多开发者会把所有业务场景都定义成独立的工具，比如婚假查询工具、产假查询工具、报销流程查询工具等，导致工具列表过长，大模型选择工具的准确率大幅下降，反而影响系统效果。</h2>
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>意图识别</code> · <code>成本优化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级Agent意图识别普遍采用「一快二省三准」的三级分流模式，核心设计思路是什么？为什么不直接全用大模型做意图识别？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>三级分流模式是在速度、成本、准确率三者之间做平衡的最优方案，直接全用大模型做意图识别会导致响应速度慢、Token成本高、高频场景准确率不稳定。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>一快：规则硬编码层，针对“转人工”“投诉”等高频强诉求，用关键词/正则匹配直接处理，延迟在毫秒级，成本为0。</li>
+<li>二省：向量相似度层，用户输入转向量后和预设的种子句比对，置信度高于阈值的直接触发对应业务，不需要调用大模型，节省Token成本，速度快。</li>
+<li>三准：大模型推理层，针对前两层无法处理的复杂、长尾、多意图问题，调用大模型做深度语义推理，保证准确率。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>企业级Agent的请求分布符合二八定律，80%的请求都是高频的固定场景，比如查年假、问报销流程、转人工，这些用规则和向量就能100%准确处理，不需要调用大模型。剩下20%的长尾复杂请求才需要用大模型处理，这样整体的平均响应速度能提升5倍以上，Token成本能降低80%，同时还能保证复杂场景的准确率。如果直接全用大模型处理，不仅成本高、速度慢，还可能出现高频简单场景识别错误的问题，比如用户说“转人工”，大模型可能识别成其他意图，影响用户体验。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及落地三步走的方案，冷启动阶段先用大模型+少样本快速上线，积累数据后逐步把高频场景迁移到规则和向量层，最后用积累的真实数据微调一个轻量的意图识别模型，进一步降低成本提升速度。</li>
+<li>可以提到需要设置域外意图兜底，前三层都无法识别的请求直接转人工或者返回固定回复，避免Agent答非所问。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多团队上线初期直接全用大模型做意图识别，导致高峰期响应延迟高、成本超支，而且高频简单场景反而容易出现识别错误，得不偿失。</h2>
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>多轮对话</code> · <code>槽位填充</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>什么是Slot Filling（槽位填充）？在Agent多轮对话场景下的核心实现逻辑是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Slot Filling是多轮对话中动态收集业务所需必填参数的机制，是Agent实现复杂业务流程交互的核心基础，避免了单次提问需要用户输入所有参数的高门槛。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>预先定义每个业务工具的必填参数（槽位），比如开具在职证明的槽位包括证明类型、用途、接收邮箱等。</li>
+<li>意图识别Agent识别到用户的请求对应的工具后，会先检查所有必填参数是否已经在上下文或者用户画像中存在。</li>
+<li>如果有缺失的参数，就会生成对应的反问话术，引导用户补充参数，同时把当前意图挂起，等用户补充后再继续执行后续流程。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如用户说“帮我开个证明”，意图识别到是开具在职证明的工具，检查发现证明类型这个必填参数缺失，就会反问用户“请问你需要开具的是在职证明还是收入证明呢？”，等用户回答“在职证明”后，再检查下一个槽位，所有参数补齐后才会调用后端的开证明接口。这个过程就像线下办理业务时工作人员一步步问你要材料一样，非常自然。同时配合状态机存储已收集的槽位参数，即使会话中断后重新连接，也不需要用户重新输入已经提供过的参数，还可以结合用户画像自动填充已知的参数，比如用户的姓名、工号等，减少用户的输入成本。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及配合状态机（State）存储已收集的槽位参数，即使会话中断后重新连接，也不需要用户重新输入已经提供过的参数，同时可以结合用户画像自动填充已知的参数，比如用户的姓名、工号等，减少用户的输入成本。</li>
+<li>可以提到槽位填充可以设置默认值，比如用户申请开在职证明，用途默认填“办理签证”，用户没有特殊说明就直接用默认值，减少反问次数。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多开发者会把槽位校验放在后端接口层，参数缺失时直接返回错误，没有触发Agent的反问逻辑，导致用户体验极差，不知道要补什么参数。</h2>
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>线上运维</code> · <code>故障排查</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>AI Agent线上服务出现显存OOM或者死锁时，标准的排查和解决流程是什么？每一步的核心作用是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agent线上OOM/死锁排查遵循「查显存→揪进程→看日志→强杀重启」的四步标准流程，能快速定位问题、恢复服务，降低业务影响时间。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>查显存：先用<code>nvidia-smi</code>或者<code>watch -n 1 nvidia-smi</code>命令查看GPU显存占用和利用率，确认是不是并发太高或者显存泄漏导致的OOM。</li>
+<li>揪进程：如果服务卡死，用<code>ps -ef | grep python</code>命令找到Agent服务的进程ID（PID），确认进程的运行状态和启动参数。</li>
+<li>看日志：用<code>tail -n 100 agent.log</code>查看最近100行的运行日志，或者用<code>grep -i "error" agent.log</code>过滤错误信息，定位具体的报错原因，比如是大模型推理显存不够还是代码死循环。</li>
+<li>强杀重启：如果进程已经僵死或者显存无法释放，用<code>kill -9 &lt;PID&gt;</code>命令强行杀死进程，释放显存和CPU资源，然后重新启动服务。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>线上故障排查的核心原则是先恢复服务再定位根因，所以前三步的操作要尽量在1分钟内完成，确认无法快速修复的情况下先重启服务恢复业务，之后再通过日志和监控数据定位根因，比如是不是并发量超过预期、是不是有内存泄漏的Bug、是不是多个Agent抢占了同一块显卡。配合Systemd的自动重启机制，服务崩溃后能在0.1秒内自动拉起，用户几乎感知不到故障，同时可以配合监控告警系统，显存占用超过阈值时自动发送告警，提前介入处理，避免出现OOM。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及配合Systemd的自动重启机制，服务崩溃后能在0.1秒内自动拉起，用户几乎感知不到故障，同时可以配合监控告警系统，显存占用超过阈值时自动发送告警，提前介入处理，避免出现OOM。</li>
+<li>可以提到故障恢复后要做根因分析，比如优化大模型的批量推理逻辑、限制最大并发数、做显存动态扩容，避免同样的问题再次发生。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多新手遇到OOM时直接重启服务器，不仅恢复时间长，还会丢失错误日志，无法定位根因，导致后续同样的问题反复出现。</h2>
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>敏感信息管理</code> · <code>安全合规</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>为什么AI Agent的API Key等敏感信息不能硬编码在代码里？Linux下的标准管理方案是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>硬编码API Key会导致敏感信息泄露、多环境切换困难、权限管控失效等问题，Linux下标准的管理方案是用.env文件存储+环境变量注入。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>硬编码的API Key会随着代码提交到Git仓库，很容易泄露给无关人员，导致大模型账号被盗刷，产生高额费用。</li>
+<li>硬编码的情况下，开发、测试、生产环境需要用不同的API Key时，必须修改代码重新打包上线，效率极低。</li>
+<li>Linux下的标准方案是把所有敏感信息存在.env文件中，该文件不提交到Git仓库，启动Agent时用export命令把文件中的内容注入为系统环境变量，代码中通过<code>os.environ.get</code>读取。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>举个实际例子，你开发环境用的是测试用的OpenAI Key，生产环境用的是企业的正式Key，你只要在开发环境和生产环境各放一个不同的.env文件，代码不需要做任何修改，启动时自动读取对应环境的Key，非常方便。同时.env文件只有服务器管理员有权限查看，其他人员即使拿到代码也看不到敏感信息，安全性很高。对于安全要求极高的场景，可以用企业级的密钥管理服务（KMS）存储敏感信息，启动时动态拉取，进一步提升安全性，避免.env文件泄露的风险。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及配合Docker的<code>--env-file</code>参数，启动容器时直接把.env文件中的环境变量注入到容器中，不需要修改Docker镜像，同时对于安全要求极高的场景，可以用企业级的密钥管理服务（KMS）存储敏感信息，启动时动态拉取，进一步提升安全性。</li>
+<li>可以提到代码中读取敏感信息时要做非空校验，如果环境变量不存在就直接抛出错误，避免服务启动后因为缺少Key导致运行异常。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多开发者把API Key写在配置文件中，和代码一起提交到Git仓库，导致密钥泄露，被人盗刷产生几万甚至几十万的账单，造成严重的损失。</h2>
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>生产部署</code> · <code>高可用</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>AI Agent生产部署时，用Systemd托管服务相比nohup后台运行有什么本质区别？核心优势是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Systemd是系统级的服务管理机制，相比nohup的用户态后台运行，能实现开机自启、崩溃自动重启、资源监控等生产级特性，是Agent生产部署的唯一标准方案。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>nohup是用户态的命令，只是把进程挂到后台运行，关闭SSH终端后进程不会退出，但服务器重启后进程就会消失，进程崩溃后也不会自动重启。</li>
+<li>Systemd是Linux系统的1号进程，所有服务都由它管理，进程崩溃后会按照配置的策略自动重启，服务器重启后也会自动拉起服务，不需要人工干预。</li>
+<li>Systemd还能实现资源限制、日志统一管理、服务依赖管理等高级特性，比如限制Agent服务最多只能使用4G内存，超过就自动重启，避免影响其他服务。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如你用nohup运行Agent服务，凌晨3点服务器因为网络抖动导致Agent崩溃，或者服务器因为硬件故障重启，服务就会中断，直到第二天工作人员上班才会发现，影响用户使用。而用Systemd托管的话，崩溃后0.1秒就会自动重启，服务器重启后也会自动拉起服务，完全不需要人工干预，服务可用性能从90%提升到99.9%以上。同时Systemd的Journalctl工具可以统一管理服务日志，支持按时间、级别过滤日志，不需要自己配置日志轮转，运维效率大幅提升。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以主动提及配合Journalctl工具查看Systemd托管的服务日志，不需要自己配置日志轮转，同时可以配置监控告警，服务重启时自动发送告警，方便及时排查问题。</li>
+<li>可以提到Systemd可以配置服务依赖，比如Agent服务需要在GPU驱动、数据库服务启动后再启动，避免因为依赖缺失导致服务启动失败。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多新手在生产环境用nohup加&amp;的方式运行Agent服务，以为就是后台常驻了，实际上稳定性极差，很容易出现服务中断的问题，是非常不规范的部署行为。</h2>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<hr />
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多Agent混部</code> <code>GPU资源隔离</code> <code>安全沙盒</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你团队采购了一台搭载8张A100 80G显卡的Linux Ubuntu服务器，需要同时部署3套不同优先级的Agent服务：1）HR智能语音客服（7*24小时高优，峰值显存占用20G，不可中断）；2）自媒体内容生成Agent（离线批量任务，非高优，峰值显存占用30G）；3）代码解释器Agent（支持用户提交代码执行，高危，峰值显存占用15G）。请从Linux系统层设计一套架构方案，保障三类服务互不干扰、高优服务资源优先、高危服务无法破坏宿主机环境。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：按优先级拆分算力资源，从系统层物理隔离各服务的GPU使用权，避免算力抢占</li>
+<li>第二步：针对不同优先级的服务选择对应的进程托管方案，保障高优服务的可用性</li>
+<li>第三步：对高危服务做多层安全隔离，避免幻觉操作破坏宿主机</li>
+<li>第四步：补充资源监控与兜底机制，确保异常情况可快速恢复</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ol>
+<li>算力隔离：通过Linux环境变量<code>CUDA_VISIBLE_DEVICES</code>分配独立显卡：HR客服绑定0号卡、自媒体Agent绑定1号卡、代码解释器绑定2号卡，剩余5张卡预留做弹性扩容；同时通过<code>cgroup</code>限制各服务的CPU、内存最大占用率，高优HR服务的CPU/内存优先级设置为最高。</li>
+<li>高可用保障：HR客服服务通过Systemd托管，配置<code>Restart=always</code>、<code>RestartSec=0.1</code>，实现崩溃秒级重启，同时配置开机自启；自媒体批量任务用Tmux会话托管，支持中途断点查看进度；代码解释器服务用Docker容器打包启动，配置容器资源上限。</li>
+<li>安全隔离：代码解释器容器启动时关闭特权模式、禁止root权限、限制磁盘写入上限为10G，仅挂载必要的工作目录，完全隔离宿主机的系统目录和敏感文件；同时容器网络配置为仅能访问指定的大模型API，禁止访问内网其他服务。</li>
+<li>监控兜底：配置<code>watch -n 1 nvidia-smi</code>实时监控各卡显存占用，当HR服务所在0号卡显存占用超过85%时，自动暂停低优先级的自媒体Agent任务，释放算力给高优服务。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要通过修改Python代码指定显卡，必须在Linux系统层通过环境变量控制，避免代码多环境部署时出现冲突</li>
+<li>Docker启动代码解释器时不要加<code>--privileged</code>参数，否则容器可以直接访问宿主机硬件，完全失去隔离意义</li>
+<li>Systemd配置文件中必须显式指定<code>User</code>为普通用户，禁止用root身份运行Agent服务，避免服务被攻破后拿到最高权限</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入Prometheus+Grafana监控GPU显存、服务运行状态、请求延迟，设置阈值告警</li>
+<li>后续如果服务扩容，可以引入K8s的GPU调度能力，实现多机多卡的动态资源分配</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>离线批量任务</code> <code>后台常驻</code> <code>任务运维</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你开发的自媒体运营Agent需要每天凌晨2点触发批量任务：爬取抖音/小红书热点、生成50条图文文案、调用SD生成配图，单轮任务完整执行耗时约5-7小时。之前在本地Windows开发机上运行时，经常因为断网、电脑休眠、SSH断开导致任务中途失败，现在要迁移到Linux云服务器上运行。请对比至少2种Linux下的后台任务运行方案，结合业务需求说明你的选型逻辑。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先拆解业务核心需求：任务不随SSH断开中断、可随时查看任务进度、支持定时触发、失败可追溯日志、成本最低</li>
+<li>第二步：枚举Linux下常见的后台任务方案，从易用性、可靠性、可观测性、定时能力四个维度对比</li>
+<li>第三步：结合业务的调试/生产两个阶段，分别选择最优方案</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>我们对比两种最常用的方案：Tmux+crontab组合、Systemd服务+定时器组合：<br />
+1. Tmux+crontab方案：<br />
+   - 实现：用crontab配置每天凌晨2点自动创建Tmux会话并执行Agent脚本，任务运行过程中可以随时通过<code>tmux a -t agent_task</code>接入会话查看实时输出，任务结束后会话自动保留日志<br />
+   - 优势：调试成本极低，随时可以查看任务实时进度，不需要额外配置日志，适合开发测试阶段使用<br />
+   - 劣势：Tmux会话如果被误杀、服务器重启后任务不会自动恢复，没有内置的失败重试机制，日志没有自动轮转容易占满磁盘<br />
+2. Systemd服务+定时器方案：<br />
+   - 实现：编写两个Systemd配置文件，一个是<code>agent-batch.service</code>定义任务的执行命令、工作目录、环境变量、失败重启策略，另一个是<code>agent-batch.timer</code>定义每天凌晨2点触发的定时器，任务日志统一交给Systemd的journald管理<br />
+   - 优势：可靠性极高，服务器重启后定时器自动生效，任务失败可以配置自动重试，日志支持自动轮转、关键字检索，适合生产环境稳定运行<br />
+   - 劣势：查看实时日志需要用<code>journalctl -f -u agent-batch.service</code>，不如Tmux直观，配置成本略高</p>
+<p>选型逻辑：开发调试阶段用Tmux+crontab，快速验证任务流程；生产环境稳定运行后切换为Systemd定时器方案，保障任务可靠性。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>crontab的执行环境默认没有加载用户的环境变量，需要在crontab脚本中先source Miniconda的环境变量、激活Python虚拟环境，否则会出现依赖找不到的错误</li>
+<li>Tmux会话不要用root用户创建，避免普通用户无法接入查看</li>
+<li>Systemd定时器的时间是按服务器时区计算的，需要确认服务器时区为东八区，避免任务触发时间错误</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>加入任务执行结果告警：任务成功/失败后通过企业微信/钉钉发送通知，附带日志链接</li>
+<li>引入Airflow等任务调度平台，实现任务依赖管理、失败重试、可视化监控</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>敏感信息管理</code> <code>API Key安全</code> <code>多环境适配</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你的AI Agent项目需要在Linux生产环境管理多类敏感信息，包括OpenAI API Key、VikingDB向量库访问密钥、内部OA系统接口密码，要求满足：1）禁止硬编码在代码仓库中；2）支持开发/测试/生产环境快速切换；3）最小权限管控，避免敏感信息泄露。请写出具体的实现方案，包含Linux侧配置命令、代码侧读取逻辑的伪代码。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：敏感信息本地存储方案选择，用.env文件隔离不同环境的配置，排除在Git版本控制外</li>
+<li>第二步：Linux层权限管控，限制.env文件的访问权限，只有运行Agent的用户可以读取</li>
+<li>第三步：环境变量注入方案，启动时自动加载对应环境的配置，不需要修改代码</li>
+<li>第四步：代码层统一读取逻辑，做合法性校验，避免空值导致的服务异常</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ol>
+<li>配置文件设计：<br />
+   根目录下创建三个.env文件：<code>.env.dev</code>（开发环境）、<code>.env.test</code>（测试环境）、<code>.env.prod</code>（生产环境），每个文件内容格式如下：<br />
+<code>env
+   OPENAI_API_KEY=sk-xxx
+   VIKINGDB_PASSWORD=xxx
+   OA_API_SECRET=xxx
+   ENV=prod</code><br />
+   在<code>.gitignore</code>中添加<code>.env*</code>规则，禁止敏感文件提交到代码仓库。</li>
+<li>Linux侧权限配置：<br />
+   生产环境中，将.env.prod文件放在Agent运行用户的home目录下，执行权限管控命令：<br />
+<code>bash
+   # 仅文件所有者可读可写，其他用户无任何权限
+   chmod 600 ~/agent/.env.prod
+   # 修改文件所有者为运行Agent的普通用户
+   chown agent:agent ~/agent/.env.prod</code></li>
+<li>启动脚本注入环境变量：<br />
+   编写启动脚本<code>start.sh</code>，内容如下：<br />
+<code>bash
+   #!/bin/bash
+   # 加载对应环境的变量
+   export $(grep -v '^#' .env.prod | xargs)
+   # 激活虚拟环境
+   conda activate agent_env
+   # 启动服务
+   python main.py</code><br />
+   执行<code>chmod +x start.sh</code>赋予执行权限。</li>
+<li>代码侧读取逻辑（Python伪代码）：<br />
+   ```python<br />
+   import os<br />
+   from pydantic import BaseSettings, ValidationError</li>
+</ol>
+<p>class Settings(BaseSettings):<br />
+       openai_api_key: str<br />
+       vikingdb_password: str<br />
+       oa_api_secret: str<br />
+       env: str = "dev"</p>
+<pre><code>   class Config:
+       env_file = ".env"
+</code></pre>
+<p>try:<br />
+       settings = Settings()<br />
+   except ValidationError as e:<br />
+       raise RuntimeError("敏感信息配置缺失，请检查环境变量") from e<br />
+   ```</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要在Docker镜像中打包.env文件，应该在启动容器时通过<code>--env-file</code>参数动态传入，避免镜像泄露敏感信息</li>
+<li>用<code>export</code>注入的环境变量只会在当前Shell会话生效，Systemd托管服务时需要在service配置文件中用<code>EnvironmentFile</code>字段指定.env文件路径，否则读取不到变量</li>
+<li>禁止用<code>print</code>或日志输出敏感信息，避免日志泄露密钥</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>生产环境可以对接云厂商的KMS密钥管理服务，动态拉取敏感信息，避免本地存储明文密钥</li>
+<li>加入密钥过期检测逻辑，定期自动轮换密钥，避免长期使用同一密钥导致的安全风险</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>线上故障排查</code> <code>显存OOM</code> <code>服务崩溃</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你部署在Linux生产环境的HR智能语音客服Agent上线后，工作日上午高峰时段频繁出现用户请求卡顿、甚至服务完全无响应的问题，运维同学初步反馈可能是显存OOM或者进程死锁导致的。请描述你完整的故障排查流程、解决方案，以及后续的优化措施避免同类问题复发。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先确认服务当前状态，判断是服务崩溃还是请求堆积</li>
+<li>第二步：排查GPU资源状态，确认是否是显存OOM导致的问题</li>
+<li>第三步：排查进程状态和日志，定位具体的错误原因</li>
+<li>第四步：紧急恢复服务，再做根因分析和长期优化</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h3>排查流程：</h3>
+<ol>
+<li>确认服务状态：执行<code>systemctl status hr-agent.service</code>，查看服务是否处于running状态，如果是failed状态说明已经崩溃，先看退出码</li>
+<li>排查GPU资源：执行<code>nvidia-smi</code>查看HR Agent绑定的显卡显存占用，如果显存占用超过90%说明发生了OOM；如果显存正常，执行<code>watch -n 1 nvidia-smi</code>查看推理时的显存波动，判断是否有瞬时显存尖峰</li>
+<li>排查进程状态：执行<code>ps -ef | grep hr-agent</code>查看进程PID，再执行<code>top -p &lt;PID&gt;</code>查看CPU、内存占用，如果CPU占用长期100%说明发生了死锁</li>
+<li>排查日志：执行<code>tail -n 200 /var/log/hr-agent/agent.log</code>查看最近的日志，再用<code>grep -i "error\|oom" /var/log/hr-agent/agent.log</code>过滤错误信息，定位具体的报错点</li>
+</ol>
+<h3>解决方案：</h3>
+<ol>
+<li>紧急恢复：如果是OOM或死锁，先执行<code>kill -9 &lt;PID&gt;</code>杀死僵死进程，再执行<code>systemctl start hr-agent.service</code>重启服务，快速恢复用户访问</li>
+<li>根因修复：如果是显存OOM，调整Agent的批量推理并发数，限制同时处理的请求数；如果是死锁，定位代码中的循环逻辑或资源竞争点，修复后重新上线</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要一上来就重启服务器，会丢失故障现场的上下文信息，导致无法定位根因</li>
+<li><code>nvidia-smi</code>显示的显存占用如果进程已经退出但显存没有释放，说明是显存泄漏，可以执行<code>nvidia-smi --gpu-reset -i &lt;卡编号</code>释放残留显存，不需要重启服务器</li>
+<li>日志要按天轮转，避免单日志文件过大，排查时无法快速检索错误信息</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>配置显存监控告警：当显存占用超过80%时自动发送告警通知，提前扩容或限流</li>
+<li>配置Systemd的<code>OOMScoreAdjust</code>参数，降低HR Agent服务被系统OOM killer优先杀死的概率</li>
+<li>引入服务熔断机制，高峰时段请求超过并发上限时直接返回排队提示，避免服务被打垮</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agent从0到1交付</code> <code>生产级部署</code> <code>7*24高可用</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你需要从零开始将一套已开发完成的多模块HR Agent协同系统（包含多模态解析Agent、意图路由Agent、RAG检索Agent、填单追问Agent、合规校验Agent共5个独立模块）交付上线到Linux生产环境，核心要求：1）7*24小时高可用，服务崩溃后1s内自动恢复；2）多模块显存资源隔离，互不抢占；3）高危操作（如调用内部OA接口、代码执行）有安全隔离。请给出完整的从0到1落地交付流程。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：服务器环境初始化，配置基础依赖和安全规则</li>
+<li>第二步：环境隔离配置，避免多模块依赖冲突</li>
+<li>第三步：按优先级部署各模块，配置资源隔离和高可用策略</li>
+<li>第四步：安全配置，针对高危操作做隔离</li>
+<li>第五步：监控告警配置和上线验证</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h3>阶段1：基础环境初始化</h3>
+<ol>
+<li>操作系统选择Ubuntu 22.04 LTS，安装NVIDIA驱动、CUDA 12.1、Miniconda3，配置国内源加速下载</li>
+<li>关闭不必要的端口，配置防火墙仅开放SSH（22）、Agent服务端口（8000）、监控端口（9090），禁止root用户SSH登录，配置普通用户sudo权限</li>
+</ol>
+<h3>阶段2：依赖隔离配置</h3>
+<ol>
+<li>为每个Agent模块创建独立的Conda虚拟环境，执行<code>conda env export &gt; environment.yml</code>导出依赖配置，避免不同模块的Python包版本冲突</li>
+<li>每个模块的敏感信息单独存储在独立的.env文件中，配置<code>chmod 600</code>权限管控</li>
+</ol>
+<h3>阶段3：服务部署与高可用配置</h3>
+<ol>
+<li>算力分配：为每个模块分配独立的GPU资源，多模态解析Agent绑定0号卡、RAG检索Agent绑定1号卡、其他模块共享2号卡，每个模块启动前设置<code>export CUDA_VISIBLE_DEVICES=&lt;对应卡编号</code></li>
+<li>高可用配置：每个模块都编写Systemd服务配置文件，设置<code>Restart=always</code>、<code>RestartSec=0.1</code>，实现崩溃秒级重启，同时配置开机自启</li>
+<li>日志配置：每个模块的日志单独存储在<code>/var/log/hr-agent/&lt;模块名&gt;</code>目录下，配置logrotate按天轮转，保留最近30天的日志</li>
+</ol>
+<h3>阶段4：安全隔离配置</h3>
+<ol>
+<li>调用OA接口的模块单独部署在Docker容器中，仅开放OA接口的访问权限，禁止访问内网其他服务</li>
+<li>代码执行模块用Docker沙盒隔离，限制CPU、内存、磁盘使用上限，关闭特权模式，禁止访问宿主机文件系统</li>
+</ol>
+<h3>阶段5：上线验证</h3>
+<ol>
+<li>执行压力测试，模拟高峰时段100并发请求，验证服务稳定性、显存占用、延迟是否符合要求</li>
+<li>模拟服务崩溃、网络抖动等异常场景，验证Systemd自动恢复能力是否正常</li>
+<li>配置Prometheus+Grafana监控各模块的显存占用、CPU使用率、请求量、错误率，设置阈值告警</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>Systemd服务配置文件中必须显式指定<code>WorkingDirectory</code>、<code>User</code>、<code>EnvironmentFile</code>，否则会出现环境变量加载失败、权限不足等问题</li>
+<li>部署前要做依赖兼容性测试，验证PyTorch、CUDA、NVIDIA驱动的版本是否匹配，避免推理时出现GPU无法使用的问题</li>
+<li>不要用默认的root用户运行任何Agent模块，最小权限原则降低安全风险</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>后续引入K8s做容器编排，实现多机多卡分布式部署、自动扩缩容</li>
+<li>接入灰度发布机制，新版本上线时只切10%的流量验证，避免全量上线导致故障</li>
+<li>配置容灾备份，服务部署在两个可用区，当主可用区故障时自动切流到备可用区</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
