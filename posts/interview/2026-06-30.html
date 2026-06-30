@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-06-30)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-06-30)</h1>
+    <div class="meta">更新于 2026-06-30 11:05</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：RAG · Agent · LangGraph · 微调 · Milvus · PostgreSQL<br />
+🔄 知识片段：#10, #11, #12（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<hr />
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型输出约束</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>工业界保障大模型输出JSON格式合规的三层防御体系分别是什么？各自的核心作用是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>工业界保障大模型JSON输出合规的三层防御体系是从软引导到硬约束再到底层兜底的多层协同方案，不存在单一银弹，必须组合使用才能达到99.99%以上的合规率。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>第一层软约束：通过Prompt指令、Few-Shot示例、Schema声明引导模型主动按格式输出，成本最低，适配所有模型</li>
+<li>第二层硬约束：通过API自带的response_format参数、约束解码工具（Outlines/Guidance）从生成侧强制输出符合语法的JSON</li>
+<li>第三层兜底：通过JSON提取、自动修复、Schema校验+重试机制处理所有异常场景，覆盖前两层的漏网之鱼</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>这个体系是从成本到稳定性逐层递进的，第一层不需要额外工具，只需要优化提示词就能覆盖大部分场景，但稳定性中等，适合无特殊约束的开源/闭源模型；第二层从生成逻辑上限制Token输出，直接避免生成语法错误的JSON，稳定性高，但部分开源模型原生不支持需要额外工具；第三层是最后一道防线，即使前两层完全失效，也能通过正则提取、json-repair库修复、Pydantic校验后带错误信息重试，把异常率降到最低。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到三层防御必须结合使用，没有单一方案可以解决所有问题，体现系统化思维；如果追问开源模型不支持response_format的解决方案，可以答出约束解码工具、提示词强化、后处理重试、微调四步方案。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多初学者只靠Prompt引导或者只靠后处理兜底，前者在复杂指令场景下容易失效，后者会大幅增加重试成本和接口耗时。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>开源大模型适配</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>如果使用的开源大模型不支持官方response_format参数，有哪些方案可以强制其输出合规的JSON？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>开源模型不支持response_format时，可以通过「约束解码工具+提示词强化+后处理兜底+定向微调」的四层方案实现99.9%以上的JSON输出合规率，不需要依赖模型原生能力。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>约束解码层：用Outlines、Guidance等工具在生成时限制Token的可选范围，强制输出符合JSON语法的字符，从生成侧避免错误</li>
+<li>提示词强化层：在Prompt中加入Schema声明、正确示例、错误反例，明确告诉模型什么是对的什么是错的，降低生成错误的概率</li>
+<li>后处理兜底层：通过正则提取JSON片段、json-repair自动修复语法错误、Pydantic校验后带错误信息重试，处理少数异常输出</li>
+<li>定向微调层：如果对稳定性要求极高，可以用少量标注好的JSON输出样本做SFT微调，让模型原生学习JSON输出格式</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>这四个方案也是按成本和适配性递进的，约束解码工具不需要修改模型也不需要训练，直接集成即可，适合所有开源模型；提示词强化零成本，配合约束解码可以覆盖大部分场景；后处理兜底是最后一道防线，即使前两层出错也能通过1-2次重试解决；定向微调成本最高，但适合对JSON输出有强需求的量产场景，几乎不需要重试就能合规。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到不同场景的选型策略，比如快速原型阶段用提示词+后处理即可，量产场景加约束解码，核心场景再考虑微调，避免过度设计。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人要么直接放弃硬约束纯靠后处理重试，要么上来就做微调浪费成本，没有根据场景选择合适的组合方案。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理优化</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>KV Cache的核心作用是什么？为什么大模型推理时只缓存K和V，不缓存Q？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>KV Cache是大模型自回归生成时用显存空间换计算时间的核心优化技术，只缓存K和V不缓存Q是由三者在注意力机制中的角色和自回归生成的特性决定的，历史Q没有复用价值。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>KV Cache的核心作用：缓存历史Token的Key和Value矩阵，避免每次生成新Token时重新计算所有历史Token的注意力特征，把计算复杂度从O(N²)降到O(N)</li>
+<li>Q的角色：Query是当前最新Token的特征，代表当前的查询需求，每个新Token都会生成全新的Q，历史Q没有复用价值</li>
+<li>K/V的角色：Key是历史Token的索引，Value是历史Token的语义内容，每次生成新Token时都需要用当前Q和所有历史K/V计算注意力，且历史K/V在推理时不会变化，适合缓存</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>大模型生成文本是逐Token输出的，没有KV Cache时，每生成一个新Token都要把前面所有的Token重新算一遍注意力，计算量随上下文长度平方级增长，越生成越慢；有了KV Cache后，只需要计算当前新Token的Q/K/V，然后和缓存的历史K/V做注意力计算即可，速度提升非常明显。可以类比成查字典：Q是你要查的词，每次查的词都不一样，不需要存；K是字典的目录，V是字典的内容，每次查都要用到，所以提前缓存起来不用每次重新印字典。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到KV Cache虽然提升了计算速度，但也把推理从计算密集型变成了内存带宽密集型，带来了显存占用过高的新问题，需要配合后续的KV优化技术解决。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为Q、K、V都可以缓存，或者不清楚KV Cache降低复杂度的原理，只知道是缓存不知道具体优化了什么。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理框架</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>PagedAttention的核心原理是什么？它解决了KV Cache的什么痛点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>PagedAttention是vLLM框架的核心技术，借鉴操作系统虚拟内存的管理思想解决了KV Cache的显存碎片化问题，大幅提升了显存利用率和并发吞吐量。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>传统KV Cache的痛点：每个请求的KV Cache都是连续存储的，不同请求的生命周期不同，释放后会产生大量不连续的显存碎片，显存利用率通常只有20%-40%</li>
+<li>PagedAttention的核心设计：把KV Cache切分成固定大小的「页（Block）」，每页可以存储固定数量Token的K/V，不同的页不需要连续存储，通过页表记录逻辑顺序</li>
+<li>显存调度：请求结束后只需要释放对应的页即可，不需要连续空间，彻底解决碎片化问题，显存利用率可以提升到96%以上</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以类比操作系统的虚拟内存管理，之前的KV Cache就像早期的内存分配，每个程序占连续的内存空间，释放后产生很多小碎片，大程序装不下；PagedAttention就像分页内存，把内存切成固定大小的页，程序的页可以分散存储，通过页表映射，既不会产生碎片，也能充分利用所有显存空间。相同显卡下，用PagedAttention的vLLM比传统推理框架的并发吞吐量高2-5倍。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到PagedAttention是目前大模型推理服务的标配技术，除了vLLM，TensorRT-LLM、Text Generation Inference等主流推理框架都已经集成了该技术。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为PagedAttention是优化计算速度的，实际上它主要优化的是显存利用率，进而提升并发量，单个请求的生成速度并没有明显提升。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型架构优化</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>MQA（多查询注意力）和GQA（分组查询注意力）的核心原理是什么？它们解决了KV Cache的什么痛点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>MQA/GQA是通过共享K/V头减少KV Cache显存占用的模型架构优化技术，是现代大模型（如Llama3、Mistral）的标配，能把KV Cache的显存占用降低4-8倍。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>传统多头注意力的痛点：每个注意力头都有独立的K和V头，KV Cache的大小和注意力头数成正比，上下文越长、头数越多，显存占用越高</li>
+<li>MQA的核心设计：所有注意力Q头共享同一个K头和V头，极大减少K/V的通道数，KV Cache显存占用直接和头数成正比下降</li>
+<li>GQA的核心设计：把Q头分成多个组，每组共享一个K/V头，是MQA和传统多头注意力的折中方案，在显存占用和模型效果之间取得更好的平衡</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统多头注意力比如有32个Q头，就有32个K头和32个V头，KV Cache大小是32倍的单头K/V大小；MQA只有1个K头和1个V头，所有Q头共享，KV Cache直接降到1/32；GQA如果分成4组，就只有4个K/V头，KV Cache降到1/8，效果比MQA更好，几乎和传统多头注意力差不多，是目前的主流方案。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到MQA/GQA是模型架构层面的优化，需要在训练时就采用该架构，推理阶段无法直接把传统多头注意力的模型改成MQA/GQA，但是可以通过量化等其他方式优化KV Cache。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为MQA/GQA是推理阶段的优化技术，实际上它是训练阶段就需要确定的模型架构，推理时只能用对应架构的模型才能享受该优化。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理成本优化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Context Cache（上下文缓存）的核心原理是什么？适合什么场景？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Context Cache是把公共前缀的KV Cache固化在服务器上的优化技术，适合多轮对话、同一知识库多次提问的场景，能大幅降低响应延迟和Token成本。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>核心逻辑：大模型推理时，相同的输入前缀对应的KV Cache是完全相同的，不需要重复计算</li>
+<li>适用场景：多轮对话的System Prompt、历史对话，或者同一本电子书/知识库的多次查询，这些请求的公共前缀很长，缓存后收益极高</li>
+<li>收益：相同前缀的请求直接命中缓存，不需要重新计算前缀的K/V，响应速度提升数倍，同时避免重复计算前缀的Token，降低服务商的算力成本和用户的计费成本</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以类比网站的静态资源缓存，比如所有用户访问网站都要加载的logo、CSS文件，提前缓存到CDN上，不需要每次都从源站拉取；Context Cache就是把所有请求都要用到的公共前缀KV缓存起来，比如企业客服的System Prompt有上千Token，每个用户提问都要用到，缓存后每次请求都不需要重新计算这部分的K/V，节省大量算力。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到Context Cache是云厂商大模型API降低成本、提升响应速度的核心技术之一，很多云厂商的API已经默认开启了该缓存，用户不需要额外配置就能享受收益。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为Context Cache和KV Cache是一回事，实际上Context Cache是KV Cache的上层优化，KV Cache是单个请求内的缓存，Context Cache是跨请求的公共前缀缓存。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理优化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>KV量化的核心原理是什么？不同量化精度（INT8/INT4）如何选型？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>KV量化是把原本用FP16存储的KV Cache压缩成更低精度的INT8/INT4格式的优化技术，能把KV Cache的显存占用降低2-4倍，适合长上下文推理场景。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>核心逻辑：KV Cache的数值分布范围有限，不需要FP16的高精度，用更低精度的INT8/INT4存储几乎不会影响模型生成效果，但是显存占用会大幅降低</li>
+<li>INT8量化：把FP16的K/V转换成8位整数，显存占用减半，几乎没有精度损失，适合绝大多数场景</li>
+<li>INT4量化：把FP16的K/V转换成4位整数，显存占用降到1/4，会有轻微的精度损失，适合对上下文长度要求极高、对精度损失容忍度较高的场景</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以类比图片压缩，一张高清PNG图片转换成JPG格式，体积大幅缩小，但是人眼几乎看不出区别；KV量化就是类似的有损压缩，但是损失的精度在大模型的注意力计算中几乎不会影响最终的生成结果，却能大幅降低显存占用，比如原本只能跑8K上下文的显卡，用INT4 KV量化就能跑32K上下文。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到KV量化是推理阶段的优化，不需要修改训练好的模型，所有模型都可以用，是成本最低的KV Cache优化手段之一。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为KV量化会大幅降低模型效果，实际上INT8 KV量化的精度损失几乎可以忽略，即使是INT4量化，在大多数场景下也不会有明显的效果下降。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>存储架构设计</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>千万级关系型数据库查询优化的核心分层方案是什么？每层的核心作用是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>千万级关系型数据库查询优化是从基础优化到架构扩容的五层分层方案，逐层解决不同量级的性能痛点，避免过度设计。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>第一层基础优化：合理建索引，规范SQL写法，禁用索引失效操作、大偏移分页，成本最低，能解决80%的查询性能问题</li>
+<li>第二层数据拆分：时序数据用分区表，数据量过大则做水平/垂直分表，解决单表数据量过大的问题</li>
+<li>第三层拦截请求：读多写少的场景加Redis缓存，解决热点读请求的压力，同时要解决缓存穿透、击穿、雪崩三大问题</li>
+<li>第四层专业检索：模糊/全文/多维度查询场景改用ES（Elasticsearch），解决关系型数据库不擅长的复杂检索问题</li>
+<li>第五层架构扩容：高并发场景做读写分离，冷数据单独归档，解决高并发读写和海量冷数据存储的问题</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>这个方案是按成本和复杂度逐层递进的，遇到性能问题首先要做基础优化，而不是上来就分库分表加缓存，基础优化几乎零成本，效果最明显；只有当基础优化无法解决问题时，再往上走更复杂的方案，比如单表数据超过千万再考虑分表，读请求占比超过80%再考虑加缓存，复杂检索需求多再考虑加ES，并发量超过单库承载上限再考虑读写分离。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到优化要循序渐进，避免过早优化和过度设计，根据业务的实际量级和需求选择合适的优化方案，而不是一味追求技术复杂度。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多初学者一遇到查询慢就想到分库分表加缓存，忽略了最基础的索引优化和SQL规范，反而带来了更高的运维成本和一致性问题。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理原理</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>为什么KV Cache的普及让大模型推理从计算密集型变成了内存带宽密集型？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>KV Cache大幅降低了大模型推理的计算量，使得计算不再是瓶颈，而KV Cache的频繁读取和写入成为了新的瓶颈，因此推理从计算密集型变成了内存带宽密集型。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>无KV Cache时的瓶颈：每次生成新Token都要重新计算所有历史Token的注意力，需要大量的矩阵乘法计算，计算量随上下文长度平方级增长，GPU的计算核心是瓶颈</li>
+<li>有KV Cache时的计算优化：每次生成新Token只需要计算当前Token的Q/K/V，然后和缓存的历史K/V做注意力计算，计算量随上下文长度线性增长，计算量大幅降低，GPU计算核心不再是瓶颈</li>
+<li>内存瓶颈的产生：KV Cache存储在显存中，每次生成新Token都要读取所有历史K/V，上下文越长、并发量越大，需要读取的KV Cache数据量越大，GPU的显存带宽成为新的瓶颈</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以类比开车，之前没有高速路（KV Cache），车的性能（计算核心）是瓶颈，车越快跑的越远；修了高速路之后，车的性能足够了，高速路的宽度（显存带宽）变成了瓶颈，路越宽能跑的车越多。这也是为什么现在大模型推理卡都在提升显存带宽，比如H100的显存带宽比A100高很多，推理性能提升非常明显。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到内存带宽密集型的特性是后续很多推理优化技术的核心出发点，比如MQA/GQA、KV量化都是为了减少KV Cache的大小，降低对显存带宽的需求。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为大模型推理一直都是计算密集型，实际上KV Cache普及后，推理的瓶颈已经从计算变成了显存带宽，尤其是长上下文和高并发场景下。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型纠错机制</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型JSON输出校验失败时，为什么要携带错误信息重试而不是直接让模型重新输出？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>携带校验错误信息重试能大幅提升重试的成功率，降低重试次数和接口耗时，是Self-Correction（自纠错）机制的核心设计。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>无错误信息重试的问题：模型不知道之前的输出哪里错了，很可能再次生成相同的错误，重试成功率很低，可能需要多次重试才能成功</li>
+<li>携带错误信息重试的逻辑：把Pydantic等校验工具返回的具体错误信息（比如「age字段应该是整数，你输出了字符串”18岁”」）发给模型，模型能针对性修正错误，一次重试的成功率可以达到99%以上</li>
+<li>核心收益：大幅减少重试次数，降低Token消耗和接口耗时，提升用户体验</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以类比学生做数学题，老师只说你做错了让你重做，学生很可能还是按错误的思路做；如果老师告诉你哪一步错了，错在哪里，学生就能针对性修正，一次就做对。携带错误信息重试就是给模型明确的纠错方向，避免盲目重试。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到这个自纠错机制不仅适用于JSON输出，也适用于工具调用、逻辑推理等其他场景，只要把具体的错误信息反馈给模型，模型大多能自行修正，不需要人工介入。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人校验失败后直接清空上下文让模型重新输出，不仅成功率低，还浪费Token和时间，没有利用模型的自纠错能力。</li>
+</ul>
+<hr />
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<hr />
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>大模型推理</code> <code>高并发</code> <code>长上下文</code> <code>KV Cache优化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你需要为企业搭建一套支持1000+并发用户、单会话最长32K上下文的开源大模型推理服务，要求推理延迟&lt;2s，显存利用率≥80%，请设计整体架构，重点说明KV Cache的优化方案。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>需求拆解：优先满足高并发、长上下文、低延迟、高显存利用率四个核心指标，排除不必要的冗余功能。</li>
+<li>分层设计：从模型层、推理框架层、缓存优化层、高可用层四个维度逐层选型，优先复用成熟开源方案降低改造成本。</li>
+<li>核心锚点：KV Cache是推理性能和显存占用的核心瓶颈，所有优化围绕KV Cache的「降本」和「提效」两个方向展开。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ol>
+<li>模型选型：优先选择原生支持GQA（分组查询注意力）的开源模型，如Llama 3、Mistral系列，从架构层面将KV Cache显存占用降低4~8倍。</li>
+<li>推理框架选型：采用vLLM作为推理底座，利用其核心PagedAttention技术，将KV Cache切分为固定大小的页非连续存储，解决内存碎片化问题，显存利用率提升至95%以上，并发吞吐量提升3~5倍。</li>
+<li>KV Cache四层优化：<br />
+   - 量化优化：KV缓存采用INT8量化，显存占用直接减半，精度损失控制在1%以内，对业务无感知。<br />
+   - 上下文缓存：将系统Prompt、公共知识库前缀的KV Cache固化在显存中，相同前缀的请求直接命中缓存，降低30%以上的计算量。<br />
+   - 冷数据驱逐：对于超过10分钟无交互的会话KV Cache，自动转储到内存或磁盘，释放显存给活跃请求。<br />
+   - 动态截断：当单个会话上下文超过32K时，自动删除最早的非关键对话KV，保障核心业务可用。</li>
+<li>高可用架构：采用多机多卡集群部署，请求按会话哈希路由到对应节点，避免KV Cache跨节点迁移开销。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>PagedAttention的页大小设置要和业务平均上下文长度匹配：如果页太小会增加索引开销，太大会导致内部碎片，推荐设置为128或256 Token。</li>
+<li>KV量化不要盲目降到INT4：部分业务对语义精度要求高时，INT4量化可能导致核心信息丢失，需要做AB测验证后再上线。</li>
+<li>上下文缓存要设置失效机制：当系统Prompt更新时，要主动清空对应的缓存，避免返回旧版本的内容。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入推理调度引擎，将低优先级的非实时请求调度到闲时节点执行，进一步提升显存利用率。</li>
+<li>支持动态KV精度调整：高并发时自动切INT8，低峰时切回FP16，平衡性能和精度。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>开源大模型</code> <code>JSON输出稳定性</code> <code>Agent落地</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你们团队用开源Llama 3 70B做企业内部Agent，模型本身不支持官方response_format格式约束，经常出现JSON格式错误、字段缺失、类型不匹配等问题，导致30%的业务请求失败，你需要对比可选的解决方案，给出落地优先级和ROI分析。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>评估维度：从改造成本、生效速度、稳定性提升效果三个维度对每个方案做ROI评估。</li>
+<li>分层防御：遵循工业界没有银弹的原则，采用多层方案叠加，而非依赖单一方案解决所有问题。</li>
+<li>优先级排序：优先上兜底层解决80%的问题，再上优化层解决剩余20%的问题，最后考虑高成本的侵入式方案。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>按ROI从高到低排序落地：<br />
+1. <strong>第一优先级（ROI最高，1天可上线，解决70%问题）：兜底后处理层</strong><br />
+   - 先上正则提取：用知识库给出的正则匹配<code>```json</code>包裹的内容，或者直接提取<code>{}</code>/<code>[]</code>包裹的JSON块，解决模型额外输出解释性文字的问题。<br />
+   - 再上自动修复：调用<code>json-repair</code>库自动补全括号、修正中文引号、删除注释，解决大部分格式不规范的问题。<br />
+   - 最后上校验重试：用Pydantic定义数据模型，校验字段类型、必填项，失败时携带具体错误信息让模型重新生成，最多重试2次。<br />
+2. <strong>第二优先级（ROI较高，3天可上线，解决20%问题）：软约束层</strong><br />
+   - 优化Prompt：明确要求输出JSON，禁止输出额外解释，同时给出正确示例和常见错误反例（比如不要加注释、不要用中文引号）。<br />
+   - 增加Few-Shot：在Prompt中加入2~3个符合业务格式的示例，进一步引导模型输出规范。<br />
+3. <strong>第三优先级（ROI中等，1周可上线，解决8%问题）：约束解码层</strong><br />
+   - 接入Outlines/Guidance等约束解码工具，在生成阶段强制模型按照JSON Schema输出，从生成逻辑上杜绝格式错误。<br />
+4. <strong>第四优先级（ROI最低，2周以上上线，解决剩余2%问题）：微调层</strong><br />
+   - 当以上方案都无法满足要求时，采集1000条左右的业务标注数据，对模型做轻量SFT微调，让模型学习业务JSON输出格式。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>重试次数不要超过2次：否则会导致Token成本飙升、延迟过高，超过2次直接返回业务友好提示，避免无限循环。</li>
+<li>正则提取要注意非贪婪匹配：否则当文本中出现多个JSON块时，会匹配到多余的内容导致解析失败。</li>
+<li>错误信息要具体：重试时不要只说「JSON解析失败」，要把Pydantic返回的具体错误（比如<code>age字段需要int类型，实际得到str</code>）返回给模型，大幅提升重试成功率。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>积累错误Case库：把高频的格式错误加入Prompt的反例中，逐步降低重试率。</li>
+<li>增加错误统计：统计不同错误类型的占比，针对性优化Prompt或者约束规则。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>JSON输出修复</code> <code>Pydantic校验</code> <code>重试机制</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请基于工业界LLM JSON输出三层防御体系，写出核心的Python伪代码实现，要求覆盖提取、修复、校验、重试全流程，最终返回符合Pydantic模型定义的结构化数据。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>分层实现：按照「提取→修复→校验→重试」的流程逐层处理，每一层的输入都是上一层的输出，失败则进入下一层或重试。</li>
+<li>边界处理：覆盖所有常见的异常情况，比如没有匹配到JSON、修复失败、校验失败等。</li>
+<li>可复用性：设计为通用函数，支持传入不同的Pydantic模型、重试次数等参数，适配不同的业务场景。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<pre><code class="language-python">import re
+import json_repair
+from pydantic import BaseModel, ValidationError
+from typing import TypeVar, Type
+
+T = TypeVar('T', bound=BaseModel)
+
+def extract_json(text: str) -&gt; str | None:
+    &quot;&quot;&quot;第一层：从LLM输出中提取JSON字符串&quot;&quot;&quot;
+    pattern = r&quot;```json\s*([\s\S]*?)\s*```|({[\s\S]*?})|(\[[\s\S]*?\])&quot;
+    match = re.search(pattern, text)
+    if not match:
+        return None
+    return match.group(1) or match.group(2) or match.group(3)
+
+def repair_json(json_str: str) -&gt; dict | None:
+    &quot;&quot;&quot;第二层：自动修复JSON格式错误&quot;&quot;&quot;
+    try:
+        return json_repair.loads(json_str)
+    except Exception:
+        return None
+
+def parse_llm_json(
+    llm_response: str,
+    pydantic_model: Type[T],
+    max_retry: int = 2,
+    retry_callable = None
+) -&gt; T | None:
+    &quot;&quot;&quot;
+    整体流程：提取→修复→校验→重试
+    :param llm_response: LLM原始输出
+    :param pydantic_model: 目标Pydantic模型
+    :param max_retry: 最大重试次数
+    :param retry_callable: 重试时调用的LLM函数，接收错误信息作为参数
+    &quot;&quot;&quot;
+    current_retry = 0
+    current_response = llm_response
+
+    while current_retry &lt;= max_retry:
+        # 1. 提取JSON
+        json_str = extract_json(current_response)
+        if not json_str:
+            error_msg = &quot;未找到JSON格式内容，请严格按照要求输出JSON，不要添加额外解释&quot;
+            current_retry += 1
+            if current_retry &lt;= max_retry and retry_callable:
+                current_response = retry_callable(error_msg)
+            continue
+
+        # 2. 修复JSON
+        repaired_data = repair_json(json_str)
+        if not repaired_data:
+            error_msg = &quot;JSON格式错误，请修正后重新输出&quot;
+            current_retry += 1
+            if current_retry &lt;= max_retry and retry_callable:
+                current_response = retry_callable(error_msg)
+            continue
+
+        # 3. Pydantic校验
+        try:
+            return pydantic_model.model_validate(repaired_data)
+        except ValidationError as e:
+            error_msg = f&quot;JSON字段校验失败，错误信息：{e.errors()}&quot;
+            current_retry += 1
+            if current_retry &lt;= max_retry and retry_callable:
+                current_response = retry_callable(error_msg)
+            continue
+
+    return None
+
+# 业务使用示例
+class UserInfo(BaseModel):
+    name: str
+    age: int
+    tags: list[str]
+
+# 模拟LLM调用重试函数
+def mock_retry_llm(error_msg: str) -&gt; str:
+    print(f&quot;重试，错误信息：{error_msg}&quot;)
+    # 实际场景中调用LLM接口，携带错误信息重新生成
+    return '```json\n{&quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 25, &quot;tags&quot;: [&quot;程序员&quot;, &quot;跑步&quot;]}\n```'
+
+# 调用
+llm_raw_output = '好的，我现在给你返回用户信息：\n```json\n{&quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: &quot;25&quot;, &quot;tags&quot;: [&quot;程序员&quot;, &quot;跑步&quot;]}\n```'
+result = parse_llm_json(llm_raw_output, UserInfo, max_retry=2, retry_callable=mock_retry_llm)
+print(result)
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>正则匹配要同时支持对象<code>{}</code>和数组<code>[]</code>两种JSON格式，否则数组类型的输出会提取失败。</li>
+<li>修复后的JSON不要直接转字符串再校验，直接用修复后的字典做Pydantic校验，避免二次格式错误。</li>
+<li>重试函数要和业务的LLM调用逻辑解耦，方便不同业务场景复用。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>增加错误日志上报：把每一步的错误类型、重试次数、原始LLM输出上报到监控平台，方便后续优化。</li>
+<li>支持自定义提取规则：针对不同模型的输出特点，允许传入自定义的正则表达式提取JSON。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>推理服务故障</code> <code>显存OOM</code> <code>延迟飙升</code> <code>KV Cache</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你的大模型推理服务上线后，当并发用户超过200、单会话上下文超过16K时，频繁出现显存OOM崩溃、推理延迟飙升到10s以上，经初步排查是KV Cache占用显存超过模型本身权重，且内存碎片化严重，请给出完整的定位步骤和优化方案。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>先定位根因：通过监控指标确认KV Cache的实际占用、碎片化率、命中率等核心指标，排除其他导致OOM的原因（比如批处理大小设置过大、模型权重冗余）。</li>
+<li>分维度优化：按照「解决碎片化→降低KV占用→提升复用率→动态调度」的顺序逐步优化，每一步优化后做压测验证效果。</li>
+<li>兜底机制：上线动态降级机制，当显存占用超过阈值时自动触发降级，避免服务崩溃。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h4>定位步骤：</h4>
+<ol>
+<li>查看GPU监控指标：确认显存占用结构，比如模型权重占比、KV Cache占比、其他计算缓存占比，确认KV Cache占比超过60%以上。</li>
+<li>查看推理框架日志：确认是否有大量显存碎片的告警，比如vLLM的<code>gpu_cache_usage</code>指标中<code>fragmentation</code>超过30%。</li>
+<li>统计会话上下文分布：确认80%的长会话来自哪些业务场景，是否有非必要的长上下文传递。</li>
+</ol>
+<h4>优化方案：</h4>
+<ol>
+<li><strong>解决内存碎片化：</strong> 替换推理框架为vLLM，开启PagedAttention，将KV Cache切分为固定大小的块非连续存储，碎片化率可以降到5%以下，显存利用率从不足50%提升到90%以上。</li>
+<li><strong>降低KV Cache显存占用：</strong><br />
+   - 开启KV INT8量化，显存占用直接减半，对推理精度影响极小。<br />
+   - 如果模型原生支持GQA，无需修改；如果是MHA架构的旧模型，可以做GQA量化蒸馏，KV Cache占用降低4~8倍。</li>
+<li><strong>提升KV Cache复用率：</strong><br />
+   - 开启上下文缓存，把公共的系统Prompt、知识库前缀的KV Cache固化，相同前缀的请求直接复用，降低30%以上的KV生成开销。<br />
+   - 开启KV Cache共享，同一会话的多轮请求复用同一个KV Cache，避免重复计算。</li>
+<li><strong>动态调度兜底：</strong><br />
+   - 设置KV Cache最大占用阈值，当显存占用超过85%时，自动驱逐超过10分钟无交互的冷会话KV Cache。<br />
+   - 长会话自动截断：当上下文超过24K时，自动删除最早的非关键对话，保留最近16K的核心上下文。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要盲目调整批处理大小：批处理过大会导致每个请求的KV Cache预留空间过大，反而降低并发量，推荐根据显存大小动态调整。</li>
+<li>KV驱逐要按会话粒度，不要按块粒度：否则会导致会话上下文断裂，模型输出错乱。</li>
+<li>量化前要做业务验证：对于代码生成、数学计算等高精度要求的场景，INT4量化可能导致精度下降，需要做AB测验证。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入KV Cache冷热分层：冷KV Cache转储到内存/磁盘，需要时再加载回显存，进一步提升显存利用率。</li>
+<li>增加业务流量调度：把长上下文请求调度到大显存节点，短上下文请求调度到小显存节点，提升资源利用率。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>企业级推理底座</code> <code>从0到1</code> <code>成本可控</code> <code>高可用</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你需要从0到1为企业搭建一套支撑内部10+Agent应用的大模型推理底座，要求99.9%的业务请求JSON解析成功，平均推理延迟&lt;1.5s，整体成本比调用公有云API降低50%以上，请给出完整的落地Roadmap和核心选型。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>分阶段落地：按照「需求对齐→最小可用→优化提升→规模化落地」四个阶段推进，每个阶段有明确的验收指标，快速验证价值。</li>
+<li>核心选型优先复用成熟开源方案，避免重复造轮子，降低落地成本。</li>
+<li>成本与体验平衡：优先保障核心业务的SLA，非核心业务采用降级策略控制成本。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h4>落地Roadmap：</h4>
+<h5>阶段1：需求对齐与核心选型（1~2周，验收指标：选型方案评审通过）</h5>
+<ul>
+<li>需求调研：收集10+Agent应用的场景特点，比如上下文长度要求、输出格式要求、QPS量级、精度要求。</li>
+<li>核心选型：</li>
+<li>推理框架：vLLM，支持PagedAttention、GQA、KV量化等核心优化，性能优异。</li>
+<li>模型选型：优先选择Llama 3 70B/8B、Qwen 2系列等支持GQA、开源可商用的模型，根据不同业务场景的精度要求选择不同参数的模型。</li>
+<li>输出治理：采用三层防御体系（正则提取+自动修复+Pydantic校验重试）保障JSON输出稳定性。</li>
+<li>部署方式：采用K8s容器化部署，支持动态扩缩容。</li>
+</ul>
+<h5>阶段2：最小可用版本上线（2~3周，验收指标：核心业务可用，JSON成功率≥99%）</h5>
+<ul>
+<li>搭建基础推理服务，完成模型部署、输出治理逻辑开发。</li>
+<li>对接2~3个核心Agent业务做灰度验证，调优Prompt、重试次数等参数。</li>
+<li>基础监控上线：覆盖JSON解析成功率、推理延迟、显存占用、QPS等核心指标。</li>
+</ul>
+<h5>阶段3：性能与成本优化（3~4周，验收指标：平均延迟&lt;1.5s，成本比公有云低50%）</h5>
+<ul>
+<li>开启KV Cache全量优化：PagedAttention+INT8量化+上下文缓存，提升并发量降低延迟。</li>
+<li>多模型路由：根据业务请求的复杂度自动路由到不同参数的模型，比如简单问答路由到8B模型，复杂任务路由到70B模型，降低成本。</li>
+<li>动态扩缩容：根据QPS自动增减节点，闲时缩容到最小节点数，高峰时自动扩容。</li>
+</ul>
+<h5>阶段4：规模化落地（2~3周，验收指标：10+Agent全部接入，SLA达标）</h5>
+<ul>
+<li>剩余Agent业务全部接入，根据不同业务的特点做个性化配置（比如重试次数、模型路由规则）。</li>
+<li>高可用上线：多可用区部署，单节点故障自动迁移，服务可用性达到99.9%。</li>
+<li>成本优化：闲时调度非实时任务到空闲节点，进一步提升资源利用率。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要一开始就追求完美：先上最小可用版本解决核心问题，再逐步优化，避免延期。</li>
+<li>不要盲目追求大模型：80%的简单业务场景用小模型就可以满足，成本只有大模型的1/10。</li>
+<li>预留公有云API兜底：当自建服务出现故障时，自动切换到公有云API，保障业务可用性。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>增加模型微调平台：针对业务场景做轻量微调，进一步提升小模型的效果，降低对大模型的依赖。</li>
+<li>接入请求缓存：相同的用户请求直接返回缓存结果，降低推理成本和延迟。</li>
+<li>增加成本分摊统计：按业务线统计Token消耗，成本透明化，推动业务侧优化Prompt降低消耗。</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
