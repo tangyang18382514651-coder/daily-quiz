@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-07-01)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-07-01)</h1>
+    <div class="meta">更新于 2026-07-01 11:06</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
+🔄 知识片段：#13, #14, #15（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<hr />
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>文档切片</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释为什么在企业级RAG的文档切片环节，不能直接让大模型完成切片，而要优先用Python代码实现？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>企业级RAG的文档切片要求100%保真、低成本、格式稳定，大模型天生的生成特性无法满足这三个核心要求，必须由确定性的Python代码主导切片工作。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>大模型存在幻觉与丢数据风险：生成式大模型处理长文本时大概率出现漏字、篡改内容的问题，核心敏感信息（如HR规章的公积金比例）丢失或修改会直接造成生产事故。</li>
+<li>大模型切片Token成本极高：输入全量文本再输出全量切片，需要付出双倍Token成本，海量文档场景下账单会超出可接受范围。</li>
+<li>大模型输出格式不稳定：即使加了JSON格式约束，仍有概率输出残缺格式的内容，直接导致后续Pipeline崩溃。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>企业级场景对文档处理的第一要求是“确定性”，比如HR规章、合同这类敏感文档，任何内容篡改或丢失都是不可接受的。Python代码做切片是完全的规则驱动：针对转成Markdown的结构化文档，用正则匹配标题层级切片，速度是微秒级，成本为0，100%和原文一致；针对带复杂排版的扫描件，调用MinerU等版面解析库，底层是轻量CV模型做区块框选，不属于生成式模型，不会修改原始内容，完全满足确定性要求。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能主动补充大模型在切片阶段的正确定位：不是负责“切”，而是负责对切好的Chunk做语义增强，比如给表格生成拟真QA、给图片生成摘要，作为附加信息和原始Chunk绑定，不会修改原始内容。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多新手认为大模型能力强，直接把切片任务交给大模型，忽略了企业级场景的稳定性、成本要求，最终要么出现生产事故，要么产生远超预期的成本账单。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>文档切片</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释Python生态中实现文档切片的两类核心工具（结构级切片、版面级切片）的核心区别、适用场景和实现逻辑？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>结构级切片针对结构化的Markdown文本，基于规则实现零成本高保真切片；版面级切片针对复杂排版的非结构化文档，基于轻量CV/OCR实现区块级切片，二者分别适配不同的文档类型，共同构成企业级切片的基础工具链。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>结构级切片：依赖Markdown的标题层级（#、##、###），用正则匹配实现切分，遇到同级标题就切一刀，速度微秒级，100%忠于原文，常用工具是LangChain的MarkdownHeaderTextSplitter。</li>
+<li>版面级切片：依赖火山文档解析、MinerU、Unstructured等工具，底层是轻量CV和OCR模型，目标是框选区块而非生成内容，输出文本块、表格块、图片块等结构化列表，保留文档的原始排版结构。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果是已经通过OCR工具转成标准Markdown的电子PDF，直接用结构级切片即可，完全不会破坏语义完整性，也不会出错。如果是带复杂表格、图片、混合排版的扫描版PDF、手写字文档，结构级切片无法识别排版结构，就需要用版面级工具先把不同区块拆出来，避免把表格和正文混在同一个Chunk里，影响后续检索的准确率。两类工具搭配使用，可以覆盖99%的企业级文档切片场景。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到切片完成后会给每个Chunk生成唯一ID，方便后续关联父子Chunk、溯源原文，避免检索到内容找不到出处的问题。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多开发者不管文档类型统一用固定长度切片，或者不管有没有复杂排版都用版面级工具，要么破坏语义完整性导致检索准确率下降，要么浪费算力增加不必要的成本。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>切片架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释“Python掌舵，大模型做插件”的切片阶段架构的核心设计思路、分工边界和落地价值？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>切片阶段的架构核心是把确定性工作和创造性工作分离，Python负责高稳定、低成本的物理切片，大模型仅作为插件负责特定场景的语义增强，兼顾稳定性、成本和语义丰富度。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Python的核心职责：100%保真、零成本、格式确定地完成物理切片，给每个Chunk生成唯一ID，确保后续链路的稳定性，完全不涉及生成式操作。</li>
+<li>大模型的核心职责：仅在遇到图片、复杂表格、需要提炼摘要的场景被调用，负责丰富特定Chunk的语义，比如给图片生成摘要、给表格生成拟真QA，输出内容作为附加信息和原始Chunk绑定。</li>
+<li>分工隔离原则：大模型的输出不会修改原始切片的内容，只会作为检索增强的附加信息，完全避免大模型篡改原始内容的风险。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如处理HR规章手册时，Python先把整个手册按标题切成一个个Chunk，遇到公积金表格的时候，大模型不用修改表格的任何内容，只需要生成3个候选人常问的问题，比如“公积金缴纳比例是多少？”“试用期有没有公积金？”，把问题和原始表格拼在一起转向量，后续用户问这些问题的时候就能精准召回这个表格，同时不会修改原始表格的内容，完全避免了幻觉风险。这种架构既利用了大模型的语义理解能力，又完全控制了风险。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能主动提到这种架构完全符合企业级系统“确定性优先，能力增强为辅”的设计原则，既不会因为大模型的不确定性引入风险，又能利用大模型的能力提升检索效果，是经过生产验证的最优架构。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多开发者让大模型直接修改原始切片内容，或者把切片的核心逻辑交给大模型，导致原始内容被篡改，出现生产事故。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LangGraph持久化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释LangGraph的状态持久化和开发者自己用Redis存Session的核心区别，以及为什么LangGraph的持久化不可替代？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>普通Redis存Session只能实现会话级的全量状态存储，而LangGraph的持久化是节点级的增量版本控制存储，原生支持Human-in-the-loop和断点续传，是复杂长流程Agent的必备能力。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>存储时机不同：普通Session是对话结束时存一次，LangGraph是每个节点执行完成后自动触发Checkpoint事件存一次，不需要人工干预。</li>
+<li>存储结构不同：普通Session只有会话ID和全量状态，LangGraph的存储包含thread_id、checkpoint_id、parent_id三个核心字段，形成版本树，支持回溯任意历史节点。</li>
+<li>能力不同：普通Session只能恢复整个会话的最新状态，LangGraph支持从任意节点断点续跑，不需要重新执行之前的节点，也支持任意版本的回滚。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如一个Agent工作流是节点A（数据爬取）→节点B（敏感操作，需人工审批）→节点C（内容生成），用普通Redis存Session的话，运行到节点B的时候只能把整个当前状态存下来，等人工审批后要重新从节点A开始跑，浪费大量时间和资源。而用LangGraph的话，运行到节点B前会自动把当前状态存到数据库，释放线程，等人工审批后，直接凭借thread_id捞出状态从节点B开始跑，完全不需要重新执行节点A，大幅提升效率，节省资源，这是普通Session存储完全做不到的。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到LangGraph的持久化还支持“时间旅行”功能，用户可以指定任意历史版本回滚，不需要重新跑整个流程，非常适配内容创作、审批类的长周期Agent场景。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多开发者觉得自己用Redis存会话历史就能替代LangGraph的持久化，忽略了复杂工作流的节点级暂停、断点续跑、版本回溯的需求，最后只能自己重复造轮子，还容易出bug。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LangGraph持久化</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释LangGraph持久化的增量/版本控制机制的核心原理，以及它的落地价值？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LangGraph通过checkpoint_id和parent_id两个字段实现了状态的增量版本控制，不仅能存储当前状态，还能完整记录整个工作流的执行历史，支持任意节点的回溯和恢复。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>每个节点执行完成后，LangGraph的Pregel引擎会自动生成一个唯一的checkpoint_id作为当前版本的标识，通常是UUID或递增的时间戳。</li>
+<li>每个checkpoint都会记录parent_id，指向当前版本的上一个checkpoint_id，形成链式的版本树，完整记录整个工作流的执行路径。</li>
+<li>存储的时候只存当前版本和上一个版本的状态差异，而不是全量存储，大幅降低存储成本。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如一个内容生成Agent的工作流是生成标题→生成文案→生成配图，每个节点执行完都会生成一个checkpoint，生成文案的checkpoint的parent_id是生成标题的checkpoint_id，生成配图的checkpoint的parent_id是生成文案的checkpoint_id。如果用户对配图不满意，不需要重新生成标题和文案，直接指定生成文案的checkpoint_id恢复状态，重新跑生成配图的节点就行，大幅节省大模型调用成本和时间。同时这种版本树还支持分支创作，比如同一个文案可以生成多个不同风格的配图，每个配图对应一个分支的checkpoint，用户可以选择最优的分支。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到这种版本控制机制还支持问题排查，生产环境出现问题时可以回溯整个工作流的执行历史，定位是哪个节点出了问题，快速修复。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为LangGraph的持久化就是全量存每个节点的状态，其实是增量存储，只有状态变化的部分才会被存储，存储成本比全量存低70%以上。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Vibe Coding</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释Vibe Coding的4大必备资产沉淀分别是什么，以及它们和普通开发流程的核心区别？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Vibe Coding的4大必备资产是动态项目上下文快照、AI友好的工程规范、私有MCP服务器、防御性Prompt框架，核心目标是提升AI生成代码的质量和效率，降低人工介入成本，和普通开发流程的区别是完全围绕AI协作优化。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>动态项目上下文快照（context.md）：根目录下维护几百字的文本，记录当前架构、已实现功能、正在开发的模块、已知坑，新开Chat时直接喂给AI，实现秒级热启动。</li>
+<li>AI友好的工程规范：沉淀目录分层规范，组件和业务逻辑严格分离，固化到Cursor规则或Claude Project中，让AI生成的代码符合团队规范，不需要人工反复修改。</li>
+<li>私有MCP服务器：配置适合自己开发环境的MCP工具，比如本地文件读写、日志分析、数据库读取、Linter检查，让AI拥有本地感知力，不需要手动复制粘贴上下文。</li>
+<li>防御性Prompt框架：沉淀核心Prompt模板，开新模块或Debug时先让AI输出架构思路/根因分析，确认后再输出代码，避免AI盲目堆代码引入bug。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>普通开发流程是围绕人工编码设计的，而Vibe Coding是围绕“人掌舵，AI写代码”的模式设计的，4大资产本质是把人的开发经验、项目上下文、规范要求沉淀成AI能直接理解的资产，减少AI的理解成本，降低生成代码的错误率，提升开发效率。比如context.md可以避免AI每次开新Chat都要重新理解整个项目，工程规范可以避免AI生成的代码不符合团队要求，每次都要人工修改，成熟的资产沉淀可以让开发效率提升3-5倍。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Vibe Coding的资产沉淀是开发者的核心竞争力，和普通外包开发者的区别就是拥有自己的专属AI协作资产，能快速交付高质量的代码。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为Vibe Coding就是把所有代码都交给AI写，其实核心是沉淀资产，让AI的能力和自己的经验绑定，提升人对项目的控制力，而不是被AI牵着走。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Claude Code</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释Claude Code的Sub-Agent协同+Todo短时管理机制的核心设计思路和落地价值？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Claude Code的Sub-Agent协同+Todo短时管理机制核心是为了节省主上下文的Token成本，避免主Agent被杂活占用，同时确保任务不丢失，提升长流程任务的执行稳定性。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Sub-Agent协同：主Agent遇到非核心的探索任务（比如扫描陌生目录、执行子任务），会派生出隔离的Sub-Agent去执行，Sub-Agent执行完只返回摘要给主上下文，不会占用主上下文的Token。</li>
+<li>Todo短时管理：系统会在本地生成JSON格式的Todo文件，每一轮核心工作流结束前都会读取这个Todo文件，确保AI知道自己下一步要干嘛，就算中途中断也不会丢失任务。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如主Agent要帮你重构一个项目，首先需要扫描整个项目的目录结构，这个任务如果让主Agent自己做，会把整个目录结构都加载到主上下文里，占用大量Token，而且容易干扰核心的重构逻辑。这时候主Agent派生出一个Sub-Agent去扫描目录，Sub-Agent扫描完只返回“项目有3个模块，分别是前端、后端、数据层，核心入口是main.py”的摘要给主Agent，主上下文只需要存这个摘要就行，大幅节省Token成本。同时Todo文件会记录“下一步要重构main.py的数据库连接逻辑”，就算中途按下Ctrl+C中断，下次启动也能接着干，完全不会丢失任务进度。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到这种机制非常适合长周期的复杂开发任务，既不会因为子任务占用过多Token导致成本飙升，也不会因为中断导致任务丢失，是企业级Agent长流程执行的核心参考设计。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人做Agent的时候让主Agent做所有任务，导致上下文很快被占满，要么成本飙升，要么因为上下文溢出丢失关键信息，任务执行失败。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent稳定性</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释企业级Agent面对模型输出不确定性的“反思-校验-重试”循环机制的核心原理和落地价值？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>“反思-校验-重试”循环机制是解决大模型输出随机性、提升Agent稳定性的核心工程手段，通过多轮校验和重试，把大模型的输出不确定性控制在可接受的范围内，满足企业级场景的稳定性要求。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>反思：大模型生成结果后，先让模型自己反思结果是否符合要求，有没有错误，比如是否符合格式要求、有没有引用错误的知识库内容。</li>
+<li>校验：用规则引擎、Pydantic格式校验、知识库匹配等确定性手段，对模型输出做二次校验，比如校验输出的JSON格式是否正确，引用的知识库内容是否和原文一致。</li>
+<li>重试：如果校验不通过，自动触发重试，最多重试N次，重试的时候会把错误信息反馈给大模型，让它修正错误，如果超过重试次数就触发降级，返回兜底话术。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>比如HR智能客服回答用户的公积金缴纳比例问题，大模型生成回答后，首先自己反思“我回答的比例是不是和知识库一致？”，然后系统用规则校验回答里的比例是否和知识库的比例完全一致，如果不一致，就把“你回答的公积金比例和知识库不符，知识库的比例是12%”的错误信息反馈给大模型，让它重新生成，最多重试3次，如果3次都错，就返回“抱歉，我暂时无法回答这个问题，请转人工咨询”的兜底话术，避免出现幻觉。这种机制可以把大模型的输出准确率从80%左右提升到95%以上，完全满足企业级场景的要求。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到这种机制不需要大量的微调数据，成本很低，是性价比最高的提升Agent稳定性的手段。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为靠Prompt工程就能解决大模型输出不稳定的问题，其实Prompt工程只能降低错误率，无法完全避免错误，必须配合工程层面的校验和重试机制，才能满足企业级的稳定性要求。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent平台</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释拖拽式通用Agent平台的6个核心模块的作用和设计初衷？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>拖拽式通用Agent平台的6个核心模块分别是可视化编排画布、原子组件市场、知识库中台、模型路由中心、可观测性监控、发布网关，核心目标是降低Agent开发门槛，统一工程规范，避免重复造轮子，提升企业级Agent的落地效率。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>可视化编排画布：支持节点拖拽、分支条件、循环、回滚，让业务人员不需要写代码就能搭建Agent工作流，降低开发门槛。</li>
+<li>原子组件市场：封装好LLM、RAG、爬虫、数据库等原子插件，开箱即用，不需要每个业务都自己开发基础能力。</li>
+<li>知识库中台：统一提供文档解析、向量化、检索重排的配置能力，避免每个业务都自己搭RAG系统，统一管控知识库质量。</li>
+<li>模型路由中心：统一管理API Key，负责流量分发、灰度切换、熔断限流，避免每个业务都自己管理模型密钥和调用逻辑，降低安全风险。</li>
+<li>可观测性监控：提供全链路Trace追踪、日志收集、成本和Token统计，让每一次Agent的执行都有迹可循，方便排查问题。</li>
+<li>发布网关：负责版本控制、环境隔离、一键API交付，让开发好的Agent可以快速上线对外提供服务。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果没有通用Agent平台，每个业务线要做Agent都要自己搭RAG、自己接模型、自己做监控，重复造轮子，开发周期长，而且规范不统一，运维成本高。有了通用Agent平台，业务人员只需要在画布上拖拽节点，配置参数，就能快速搭建出符合要求的Agent，开发周期从几周缩短到几天，而且所有的能力都由平台统一提供，规范统一，运维成本低。成熟的平台还支持多租户隔离，不同业务线的Agent互相独立，数据安全有保障，非常适合中大型企业的多业务线Agent落地需求。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到这种平台不仅能做简单Demo，还支持复杂的分支、循环、人工介入、断点续跑等能力，完全可以支撑企业级的生产级Agent落地。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为拖拽式Agent平台只能做简单的Demo，其实成熟的平台已经可以支撑金融、HR等核心场景的生产级Agent落地。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>AI Agent行业趋势</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请解释当前AI Agent落地的最大痛点是什么，以及从技术和工程两个层面的核心解决方案？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>当前AI Agent落地的最大痛点是大模型输出的“不确定性”和企业级场景要求的“确定性”之间的冲突，需要从技术和工程两个层面同时发力，才能实现稳定落地。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>技术层面解决方案：用LangGraph做精细化的流程和状态管理，用RAG约束模型的输入边界，用LoRA/DPO微调对齐业务风格，关键节点增加结果自校验，减少幻觉。</li>
+<li>工程层面解决方案：全链路异步化，用消息队列削峰填谷，完善重试、熔断、降级的容错机制，基于Docker容器化统一部署，支持集群扩容，搭建全链路的日志、监控、告警体系，提升可观测性。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>大模型的输出天生带有随机性，同样的输入可能会输出不同的结果，甚至出现幻觉，而企业级场景要求输出必须稳定、准确、符合规范，比如HR客服的回答不能出错，审批Agent的流程不能乱。这就需要技术层面用RAG把模型的输入限制在知识库的范围内，用微调让模型的输出风格符合业务要求，从根源上降低幻觉概率；工程层面用校验、重试、降级机制兜底，确保就算模型出错，也不会影响整个系统的稳定性，同时配合Human-in-the-loop机制，关键节点引入人工审核，把AI作为辅助工具，提升人工的效率，而不是完全替代人工，落地成功率会高很多。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到当前企业级Agent落地不需要追求完全的自动化，“人机协同”是现阶段最可行的落地路径，成本低，风险小，见效快。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多人以为只要大模型的能力足够强，就能解决Agent落地的所有问题，其实大模型的能力只是基础，工程化能力才是决定Agent能不能稳定落地的核心因素。</h2>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<hr />
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>金融合规</code> <code>Agent治理</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某头部券商计划上线面向内部投研、客户服务、合规审核三个场景的多Agent集群，监管要求所有Agent的操作必须全程可溯源、风险可拦截、责任可判定，且要满足《生成式人工智能服务管理暂行办法》的合规要求。请你设计一套Agent身份与操作全链路溯源的架构。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步做分层拆解：从Agent身份注册、全链路埋点、审计分析、风险拦截四个核心维度对齐监管要求，确保覆盖全生命周期。</li>
+<li>第二步做无侵入设计：优先用Sidecar/SDK模式埋点，不改造现有Agent的业务逻辑，降低落地成本。</li>
+<li>第三步做合规对齐：满足日志留存不少于6个月、敏感数据脱敏、篡改可识别的监管强制要求。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ol>
+<li><strong>Agent身份中心层</strong>：每个Agent上线前必须注册唯一不可篡改的AgentID（相当于Agent身份证），绑定所属业务线、负责人、权限范围、可调用的工具/API白名单，身份数据存在 immutable 分布式账本中，禁止修改删除。</li>
+<li><strong>全链路埋点层</strong>：在Agent调用大模型、调用工具、读写业务数据的所有出入口部署统一拦截SDK，自动记录AgentID、操作时间、输入输出哈希、调用资源ID、操作人标识，日志脱敏后写入WORM（一次写入多次读取）对象存储，留存期180天以上。</li>
+<li><strong>合规审计层</strong>：内置规则引擎，配置风险规则（比如投研Agent批量下载非授权研报、客服Agent调取用户敏感数据），触发后自动推送告警给合规人员，高风险操作直接触发拦截。</li>
+<li><strong>责任判定层</strong>：关联AgentID和负责人的企业IAM权限，操作日志和Agent身份一一绑定，出现风险事件时可以快速定位到对应负责人和操作路径。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>身份数据绝对不能存在普通关系型数据库，必须用不可篡改的存储方案，防止日志被篡改后溯源失效。</li>
+<li>埋点必须做全链路脱敏，禁止记录用户身份证、银行卡、交易密码等敏感信息，否则违反《个人信息保护法》要求。</li>
+<li>拦截逻辑必须和Agent执行器强绑定，不能只告警不拦截，避免风险操作落地造成损失。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入异常行为检测大模型，自动识别Agent的非预期操作（比如平时只查A股数据的投研Agent突然批量爬取境外美股数据），提升风险识别覆盖率。</li>
+<li>和企业IAM系统打通，Agent权限随负责人权限动态调整，避免人员转岗/离职后Agent权限未回收的风险。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>HR知识库</code> <code>文档预处理</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某大型制造企业要搭建面向30万员工的HR智能查询系统，底层知识库包含2000+份PDF格式的员工手册、薪酬福利文件、劳动合规制度，其中30%的文件包含复杂表格、图片、混排内容。现在技术团队有两个预研方案：方案A是直接调用GPT-4o对每份PDF做语义切片，输出JSON格式的Chunk列表；方案B是先通过OCR把PDF转成带格式的Markdown，再用Python工具做结构级+版面级切片。请你结合业务场景分析两个方案的优劣，给出最终选型建议。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步先明确HR场景的核心刚性要求：数据100%准确、成本可控、系统稳定性≥99.99%，任何内容错误都可能引发劳动纠纷。</li>
+<li>第二步从准确性、成本、稳定性三个核心维度对比两个方案的适配性。</li>
+<li>第三步结合业务量级给出选型结论和补充适配方案。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h3>两个方案优劣对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>方案A（大模型切片）</th>
+<th>方案B（Python工具切片）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>准确性</td>
+<td>差，易出现丢内容、魔改字句的问题，比如把公积金缴纳比例从5%写成12%，存在致命业务风险</td>
+<td>极高，纯规则/轻量CV识别，100%忠于原文，不会修改任何内容</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>极高，一份2万字PDF输入+输出Token成本约0.5元，2000份文件初始成本1000元，后续新增文件持续付费</td>
+<td>几乎为0，用开源MarkdownHeaderTextSplitter、MinerU等工具，本地运行无API成本</td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td>差，大模型输出格式不稳定，一旦出现JSON格式错误会导致整个流水线崩溃</td>
+<td>极高，纯代码逻辑稳定，输出格式完全可控，不会出现非预期结果</td>
+</tr>
+<tr>
+<td>开发成本</td>
+<td>低，只需要写Prompt调用API</td>
+<td>中等，需要适配不同格式的文档解析规则</td>
+</tr>
+</tbody>
+</table>
+<h3>选型建议</h3>
+<p><strong>优先选择方案B</strong>，仅在切片后的增强环节按需调用大模型：<br />
+1. 结构化文档（带标题层级的制度文件）用MarkdownHeaderTextSplitter按#/##/###标题层级切分，确保语义块完整。<br />
+2. 带复杂表格、混排的文件用MinerU做版面解析，按区块切分为文本块、表格块、图片块。<br />
+3. 切分后的表格、图片块可以调用大模型生成摘要/QA对，提升后续检索效果，但是绝对不允许大模型修改原文内容。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>切分后必须做完整性校验：所有Chunk的总字符数和原文的字符数误差不能超过1%，超过阈值自动打回人工审核，确保没有丢内容。</li>
+<li>版面解析要优先选择支持中文混排的开源工具，避免表格换行、生僻字识别错误。</li>
+<li>敏感内容块（比如薪酬、公积金相关内容）要做标记，后续检索时优先返回，同时做权限管控。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入政策比对规则：识别到“社保”“公积金”“年假”等关键词的Chunk，自动和最新的地方政策文件做比对，一旦发现内容过期自动提醒HR更新。</li>
+<li>Chunk和原文页码绑定：用户查询时可以直接跳转回原PDF的对应位置，方便员工核对原文。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>AI辅助开发</code> <code>工程规范</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你的团队要全面落地Vibe Coding开发模式，要求AI生成的代码严格符合团队的PEP8/ESLint规范、目录分层规则，且新开Chat会话时AI能快速掌握项目的当前进度、已实现功能、已知问题，不需要反复投喂上下文。请你给出具体的实现思路，包含核心配置文件的内容示例（伪代码）。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步固化AI友好的工程规范：把团队的编码、目录、安全规则写入编辑器可识别的配置文件，让AI自动遵守。</li>
+<li>第二步动态维护项目上下文：用轻量文件记录项目最新状态，新开Chat时直接投喂，实现秒级热启动。</li>
+<li>第三步做流程卡点：用pre-commit等工具强制校验AI生成的代码，不符合规范的代码无法提交。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ol>
+<li><strong>全局规则配置</strong>：在项目根目录创建<code>.cursorrules</code>（适配Cursor编辑器）或Claude Project全局规则文件，写入团队的强制规范，示例伪代码：</li>
+</ol>
+<pre><code class="language-yaml"># 全局编码规则
+language: [&quot;Python 3.10&quot;, &quot;TypeScript 5.x&quot;]
+# Python规则
+python:
+  standard: PEP8
+  require_type_hint: true
+  max_function_lines: 50
+  forbidden_syntax: [&quot;eval&quot;, &quot;print(日志)&quot;, &quot;硬编码API Key&quot;]
+# 目录规则
+directory:
+  agent_business_logic: &quot;app/agent/&quot;
+  utils: &quot;app/utils/&quot;
+  config: &quot;config/&quot;
+  forbidden_modify: [&quot;deploy/&quot;, &quot;tests/base/&quot;]
+# 报错规则
+error_handle:
+  all_request_must_try_catch: true
+  error_must_report_to_monitor: true
+</code></pre>
+<ol start="2">
+<li><strong>动态上下文维护</strong>：在根目录维护<code>context.md</code>文件，每次提交代码后同步更新，内容示例：</li>
+</ol>
+<pre><code class="language-markdown"># 项目上下文（自动更新）
+项目名：HR自媒体Agent
+当前版本：v1.2.0
+## 已完成功能
+✅ 小红书热点爬虫 ✅ LangGraph内容生成工作流 ✅ 人工审核节点
+## 开发中功能
+🔧 抖音自动发布模块
+## 已知问题
+⚠️ 爬虫模块在小红书升级后偶发封禁 ⚠️ 文案生成重复率偏高
+## 依赖服务
+大模型接口：http://internal-model-gateway/llm
+向量库地址：http://internal-milvus/
+</code></pre>
+<ol start="3">
+<li><strong>提交校验卡点</strong>：配置pre-commit钩子，AI生成代码提交前自动执行Pylint/ESLint检查、单元测试，不符合规范的代码直接拦截，要求AI修改后重新提交。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>规则文件要控制在300字以内，不要写过于复杂的规则，否则AI长文本注意力溃散，容易忽略关键要求。</li>
+<li><code>context.md</code>必须随代码同步更新，否则AI拿到的是旧上下文，会生成不符合当前项目状态的代码。</li>
+<li>优先用工具校验规范，不要完全依赖Prompt约束，比如用Pylint检查PEP8合规性，比AI自行遵守的准确率高100%。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>搭建私有MCP服务器，让AI自动读取Git提交日志、CI/CD运行结果、单元测试覆盖率，自动更新<code>context.md</code>，不需要人工维护。</li>
+<li>沉淀团队通用组件库，在规则中要求AI优先调用已有组件，减少重复开发。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>爬虫风控</code> <code>自媒体Agent</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你维护的HR垂直领域小红书自媒体Agent上线后，出现两个严重问题：① 每日热点爬虫模块频繁被小红书风控封禁，IP封禁时长从24小时到7天不等；② 爬取到的热点匹配HR行业的准确率只有60%，大量娱乐、明星等无关内容进入内容生成环节，浪费大模型算力。请你定位问题原因，并给出优化方案。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步拆分问题：把爬虫封禁和匹配准确率低拆为两个独立问题，分别定位根因。</li>
+<li>第二步针对性优化：爬虫问题从防爬策略、身份模拟维度优化，匹配问题从规则、语义维度优化。</li>
+<li>第三步效果校验：优化后爬虫封禁率≤5%，行业匹配准确率≥95%。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<h3>问题根因定位</h3>
+<ol>
+<li>爬虫封禁：请求频率固定、IP固定、User-Agent固定，没有模拟真实用户行为，被小红书风控系统识别为爬虫。</li>
+<li>匹配准确率低：仅用简单关键词匹配，黑名单覆盖不全，没有做语义校验，容易把包含“工资”等关键词的娱乐内容误判为HR行业内容。</li>
+</ol>
+<h3>优化方案</h3>
+<ol>
+<li><strong>爬虫风控优化</strong><br />
+   - 搭建动态住宅IP代理池，接入200+ residential IP，每次请求随机切换IP，避免单IP被封禁。<br />
+   - 维护User-Agent池，模拟100+不同的手机型号、小红书APP版本，每次请求随机切换。<br />
+   - 请求间隔设置为随机1-3秒，模拟真实用户的浏览行为，避免固定频率被识别。<br />
+   - 维护登录态Cookie池，定期用测试账号登录小红书更新Cookie，用真实用户身份请求，降低风控概率。</li>
+<li><strong>热点匹配优化</strong><br />
+   - 扩展HR垂直词库：新增“年假”“裁员补偿”“竞业协议”“社保补缴”等1000+行业白名单关键词，新增“明星”“综艺”“情感”“美妆”等2000+黑名单关键词。<br />
+   - 引入轻量语义相似度模型：用bge-small-zh中文轻量模型计算热点和HR行业的语义相似度，相似度&lt;0.7直接丢弃，&gt;0.9直接进入生成环节，0.7-0.9之间的内容人工二次校验。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要用数据中心IP做代理，小红书对数据中心IP的封禁率超过90%，必须用住宅IP才能降低封禁风险。</li>
+<li>只能爬取小红书公开的热榜、公开笔记内容，绝对不能爬取用户的非公开信息、隐私内容，避免违反《网络安全法》。</li>
+<li>语义相似度模型优先选择CPU即可运行的轻量模型，不要用大模型做匹配，否则成本会提升10倍以上。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入验证码识别服务，遇到滑块验证码时自动识别解锁，进一步降低封禁率。</li>
+<li>定期统计发布后热点的点赞收藏转化率，自动调整白名单关键词的权重，提升匹配的热点质量。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>企业知识库</code> <code>文档预处理</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某大型互联网公司要从0到1落地一套全公司通用的文档预处理流水线，服务于各部门的知识库检索、智能客服、内容审核等场景，要求支持PDF、Word、Excel、PPT等多种格式，100%忠于原文，处理成本低，性能高。请你给出从0到1落地这个产品的完整思路。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步需求对齐：调研各部门的业务要求，明确优先级，避免做无用功能。</li>
+<li>第二步架构设计：按模块分层，兼顾通用性和定制化需求。</li>
+<li>第三步灰度落地：先从单个部门试点，跑通后再全公司推广。</li>
+<li>第四步平台化封装：做成自助服务平台，降低各部门的使用成本。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ol>
+<li><strong>需求调研阶段（2周）</strong><br />
+   对接HR、客服、法务、研发等核心部门，明确各部门的文档格式、处理量级、切片要求：比如HR部门要求100%准确，不能丢失表格内容；研发部门要求支持代码块、API文档识别；法务部门要求支持盖章文件的OCR识别。</li>
+<li><strong>架构设计阶段（4周）</strong><br />
+   流水线分为4个核心模块：<br />
+   - 格式转换模块：用LibreOffice、MinerU等开源工具，把PDF/Word/Excel/PPT等格式统一转换为带格式的Markdown，复杂扫描件用OCR识别，保留标题、表格、列表等格式信息。<br />
+   - 切片模块：提供两种切片方式，结构化文档用MarkdownHeaderTextSplitter按标题层级切分，非结构化文档用版面解析库按区块切分，支持用户自定义切片大小、标题层级规则。<br />
+   - 校验模块：自动计算切分后的Chunk和原文的字符重合度，误差超过1%的自动打回人工审核，确保没有丢内容、没有篡改。<br />
+   - 可选增强模块：用户可以选择是否开启大模型增强，对表格、图片生成摘要、QA对，提升后续检索效果。</li>
+<li><strong>灰度上线阶段（2周）</strong><br />
+   先对接HR部门的知识库做灰度测试，处理1000份HR制度文件，校验准确率、稳定性达标后，再逐步推广到客服、法务等部门，每个部门上线前做定制化适配。</li>
+<li><strong>平台化阶段（4周）</strong><br />
+   封装为可视化自助平台，各部门可以自行上传文档、选择切片规则、开启/关闭增强功能，处理后的Chunk自动同步到各部门的向量库/知识库，不需要二次开发。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>要做旧格式兼容：尤其是2007版以前的Word/Excel文件，避免转换失败，无法处理。</li>
+<li>要做租户隔离：各部门的文档只能自己可见，处理后的数据存储在独立的存储空间，避免跨部门数据泄露。</li>
+<li>成本管控：大模型增强功能默认关闭，只有用户主动开启才调用大模型，避免不必要的成本支出。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>接入自定义规则引擎，各部门可以配置自己的关键词过滤、敏感内容识别规则，满足个性化需求。</li>
+<li>对接企业的内容管理系统，文档更新后自动触发预处理流水线，不需要人工上传，实现文档的全生命周期自动化处理。</li>
+</ul>
+<hr />
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
