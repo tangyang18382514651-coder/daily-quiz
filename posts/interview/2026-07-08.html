@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-07-08)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-07-08)</h1>
+    <div class="meta">更新于 2026-07-08 11:06</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：RAG · Agent · LangGraph · 微调 · Milvus · PostgreSQL<br />
+🔄 知识片段：#12, #13, #14（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agentic RAG</code> · <code>架构设计</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Agentic RAG 的三大核心设计模式分别是什么？它们各自解决了传统 RAG 的什么痛点？在什么业务场景下应该组合使用？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agentic RAG 的三大核心设计模式是动态意图路由、问题拆解与多跳推理、纠错与反思机制，分别解决"检索目标不明确"、"单次检索无法覆盖复杂问题"和"检索结果质量不可控"三大痛点。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>动态意图路由</strong>：Agent 充当分流器，根据用户输入语义动态决定调用哪个底层检索工具（SQL 数据库、向量库、外部 API），而非硬编码走单一检索路径</li>
+<li><strong>问题拆解与多跳推理</strong>：将复杂问题拆解为子问题 A 和 B，先检索 A，再将 A 的结果作为上下文重新构建 B 的检索条件，最终合并生成——实现"连点成线"</li>
+<li><strong>纠错与反思机制</strong>：在检索完成后、生成回答前启动"质检循环"，包含文档打分（剔除噪声 Chunk）、幻觉检测（验证草稿是否被上下文完全支撑）、回答完备性验证（不足则重写 Query 触发二次检索）</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统 RAG 是"程序查完喂给模型"的线性流水线，Query → 检索 → 生成，一锤子买卖。而 Agentic RAG 把信息检索升级为一个由 LLM 驱动的自主决策与推理循环。</p>
+<p>举个企业 HR 助手的例子：候选人问"我去年入职的体检表还能用吗？"。动态意图路由先判断这不是知识库查询，而是需要查个人档案，路由到 SQL 数据库；问题拆解把它分解为"查候选人入职日期"和"查体检有效期规则"两个子问题；纠错反思机制在检索结果返回后，先评估文档相关性，如果发现检索到的体检制度已过期，会自动重写 Query 触发二次检索。三层联动，才能在复杂业务场景下保证回答准确。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调三大模式不是孤立的，而是可以组合编排：路由决定"去哪查"，多跳推理决定"怎么查"，反思机制决定"查得对不对"</li>
+<li>提到对于标准单跳事实查询（如名词解释），传统 Advanced RAG 足矣，不需要杀鸡用牛刀上 Agentic RAG</li>
+<li>点出 Agentic RAG 的核心代价：长延迟（多次 LLM 思考+工具调用）、Token 消耗指数上升、状态持久化复杂度高</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 Agentic RAG 可以完全替代传统 RAG——实际上对于高并发、低延迟的单跳查询场景，传统 RAG 仍然是更优选择</li>
+<li>误以为反思机制越多越好——每增加一层质检循环，延迟和 Token 成本都会阶梯式上升，需要根据业务对准确率的敏感度做权衡</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型工程化</code> · <code>结构化输出</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在企业级 Agent 开发中，保证大模型稳定输出 JSON 的"三层防御体系"是什么？为什么要强调多层防御而非依赖单一方案？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>大模型稳定输出 JSON 的三层防御体系是：Prompt 软约束（指令引导）→ API/模型原生硬约束（response_format 或约束解码）→ 后处理兜底（清洗+修复+校验+重试），工业界没有单一银弹，必须多层叠加。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>第一层·软约束</strong>：通过强约束 Prompt（写死格式规则）、Few-Shot 示例（给 1-2 个完整正确样例）、Schema 前置声明（明确字段类型和约束），把模型的"自由度"压到最低</li>
+<li><strong>第二层·硬约束</strong>：优先使用模型原生参数（如 <code>response_format: {type: "json_object"}</code>），或在私有化部署场景使用约束解码技术（Outlines/Guidance/vLLM 结构化输出），在 Token 生成过程中实时过滤非法字符，从语法层面杜绝格式错误</li>
+<li><strong>第三层·兜底</strong>：用正则清洗剥离多余文本（如 Markdown 代码块包装），用 <code>json-repair</code> 库自动修复常见错误（补全括号、修正中文引号），用 Pydantic 做 Schema 校验，失败则携带错误信息触发重试</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>为什么不能只靠 Prompt？因为大模型本质是概率模型，即使你写了"仅输出 JSON"，它仍然有概率在前面加一句"好的，以下是结果："。为什么不能只靠 API 参数？因为不是所有模型都支持 <code>response_format</code>，且即使支持也无法保证字段级别的语义正确（比如该填数字的地方填了字符串）。</p>
+<p>约束解码是最硬核的方案：模型每生成一个字符，都会根据 JSON 语法规则过滤候选 Token。比如对象必须以 <code>{</code> 开头，字符串必须用双引号包裹，从根本上避免括号不匹配。但这需要修改推理引擎，仅适用于私有化部署场景。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到开源模型不支持 <code>response_format</code> 时的降级方案：Outlines/Guidance 做约束解码 + Prompt+Few-Shot+反例强化 + 后处理重试兜底，必要时结合微调</li>
+<li>强调"工业界永远不会信任模型的单次输出"这一工程思维</li>
+<li>提到约束解码的原理是"在生成 Token 的过程中实时过滤非法字符"，展示对底层机制的理解</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为开启了 <code>response_format</code> 就万事大吉——它只保证输出合法 JSON 对象，不保证字段语义正确</li>
+<li>误以为 Few-Shot 示例不重要——实际上给模型提供完整正确输出样例是软约束层最有效的手段之一</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理</code> · <code>KV Cache</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在大模型推理的 KV Cache 机制中，为什么只缓存 Key 和 Value 而不缓存 Query？这背后的 Transformer 自回归生成机制是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>因为 Query 代表的是"当前正在处理的最新 Token"，一旦该 Token 处理完毕就不再有复用价值；而 Key 和 Value 代表历史 Token 的身份信息和实际语义权重，在后续每一步生成中都需要与新进来的 Q 进行点积计算，所以必须缓存。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>自回归生成机制</strong>：大模型逐字（Token）输出，每生成一个新字，需要把前面所有历史字重新做一次 Attention 计算。没有缓存时计算量随文本变长呈 O(N²) 暴增</li>
+<li><strong>Q 是"提问者"</strong>：代表当前最新 Token，用当前的 Q 去询问历史信息。Token 处理完后，下一个 Token 会有全新的 Q，历史 Q 无复用价值</li>
+<li><strong>K 是"索引/标签"</strong>：代表历史 Token 的身份信息，用来和当前 Q 做匹配，判断谁跟当前话题最相关</li>
+<li><strong>V 是"真实内容"</strong>：代表历史 Token 包含的实际语义权重，K 匹配成功后提取的内容</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>从 Attention 公式 $\text{Attention}(Q, K, V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$ 来看，Q 是"主动查询方"，K 和 V 是"被查询方"。在自回归生成中，已经输入的字和已经生成的字，它们的特征在模型中是固定不变的——历史 Token 的 K 和 V 不会变，但每次都需要和新进来的 Q 进行计算。所以把历史 K、V 存在显存里，每次新生成一个字只需算这一个新字的 Q、K、V，然后和缓存里的历史 K、V 做 Attention 计算即可，时间复杂度从 O(N²) 降到 O(N)。</p>
+<p>本质是"用空间（显存）换时间（计算速度）"，但代价是 KV Cache 会随上下文长度和并发量线性暴涨，长文本对话中甚至超过模型权重本身的显存占用。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>用"提问者-索引-内容"三角色类比来解释 Q/K/V 的关系，面试官会觉得你理解透彻</li>
+<li>主动延伸到 KV Cache 带来的显存瓶颈问题，以及业界主流优化技术（PagedAttention、MQA/GQA、KV 量化、Context Cache）</li>
+<li>提到推理过程从"计算密集型"变成了"内存带宽密集型"这一关键转变</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 Q、K、V 三者都应该缓存——实际上历史 Q 在后续计算中完全不参与，缓存它纯属浪费显存</li>
+<li>误以为 KV Cache 是模型训练阶段的技术——它仅用于推理阶段的自回归生成</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>PostgreSQL</code> · <code>Agent架构</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>PostgreSQL 在 AI Agent 架构中扮演了"向量库+状态机+记忆中心"的复合角色，请详细说明它的四大核心应用场景及其各自的技术支撑。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>PostgreSQL 在 Agent 架构中的四大核心应用是：pgvector 向量存储与混合检索、JSONB 状态机与动态记忆持久化、SKIP LOCKED 分布式任务队列、LISTEN/NOTIFY 实时状态通知，分别覆盖了 Agent 的知识检索、状态管理、任务调度和实时推送四大核心能力。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>向量存储与混合检索（pgvector）</strong>：无需引入独立向量库，允许一条 SQL 同时搞定业务字段过滤（如权限、时间）与向量相似度检索，避免分布式事务和数据同步延迟</li>
+<li><strong>状态机与动态记忆（JSONB）</strong>：Agent 状态结构多变，JSONB 完美契合，配合 GIN 索引可直接对 JSON 内部任意嵌套字段进行毫秒级筛选</li>
+<li><strong>分布式任务队列（SKIP LOCKED）</strong>：利用 <code>SELECT ... FOR UPDATE SKIP LOCKED</code>，多个 Worker Agent 争抢任务时自动跳过已加锁行，实现无锁冲突的高并发任务队列</li>
+<li><strong>实时状态通知（LISTEN/NOTIFY）</strong>：数据库触发器结合发布订阅机制，后端服务可实时捕获数据变更并推送给前端，无需轮询</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>PG 的核心优势在于"技术栈收敛"。传统 Agent 架构需要同时维护 MySQL（业务数据）、Redis（缓存/队列）、Milvus（向量库）三套中间件，而 PG 可以一身多职。比如在 LangGraph 架构中，Agent 的运行状态（State）是嵌套的 JSON 结构，PG 的 JSONB 配合 GIN 索引能极快地进行局部修改、回滚和事务控制。再比如多 Agent 异步任务分发场景，<code>FOR UPDATE</code> 锁定当前行，<code>SKIP LOCKED</code> 让其他并发线程直接跳过已被锁定的任务，既保证任务不被重复消费，又彻底解决高并发下的锁等待和死锁问题。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调"技术栈收敛"的工程价值：减少运维复杂度、保证强一致性（ACID 事务覆盖业务数据和向量数据）</li>
+<li>提到只有当向量数据达到数亿级且对延迟有极端要求时，才考虑专用向量库——这是面试官想听到的"知道边界"的回答</li>
+<li>主动对比 PG 的 MVCC 机制在金融级一致性场景中的优势</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 PG 只能做关系型存储——实际上通过插件生态（pgvector、PostGIS、TimescaleDB），它已经是一个多模数据库</li>
+<li>误以为 pgvector 性能远不如专用向量库——在百万级以下向量数据场景，pgvector + HNSW 的检索性能完全够用</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>PostgreSQL</code> · <code>JSONB</code> · <code>Agent状态管理</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 Agent 状态持久化场景中，PostgreSQL 的 JSONB 和 JSON 类型应该选哪个？核心差异是什么？为什么 JSONB 更适合 Agent 架构？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>必须选 JSONB。JSON 是纯文本原样存储，每次读取或条件筛选内部字段时都需要重新解析，性能极差且不支持索引；JSONB 是解析后的二进制存储，读取极快，且支持 GIN 倒排索引，能对 Agent 动态生成的嵌套状态进行高效的局部更新和条件检索。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>存储方式差异</strong>：JSON 以纯文本形式原样存储，写入快但读取需解析；JSONB 以解析后的二进制格式存储，写入略有开销但读取极快</li>
+<li><strong>索引支持差异</strong>：JSON 不支持索引，JSONB 支持 GIN（Generalized Inverted Index，倒排索引），可对 JSON 内部任意嵌套字段建索引</li>
+<li><strong>查询性能差异</strong>：JSON 每次条件筛选内部字段都需要全表扫描+重新解析；JSONB 配合 GIN 索引可实现毫秒级筛选</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在 LangGraph 等 Agent 框架中，Agent 的运行状态（State）通常是高度嵌套的 JSON 结构，比如包含 <code>current_step</code>、<code>intermediate_results</code>、<code>tool_outputs</code>、<code>memory</code> 等多层字段。这些状态需要频繁的局部更新（比如只改 <code>current_step</code> 的值）和条件检索（比如查"所有处于 waiting 状态的 Agent"）。</p>
+<p>如果用 JSON 类型，每次查询 <code>WHERE state-&gt;&gt;'current_step' = 'waiting'</code> 都需要把整行 JSON 文本取出、解析、再比较，数据量一大性能直接崩塌。而 JSONB 配合 GIN 索引，数据库引擎可以直接在索引中定位到目标字段值，无需解析整个 JSON 文档，查询性能提升数个数量级。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到 JSONB 的写入开销略高于 JSON（因为需要额外解析为二进制），但在 Agent 场景中"读多写少"，这个 trade-off 完全合理</li>
+<li>主动延伸到 GIN 索引的原理：倒排索引为 JSONB 中的每个键值对建立独立索引条目，实现字段级精准定位</li>
+<li>提到 JSONB 兼具关系型和非关系型优势，是 PG 区别于 MySQL 的最大特点之一</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 JSON 和 JSONB 差别不大，随便选一个就行——在 Agent 高频读写场景下，两者的性能差距可能是数量级的</li>
+<li>误以为 JSONB 不支持局部更新——实际上 PG 提供了 <code>jsonb_set()</code> 等函数，可以精确修改 JSONB 内部的某个字段，无需整体替换</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>pgvector</code> · <code>向量索引</code> · <code>RAG</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>pgvector 提供了 HNSW 和 IVFFlat 两种向量索引，在 Agent RAG 场景下应该如何选型？两者的核心差异和适用场景是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>绝大多数 Agent 场景优先选 HNSW。HNSW 基于图结构，检索速度极快、召回率极高，即使数据量激增性能也稳定，代价是建索引慢、极其消耗内存；IVFFlat 基于聚类结构，建索引快、省内存，但检索速度和召回率均不如 HNSW，且严重依赖前期数据训练。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>HNSW（Hierarchical Navigable Small World，图结构）</strong>：构建多层近邻图，检索时从顶层粗粒度导航到底层精细匹配。优势是检索速度极快、召回率高、数据量激增性能稳定；劣势是建索引慢、索引需全部缓存在内存中</li>
+<li><strong>IVFFlat（Inverted File with Flat，聚类结构）</strong>：先将向量空间划分为多个聚类中心（需训练），检索时只扫描目标聚类内的向量。优势是建索引快、内存占用小；劣势是召回率依赖聚类质量，数据分布不均时效果差</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>Agent 场景对检索召回率和并发延迟要求极高——如果知识库召回率不够，Agent 可能基于不完整信息做出错误决策，后续的反思纠错机制又要多跑几轮，成本雪崩。HNSW 的多层图结构虽然建索引时需要更多计算和内存，但一旦建成，检索性能在百万级到千万级数据量下都能保持毫秒级响应。</p>
+<p>IVFFlat 适合数据量不大、对延迟要求不高、或者服务器内存受限的场景。它还有一个致命弱点：聚类中心需要前期训练，如果后续新增的数据分布与训练集差异较大，检索质量会明显下降。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>给出明确的选型策略："只要服务器内存允许，直接上 HNSW"</li>
+<li>提到 HNSW 的核心参数调优：<code>m</code>（每层最大连接数）和 <code>ef_construction</code>（建索引时的搜索宽度），展示工程经验</li>
+<li>提到在"亿级数据+极端低延迟"场景下，pgvector 也扛不住，需要迁移到专用向量库（如 Milvus）</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 IVFFlat 适合所有小数据场景——实际上小数据量下两者差距不大，但 HNSW 的召回率始终更优</li>
+<li>误以为 HNSW 索引可以部分加载到磁盘——HNSW 索引必须全部缓存在内存中才能保证性能，这也是它的核心代价</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Redis</code> · <code>Agent架构</code> · <code>记忆管理</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Redis 在 AI Agent 架构中通常扮演"状态中心和短时记忆库"的角色，请详细说明它的四大核心功能及其在 Agent 系统中的具体应用。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Redis 在 Agent 架构中的四大核心功能是：记忆管理（List/Hash+TTL 存储对话历史）、状态机与工作流管理（Hash 存储执行状态）、多 Agent 协同消息队列（Stream/Pub-Sub）、速率限制与成本控制（ZSet 滑动窗口限流），覆盖了 Agent 运行时的全部短时状态需求。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>记忆管理</strong>：使用 List 按时间顺序存储最近 N 轮对话，设置 EXPIRE 自动清理长时间不活跃的会话；现代 Redis 还支持向量检索（RedisVSS），可将长时记忆转为 Embedding 存入实现毫秒级语义检索</li>
+<li><strong>状态机与工作流管理</strong>：用 Hash 或 String(JSON) 存储当前 Agent 的 Task ID、执行到哪一步（Step）、中间体输出结果，即使 Agent 节点挂了也能从 Redis 恢复状态继续执行</li>
+<li><strong>多 Agent 协同</strong>：使用 Stream 构建可靠的 Agent 任务队列，Agent A 生产任务放入 Stream，Agent B 消费并处理，支持 ACK 机制确保任务不丢失</li>
+<li><strong>速率限制与成本控制</strong>：用 String 计数器或 ZSet 滑动窗口，限制单个用户或单个 Agent 每分钟调用 LLM 的次数，超出则拦截或排队</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>LLM API 调用非常昂贵，且服务商有严格的并发限制（RPM/TPM）。如果不做速率限制，一个恶意用户或一个失控的 Agent 循环可能在几分钟内烧掉数千美元。Redis 的 ZSet 天然适合实现滑动窗口限流：以时间戳为 Score，用户 ID 为 Member，每次请求前先用 <code>ZRANGEBYSCORE</code> 查询当前窗口内的请求次数，超限则拒绝。</p>
+<p>在多 Agent 协同场景中，Stream 相比 List 的优势在于：支持消费者组（Consumer Group）、ACK 确认机制和消息回溯，即使某个 Agent 处理任务时崩溃，消息也不会丢失，可以被其他 Agent 重新消费。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调 Redis 在 Agent 架构中的定位是"短时记忆"，与 PostgreSQL 的"长期记忆"形成互补</li>
+<li>提到 Redis 6.0 引入的多线程只处理网络 IO 读写，核心命令执行仍是单线程——展示对底层原理的理解</li>
+<li>主动提到 RedisVSS（向量搜索）能力，说明 Redis 也可以做轻量级语义记忆检索</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 Redis 只能做缓存——在 Agent 架构中，它同时承担了消息队列、状态机、限流器等多重角色</li>
+<li>误以为 Redis 的单线程模型是性能瓶颈——实际上纯内存操作+Epoll 多路复用，单线程反而避免了上下文切换和锁竞争</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>RAG</code> · <code>富文本处理</code> · <code>多模态</code> · 难度：⭐⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在企业级 RAG 系统中处理富文本 PDF（包含图片、表格）时，为什么要采用"第一步物理剥离，第二步语义理解"的两步走策略？如果混在一起做会有什么工程灾难？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>第一步（转 Markdown 阶段）只做物理剥离和占位标记——抠图、上传云存储、生成 URL、在 Markdown 中留占位符；第二步（转向量阶段）才调用多模态大模型做语义理解和混合打包。这种解耦设计的核心目的是避免极高的重构成本和流水线架构臃肿。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>第一步的核心任务</strong>："看懂结构，切分区块"。火山 OCR 或版面分析服务（Layout LM）扫描到图片时，只做三件事：抠图（裁剪独立图片）、生成 URL（上传对象存储）、文本占位（在 Markdown 字符串中留 <code>![图片描述](url)</code> 语法占位符）</li>
+<li><strong>第二步的核心任务</strong>："语义理解，混合打包"。语义切片器切到图片占位行时，程序拿到图片 URL 和前后上下文，调用多模态大模型生成图片的文本描述，然后将"文本描述向量"+"正文"+"image_url 标量字段"一起打包写入向量库</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果把图片语义理解放在第一步（转 Markdown 阶段），会带来两个工程灾难：</p>
+<p>第一，极高的重构成本。图片理解（Image Captioning）需要调用多模态大模型，非常贵且慢。如果三个月后你想调整大模型的 Prompt（比如希望图片描述更简短），因为你第一步已经把图片语义写死在了 Markdown 文件里，你必须重新跑一遍所有 PDF 的解析流程，时间和成本都不可接受。</p>
+<p>第二，架构臃肿难以解耦。第一步是"结构解析"职责，第二步是"语义理解"职责。把两者混在一起，版面解析工具既要管物理切分又要管大模型调用，整个 Pipeline 变成一个巨型单体，无法独立扩展和调优。</p>
+<p>两步走之后，第一步的输出是干净的带占位符的 Markdown 字符串，第二步可以独立替换不同的大模型和 Prompt 策略，互不影响。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调"数据库才是唯一的物理实体，Markdown 只是内存中间态"——不需要在服务器上建一堆 <code>.md</code> 文件，随扫随切，切完直接进库</li>
+<li>提到图片在向量库中的存储方式：文本描述转为向量，同时标量字段额外挂载 <code>image_url</code>，检索时前端可以直接在聊天气泡里渲染原图</li>
+<li>用"解耦"的工程思维来框架化这个问题，面试官会认为你有架构师视角</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为第一步就要把图片语义全部提取出来——这会导致流水线过重，且修改 Prompt 时重构成本极高</li>
+<li>误以为 Markdown 需要落地为文件存储——标准做法是内存中流转，切完直接批量 Upsert 进向量库</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent编排</code> · <code>异步执行</code> · <code>DAG</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 Agent 系统中，同步执行、简单异步并发（asyncio.gather）和异步有向无环图（DAG 编排）三种模式的核心差异是什么？分别在什么场景下使用？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>同步执行顺序绝对可控但慢；简单异步并发（asyncio.gather）快但无法控制执行顺序且彼此拿不到对方输出；异步 DAG 编排既有异步的高性能，又有严格的流程控制（分流、并发、依赖），是复杂 Agent 集群的最佳实践。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>传统同步（Sync）</strong>：任务 A → 任务 B → 任务 C，串行执行。慢，但顺序绝对可控。适合简单的前后依赖场景</li>
+<li><strong>简单异步并发（asyncio.gather）</strong>：任务 A、B、C 同时出发。快，但无法控制谁先谁后，彼此拿不到对方的输出。适合相互独立的并行任务</li>
+<li><strong>异步 DAG 编排</strong>：任务 A 先出发 → 拿到结果分流 → 任务 B 和 C 并发出发。既有异步的高性能，又有严格的流程控制。适合复杂的、带循环纠错的 Agent 集群</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果是简单的先后顺序，直接用 <code>await agent_a()</code> 拿到结果，再 <code>await agent_b(result_a)</code> 即可，底层依然是高效的异步非阻塞。</p>
+<p>但如果是复杂的 Agent 集群场景——比如"产品经理 Agent"拆解需求后分发给"前端 Agent"和"后端 Agent"并行开发，两者完成后汇总给"测试 Agent"验证，发现 Bug 又要回到开发 Agent 修复——这种带循环纠错（Human-in-the-loop）的多节点编排，手写 <code>asyncio</code> 会非常痛苦。LangGraph 就是为解决"异步环境下如何优雅编排 Agent"而诞生的，它原生支持 DAG 图结构、状态持久化和条件分支路由。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调 LangGraph 的定位：它不是为了替代 asyncio，而是为了解决 asyncio 在复杂 Agent 编排场景下的"控制力不足"问题</li>
+<li>提到 DAG 编排的核心价值：支持条件分支（根据中间结果动态决定下一步走哪条边）、循环纠错（失败后回退到某个节点重试）、状态快照（任意节点可暂停恢复）</li>
+<li>主动对比三种模式的适用场景，展示对"何时该用重武器"的判断力</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 asyncio.gather 就是 Agent 异步编排的最佳方案——它无法处理任务间的依赖关系和条件分流</li>
+<li>误以为同步执行在 Agent 场景中完全不可用——对于简单的两步依赖，同步 await 反而更清晰可维护</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Redis</code> · <code>分布式锁</code> · <code>多Agent协同</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在多 Agent 协同场景中，如何用 Redis 实现可靠的分布式锁？有哪些必须注意的"坑"？生产环境推荐什么方案？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Redis 分布式锁的核心是 <code>SET key value NX PX 30000</code>（加锁与设置过期时间必须原子操作），解锁时必须用 Lua 脚本校验 Value 身份并原子删除，生产环境推荐直接使用 Redisson 框架，它内置看门狗自动续期机制。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>原子加锁</strong>：使用 <code>SET key value NX PX 30000</code>，NX 表示不存在才设置，PX 表示设置毫秒级过期时间。加锁和设过期必须是原子操作，否则会出现死锁</li>
+<li><strong>身份标识</strong>：Value 必须是唯一随机字符串（如 UUID），防止"锁超时后 A 的锁被自动释放，B 进来了，A 任务执行完误删了 B 的锁"</li>
+<li><strong>原子解锁</strong>：校验 Value 和删除锁必须使用 Lua 脚本执行，保证释放锁的原子性</li>
+<li><strong>看门狗续期</strong>：Redisson 内置 Watchdog 机制，能自动为未执行完的线程给锁"续期"，彻底解决锁提前过期的问题</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在多 Agent 系统中，分布式锁的核心场景是"竞态避让"。比如多个 Worker Agent 同时从任务队列中拉取任务，如果不加锁，同一个任务可能被多个 Agent 同时消费，导致重复执行。</p>
+<p>最常见的坑是"锁超时误删"：Agent A 拿到锁后执行任务耗时过长，锁自动过期释放；Agent B 获得锁开始执行；此时 A 执行完毕，调用 DEL 删除锁——但它删的是 B 的锁！后续 C 又能拿到锁，导致锁完全失效。解决方案就是 Value 设为 UUID，解锁前先校验是不是自己的锁，且校验+删除必须用 Lua 脚本保证原子性。</p>
+<p>更隐蔽的坑是"锁提前过期"：如果业务逻辑执行时间超过锁的过期时间，锁会在任务未完成时自动释放。Redisson 的 Watchdog 会定期检查持有锁的线程是否存活，如果存活就自动延长过期时间。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调"加锁和设置过期时间必须是原子操作"——如果分两步（先 SETNX 再 EXPIRE），第二步执行前服务宕机就会死锁</li>
+<li>主动提到生产环境不要自己手写分布式锁，直接用 Redisson，它的看门狗机制是业界标准</li>
+<li>提到在多 Agent 场景下，分布式锁的粒度选择很关键：锁太粗影响并发度，锁太细增加管理复杂度</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 <code>DEL</code> 就能安全解锁——必须先校验 Value 身份，否则会误删别人的锁</li>
+<li>误以为锁过期时间设得越长越好——过长会导致持有锁的节点宕机后长时间阻塞其他节点，过短会导致任务未完成锁就释放，需要依赖 Watchdog 动态续期</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<hr />
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多Agent协同</code> <code>异步编排</code> <code>Redis状态机</code> <code>PostgreSQL持久化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你负责设计一套企业级多 Agent 协同系统，场景如下：一个「HR 入职助手 Agent」需要编排三个子 Agent（文档检索 Agent、表单校验 Agent、流程通知 Agent）完成入职流程自动化。要求：①支持 DAG 有向无环图编排，部分子任务可并发；②任一节点失败可从断点恢复，不丢失中间状态；③多 Agent 之间需要可靠的异步消息传递；④对单个用户调用 LLM 的频率做速率限制以控制成本。请给出完整架构设计，包括技术选型、核心模块拆分和数据流。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：明确编排模式选型——同步顺序执行无法满足并发需求，简单 <code>asyncio.gather</code> 无法控制依赖关系，必须采用 DAG 编排框架（LangGraph）来管理节点间的有向依赖与并发分流。</li>
+<li>第二步：拆分状态管理与消息传递两个核心基础设施——状态持久化用 PostgreSQL JSONB（冷存储 + 事务一致性），运行时热状态用 Redis Hash（低延迟读写），Agent 间通信用 Redis Stream（可靠队列 + ACK 机制）。</li>
+<li>第三步：设计速率限制层，用 Redis ZSet 实现滑动窗口限流，在 LLM 调用前拦截超额请求。</li>
+<li>第四步：设计断点恢复机制，LangGraph 的 Checkpoint 配合 PostgreSQL State Saver，每个节点执行完毕后自动持久化当前 State。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整体架构分为四层：</p>
+<p><strong>编排层（LangGraph DAG）</strong>：定义三个节点——<code>retrieve_docs</code>（文档检索）、<code>validate_form</code>（表单校验）、<code>notify_flow</code>（流程通知）。其中 <code>validate_form</code> 和 <code>notify_flow</code> 依赖 <code>retrieve_docs</code> 的输出，但两者之间无依赖，可并发执行。LangGraph 的 <code>add_node</code> + <code>add_edge</code> + 条件路由天然支持这种「先串后并」的 DAG 结构。</p>
+<p><strong>状态层（Redis + PostgreSQL 双层）</strong>：<br />
+- Redis Hash 存储运行时热状态：<code>agent:state:{task_id}</code> → <code>{current_node, intermediate_steps, retry_count}</code>，读写延迟 &lt;1ms，适合高频状态更新。<br />
+- PostgreSQL JSONB 存储持久化 Checkpoint：<code>{task_id, user_id, state_json, created_at}</code>，配合 GIN 索引支持按 <code>user_id</code> 快速检索历史任务。每个节点执行完毕后，LangGraph 自动将完整 State 序列化写入 PG，实现断点恢复。</p>
+<p><strong>消息层（Redis Stream）</strong>：子 Agent 间通信采用 <code>XADD</code> 生产任务消息，消费端用 <code>XREADGROUP</code> 消费并 <code>XACK</code> 确认。Stream 的持久化特性保证了 Agent 崩溃后消息不丢失，比 Pub/Sub 更可靠。</p>
+<p><strong>限流层（Redis ZSet 滑动窗口）</strong>：以 <code>ratelimit:llm:{user_id}</code> 为 Key，Score 为时间戳。每次调用 LLM 前，先 <code>ZREMRANGEBYSCORE</code> 清理 60 秒前的记录，再 <code>ZCARD</code> 统计当前窗口内请求数，超过阈值（如 20 次/分钟）则拒绝或排队。</p>
+<pre><code>用户请求 → LangGraph DAG 编排
+                ↓
+        [retrieve_docs] → 写 Redis 热状态 + PG Checkpoint
+                ↓
+        ┌───────┴───────┐
+   [validate_form]   [notify_flow]  ← 并发执行，通过 Redis Stream 通信
+        └───────┬───────┘
+                ↓
+           合并结果 → 持久化 PG
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>LangGraph 的 Checkpoint 必须设置 <code>checkpoint_id</code> 和 <code>parent_id</code>，支持增量版本式持久化，避免全量覆盖导致无法回滚到上一个正确节点。</li>
+<li>Redis Stream 消费组必须配置 <code>XPENDING</code> + <code>XCLAIM</code> 机制处理超时未 ACK 的消息，否则 Agent 崩溃后消息会成为孤儿。</li>
+<li>速率限制的 ZSet 必须设置 TTL（如 120 秒），否则冷用户的 ZSet 永远不会自动清理，长期运行会导致 Redis 内存泄漏。</li>
+<li>PostgreSQL 的 State 表要加 <code>user_id + task_id</code> 的联合唯一索引，防止并发写入产生重复 Checkpoint。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入 Redis Stream 的 Consumer Group 实现多 Worker Agent 负载均衡，同一任务组内多个 Agent 实例竞争消费，提升吞吐。</li>
+<li>在 LangGraph 中加入 Human-in-the-loop 中断节点（<code>interrupt_before</code>），关键决策步骤（如发送入职通知）前暂停等待人工确认，再恢复执行。</li>
+<li>对 PG Checkpoint 表按时间分区（TimescaleDB），冷数据自动归档到对象存储，避免 State 表无限膨胀。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>JSON稳定输出</code> <code>结构化约束</code> <code>约束解码</code> <code>工程兜底</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你的团队开发了一个 Agent 系统，需要调用大模型从用户自然语言中提取结构化信息（如姓名、年龄、标签列表），并自动调用下游 API。上线后发现：大模型约 30% 的输出无法被 <code>json.loads()</code> 解析——有的包裹了 Markdown 代码块，有的字段类型错误（age 输出为字符串 "十八"），有的多了解释性文字。请给出系统化的解决方案，从源头到兜底全覆盖，并说明每层的核心手段和适用场景。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：分析失败样本分布，归类问题类型——格式包裹问题（Markdown 代码块）、类型不匹配问题（字符串 vs 整数）、多余文本问题（解释性输出），针对不同类型设计不同防线。</li>
+<li>第二步：建立「软约束 → 硬约束 → 兜底」三层防御体系，层层递进，确保最终输出 100% 可解析。</li>
+<li>第三步：设计异常自修复闭环，当所有防线均失败时，将错误信息回传模型让其自我修正。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>第一层：Prompt 软约束（低成本基础方案）</strong></p>
+<p>核心目标是用指令和示例把模型的「自由度」压到最低。</p>
+<ul>
+<li><strong>强指令 + 格式限制</strong>：不要只说「输出 JSON」，而是写死规则——「你是严格的 JSON 生成器，仅输出符合 RFC 8259 标准的纯 JSON 对象。禁止解释性文字、Markdown 代码块、注释。第一个字符为 <code>{</code>，最后一个字符为 <code>}</code>。」</li>
+<li><strong>Few-Shot 示例</strong>：提供 1-2 个完整的正确输出样例，包含所有字段和格式细节，让模型「照抄」格式。示例中故意包含边界值（如 age=60、tags 为空数组），引导模型正确处理。</li>
+<li><strong>Schema 前置声明</strong>：在 Prompt 中明确字段定义——<code>name: string（非空）、age: integer（18-60）、tags: array of string（枚举：["student","worker"]）</code>，让模型在生成前就「理解」约束。</li>
+</ul>
+<p><strong>第二层：API / 模型原生约束（高性价比方案）</strong></p>
+<ul>
+<li><strong>response_format 参数</strong>：调用 OpenAI / DeepSeek / 通义千问 API 时，传入 <code>response_format={"type": "json_object"}</code>，模型在生成层面保证输出合法 JSON 对象，不会出现 Markdown 包装或多余文本。这一行参数能直接消灭约 60% 的格式错误。</li>
+<li><strong>JSON Schema 强校验（进阶）</strong>：部分模型（如 GPT-4）支持直接传入 JSON Schema，实现字段级约束——限制枚举值、正则匹配、必填项，从源头杜绝类型错误和字段缺失。</li>
+</ul>
+<p><strong>第三层：约束解码（硬核技术方案）</strong></p>
+<p>适用于私有化部署、本地模型、对格式要求 100% 严格的场景。</p>
+<ul>
+<li>使用 <strong>Outlines</strong> 或 <strong>Guidance</strong> 工具，在模型生成 Token 的过程中实时过滤非法字符。原理是：每生成一个字符，都根据 JSON 语法规则过滤候选 Token——比如对象必须以 <code>{</code> 开头，字符串必须用双引号包裹，从根本上避免括号不匹配、引号错误等问题。vLLM 也原生支持 <code>--json</code> 参数启用此能力。</li>
+</ul>
+<p><strong>第四层：后处理 + 兜底（工程化必加防线）</strong></p>
+<pre><code class="language-python"># 1. 输出清洗：用正则剥离 Markdown 包裹
+def extract_json(text: str) -&gt; str:
+    pattern = r&quot;```json\s*([\s\S]*?)\s*```|({[\s\S]*?})&quot;
+    match = re.search(pattern, text)
+    return match.group(1) or match.group(2)
+
+# 2. 自动修复：用 json-repair 库补全括号、修正中文引号
+from json_repair import repair_json
+repaired = repair_json(cleaned_text)
+
+# 3. Schema 校验 + 重试：Pydantic 强校验
+class UserInfo(BaseModel):
+    name: str
+    age: int
+    tags: list[str]
+
+try:
+    data = UserInfo.model_validate_json(repaired)
+except ValidationError as e:
+    # 把错误信息发回模型，让它修正后重新生成
+    retry = call_llm(f&quot;JSON解析失败，错误：{e}，请修正格式并重新输出&quot;)
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><code>response_format={"type": "json_object"}</code> 只保证输出是合法 JSON 对象，<strong>不保证字段结构和类型正确</strong>。如果需要字段级约束，必须搭配 Pydantic 校验或使用支持 JSON Schema 的模型。</li>
+<li>约束解码（Outlines/Guidance）会略微降低生成速度（每步多一次 Token 过滤），在实时性要求极高的场景需评估延迟影响。</li>
+<li>重试机制必须设置最大重试次数（如 3 次），避免模型陷入「输出错误 → 重试 → 再错误」的死循环，消耗大量 Token。</li>
+<li>Few-Shot 示例中的 JSON 必须经过严格校验，如果示例本身格式有误，模型会「学错」，适得其反。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>将成功解析的 JSON 样本积累为微调数据集，对开源模型做轻量 SFT，让模型从「被约束」变为「习惯性输出正确格式」，长期可降低对约束解码的依赖。</li>
+<li>在 Agent 链路中加入「格式预检」节点：在调用下游 API 前先做一次 Pydantic 校验，失败则拦截并触发修复，避免脏数据污染下游系统。</li>
+<li>对不同业务场景分级配置约束策略——简单场景（如提取用户名）仅用 Prompt + <code>response_format</code>；关键场景（如生成 API 调用参数）必须四层全开。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>PostgreSQL任务队列</code> <code>SKIP-LOCKED</code> <code>JSONB状态</code> <code>LISTEN-NOTIFY</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你需要用 PostgreSQL 实现一个高性能的 Agent 异步任务队列，支撑以下场景：多个 Worker Agent 并发从队列中抢任务执行，要求：①任务不被重复消费；②高并发下无锁等待和死锁；③任务状态变更时实时通知后端服务推送前端 UI 更新；④任务状态结构动态变化（不同 Agent 的中间结果格式不同）。请给出核心表结构设计、关键 SQL 语句和完整的任务消费流程伪代码。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：表结构设计——用 JSONB 存储动态状态（适配不同 Agent 的中间结果格式），用标量字段存储任务元数据（task_id, status, worker_id, created_at）。</li>
+<li>第二步：任务抢占用 <code>SELECT ... FOR UPDATE SKIP LOCKED</code> 实现无锁冲突的高并发消费。</li>
+<li>第三步：状态通知用 <code>LISTEN / NOTIFY</code> 机制实现数据库层面的发布订阅，后端服务订阅频道实时捕获变更。</li>
+<li>第四步：JSONB 配合 GIN 索引，支持对任务状态内部嵌套字段的毫秒级筛选。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>核心表结构设计：</strong></p>
+<pre><code class="language-sql">CREATE TABLE agent_task_queue (
+    task_id       UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    agent_type    VARCHAR(64) NOT NULL,         -- 任务类型：retrieve / validate / notify
+    status       VARCHAR(20) NOT NULL DEFAULT 'pending',  -- pending / running / done / failed
+    payload      JSONB NOT NULL,                -- 任务输入参数
+    state        JSONB DEFAULT '{}'::jsonb,     -- Agent 运行时动态状态（中间结果）
+    worker_id    VARCHAR(64),                   -- 当前处理的 Worker ID
+    created_at   TIMESTAMPTZ DEFAULT now(),
+    updated_at   TIMESTAMPTZ DEFAULT now()
+);
+
+-- GIN 索引：支持 JSONB 内部字段高效检索
+CREATE INDEX idx_task_state ON agent_task_queue USING GIN (state);
+-- 复合索引：加速任务抢占查询
+CREATE INDEX idx_task_pending ON agent_task_queue (status, created_at)
+    WHERE status = 'pending';
+</code></pre>
+<p><strong>任务抢占核心 SQL：</strong></p>
+<pre><code class="language-sql">-- 原子化抢占：锁定一条 pending 任务，跳过已被其他 Worker 锁定的行
+UPDATE agent_task_queue
+SET status = 'running',
+    worker_id = $1,
+    updated_at = now()
+WHERE task_id = (
+    SELECT task_id
+    FROM agent_task_queue
+    WHERE status = 'pending'
+    ORDER BY created_at
+    FOR UPDATE SKIP LOCKED
+    LIMIT 1
+)
+RETURNING task_id, agent_type, payload;
+</code></pre>
+<p><code>FOR UPDATE</code> 锁定当前行，<code>SKIP LOCKED</code> 让其他并发线程直接跳过已被锁定的行继续向下找，彻底避免锁等待和死锁。</p>
+<p><strong>实时通知机制：</strong></p>
+<pre><code class="language-sql">-- 创建触发器函数：状态变更时发送通知
+CREATE OR REPLACE FUNCTION notify_task_change()
+RETURNS TRIGGER AS $$
+BEGIN
+    PERFORM pg_notify(
+        'task_channel',
+        json_build_object(
+            'task_id', NEW.task_id,
+            'status', NEW.status,
+            'worker_id', NEW.worker_id
+        )::text
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_task_change
+AFTER UPDATE ON agent_task_queue
+FOR EACH ROW EXECUTE FUNCTION notify_task_change();
+</code></pre>
+<p><strong>完整任务消费流程伪代码：</strong></p>
+<pre><code class="language-python">import asyncio
+import asyncpg
+
+async def worker_loop(worker_id: str):
+    conn = await asyncpg.connect(DATABASE_URL)
+    # 订阅通知频道
+    await conn.add_listener('task_channel', on_notification)
+
+    while True:
+        # 1. 抢占任务
+        task = await conn.fetchrow(&quot;&quot;&quot;
+            UPDATE agent_task_queue
+            SET status = 'running', worker_id = $1, updated_at = now()
+            WHERE task_id = (
+                SELECT task_id FROM agent_task_queue
+                WHERE status = 'pending'
+                ORDER BY created_at
+                FOR UPDATE SKIP LOCKED LIMIT 1
+            )
+            RETURNING task_id, agent_type, payload
+        &quot;&quot;&quot;, worker_id)
+
+        if not task:
+            await asyncio.sleep(1)  # 无任务时退避
+            continue
+
+        # 2. 执行 Agent 逻辑
+        try:
+            result = await execute_agent(task['agent_type'], task['payload'])
+
+            # 3. 更新状态为完成，写入中间结果
+            await conn.execute(&quot;&quot;&quot;
+                UPDATE agent_task_queue
+                SET status = 'done',
+                    state = $1::jsonb,
+                    updated_at = now()
+                WHERE task_id = $2
+            &quot;&quot;&quot;, json.dumps(result), task['task_id'])
+
+        except Exception as e:
+            # 4. 失败时更新状态和错误信息
+            await conn.execute(&quot;&quot;&quot;
+                UPDATE agent_task_queue
+                SET status = 'failed',
+                    state = jsonb_set(state, '{error}', to_jsonb($1)),
+                    updated_at = now()
+                WHERE task_id = $2
+            &quot;&quot;&quot;, str(e), task['task_id'])
+
+async def on_notification(conn, pid, channel, payload):
+    # 收到 PG NOTIFY 后，推送给前端（如 WebSocket）
+    event = json.loads(payload)
+    await websocket_manager.broadcast(event['task_id'], event)
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><code>SKIP LOCKED</code> 是 PostgreSQL 9.5+ 才支持的特性，使用前需确认数据库版本。MySQL 8.0 也支持类似语法。</li>
+<li><code>LISTEN / NOTIFY</code> 的 payload 大小限制为 8000 字节，如果状态变更内容很大，只传 <code>task_id</code>，由后端服务收到通知后再查库获取详情。</li>
+<li>JSONB 的 <code>state</code> 字段更新时，必须用 <code>jsonb_set</code> 或 <code>||</code> 操作符做局部更新，避免全量覆盖丢失其他字段。例如：<code>state = state || '{"step": 3}'::jsonb</code>。</li>
+<li>Worker 崩溃后 <code>running</code> 状态的任务会变成「僵尸任务」，需要后台定时任务扫描超时（如 5 分钟未更新）的 <code>running</code> 任务，重置为 <code>pending</code>。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入任务优先级字段 <code>priority</code>，抢占 SQL 中 <code>ORDER BY priority DESC, created_at</code>，高优先级任务优先消费。</li>
+<li>对 <code>agent_type</code> 做分区表（如按天分区），历史任务自动归档到冷存储，保持热表小而快。</li>
+<li>结合 Redis 做二级缓存：Worker 抢到任务后先将状态写入 Redis（低延迟），异步批量同步到 PG，减少 PG 写压力。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agentic-RAG</code> <code>延迟优化</code> <code>Token成本</code> <code>反思机制调优</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你负责的 Agentic RAG 系统上线后暴露出两个核心问题：①端到端平均延迟 15 秒，用户投诉严重（传统 RAG 仅需 2-3 秒）；②Token 消耗是上线前预估的 4 倍，月度 API 账单远超预算。经排查发现：Agent 对每个查询都触发完整的多跳推理和反思循环（文档打分 → 幻觉检测 → 完备性验证），即使对简单问题也不例外；且每轮迭代的 Prompt 中都重复注入完整的历史检索上下文。请给出系统化的排障与优化方案。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：分析延迟来源——Agentic RAG 的延迟主要来自多次 LLM 思考（意图判断 + 子问题拆解 + 文档打分 + 幻觉检测 + 完备性验证 + 最终生成），每次 LLM 调用 2-3 秒，6 次调用叠加即 12-18 秒。</li>
+<li>第二步：分析 Token 消耗来源——每轮迭代的 Prompt 中重复注入完整历史检索上下文（所有 Chunk 文本 + 历史对话），导致 Input Token 阶梯式增长，反思循环 3 轮后 Token 量可达初始的 5-8 倍。</li>
+<li>第三步：设计分级分流策略——简单问题走轻量路径（跳过反思），复杂问题才走完整 Agentic 流程。</li>
+<li>第四步：优化上下文注入策略——压缩历史上下文，避免全量重复注入。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>优化一：动态意图路由——分级分流（降低 60% 延迟和 Token）</strong></p>
+<p>核心思路：不是所有问题都需要 Agentic RAG，在入口处加一个轻量级的意图分类器。</p>
+<pre><code>用户问题 → 意图分类器（轻量小模型 / 规则匹配）
+                ├── 简单事实查询（如&quot;年假多少天&quot;）
+                │       → 传统 Advanced RAG（单次检索 + 生成，2-3秒）
+                ├── 跨文档比对（如&quot;对比A和B的报销政策&quot;）
+                │       → Agentic RAG 多跳推理（完整流程）
+                └── 结构化数据查询（如&quot;去年的财务报表&quot;）
+                        → 路由到 SQL 数据库（跳过向量检索）
+</code></pre>
+<p>意图分类器可以用一个微调过的小模型（如 Qwen-1.5B）或基于 Embedding 相似度的规则匹配实现，延迟 &lt;200ms，远低于让大模型自己判断。</p>
+<p><strong>优化二：反思机制条件触发（降低 30% 延迟）</strong></p>
+<p>将「文档打分 → 幻觉检测 → 完备性验证」三步反思从「必执行」改为「条件触发」：</p>
+<ul>
+<li><strong>文档打分</strong>：只在检索返回 Top-K 结果的相似度分数差异不大（如 Top-1 和 Top-2 分差 &lt;0.05）时触发，说明检索结果不确定，需要质检。如果 Top-1 分数远高于其他，直接信任。</li>
+<li><strong>幻觉检测</strong>：只在最终回答的长度超过阈值（如 500 Token）或包含具体数字、日期等高风险信息时触发。</li>
+<li><strong>完备性验证</strong>：只在用户问题包含「列举」「对比」「总结」等需要多要点覆盖的关键词时触发。</li>
+</ul>
+<p><strong>优化三：上下文压缩与增量注入（降低 50% Token 消耗）</strong></p>
+<pre><code class="language-python"># 错误做法：每轮迭代都注入完整历史上下文
+prompt = f&quot;&quot;&quot;
+历史检索结果：{all_retrieved_chunks}  # 每轮都全量注入
+历史对话：{full_chat_history}          # 每轮都全量注入
+当前问题：{query}
+&quot;&quot;&quot;
+
+# 正确做法：增量注入 + 摘要压缩
+prompt = f&quot;&quot;&quot;
+上一轮检索摘要：{summarize(previous_chunks)}  # 用小模型压缩为 1-2 句话
+当前轮检索结果：{current_chunks}                 # 只注入本轮新增
+当前问题：{query}
+&quot;&quot;&quot;
+</code></pre>
+<p>对历史检索结果做摘要压缩（用轻量模型如 GPT-3.5 或本地小模型），将 2000 Token 的 Chunk 压缩为 200 Token 的摘要，每轮迭代只注入上一轮的摘要 + 本轮的新检索结果，而非全量历史。</p>
+<p><strong>优化四：缓存检索结果与中间推理</strong></p>
+<ul>
+<li>对高频问题的检索结果做缓存（Redis），相同语义的 Query 直接返回缓存的 Chunk，跳过向量检索。</li>
+<li>对 Agent 的推理过程（如子问题拆解结果）做缓存，相同问题的拆解方案可复用。</li>
+</ul>
+<p><strong>优化效果预估：</strong></p>
+<table>
+<thead>
+<tr>
+<th>优化项</th>
+<th>延迟降低</th>
+<th>Token 降低</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>动态意图路由</td>
+<td>60%（简单问题跳过反思）</td>
+<td>50%（简单问题少调 LLM）</td>
+</tr>
+<tr>
+<td>反思条件触发</td>
+<td>30%（减少不必要的 LLM 调用）</td>
+<td>25%（减少反思轮次的 Token）</td>
+</tr>
+<tr>
+<td>上下文压缩</td>
+<td>10%（Prompt 变短，生成更快）</td>
+<td>40%（每轮注入量大幅减少）</td>
+</tr>
+<tr>
+<td><strong>综合</strong></td>
+<td><strong>从 15s 降至 4-5s</strong></td>
+<td><strong>从 4x 降至 1.5x</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>意图分类器的准确率直接影响用户体验，误判会导致简单问题走重路径（浪费资源）或复杂问题走轻路径（回答质量差）。建议上线初期保留人工反馈通道，持续优化分类器。</li>
+<li>上下文压缩可能丢失关键细节（如具体数字、人名），摘要模型必须被提示「保留所有数字、日期、专有名词」，或者在摘要后附加原文的关键实体抽取结果。</li>
+<li>反思机制的条件触发阈值需要基于线上数据持续调优，初期可以设置较保守的阈值（宁可多触发），逐步收紧。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入异步流式输出——Agent 在检索完成后立即开始流式生成回答，同时后台异步执行幻觉检测。如果检测发现问题，再中断并重写，用户无需等待反思完成才看到第一个 Token（优化 TTFT）。</li>
+<li>对多跳推理的子问题做并行检索——如果问题被拆解为子问题 A 和 B，且两者无依赖，可并发检索，而非串行。</li>
+<li>建立 Token 消耗监控看板，按 Query 类型、用户、时间段维度统计 Token 消耗，发现异常使用（如某用户单次对话消耗 10 万 Token）及时告警。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>HR智能客服</code> <code>富文本PDF解析</code> <code>多租户隔离</code> <code>动静分离存储</code> <code>自定义ID</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你需要从 0 到 1 交付一套面向多外包公司的 HR 智能客服 Agent 系统。业务背景：服务 5+ 外包公司（如华为外包、腾讯外包），每家公司有独立的入职手册、体检规范、表单填写指南等 PDF 文档（含表格和流程图）。需求：①多租户数据隔离，A 公司员工不能查到 B 公司的知识；②支持富文本问答（用户问「表单第三步怎么做」时，能返回流程图截图）；③文档更新时可精确替换旧内容，不留垃圾数据；④Agent 运行时需要记住用户会话历史。请给出完整的系统架构设计、数据流水线、存储选型和核心模块实现思路。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：存储架构选型——采用「动静分离」混合架构。静态知识库（PDF 文档切片）用专用向量数据库（如 Milvus / VikingDB），动态会话状态用 PostgreSQL JSONB。</li>
+<li>第二步：设计富文本 PDF 解析流水线——两步走策略：第一步物理剥离（版面感知 + 图片裁剪 + 占位标记），第二步语义理解（切片 + 向量化 + 图片描述生成）。</li>
+<li>第三步：设计自定义组合 ID 体系——<code>id = 租户ID # 文档ID # chunk_序号</code>，实现多租户安全隔离和精确内容维护。</li>
+<li>第四步：设计运行时数据流——Agent 先查 PG 获取会话历史，再查向量库获取知识，组装 Prompt 生成回答。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>一、存储架构：动静分离混合架构</strong></p>
+<pre><code>┌─────────────────────────────────────────────────┐
+│                   AI Agent (LLM)                 │
+└───────────┬─────────────────────┬────────────────┘
+            │                     │
+   1. 读取会话历史(精确点查)     2. 检索知识(语义相似度)
+            ▼                     ▼
+  ┌──────────────────┐   ┌──────────────────────┐
+  │  PostgreSQL      │   │  专用向量数据库        │
+  │  (动态/轻量状态)  │   │  (静态/重型知识库)     │
+  │                  │   │                      │
+  │  · 会话历史       │   │  · 文档 Chunk 向量     │
+  │  · Agent 状态     │   │  · 图片 URL 标量字段   │
+  │  · 任务链         │   │  · 多租户过滤条件     │
+  │  (JSONB + GIN)   │   │  (HNSW 索引)         │
+  └──────────────────┘   └──────────────────────┘
+</code></pre>
+<p><strong>为什么这样拆分：</strong> 企业知识库是「静态、海量且重检索」的数据（千万级 Chunk），如果塞进 PG 会导致 HNSW 索引占用巨额内存，还会因为批量导入拖垮在线业务。而会话历史是「动态、高频且重事务」的数据（频繁 INSERT/UPDATE），如果灌入专用向量库，其 Compaction 和流式写入会面临巨大压力。</p>
+<p><strong>二、富文本 PDF 解析流水线（两步走）</strong></p>
+<p><strong>第一步：转 Markdown 阶段——物理剥离，占位标记</strong></p>
+<p>使用版面感知解析工具（如 MinerU），核心任务是「看懂结构，切分区块」，而非理解内容：</p>
+<ul>
+<li><strong>纯文本块</strong>：直接转为 Markdown 文本（<code>### 2. 社保公积金比例</code>）。</li>
+<li><strong>表格块</strong>：完整保留，转为标准 Markdown 表格格式（<code>| 城市 | 比例 |</code>）。</li>
+<li><strong>图片块</strong>：裁剪并上传到对象存储（TOS），得到 URL。在 Markdown 字符串中留占位符：<code>![表单填写示例截图](https://tos.volces.com/.../image_1.png)</code>。</li>
+</ul>
+<p>关键设计：这一步<strong>不调用大模型理解图片语义</strong>，只做物理剥离和 URL 生成。这样可以解耦——如果后续要调整图片描述的 Prompt，不需要重新解析 PDF。</p>
+<p><strong>第二步：切片与向量化阶段——语义理解，混合打包</strong></p>
+<pre><code class="language-python">from langchain.text_splitter import MarkdownHeaderTextSplitter
+
+# 按标题层级语义切片
+splitter = MarkdownHeaderTextSplitter(headers_to_split_on=[
+    (&quot;#&quot;, &quot;Header 1&quot;),
+    (&quot;##&quot;, &quot;Header 2&quot;),
+    (&quot;###&quot;, &quot;Header 3&quot;),
+])
+chunks = splitter.split_text(markdown_string)
+
+for i, chunk in enumerate(chunks):
+    chunk_text = chunk.page_content
+
+    # 检测是否包含图片占位符
+    image_urls = extract_image_urls(chunk_text)
+
+    if image_urls:
+        # 调用多模态大模型生成图片描述
+        for url in image_urls:
+            description = await vision_llm.describe_image(
+                url,
+                context=f&quot;前置文本：{chunk_text[:200]}...后置文本：{chunk_text[-200:]}&quot;
+            )
+            chunk_text = chunk_text.replace(url, f&quot;{url}\n[图片描述：{description}]&quot;)
+
+    # 生成自定义组合 ID
+    chunk_id = f&quot;{tenant_id}#{doc_id}#chunk_{i+1}&quot;
+
+    # 向量化
+    embedding = await embedding_model.embed(chunk_text)
+
+    # 写入向量库（文本向量 + 标量字段）
+    vikingdb.upsert(
+        id=chunk_id,
+        vector=embedding,
+        content=chunk_text,
+        tenant_id=tenant_id,
+        doc_id=doc_id,
+        image_url=image_urls[0] if image_urls else None  # 标量字段挂载图片 URL
+    )
+</code></pre>
+<p><strong>三、自定义 ID 体系与四大业务场景联动</strong></p>
+<p>统一公式：<code>id = 租户ID # 文档ID # chunk_序号</code></p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>联动机制</th>
+<th>底层实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多租户隔离检索</td>
+<td>提取 <code>tenant_id='huawei'</code></td>
+<td>检索时注入 <code>filter_expression="tenant_id == 'huawei'"</code>，倒排索引瞬间隔离</td>
+</tr>
+<tr>
+<td>图表上下文拼接</td>
+<td>命中 <code>chunk_3</code>（流程图）</td>
+<td>直接凭 ID 主键捞出 <code>chunk_2</code>（前文）和 <code>chunk_4</code>（后文），拼合喂给 LLM</td>
+</tr>
+<tr>
+<td>前端有图有真相</td>
+<td>检索到图片 Chunk</td>
+<td>从标量字段取出 <code>image_url</code>，前端聊天气泡直接渲染原图</td>
+</tr>
+<tr>
+<td>制度更新覆盖</td>
+<td>旧文档 5 片 → 新文档 3 片</td>
+<td><code>DELETE WHERE tenant_id=='huawei' AND doc_id=='entry_2026'</code>，再批量写入新 Chunk</td>
+</tr>
+</tbody>
+</table>
+<p><strong>四、运行时数据流</strong></p>
+<pre><code>用户：&quot;根据我昨天的提问，帮我查一下入职表单第三步&quot;
+    ↓
+Step 1: Agent 查 PostgreSQL（会话历史）
+    → SELECT * FROM chat_history WHERE user_id=? AND session_id=? ORDER BY created_at
+    → 获取&quot;昨天&quot;的对话上下文
+    ↓
+Step 2: Agent 检索向量库（知识检索）
+    → Embedding(&quot;入职表单第三步&quot;) → VikingDB 向量检索
+    → filter: tenant_id == 'huawei'
+    → 命中 chunk_3（流程图），顺带捞 chunk_2、chunk_4 拼接上下文
+    → 取出 image_url 标量字段
+    ↓
+Step 3: 组装 Prompt → LLM 生成回答
+    → &quot;历史会话 + 参考知识（含图片描述）+ 当前问题&quot;
+    ↓
+Step 4: 状态持久化写回 PG
+    → INSERT INTO chat_history (user_id, session_id, role, content)
+    → 更新 Agent State（当前执行步骤、中间结果）
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>第一步 PDF 解析时，图片裁剪必须保持原始坐标和顺序，否则第二步切片时图片占位符与上下文的顺序会错乱，导致大模型理解错误。</li>
+<li>自定义 ID 中的 <code>#</code> 分隔符需确保不会出现在租户 ID 或文档 ID 本身中，否则解析 ID 时会出错。建议租户 ID 和文档 ID 使用 UUID 或纯数字。</li>
+<li>向量库的 <code>filter_expression</code> 多租户过滤必须在向量检索<strong>之前</strong>生效（预过滤），而非检索后再过滤，否则会导致召回率下降（检索了 100 条但只有 3 条属于当前租户）。</li>
+<li>PostgreSQL 会话历史表需要设置 TTL 或定期归档策略（如 30 天前的会话归档到冷存储），避免表无限膨胀影响查询性能。</li>
+<li>文档更新覆盖时，必须先 DELETE 再 INSERT，不能先 INSERT 再 DELETE——否则在时间窗口内用户可能同时检索到新旧两份内容。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入 Agentic RAG 的反思机制：对用户的高敏感问题（如薪资、合同条款），在检索后增加文档打分和幻觉检测，确保回答 100% 有据可依。</li>
+<li>多租户层面增加 RBAC 权限细粒度控制——同一公司内，普通员工只能查看公开文档，HR 管理员可以查看内部规范文档，通过 PG 的行级安全策略（RLS）实现。</li>
+<li>对高频问题（如「体检去哪盖章」）建立缓存层——Redis 缓存 Query Embedding → 回答的映射，命中缓存直接返回，跳过向量检索和 LLM 调用，延迟降至 100ms 以内。</li>
+<li>图片描述的生成可以异步化——文档入库时先只存 URL 占位，后台异步任务逐步补充图片描述向量，不影响主流程上线速度。</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
