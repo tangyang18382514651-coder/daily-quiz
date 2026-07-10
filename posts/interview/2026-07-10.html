@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-07-10)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-07-10)</h1>
+    <div class="meta">更新于 2026-07-10 11:08</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
+🔄 知识片段：#18, #19, #20（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LangGraph</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在自媒体内容运营 Agent 中，运营人员对生成的文案不满意，输入了一条修改建议（如"语气太严肃了，多点 Emoji"），系统不需要从头重新跑整个工作流，而是只让文案 Agent 重新生成。这个"状态回溯 + 动态重路由"的机制在 LangGraph 中是如何实现的？核心原理是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LangGraph 通过 <code>graph.update_state()</code> 允许外部代码强行向状态机注入新数据，配合 <code>conditional_edges</code>（条件边）根据状态中的特定字段动态决定路由方向，实现无需重跑全流程的精准节点回溯。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><code>update_state()</code>：后端代码绕过大模型，直接将运营的 Feedback 写入当前 <code>thread_id</code> 对应的状态机中</li>
+<li><code>conditional_edges</code>：条件边在路由时检查状态中是否包含"运营反馈"字段，有则回退到文案 Agent 节点，无则走向发布节点</li>
+<li><code>thread_id</code> 作为唯一标识：定位到具体哪一条任务的图状态，实现精准回溯而非全局重跑</li>
+<li>状态保留：之前的热点抓取结果、行业筛选数据全部保留，只重跑"文案生成"这一个节点</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统做法中，如果用户对结果不满意，通常是把之前的上下文和新建议拼在一起重新调用大模型，这会导致 Token 成本翻倍且容易丢失中间步骤的结果。LangGraph 的状态回溯机制完全不同：它把工作流看作一个有向图，每个节点执行后会把结果写入一个共享的 State 对象。当运营提交修改建议时，后端调用 <code>graph.update_state()</code>，把 <code>{"feedback": "语气太严肃了，多点Emoji"}</code> 这个键值对直接注入到当前 <code>thread_id</code> 的 State 中。然后重新触发图的执行，<code>conditional_edges</code> 在路由判断时发现 State 里多了 <code>feedback</code> 字段，就不走向"发布"节点，而是把指针指回到"文案编排 Agent"节点。文案 Agent 拿到旧文案 + 新建议，重新生成。整个过程就像 Git 的 revert——不是重新 clone 仓库，而是回到某个 commit 重来。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调"状态回溯 ≠ 重新开始"：爬虫数据、筛选结果、合规检测结果全部保留，只重跑生成节点</li>
+<li>提到 <code>thread_id</code> 的设计价值：支持多用户并发，每个用户的状态互不干扰</li>
+<li>对比传统方案：不需要重新调用大模型从头跑整个流程，Token 成本大幅降低</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为需要重新调用大模型从头跑整个工作流，实际上只重跑目标节点</li>
+<li>误以为 <code>update_state()</code> 是大模型自身的推理能力，实际上它是 LangGraph 框架层的工程能力</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>分词</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型只认数字不认文字，所以第一步必须把文本切分成 token。主流大模型（如 GPT 系列）普遍采用 BPE（字节对编码）分词算法。BPE 的核心原理是什么？它相比传统的按空格切词和按字符切有什么优势？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>BPE（Byte Pair Encoding）是一种子词级分词算法，通过统计语料中高频相邻字节对并迭代合并，在控制词表大小的同时解决未登录词（OOV）问题，是兼顾语义完整性和词表效率的折中方案。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>初始化：将所有文本拆分为最小单元（字符或字节）</li>
+<li>统计合并：统计所有相邻 token 对的出现频率，将最高频的 pair 合并为一个新 token</li>
+<li>迭代：重复统计→合并过程，直到词表大小达到预设目标（通常 3 万~10 万）</li>
+<li>编码：新文本按已学到的合并规则从长到短匹配切分</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统分词有两种极端：按空格切词（如 "unhappiness" 是一个 token），词表巨大且无法处理生词；按字符切（如 "u""n""h"…），词表小但完全丢失语义。BPE 在两者之间找到平衡：常见词（如"苹果"）整体作为一个 token，罕见词（如"饕餮"）拆成子词或字符。比如 "unhappiness" 可能被切为 "un" + "happiness"，即使模型从未见过完整词，也能通过子词片段推断语义。对于中文，BPE 通常将每个汉字作为基础单元，高频词组（如"劳动法"）可能合并为一个 token。词表大小控制在几万级别，远小于全词词表（可能上百万），同时覆盖率接近 100%。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到 BPE 本质是数据压缩算法在 NLP 领域的应用</li>
+<li>对比 WordPiece（BERT 用）：WordPiece 用似然度而非频率选择合并对，策略不同</li>
+<li>提到 Token 数量直接影响 API 调用成本，BPE 的压缩率直接影响企业的 Token 账单</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为分词就是按空格或标点切开，实际上 BPE 是基于统计的子词合并</li>
+<li>误以为词表越大越好，实际上 BPE 的核心价值就是在可控词表下最大化覆盖率</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>推理优化</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在大模型推理服务化部署中，vLLM 的 PagedAttention 技术被广泛采用。它与 FlashAttention 解决的是不同层面的问题。PagedAttention 的核心原理是什么？它解决了什么工程痛点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>PagedAttention 借鉴操作系统的虚拟内存分页机制，将 KV Cache 切分为固定大小的 Block 按需动态分配，消除显存碎片，使单台 GPU 能支撑的并发请求数翻倍甚至更多。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>传统方式：为每个请求预分配最大上下文长度的连续显存，即使实际只用了 200 token 也占满 2048 的空间</li>
+<li>分页机制：将 KV Cache 切分为固定大小的 Block（如每页存 16 个 token 的 KV）</li>
+<li>按需分配：请求用多少 token 就分配多少页，逻辑上连续的序列物理上可散落在不同页中</li>
+<li>Block Table：类似 OS 页表，记录逻辑序列到物理 Block 的映射关系</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>大模型推理时，每个请求都需要缓存历史 token 的 Key 和 Value 矩阵（KV Cache）。传统做法是预分配一块连续显存，假设上下文窗口 2048，即使实际对话只有 200 个 token，也占满 2048 的空间。更严重的是，当请求结束后释放的显存块大小不一，新请求可能放不进去（显存碎片）。实测中传统方式的显存浪费可达 60%-80%。PagedAttention 把显存切成固定大小的 Block，KV Cache 按需申请：对话 200 个 token 就分配约 13 个 Block，对话 2000 个 token 就分配约 125 个 Block。逻辑上序列是连续的，物理上散落在各个 Block 中，通过 Block Table 映射。这样显存利用率从 20% 飙升到 96% 以上，单卡并发量直接翻倍。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>明确区分：FlashAttention 优化的是<strong>计算层</strong>（减少 HBM 读写），PagedAttention 优化的是<strong>存储层</strong>（显存碎片管理）</li>
+<li>提到 Continuous Batching（连续批处理）是 vLLM 高吞吐的另一杀手锏，与 PagedAttention 配合使用</li>
+<li>提到 PagedAttention 解决的是 LLM 推理特有的"变长序列"显存管理难题，传统 CV/NLP 不存在这个问题</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 PagedAttention 是注意力算法的改进，实际上它纯粹是显存管理层面的工程优化</li>
+<li>混淆 FlashAttention 和 PagedAttention 的定位：前者管"算得快"，后者管"装得多"</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>工程架构</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 Agent 系统的 Docker 容器化部署中，发布新版本时不能直接杀掉老进程，否则在途的长文本生成任务会丢失。FastAPI 的 Lifespan 异步生命周期管理器如何实现优雅终止（Graceful Shutdown）？核心机制是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>FastAPI 的 Lifespan 通过异步上下文管理器在 yield 之后捕获 SIGTERM 信号，阻塞进程退出，循环等待在途任务计数器归零后才安全关闭，实现发布时用户无感知的无损更新。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Lifespan 分两阶段：yield 之前是启动逻辑（初始化连接），yield 之后是关闭逻辑（清理资源）</li>
+<li>SIGTERM 信号：容器编排工具（Docker/K8s）停止容器时先发 SIGTERM，而非直接 SIGKILL</li>
+<li>计数器机制：用 <code>active_tasks</code> 变量记录当前正在处理的任务数，每完成一个减一</li>
+<li>阻塞退出：关闭逻辑中循环检查 <code>active_tasks &gt; 0</code>，只要还有任务就 <code>await asyncio.sleep(1)</code> 等待</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>Agent 系统中，大模型生成长文本或配图可能耗时数十秒。如果发布新版本时 Docker 直接 kill 进程，正在生成的文案会丢失，用户看到的是中断错误。通过 Lifespan，应用在 yield 后进入关闭逻辑：当容器收到 SIGTERM 信号时，Lifespan 的关闭代码开始执行。此时 <code>active_tasks</code> 计数器记录了当前有多少个请求正在处理，代码进入 while 循环：只要 <code>active_tasks &gt; 0</code>，就每隔 1 秒检查一次，直到所有任务完成并持久化到数据库后才退出。同时网关层配合，收到 SIGTERM 后不再向该实例转发新请求。整个过程对用户透明——他只感觉回复慢了几秒，不会看到任何错误。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>明确 SIGTERM vs SIGKILL：SIGTERM 是"通知你该下班了"，SIGKILL 是"直接拔电源"</li>
+<li>提到 Lifespan + Checkpointer 配合：在途任务的状态必须先持久化落库再退出，否则下次恢复无法续跑</li>
+<li>提到与 K8s 的 <code>terminationGracePeriodSeconds</code> 配合：设置合理的宽限期（如 30s），超时后 K8s 才会发 SIGKILL</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 Lifespan 只是用来初始化数据库连接的，忽略其关闭阶段的工程价值</li>
+<li>误以为 Docker stop 就是直接杀进程，实际上 Docker stop 先发 SIGTERM，等待超时后才 SIGKILL</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>容器编排</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在多 Agent 集群架构中，系统被拆分为底层 MCP Server（RAG 检索、LLM 调用等）、中间网关、上层业务 Agent 三层。Docker Compose 的 <code>depends_on</code> + <code>service_healthy</code> 如何实现分层发布？为什么不能同时启动所有服务？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Docker Compose 通过 <code>depends_on</code> 声明服务依赖关系，配合 <code>condition: service_healthy</code> 等待健康检查通过后才启动依赖方，确保底层 MCP Server 就绪后网关才启动、网关就绪后业务应用才启动的严格拓扑顺序。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><code>depends_on</code>：声明服务间依赖，被依赖的服务先启动</li>
+<li><code>condition: service_healthy</code>：不仅等容器进程启动，还要等 <code>healthcheck</code> 端点返回健康状态</li>
+<li><code>healthcheck</code>：定义检查命令（如 <code>curl -f http://localhost:8001/health</code>）、间隔和重试次数</li>
+<li>拓扑顺序：MCP Server → API Gateway → Business Agent，逐层启动</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果同时启动所有服务，上层业务 Agent 在启动时会尝试连接网关，网关还没起来就连接失败；网关启动时尝试连接底层 MCP Server，MCP 还在初始化 RAG 索引，连接超时。整个系统在启动瞬间大面积报错，甚至触发级联重试导致雪崩。通过 <code>depends_on</code> + <code>service_healthy</code>，Docker Compose 会先启动 mcp-rag-server，每 5 秒检查一次 <code>/health</code> 端点，连续 3 次返回 200 后才认为它健康，然后启动 api-gateway；网关健康检查通过后，最后才启动 media-agent-app。这种分层发布还天然支持回滚：如果上层启动失败，底层不需要回滚，只需修复上层重新发布。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调 <code>service_healthy</code> 比 <code>service_started</code> 更强：后者只等容器进程启动，不等服务真正就绪</li>
+<li>提到生产环境通常用 K8s 的 <code>initContainers</code> 或 Helm hooks 实现类似逻辑</li>
+<li>提到分层发布天然支持灰度：底层稳定不动，只更新上层业务逻辑</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 <code>depends_on</code> 默认就会等健康检查，实际上默认只等容器进程启动（<code>service_started</code>）</li>
+<li>误以为所有服务都要配 <code>depends_on</code>，实际上只有有依赖关系的才需要</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Transformer</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Transformer 的 Decoder 块中，每一层都包含"残差连接 + 层归一化"（Residual Connection + Layer Normalization）。这两个机制各自的核心作用是什么？为什么说它们是 Transformer 能堆叠数十上百层的关键？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>残差连接通过将输入直接加到子层输出上（x + Sublayer(x)）构建梯度回传的"高速公路"，防止深层网络梯度消失；层归一化将每层输出拉回标准分布消除内部协变量偏移，两者配合使 Transformer 能稳定堆叠 96 层甚至更深。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>残差连接：输出 = Sublayer(x) + x，梯度可以绕过 Sublayer 直接回传到前层</li>
+<li>层归一化：对单个样本的所有特征维度做均值 0、方差 1 的归一化</li>
+<li>组合形式：<code>LayerNorm(x + Sublayer(x))</code>（Post-LN）或 <code>x + Sublayer(LayerNorm(x))</code>（Pre-LN）</li>
+<li>两者配合：残差解决"梯度回不去"，LN 解决"分布不稳定"</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>GPT-3 有 96 层 Decoder。如果没有残差连接，梯度在反向传播经过 96 层后会指数级衰减（梯度消失），底层参数几乎无法更新。残差连接相当于在每层修了一条"旁路"：输出 = 变换(x) + x，梯度可以走变换路径也可以走旁路直接回传，保证底层梯度不消失。层归一化则解决另一个问题：深层网络中每层输出的分布会随训练不断漂移（内部协变量偏移），后续层面对的是不断变化的输入分布，学习困难。LN 把每层输出拉回均值 0、方差 1 的标准分布，让训练更稳定。现代大模型多采用 Pre-LN（先归一化再变换），虽然表达能力略有不同，但训练稳定性更好，不容易梯度爆炸。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>对比 LayerNorm 和 BatchNorm：LN 对单个样本所有维度归一化（适合变长序列），BN 对一个 batch 的同一维度归一化（适合 CV）</li>
+<li>提到残差连接的灵感来自 ResNet（何恺明 2015），本质是学习"恒等映射的残差"</li>
+<li>提到 Pre-LN vs Post-LN：现代大模型多用 Pre-LN，训练更稳定但可能牺牲一点表达能力</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为残差连接是为了"保留原始信息"，实际上核心价值是梯度回传通道</li>
+<li>误以为 LayerNorm 和 BatchNorm 可以互换，实际上 LN 更适合序列模型（batch size 小、序列变长）</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>预训练</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型预训练阶段的核心目标是"自回归预测下一个 token"。输入"我喜欢吃"，目标是预测"喜欢 吃 苹果"。这种看似简单的任务为什么能让模型学会语言规律甚至世界知识？核心原理是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>预训练通过自回归方式让模型在海量文本上反复做"预测下一个词"的任务，模型为了预测准确必须学习语法规则、语义关联和世界知识，本质是用无监督方式压缩人类语言中的统计规律和隐性知识。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>因果注意力（Causal Attention）：每个 token 只能看到前面的 token，看不到后面的</li>
+<li>Teacher Forcing：训练时用真实序列的下一个 token 作为标签，不用模型自己的预测</li>
+<li>交叉熵损失：衡量预测概率分布与真实 one-hot 分布的差异</li>
+<li>反向传播 + AdamW：不断更新权重 W，让预测越来越准</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>模型看到"我喜欢吃"三个 token，要预测下一个 token。一开始模型输出是均匀分布（每个词概率差不多），经过反向传播调整权重，逐渐让"苹果"的概率变高。在万亿级 token 的训练数据中，模型不仅学会了"主谓宾"的语法规则，还隐式记忆了世界知识：比如看到"巴黎是法国的"后预测"首都"，模型就记住了巴黎和法国的关系。这种"预测下一个词"看似简单，但在海量数据训练后，模型涌现出了推理、翻译、总结等能力——这是大模型的哲学核心：简单目标 + 海量数据 = 复杂能力。预训练的本质不是让模型"背诵"知识，而是让模型学习语言中隐含的统计模式和知识关联。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到涌现能力（Emergence）：参数量和数据量达到某个阈值后，模型突然展现出未训练过的能力</li>
+<li>对比 BERT 的掩码语言模型（MLM）：BERT 双向看（完形填空），GPT 单向看（续写），各有优劣</li>
+<li>提到预训练的"压缩"本质：万亿 token 压缩成千亿参数的权重，是一种有损知识压缩</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为预训练是让模型"背诵"训练数据中的知识，实际上是学习统计规律和模式</li>
+<li>误以为模型真的"理解"语言，实际上它是基于概率分布的生成</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>架构设计</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某自媒体内容运营项目采用"数据采集层 → 智能筛选层 → Agent 决策层 → 内容生成交付层"的四层企业级 Agent 架构。这种分层架构的核心设计逻辑是什么？每层的职责边界如何划分？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>四层架构将内容生产全链路拆解为数据获取、行业降噪、智能决策、内容交付四个独立阶段，每层职责单一、可独立迭代，通过分层解耦实现从"人工找热点写文案"到"全自动流水线生产"的效率跃升。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>数据采集层：Playwright 动态渲染爬虫 + 开源 SDK，定时抓取热榜、爆款笔记，负责防封禁、Cookie 维持、增量更新</li>
+<li>智能筛选层：自建行业白名单/黑名单词库 + 语义相似度算法，过滤无关内容，只保留垂直领域可复用热点</li>
+<li>Agent 决策层：基于 LangGraph 多节点工作流，包含热点研判、创作角度决策、风格适配、合规自检四个节点</li>
+<li>内容生成层：垂直领域 Prompt 工程，自动输出标题 + 首图文案 + 正文 + 话题 Tag + 排版 Emoji</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统内容生产依赖运营人员的个人经验：人工找热点→人工判断是否相关→人工写文案，效率低且质量不稳定。四层架构将每个环节标准化和自动化：采集层用爬虫替代人工刷小红书；筛选层用语义相似度算法替代人工判断"这个热点和我们行业有没有关系"——比如"打工人维权"不含"劳动法"三个字，但语义高度相关会被保留，"某明星离婚"则被丢弃；决策层用 LangGraph 工作流替代运营的脑力判断——自动决定是从企业 HR 视角还是打工人视角来写；生成层用垂直化 Prompt 替代人工排版。每层可独立优化：采集层增加数据源不影响筛选层，筛选层更新词库不影响决策层。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调四层架构的核心价值是"解耦"：每层职责单一，可独立迭代和替换</li>
+<li>提到合规自检节点的工程价值：在生成前自动检测劳动法敏感表述，规避违规风险</li>
+<li>提到定时调度策略：9 点抓取→12 点补抓→13 点生成→14 点复核→15 点发布，全链路自动化</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 Agent 架构就是"大模型 + Prompt"，实际上数据采集和筛选层的工程量远大于模型调用</li>
+<li>误以为筛选层只做关键词匹配，实际上用的是语义相似度算法处理隐含关联</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>安全鉴权</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Agent 在执行定时自动化任务（如凌晨自动跑盘点）时，没有具体的人在场操作，需要用服务账号模式（Machine-to-Machine）进行鉴权。其中 HMAC-SHA256 动态签名的核心原理是什么？它比直接传密码安全在哪里？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>HMAC-SHA256 是一种基于密钥的哈希消息认证码算法，Agent 用持有的 AppSecret 对"时间戳+随机数+请求参数"计算签名，签名随请求发送但 AppSecret 永不传输，即使请求被截获攻击者也无法伪造合法请求。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Agent 持有 AppKey（身份标识，可公开）和 AppSecret（密钥，永不传输）</li>
+<li>每次请求时用 AppSecret 对"时间戳 + 随机数 + 请求参数"做 HMAC-SHA256 运算，生成动态 Signature</li>
+<li>后台用同样的 AppSecret 重新计算签名并比对，一致则放行</li>
+<li>时间戳防重放攻击（超过 5 分钟窗口的请求拒绝），随机数防相同请求产生相同签名</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果直接传密码，攻击者截获一次请求就能拿到密码，后续可以任意伪造请求。HMAC-SHA256 的核心思想是：双方共享一个密钥（AppSecret），用它对消息做哈希。哈希是单向的——无法从签名反推密钥。即使攻击者截获了完整的请求（包括 AppKey、时间戳、随机数、Signature），没有 AppSecret 也无法生成新的合法签名。比如攻击者想伪造一个"删除所有数据"的请求，他必须知道 AppSecret 才能算出正确的 Signature，而 AppSecret 从未在网络上出现过。时间戳还设置了有效期窗口（如 5 分钟），截获的请求过了窗口就无法重放。这种机制广泛应用于 AWS API、微信支付、支付宝接口等高安全场景。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调 AppSecret 存储在环境变量或 HashiCorp Vault 等凭据中心，绝不写在 Prompt 或代码里</li>
+<li>提到最小权限原则：Agent 的服务账号只授予所需最小权限（如只读库存），不给写权限或超管权限</li>
+<li>对比 JWT：JWT 是携带凭证的令牌模式（有有效期），HMAC 是每次动态签名（无状态）</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 AppKey 就是密码，实际上 AppKey 只是身份标识（类似用户名），AppSecret 才是密钥</li>
+<li>误以为有 HTTPS 就不需要签名，实际上 HTTPS 防传输窃听，签名防请求伪造和重放</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>语义检索</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在垂直领域 Agent 的"行业过滤 &amp; 语义筛选层"中，通过自建白名单词库（社保、劳动法、仲裁）和黑名单词库（娱乐、情感、明星），配合语义相似度算法进行降噪。语义相似度相比传统关键词匹配的核心优势是什么？双向过滤的设计逻辑是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>语义相似度通过将文本向量化后计算余弦距离，能识别同义词、近义词和隐含语义关联（如"打工人维权"与"劳动法"语义相近），相比关键词匹配大幅提升召回率和准确率；白名单+黑名单双向过滤确保既不漏掉有价值内容也不放行无关噪音。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>白名单匹配：热点话题与行业词库的语义相似度高于阈值 → 保留</li>
+<li>黑名单排除：热点话题与黑名单词库的语义相似度高于阈值 → 丢弃</li>
+<li>双向过滤：必须同时满足"白名单高相似度 AND 黑名单低相似度"才保留</li>
+<li>向量化：将文本通过 Embedding 模型转为高维向量，计算余弦相似度</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>从小红书抓取的热榜内容鱼龙混杂。简单关键词匹配有两个致命问题：一是"打工人维权"不含"劳动法"三个字但高度相关，会被漏掉（召回率低）；二是"劳动法相关的明星八卦"含"劳动法"关键词但内容无关，会被误留（准确率低）。语义相似度将文本转为向量后，"打工人维权"与"劳动法/仲裁"在语义空间中距离很近（都涉及劳资纠纷），相似度分数高会被保留；而"某明星离婚"与 HR 词库的语义距离很远会被过滤。双向过滤的设计逻辑是：只做白名单匹配可能放行"既涉及劳动法又涉及娱乐"的混合内容，只做黑名单排除可能漏掉不含行业关键词但语义相关的内容，两者配合才能精准降噪。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到语义相似度的本质是向量空间中的距离度量，不是字面匹配</li>
+<li>提到词库需要持续维护和更新：跟随行业热点动态调整，如新增"灵活用工""劳务派遣"等新词</li>
+<li>提到阈值调参是关键：太高漏掉有价值内容，太低放行噪音，需要用标注数据集验证</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为只用关键词匹配就够了，实际上语义匹配才能处理同义词和隐含关联</li>
+<li>误以为只做白名单匹配就行，实际上没有黑名单排除，混合内容会污染结果</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>自媒体运营Agent</code> <code>四层架构</code> <code>定时调度</code> <code>行业过滤</code> <code>合规自检</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某 HR SaaS 公司要搭建一套自媒体内容运营 Agent 系统，要求每日自动抓取小红书热榜和职场垂类爆款笔记，筛选出 HR 行业相关热点，自动生成符合公司品牌风格的小红书文案（含标题、正文、话题 Tag、排版 Emoji、配图提示词），支持运营人员在前端微调或打回让大模型重写，最终统一发布。请设计这套系统的四层企业级 Agent 架构，并给出每日定时调度策略、行业过滤机制、合规自检节点和人工复核流程的完整设计。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：将系统拆分为「数据采集层 → 智能筛选层 → Agent 决策层 → 内容生成交付层」四层架构，每层职责单一、可独立扩展。</li>
+<li>第二步：设计定时调度策略，覆盖早间首抓、午间补抓、批量生成、人工复核、统一发布五个阶段。</li>
+<li>第三步：在智能筛选层引入 HR 行业专属白名单/黑名单词库 + 语义相似度算法，解决通用热点杂乱问题。</li>
+<li>第四步：在 Agent 决策层基于 LangGraph 构建多节点工作流，包含热点研判、内容角度决策、风格适配、合规自检四个核心节点。</li>
+<li>第五步：在内容生成层支持运营两种修改模式——前端直接改（方案 A）和 LangGraph 回溯重写（方案 B），并通过状态字段管理审批流。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>数据采集层</strong>：使用 Playwright 动态渲染爬虫 + XHS 开源 SDK，采集小红书热榜、职场垂类热搜、HR 赛道爆款笔记、同城职场热点。采集字段包括热点话题、热度值、爆款标题、标签、笔记风格、点赞收藏数据。工程上需实现定时自动爬取、防封禁（限速 + Cookie 会话维持 + 随机 User-Agent 轮换）、增量更新（避免重复抓取已入库话题）。</p>
+<p><strong>智能筛选层</strong>：自建 HR 行业专属词库。白名单包含：社保、劳动法、仲裁、求职、招聘、应届生、职场干货、企业用工、合规避坑等关键词。黑名单包含：娱乐、情感、明星、生活杂谈等无关内容。通过语义相似度算法（Embedding + 余弦相似度），只保留人力资源行业可复用热点，大幅降低后续大模型处理的噪声数据量。</p>
+<p><strong>Agent 决策层</strong>：基于 LangGraph 构建多节点智能工作流——<br />
+- 热点研判节点：判断热点是否适合人力企业账号发布（如劳动法政策热点适合，明星八卦不适合）。<br />
+- 内容角度决策节点：自动区分「企业 HR 视角 / 打工人视角 / 政策解读视角」，决定切入角度。<br />
+- 风格适配节点：自动匹配小红书轻量化、干货型、种草型文案风格。<br />
+- 合规自检节点：规避劳动法敏感表述、违规话术、极端言论，不合规的自动打回重写。</p>
+<p><strong>内容生成 &amp; 交付层</strong>：通过 HR 行业深度定制的 Prompt 工程，自动生成爆款标题 + 首图文案 + 正文全文 + 话题 Tag + 排版 Emoji。支持每日批量自动产出 3-8 篇垂直 HR 干货内容。生成后存入数据库，前端展示供运营复核。</p>
+<p><strong>定时调度策略</strong>：<br />
+- 09:00 首轮热点抓取（早间全网新鲜热榜，预留充足筛选匹配时长）<br />
+- 12:30 二次补抓更新（补充午间新晋热门话题，淘汰过气热点）<br />
+- 13:00-14:00 AI 批量生成内容（行业匹配、文案创作、排版打标）<br />
+- 14:00-14:50 人工复核微调（查漏补缺、规避违规话术、差异化调整）<br />
+- 15:00 正式统一发布</p>
+<p><strong>人工复核流程</strong>：<br />
+- 方案 A（前端直接改）：运营在富文本编辑器中直接修改错别字或措辞，点击保存，前端直接发起 HTTP 请求更新数据库中的文本字段和状态。不触发大模型调用，零成本零延迟。<br />
+- 方案 B（提意见让大模型重写）：运营输入修改建议（如"语气太严肃了，再多加点 Emoji，多点打工人的共鸣"），前端发送请求携带 Feedback 和当前 <code>thread_id</code>。后端通过 <code>graph.update_state()</code> 强行把运营建议写入当前状态机。利用 LangGraph 的 <code>conditional_edges</code>，系统发现当前状态里有了"运营反馈"，不走向发布节点，而是重新把图的指针指回到"文案编排 Agent"。文案 Agent 拿到旧文案 + 新建议，重新生成后吐给前端。满意后每天清掉线程，避免状态膨胀。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>爬虫防封禁是最大工程风险：必须做限速控制（每秒请求数上限）、Cookie 池轮换、异常重试退避策略，否则 IP 极易被封。</li>
+<li>行业词库需要持续维护：HR 行业热点会随政策变化（如新劳动法出台），词库必须支持运营在后台动态增删白/黑名单词条。</li>
+<li>合规自检节点必须独立于生成节点：不能让生成文案的大模型自己检查自己，应使用独立的合规 Prompt 或专用小模型做二次审查。</li>
+<li>方案 B 的 <code>thread_id</code> 生命周期管理：每天定时清理已完成的线程状态，否则 LangGraph 的 Checkpointer 会无限膨胀导致数据库性能下降。</li>
+<li>生成数量通过接口配置控制：避免一次生成过多导致大模型 API 限流或 Token 成本失控。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入大小模型协同：热点研判和行业过滤等分类任务下放到轻量化小模型（如 Qwen 低参数版），只有文案创作环节路由给豆包等大模型，降低 70% 的 Token 成本。</li>
+<li>接入 LLM-as-a-Judge 自动评测：每次生成的文案自动跑 Groundedness 和 Faithfulness 指标打分，低于阈值的自动打回重写，减少人工复核工作量。</li>
+<li>多平台扩展：架构设计上数据采集层和内容生成层解耦，未来可扩展抖音、微信公众号等平台的采集和发布能力，只需新增对应的采集器和风格适配 Prompt。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>LangGraph回溯</code> <code>状态机重写</code> <code>conditional_edges</code> <code>人工反馈闭环</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在自媒体内容运营 Agent 系统中，运营人员对 AI 生成的文案不满意时有两种修改方式。方案 A：运营在前端富文本编辑器中直接修改错别字和措辞，点击"保存"即完成。方案 B：运营提一条修改建议（如"语气太严肃了，再多加点 Emoji，多点打工人的共鸣"），让大模型基于旧文案 + 新建议重新生成。请深入分析这两种方案的核心技术差异、各自的数据流转路径，以及方案 B 中 LangGraph 状态回溯和条件边重路由的完整执行链路。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：明确两种方案的本质差异——方案 A 是纯工程层面的 CURD 操作，不触发大模型推理；方案 B 是利用 LangGraph 的状态机回溯能力，让大模型重新参与生成。</li>
+<li>第二步：分析方案 A 的数据流——前端编辑器 → HTTP 请求 → 后端直接更新数据库文本字段 + 状态字段，全程不经过大模型。</li>
+<li>第三步：拆解方案 B 的完整执行链路——前端携带 Feedback + thread_id → 后端 <code>graph.update_state()</code> 写入状态 → <code>conditional_edges</code> 检测到运营反馈 → 重路由到文案编排 Agent → 大模型重写 → 返回前端。</li>
+<li>第四步：对比两种方案的适用场景、成本和延迟差异。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>方案 A：前端"肉眼修改"的技术路径</strong></p>
+<p>方案 A 本质上不需要重新调用大模型，是纯传统的 Web CURD 操作。运营在富文本编辑器中直接修改错别字或微调措辞，点击"保存"后，前端发起一个普通的 PUT/PATCH 请求，把修改后的最终文本和当前文案 ID 传给后端。后端直接执行 SQL UPDATE，更新数据库中对应记录的 <code>content</code> 字段和 <code>status</code> 字段（如从"待审核"改为"已通过"）。整个过程零 Token 消耗、毫秒级响应，适合修改错别字、调整标点、替换个别词汇等微调场景。</p>
+<p><strong>方案 B：提意见让大模型"重新生成"的完整链路</strong></p>
+<p>方案 B 是整个项目最硬核的亮点，它利用了 LangGraph 的状态机回溯和条件边重路由能力：</p>
+<ol>
+<li>
+<p><strong>前端发送请求</strong>：运营在前端输入修改建议"语气太严肃了，再多加点 Emoji，多点打工人的共鸣"，前端将这条建议（Feedback）和当前任务的唯一标识 <code>thread_id</code> 一起发送给后端接口。</p>
+</li>
+<li>
+<p><strong>后端触发 LangGraph 回溯</strong>：后端收到请求后，不直接调用大模型，而是通过 <code>graph.update_state()</code> 强行把运营的建议写入到当前 LangGraph 状态机的上下文中。这一步的关键在于——LangGraph 的状态机是可回溯的，你可以在任意节点向状态中注入新数据，然后让图从某个节点重新执行。</p>
+</li>
+<li>
+<p><strong>重新路由（conditional_edges）</strong>：LangGraph 的条件边机制会检查当前状态。系统发现当前状态里多了一个"运营反馈"字段，于是不走向默认的"发布节点"，而是重新把图的执行指针指回到"文案编排 Agent"节点。这就是条件边的核心价值——下一步走向哪个节点不是硬编码的，而是由当前状态动态决定的。</p>
+</li>
+<li>
+<p><strong>大模型重写</strong>：文案编排 Agent 节点被重新激活后，它拿到的上下文包括：之前生成的旧文案 + 运营的新建议。大模型基于这些信息重新生成文案，保持原文的核心信息不变，但调整语气、增加 Emoji、增强打工人共鸣感。生成完成后，可能还会经过合规自检节点再次审查，最终将新文案吐给前端展示。</p>
+</li>
+<li>
+<p><strong>状态清理</strong>：运营满意后，系统每天定时清掉这个 <code>thread_id</code> 对应的线程状态，避免 LangGraph 的 Checkpointer 中状态数据无限膨胀。</p>
+</li>
+</ol>
+<p><strong>两种方案的核心差异对比</strong></p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>方案 A（前端直接改）</th>
+<th>方案 B（LangGraph 回溯重写）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否调用大模型</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Token 成本</td>
+<td>零</td>
+<td>有消耗</td>
+</tr>
+<tr>
+<td>响应延迟</td>
+<td>毫秒级</td>
+<td>秒级（取决于大模型推理速度）</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>错别字、标点、个别词汇微调</td>
+<td>风格调整、语气改变、方向性修改</td>
+</tr>
+<tr>
+<td>技术复杂度</td>
+<td>普通 CURD</td>
+<td>状态机回溯 + 条件边重路由</td>
+</tr>
+<tr>
+<td>数据流</td>
+<td>前端 → 数据库</td>
+<td>前端 → 状态机 → 大模型 → 数据库</td>
+</tr>
+</tbody>
+</table>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>方案 B 中 <code>graph.update_state()</code> 注入的状态字段必须有明确的 key 名称（如 <code>operator_feedback</code>），且 <code>conditional_edges</code> 的路由判断函数必须能正确识别这个 key 是否存在且非空，否则会导致路由逻辑混乱。</li>
+<li>方案 B 重写后必须重新走合规自检节点：运营的建议可能导致大模型生成含有敏感表述的内容（如"打工人共鸣"可能触发劳动法敏感词），必须重新过一遍合规检查。</li>
+<li><code>thread_id</code> 的生命周期管理至关重要：方案 B 每次重写都会在 Checkpointer 中追加状态快照，如果不定期清理，PostgreSQL 或 Redis 中的状态数据会指数级膨胀。建议设置 TTL 或每日定时清理已完成任务的线程。</li>
+<li>前端需要区分两种保存按钮：方案 A 是"保存修改"，方案 B 是"重新生成"，避免运营误操作。方案 B 重新生成会覆盖旧文案，应提供"对比查看"功能让运营确认是否接受新版本。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入版本管理：每次方案 B 重写时，不覆盖旧文案，而是生成一个新版本（version + 1），运营可以在历史版本中对比选择最优版本。</li>
+<li>支持多轮反馈：运营可以连续提多条建议（如先改语气，再改标题），LangGraph 状态机可以累积多条 Feedback 后一次性重写，减少大模型调用次数。</li>
+<li>引入 A/B 测试机制：将方案 A 的人工修改版本和方案 B 的大模型重写版本同时发布到不同账号，通过数据回收（点赞、收藏、评论）自动评估哪种修改方式效果更好，反哺优化 Prompt。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>FastAPI Lifespan</code> <code>SIGTERM</code> <code>优雅关闭</code> <code>Docker Compose</code> <code>分层发布</code> <code>healthcheck</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你的分布式 Agent 集群拆分为 4 个独立 MCP Server（LLM 调用、RAG 检索、会话记忆、Prompt 管理）+ API 网关 + 上层业务应用。在发布新版本时，要求做到：① 老服务器不能直接拔电源，必须等在途的长文本生成和配图任务完成后才能关闭；② 底层 MCP 服务必须先启动并通过健康检查后，网关才能发布，网关健康后业务应用才能发布。请给出 FastAPI Lifespan 优雅关闭的核心代码实现，以及 Docker Compose 按依赖拓扑分层发布的编排配置。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：在 FastAPI 应用入口引入 <code>asynccontextmanager</code> 装饰的 <code>lifespan</code> 异步生命周期管理器，在 <code>yield</code> 之后的代码块中捕获 SIGTERM 信号。</li>
+<li>第二步：使用全局计数器 <code>active_tasks</code> 跟踪当前正在处理的任务数量，在收到终止信号后阻塞进程关闭，循环等待计数器归零。</li>
+<li>第三步：在 Docker Compose 编排文件中，利用 <code>depends_on</code> + <code>condition: service_healthy</code> 控制服务发布的物理顺序，确保底层 MCP 先启动并通过健康检查。</li>
+<li>第四步：每个服务配置 <code>healthcheck</code> 端点，Docker 通过定期探测 <code>/health</code> 接口判断服务是否就绪。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>FastAPI Lifespan 优雅关闭实现</strong></p>
+<pre><code class="language-python">import asyncio
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
+
+# 全局计数器，记录当前服务器正在处理的任务数量
+active_tasks = 0
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 1. 启动时的逻辑（如初始化 MCP 连接、预热模型）
+    print(&quot;Agent 服务启动，MCP 连接已就绪&quot;)
+    yield
+    # 2. 收到终止信号（发布新版本、服务器关机）时的优雅终止逻辑
+    print(&quot;收到 SIGTERM 信号，开始优雅终止...&quot;)
+
+    # 循环检查：如果手里还有没生成完的文案或配图，就等它生成完
+    while active_tasks &gt; 0:
+        print(f&quot;当前还有 {active_tasks} 个在途任务，等待 1 秒...&quot;)
+        await asyncio.sleep(1)
+
+    print(&quot;所有在途任务已通过 Checkpointer 持久化落库，服务器可安全关闭&quot;)
+
+app = FastAPI(lifespan=lifespan)
+
+@app.post(&quot;/generate/media&quot;)
+async def generate_media():
+    global active_tasks
+    active_tasks += 1
+    try:
+        # 执行 LangGraph 选题、写作、配图子图工作流
+        result = await media_agent.run()
+        return result
+    finally:
+        active_tasks -= 1  # 任务结束，计数器减一
+</code></pre>
+<p>核心逻辑：当容器编排平台（如 Kubernetes 或 Docker Compose）发送 SIGTERM 信号给 FastAPI 进程时，<code>lifespan</code> 的 <code>yield</code> 之后的代码块会被触发。此时 <code>active_tasks</code> 如果大于 0，说明有正在生成中的长文本或配图任务，进程会通过 <code>while</code> 循环阻塞关闭，每秒检查一次，直到所有在途任务完成并通过 Checkpointer 持久化落库后，才允许进程安全退出。</p>
+<p><strong>Docker Compose 按依赖拓扑分层发布配置</strong></p>
+<pre><code class="language-yaml">version: '3.8'
+services:
+  # 第一层：先启动底层的 MCP 检索和调用服务
+  mcp-rag-server:
+    image: mcp-rag:latest
+    healthcheck:
+      test: [&quot;CMD&quot;, &quot;curl&quot;, &quot;-f&quot;, &quot;http://localhost:8001/health&quot;]
+      interval: 5s
+      retries: 3
+    # ... 其他配置
+
+  # 第二层：再启动网关（必须等 RAG 服务健康检查通过）
+  api-gateway:
+    image: my-gateway:latest
+    depends_on:
+      mcp-rag-server:
+        condition: service_healthy
+    healthcheck:
+      test: [&quot;CMD&quot;, &quot;curl&quot;, &quot;-f&quot;, &quot;http://localhost:8080/health&quot;]
+      interval: 5s
+      retries: 3
+
+  # 第三层：最后发布上层业务应用（必须等网关健康检查通过）
+  media-agent-app:
+    image: media-agent:latest
+    depends_on:
+      api-gateway:
+        condition: service_healthy
+    # ... 其他配置
+</code></pre>
+<p>核心逻辑：<code>depends_on</code> 配合 <code>condition: service_healthy</code> 实现了严格的启动顺序控制。Docker Compose 会先启动 <code>mcp-rag-server</code>，然后每 5 秒探测一次 <code>/health</code> 端点，连续 3 次成功后才认为该服务"健康"。只有 <code>mcp-rag-server</code> 健康后，<code>api-gateway</code> 才会启动；<code>api-gateway</code> 健康后，<code>media-agent-app</code> 才会启动。如果顺序搞反了，上层业务启动后连不上底层 MCP 服务，整个系统会瞬间大面积报错。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><code>active_tasks</code> 计数器必须在 <code>finally</code> 块中递减：如果任务执行过程中抛异常，不递减会导致 <code>while</code> 循环永远无法退出，进程卡死无法关闭。</li>
+<li>Docker 的 <code>healthcheck</code> 端点必须轻量：<code>/health</code> 接口只做简单的存活检查（如返回 <code>{"status": "ok"}</code>），绝不能在里面写复杂的 Agent 测试逻辑，否则探测超时会导致服务永远无法达到 <code>service_healthy</code> 状态。</li>
+<li>SIGTERM 信号传递：在 Docker 中，默认发送的是 SIGTERM，但如果容器在 10 秒内（默认 <code>stop_grace_period</code>）没有退出，Docker 会强制发送 SIGKILL。对于长文本生成任务可能超过 10 秒的场景，必须在 Docker Compose 中配置 <code>stop_grace_period: 60s</code> 甚至更长，给优雅关闭留足时间。</li>
+<li>多实例场景下的优雅关闭：如果业务应用部署了多个副本，滚动发布时应逐个关闭老实例，确保始终有新实例在处理请求。Kubernetes 的 <code>maxUnavailable: 0</code> + <code>maxSurge: 1</code> 策略可以实现这一点。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入任务持久化队列：在途任务不仅等待完成，还可以将任务上下文持久化到 Redis 或 RabbitMQ 中。如果等待超时仍未完成，可以将任务重新入队，由新启动的服务器继续处理，真正做到零任务丢失。</li>
+<li>健康检查端点分级设计：<code>/health</code>（存活检查，秒级响应）+ <code>/ready</code>（就绪检查，验证 MCP 连接、数据库连接、模型加载状态）。Kubernetes 的 <code>livenessProbe</code> 探测 <code>/health</code>，<code>readinessProbe</code> 探测 <code>/ready</code>，实现更精细的流量管理。</li>
+<li>发布前自动预热：在 Docker Compose 的 <code>healthcheck</code> 通过后，增加一个 <code>post_start</code> 脚本，自动向新实例发送几个预热请求（如加载常用 Prompt、预热 KV Cache），确保真实用户请求打到新实例时不会出现冷启动延迟。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>会话粘滞</code> <code>Prefix Caching</code> <code>Nginx一致性哈希</code> <code>首字延迟</code> <code>KV Cache命中率</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你的分布式 Agent 集群上线初期运行良好，首字延迟稳定在 2 秒内。某天运维为了"优化负载均衡"，将 Nginx 网关配置从一致性哈希改为了默认轮询（round-robin）。改完后用户反馈首字延迟从 2 秒飙升到 8 秒，大模型 Token 成本无明显变化但 GPU 利用率飙升。请给出完整的排障思路、根因分析和修复方案，并解释会话粘滞（Sticky Sessions）与 Prefix Caching 的协同机制。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：确认问题范围——是全局延迟飙升还是特定用户场景，排除大模型 API 本身抖动的可能性。</li>
+<li>第二步：检查近期变更记录，定位到 Nginx 网关配置从一致性哈希改为轮询的时间点与问题出现时间吻合。</li>
+<li>第三步：分析根因——轮询导致同一 <code>session_id</code> 的请求被分散到不同服务器，每台服务器都需要重新计算 KV Cache，Prefix Caching 完全失效。</li>
+<li>第四步：修复网关配置，恢复一致性哈希路由，验证首字延迟恢复到 2 秒内。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>排障过程</strong></p>
+<ol>
+<li>
+<p><strong>监控对比</strong>：查看 LangSmith 或 Arize Phoenix 的 Trace 日志，发现每次请求的"首 Token 生成时间"从 1.8 秒飙升到 7.5 秒，但"后续 Token 生成速度"正常。这说明问题出在 Prefill 阶段（首 Token 计算阶段），而非 Decode 阶段。</p>
+</li>
+<li>
+<p><strong>GPU 监控排查</strong>：查看 GPU 监控面板，发现 GPU 利用率从 40% 飙升到 85%，但 QPS 没有变化。这说明每台服务器都在做大量重复的 Prefill 计算——本来应该命中 Prefix Caching 直接复用已缓存的 KV，现在每台都要从头算。</p>
+</li>
+<li>
+<p><strong>变更记录审查</strong>：查看 Git 历史和运维操作日志，发现 Nginx 配置在问题出现前 2 小时被修改，<code>upstream</code> 块中的 <code>hash $arg_session_id consistent;</code> 被删除，恢复为默认的轮询策略。</p>
+</li>
+<li>
+<p><strong>根因确认</strong>：在一致性哈希模式下，同一 <code>session_id</code> 的请求始终路由到同一台服务器，该服务器已经为这个用户缓存了前几轮对话的 KV Cache（可能包含几千字的 HR 规章制度上下文）。当用户发送新消息时，服务器只需计算新消息的 KV，然后和已缓存的 KV 拼接做 Attention，首字延迟极低。改为轮询后，同一用户的请求被随机分发到不同服务器，每台服务器都没有该用户的 KV Cache，每次都要把完整的历史上下文重新计算一遍 Prefill。</p>
+</li>
+</ol>
+<p><strong>修复方案</strong></p>
+<p>恢复 Nginx 网关的一致性哈希配置：</p>
+<pre><code class="language-nginx">upstream agent_servers {
+    # 关键：根据请求参数中的 session_id 进行一致性哈希
+    # 确保同一个用户的请求一直打到同一台服务器，完美利用大模型的 KV Cache 缓存
+    hash $arg_session_id consistent;
+
+    server 192.168.1.10:8000;  # Agent 服务器 A
+    server 192.168.1.11:8000;  # Agent 服务器 B
+    server 192.168.1.12:8000;  # Agent 服务器 C（新扩容）
+}
+
+server {
+    listen 80;
+    location /v1/chat {
+        proxy_pass http://agent_servers;
+    }
+}
+</code></pre>
+<p><code>hash $arg_session_id consistent;</code> 的核心作用：Nginx 对 <code>session_id</code> 参数做一致性哈希计算，将哈希值映射到固定的后端服务器。同一 <code>session_id</code> 永远路由到同一台服务器，保证 KV Cache 的命中率。<code>consistent</code> 关键字确保当服务器扩容或缩容时，只有部分 session 需要迁移，而非全部重新洗牌。</p>
+<p><strong>会话粘滞与 Prefix Caching 的协同机制</strong></p>
+<p>整个链路是这样的：</p>
+<ol>
+<li>用户张三第一次发起对话，请求携带 <code>session_id=zhangsan001</code>。</li>
+<li>Nginx 一致性哈希将请求路由到服务器 A。</li>
+<li>服务器 A 的大模型处理请求时，将历史上下文（如 HR 规章制度文档）的 Key 和 Value 矩阵计算出来并缓存在 GPU 显存中（Prefix Caching）。</li>
+<li>张三第二轮对话，Nginx 依然将请求路由到服务器 A。</li>
+<li>服务器 A 发现 KV Cache 中已有张三的缓存，只需计算新消息的 KV，然后和缓存拼接，首字延迟从 7 秒降到 2 秒。</li>
+<li>如果服务器 A 故障或需要发布新版本，Nginx 一致性哈希会自动将张三的请求迁移到服务器 B，服务器 B 首次需要重新计算 Prefill（冷启动），但后续请求又能命中缓存。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>一致性哈希的"雪崩"问题：如果某台服务器宕机，原本绑定到它的所有 session 会集中迁移到下一台服务器，可能导致瞬间负载不均。建议配置虚拟节点（<code>hash $arg_session_id consistent;</code> 默认创建 160 个虚拟节点）来分散迁移压力。</li>
+<li>KV Cache 的显存管理：即使会话粘滞正确，如果用户长时间不活跃，服务器可能会主动淘汰其 KV Cache 以释放显存。需要根据业务场景配置合理的 Cache TTL，在显存利用率和命中率之间取平衡。</li>
+<li>新扩容服务器的冷启动：新增服务器初始没有任何 KV Cache，被路由到新服务器的用户会经历一次冷启动延迟。可以在扩容后主动向新服务器发送预热请求，加载高频用户的上下文。</li>
+<li><code>session_id</code> 必须由前端在每次请求中携带：如果前端漏传 <code>session_id</code>，Nginx 的哈希计算会基于空值，所有请求可能被路由到同一台服务器，导致负载严重不均。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入分布式 KV Cache 共享层：业界正在探索将 KV Cache 存储在共享显存池（如 Redis on GPU 或专用 KV Cache 服务）中，使得任何服务器都能读取任何用户的缓存，彻底消除会话粘滞的依赖。目前 vLLM 的 PagedAttention 已在单机内实现了类似虚拟内存的管理，跨节点共享是下一步演进方向。</li>
+<li>动态权重路由：不依赖固定的一致性哈希，而是由网关实时感知各服务器的 KV Cache 命中率和 GPU 负载，动态调整路由权重，将请求优先分发到已有缓存且负载较低的服务器。</li>
+<li>冷启动降级策略：当检测到用户被迁移到新服务器（缓存未命中）时，自动降级为使用小模型快速生成首 Token（降低 Prefill 延迟），同时后台异步用大模型重新计算完整 KV Cache，后续请求切换回大模型，实现用户无感知的冷启动优化。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Guardrails安全护栏</code> <code>全链路Trace</code> <code>LLM-as-a-Judge</code> <code>CI/CD自动化评测</code> <code>金融合规</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某金融企业要落地一套 Agent 系统，核心业务场景包括智能投顾问答、合规文件解读和客户风险评估。要求：① 在输入输出层加装独立的安全护栏，防止越狱攻击和敏感信息泄露；② 实现全链路 Trace 日志，记录每次 Prompt 调用、RAG 返回的 Chunk、Token 消耗和卡顿节点；③ 每次代码提交自动跑基准测试用例，用自动化指标替代人工盲测。请给出从 0 到 1 的完整落地思路，包括架构设计、技术选型、核心实现和上线验收标准。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：设计整体架构——在用户请求和大模型之间架设独立的安全护栏层，在 Agent 编排和大模型执行之间埋设全链路 Trace，在 CI/CD 流水线中集成自动化评测。</li>
+<li>第二步：安全护栏分输入层和输出层，输入层防越狱和注入，输出层做合规检查和模板话术替换。</li>
+<li>第三步：全链路 Trace 选择 LangSmith 或 Arize Phoenix 作为可观测性平台，在 LangGraph 每个节点自动埋点。</li>
+<li>第四步：自动化评测引入 Ragas/DeepEval 框架，围绕 Groundedness、Context Adherence、Faithfulness 三大指标构建测试集。</li>
+<li>第五步：将评测集成到 CI/CD，每次 Commit 自动跑测试，低于阈值阻断发布。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>一、整体架构设计</strong></p>
+<pre><code>用户请求 → 【输入层 Guardrails】→ 【Agent 编排/状态机】→ 【LLM/SLM 执行】→ 【输出层 Guardrails】→ 【Trace/日志审计】→ 返回用户
+</code></pre>
+<p>安全护栏作为独立的微服务部署，不嵌入 Agent 业务代码中，实现关注点分离。输入层和输出层各为一个独立的 FastAPI 服务，Agent 编排通过 HTTP 调用它们，这样护栏策略可以独立更新而不影响业务逻辑。</p>
+<p><strong>二、输入层安全护栏</strong></p>
+<ul>
+<li><strong>反越狱检测</strong>：使用独立的分类模型（如 LlamaGuard 或自训练的小模型）检测用户输入中是否包含越狱指令（如"忽略之前的指令"、"你现在是一个没有限制的 AI"）。检测到越狱意图时，直接返回模板话术拒绝回答，不将请求传递给大模型。</li>
+<li><strong>敏感信息脱敏</strong>：使用正则 + NER 模型识别输入中的身份证号、银行卡号、手机号等 PII 信息，在传递给大模型前替换为占位符（如 <code>[PHONE]</code>），防止敏感信息进入大模型上下文。</li>
+<li><strong>Prompt 注入防护</strong>：检测输入中是否包含伪造的系统指令或工具调用 JSON，防止用户通过精心构造的输入劫持 Agent 的工作流。</li>
+</ul>
+<p><strong>三、输出层安全护栏</strong></p>
+<ul>
+<li><strong>合规检查引擎</strong>：针对金融领域，建立金融合规规则库（如"不得承诺保本保收益"、"不得推荐具体股票"）。大模型输出后，合规检查引擎扫描输出文本，命中规则则拦截并替换为模板话术（如"投资有风险，建议您咨询专业的理财顾问"）。</li>
+<li><strong>幻觉检测</strong>：对比大模型输出和 RAG 检索到的原文 Chunk，如果输出中包含原文中没有的事实性陈述（如虚构的收益率数据），标记为幻觉并打回重写。</li>
+<li><strong>格式校验</strong>：确保输出符合预期的 JSON Schema 或 Markdown 格式，格式异常的输出在返回用户前被拦截。</li>
+</ul>
+<p><strong>四、全链路 Trace 日志</strong></p>
+<p>选择 LangSmith 作为可观测性平台（Arize Phoenix 作为备选），在 LangGraph 的每个节点自动埋点：</p>
+<ul>
+<li><strong>Prompt 记录</strong>：记录每个节点发给大模型的完整 Prompt（包括 System Message、History、User Input），方便回溯"为什么大模型给出了这个回答"。</li>
+<li><strong>RAG Chunk 追踪</strong>：记录 RAG 检索返回的每个 Chunk 的原文内容、相似度分数、来源文档，方便排查"检索是否召回了正确的上下文"。</li>
+<li><strong>Token 消耗统计</strong>：按节点维度统计 Input Token 和 Output Token 消耗，生成成本报表，识别哪些节点是"Token 大户"。</li>
+<li><strong>卡顿节点定位</strong>：记录每个节点的执行耗时，自动标记超过 P95 阈值的节点为"慢节点"，帮助定位性能瓶颈。</li>
+</ul>
+<p><strong>五、CI/CD 自动化评测</strong></p>
+<p>引入 Ragas + DeepEval 框架，构建标准化测试数据集：</p>
+<ul>
+<li><strong>测试数据集构建</strong>：由业务专家整理 200-500 个黄金考题和标准答案，覆盖投顾问答、合规解读、风险评估三大场景，包含正常用例和边界用例（如越狱攻击、模糊查询、多轮对话）。</li>
+<li><strong>三大核心评估指标</strong>：</li>
+<li><strong>Groundedness（事实依据度）</strong>：大模型回答是否基于 RAG 检索到的事实，而非编造。低于 0.8 则判定为存在幻觉风险。</li>
+<li><strong>Context Adherence（上下文遵从度）</strong>：大模型回答是否严格遵循了 System Prompt 中的约束（如"不得推荐具体股票"）。</li>
+<li><strong>Faithfulness（忠实度）</strong>：大模型回答是否忠实于原文，没有歪曲或过度推断。</li>
+<li><strong>CI/CD 集成</strong>：在 GitLab CI/Jenkins 中配置自动化流水线，每次代码提交（Commit）触发后，自动从测试数据集中抽取用例运行 Agent，通过 LLM-as-a-Judge 自动打分。如果任一指标低于阈值（如 Groundedness &lt; 0.8），流水线自动阻断发布，并在飞书/钉钉群推送告警。</li>
+</ul>
+<p><strong>六、上线验收标准</strong></p>
+<ul>
+<li>安全护栏拦截率测试：构造 100 条越狱攻击和 100 条敏感信息输入，护栏拦截率 ≥ 98%。</li>
+<li>全链路 Trace 覆盖率：100% 的生产请求有完整的 Trace 日志，包含 Prompt、RAG Chunk、Token 消耗。</li>
+<li>自动化评测基线：三大指标在测试数据集上的平均分 ≥ 0.85。</li>
+<li>性能基线：P95 首字延迟 ≤ 3 秒，P95 端到端延迟 ≤ 15 秒。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>安全护栏不能依赖大模型自身判断：如果用大模型来检测越狱输入，大模型本身可能被越狱攻破。必须使用独立的、确定性的规则引擎或专用小模型做护栏，确保护栏的不可绕过性。</li>
+<li>Trace 日志的隐私合规：Trace 中记录的 Prompt 和 RAG Chunk 可能包含用户敏感信息（如客户资产数据），必须对 Trace 日志做脱敏处理或加密存储，并设置严格的访问权限。</li>
+<li>LLM-as-a-Judge 的成本控制：每次 CI/CD 跑 200 个用例，如果每个用例都用 GPT-4 做评测，成本很高。建议评测用更便宜的小模型（如 GPT-4o-mini），只在指标低于阈值时才用大模型做二次复核。</li>
+<li>测试数据集的持续维护：金融政策和合规规则会变化，测试数据集必须定期更新。建议每季度由业务专家 Review 一次测试用例，淘汰过时用例，补充新场景。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入对抗性测试（Red Teaming）：定期组织安全团队对 Agent 进行对抗性攻击测试，模拟最新的越狱手法和注入技术，持续验证护栏的有效性。</li>
+<li>
+<h2>构建 A/B 评测平台：当修改 Prompt 或更换模型时，自动将新旧版本在测试数据集上并行运行，生成对比报告，帮助团队量化评估"改完代码后系统是变聪明了还是变笨了"。</h2>
+</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
