@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-07-19)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-07-19)</h1>
+    <div class="meta">更新于 2026-07-19 11:14</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
+🔄 知识片段：#1, #2, #3（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<hr />
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent安全 · 鉴权架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>传统OAuth2、API Key等鉴权机制在AI Agent场景下逐渐暴露局限性，业界提出的Agentic Auth（智能体鉴权）体系与传统静态鉴权的核心区别是什么？它主要解决Agent时代的哪些特有安全风险？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agentic Auth是面向自主智能体的动态、全链路鉴权体系，与传统面向人类/固定服务的静态凭证鉴权的核心区别是：它需要覆盖Agent自主决策、工具调用、跨节点通信的全流程，解决Agent自主性带来的不可预测的越权风险，而非仅仅验证请求方身份是否合法。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>传统鉴权基于“静态凭证+固定权限”模型：核心是验证请求方身份合法性，权限在系统设计时就固定绑定，假设请求方（人类/微服务）的行为是可预测、可控的。</li>
+<li>Agentic Auth基于“动态校验+全链路治理”模型：不依赖硬编码的API Key，从网关准入、运行时隔离、操作风险分级三个层面对Agent的每一步行为做细粒度校验。</li>
+<li>重点解决三类Agent独有的安全风险：人机越权（普通用户诱导高权限Agent返回涉密数据）、工具滥用死循环（Agent错误高频调用计费/破坏性接口）、跨Agent信任链流转失效（Agent调用其他Agent/第三方服务时授权溯源断裂）。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以把传统鉴权比作给员工发固定权限的工牌：假设员工不会主动把工牌借给别人、也不会乱碰没有权限的设备，只要刷工牌就能进对应区域。但Agent更像一个行动力极强但对权限边界没有常识的实习生：可能被用户几句话诱导去查全公司的高管薪酬，可能不小心写了死循环调用计费API花掉几万元，可能拿着自己的工牌跨部门调其他Agent的涉密数据。Agentic Auth就是给这个实习生配全套管控：进网关时校验唯一身份标识，查向量库时强制注入租户ID的标量预过滤条件从物理上卡死越权空间；涉及删改数据、触发退款等高危操作时直接挂起流程，等人类二次确认后再恢复执行；跨节点调用时携带可溯源的授权令牌，保证信任链可审计。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Agentic Auth会成为Agent生态下的事实安全标准，核心解决“公有云跑模型、企业内网存数据”的矛盾，不需要把核心资产迁出内网就能安全对接大模型能力。</li>
+<li>能指出硬编码API Key的最大问题是无法细粒度吊销和审计，一旦Agent被注入恶意指令，所有绑定高权限的接口都会完全失控。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为给Agent配个API Key、加个执行沙箱就算完成了鉴权，实际上忽略了多租户检索时的强制预过滤、高危操作的HITL拦截、跨Agent调用的授权溯源，依然存在极大的越权风险。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>AI知识管理 · LLM Wiki</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>前OpenAI科学家Andrej Karpathy在2026年初提出的LLM Wiki知识管理模式，被认为是下一代个人/企业知识管理的核心架构。请说明LLM Wiki的三层核心架构是什么？它与传统RAG、传统笔记软件的本质区别在哪里？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LLM Wiki的核心是让大模型担任“全职图书管理员”，在文档录入阶段就完成跨文档的概念提炼、关联与结构化，构建双向链接的私有维基百科，从根本上解决传统RAG“临时抱佛脚”检索碎片化、传统笔记需要人工维护的痛点。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>三层标准架构：只读的原始文档层（Immutable Sources，作为唯一事实依据，LLM不可修改）、LLM动态维护的维基层（The Wiki，包含源文档摘要、核心概念页、观点交锋页）、约束规范层（The Schema，通过CLAUDE.md等配置文件规定LLM的整理规则、格式、纠错机制）。</li>
+<li>核心差异在“思考时机”：传统笔记靠人类手工排版打标签，传统RAG在用户提问时才临时检索文档切片，LLM Wiki在文档录入时就由LLM完成实体提取、概念关联、观点梳理。</li>
+<li>知识形态是结构化、双向链接的Markdown文件网络，而非孤立的文档切片或人工排版的富文本内容。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以把传统RAG比作每次考试前才临时翻书划重点的学生，遇到跨章节的综合题就容易漏知识点、回答割裂；传统笔记就像自己抄书整理重点的学生，整理速度慢、很难发现不同知识点之间的隐藏关联；而LLM Wiki就像雇了一个超级学霸助理，每拿到一本新书、一份会议记录，助理就会自动把书中的核心概念、观点冲突、引用来源整理成独立的维基词条，并且在相关词条之间加上双向链接，时间长了就形成一张完整的知识网。比如你导入100份行业研报，LLM不会等你提问才去搜切片，而是自动生成“大模型推理成本”“Agent落地ROI”等概念页，把所有研报里的相关原文、页码、不同机构的观点冲突都整理到对应词条下，还会自动关联相关概念。因为原始文档层是严格只读的，所有整理的内容都有来源锚点，也能大幅减少幻觉问题。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到LLM Wiki与Obsidian等本地笔记工具的生态结合：目前已有Obsidian插件可以自动生成概念页和双向链接，基于本地知识图谱做全局问答，不需要把私人文档上传到公有云。</li>
+<li>能指出LLM Wiki特别适合医疗、法律、企业制度等需要长期积累的垂直知识库：知识关联度会随内容增加越来越高，回答的深度和连贯性远超传统切片RAG。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为LLM Wiki是另一种RAG实现，实际上它的核心是“预计算知识关联”，把大模型的思考成本从查询阶段转移到录入阶段，查询时直接复用已经结构化的知识网络，不是传统RAG的简单优化。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>开源模型选型 · Agent开发</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>开源大模型Hermes 3系列被很多开发者称为落地Agent项目的“神级底座”，请说明它的核心定位是什么？在适配智能体开发场景上做了哪些针对性优化？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Hermes 3是由Nous Research基于Llama等优秀底座二次微调的、专门面向Agent场景优化的开源大模型，核心优势是工具调用稳定、指令服从度高、长上下文能力强，是目前开源生态中落地多智能体系统的首选底座之一。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>本质是Agent专用的“大脑引擎”而非开发框架：所有优化方向都围绕智能体的落地痛点——结构化输出不稳定、模型过度对齐拒绝回答、长上下文丢关键信息。</li>
+<li>采用Agentic Alignment微调目标：不做过度的通用道德对齐，而是优先保证严格服从开发者的System Prompt指令，像“冷酷工具人”一样执行合法业务逻辑。</li>
+<li>提供从8B到405B的全尺寸模型矩阵，适配从本地端侧子Agent到云端主管Agent的不同部署需求。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多开发者做Agent时都遇到过这类痛点：用通用开源模型做函数调用，十次有三次参数格式错误、或者输出一堆解释性废话而非标准JSON；让模型处理长文档里的业务规则，它经常漏掉中间的关键约束；让模型执行复杂的内部数据处理逻辑，模型动不动就“我无法完成这个操作”。Hermes 3在微调阶段就专门针对这些痛点做了优化：首先对Function Calling、JSON/XML结构化输出做了海量训练样本覆盖，工具调用准确率接近闭源模型水平；其次刻意保留模型的中立性，去掉了通用模型里过度对齐的“说教感”，不会随便拒绝开发者的合法业务指令；第三是针对长上下文场景做了注意力机制优化，128K上下文下的“大海捞针”测试几乎全对，挂载长文档、长对话历史时不容易漏掉关键规则。使用时只需要遵循标准ChatML提示格式，甚至可以让模型在<thinking>标签里先做思维链推理再输出结果，工具调用准确率还能进一步提升。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Hermes的分层部署策略：8B量化版本可以用Ollama跑在本地，专门处理高频、简单的子任务（如格式转换、意图分类），70B/405B版本部署在云端做任务规划、复杂推理，整体算力成本极低。</li>
+<li>能指出Hermes的“未过度对齐”不是没有安全护栏，而是把护栏控制权交给开发者，通过System Prompt做场景化约束，而非模型层面一刀切拒绝所有可能有风险的指令。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为Hermes是类似LangGraph的Agent开发框架，实际上它是纯粹的大语言模型，只负责思考和输出，不承担编排、工具调度等框架层的工作。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>AI开发工具 · Codex CLI</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>OpenAI的Codex CLI支持三类扩展能力：Skills、Plugins、Custom Agents，很多开发者安装时经常搞混三者的目录和适用场景。请说明这三类扩展的核心区别是什么？安装时有哪些必须遵守的目录规范？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Codex CLI的三类扩展是完全独立的体系，存放路径、加载逻辑、UI可见性、适用场景都有明确边界：Skills是可通过$skill-name调用的能力模块，Plugins是官方市场的集成插件，Custom Agents是可被调度的子智能体，三者不能混放。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Skills分为全局和项目级：全局Skills存放在用户目录的~/.codex/skills，项目级Skills存放在项目根目录的.agents/skills，必须包含SKILL.md描述文件，会出现在Codex的技能列表中。</li>
+<li>Plugins存放在~/.codex/plugins目录，来自官方插件市场，会出现在Plugins面板，通常是重量化的第三方集成能力。</li>
+<li>Custom Agents存放在~/.codex/agents目录，是有独立System Prompt和工具集的子智能体，不会出现在Skills或Plugins的UI列表中，只有被点名调用或被编排器调度时才会加载。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多开发者刚用Codex时会踩各类坑：把Custom Agents放到Skills目录，结果在技能列表里找不到；把项目专用的Skill放到全局目录，导致其他项目加载了无关能力；甚至把.codex目录当成项目级技能的存放位置，导致团队协作时技能无法随项目共享。实际上Codex的扩展设计逻辑非常清晰：如果你要做一个所有项目都能用的通用能力（比如写Git提交信息、格式化Markdown），就把带SKILL.md的Skill文件夹放到全局skills目录；如果是某个项目专用的能力（比如项目专属部署脚本、代码规范检查），就放到项目根目录的.agents/skills里，团队成员拉取代码后就能直接用；如果你要定义一个独立的子Agent（比如专门写测试用例的ai-engineer），就放到agents目录，不用纠结为什么UI列表里看不到，直接点名调用即可。需要特别注意的是，项目级技能不要放到项目内的.codex目录，这个目录是Codex自动生成的配置、缓存目录，不是标准的项目技能存放位置，容易被Git忽略或被缓存覆盖。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到SKILL.md的必填结构：必须包含name（技能名）、description（触发场景）字段，以及具体工作流说明，否则Codex无法识别和正确触发。</li>
+<li>能指出安装完扩展后不需要重启整个Codex，执行Force Reload Skills即可重新加载所有扩展。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多开发者以为安装完Custom Agents后会像Skills一样出现在面板里，实际上Custom Agents是后台可调度的子节点，本来就没有UI入口，能正常调用就算安装成功，不需要反复排查为什么列表不显示。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>AI开发生态 · 工具聚合</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>SkillsLLM是目前AI开发者常用的工具站点，很多人以为它是Codex的官方技能市场，实际上它的定位和官方市场有很大区别。请说明SkillsLLM的核心定位是什么？使用时有哪些常见误区？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>SkillsLLM是AI Agent工具、技能、开源项目的聚合搜索站，而非Codex官方的一键安装源，它的核心价值是帮开发者发现新工具，但平台上的内容类型混杂，安装前必须二次判断类型，不能无脑复制安装。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>平台聚合了10个分类、数千个项目，不止包含Codex可用的Skill，还覆盖MCP服务、CLI工具、IDE插件、DevOps工具、普通GitHub仓库、自定义Agent等多种类型的内容。</li>
+<li>判断内容类型的核心标准是看仓库结构：有SKILL.md的才是可直接安装的Codex Skill，其他类型内容需要对应不同的安装流程。</li>
+<li>核心定位是“工具发现目录”，类似AI工具界的Hacker News，而非经过安全审核、兼容性验证的官方应用商店。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多开发者刚接触SkillsLLM时，看到上面有几千个“Skill”就以为可以像VS Code插件一样一键安装，结果折腾半天发现用不了——因为平台上的内容来源非常杂：有的是可以直接装的Codex Skill，有的是需要单独配置的MCP服务，有的是需要pip/npm安装的命令行工具，有的是普通开源项目，根本不能直接当成Codex Skill用。比如你搜“pdf”，出来的结果可能是处理PDF的MCP服务（需要在MCP配置里加服务地址），可能是独立的PDF处理CLI工具（需要先装到系统），可能是专门处理PDF的Custom Agent（需要放到agents目录），只有带SKILL.md的仓库才是可以放到skills目录调用的Skill。所以正确的使用方式是把SkillsLLM当搜索入口，找到感兴趣的项目后点进去看仓库结构，判断清楚工具类型再用对应方式安装，不要看到“Skill”标签就直接往skills目录里扔。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到SkillsLLM覆盖的工具生态不止Codex，还包含Claude、ChatGPT可用的技能和插件，是目前跨生态AI工具最全的聚合站之一。</li>
+<li>能指出企业内部使用时，SkillsLLM上的工具必须经过安全审计才能安装，很多第三方Skill可能包含恶意脚本，存在代码和数据泄露风险。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多人以为SkillsLLM上的内容都是经过官方审核的，实际上平台只做内容爬取和聚合，没有做安全校验和类型审核，直接安装可能遇到兼容性问题甚至安全风险。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>操作系统 · 部署实战</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>很多开发者在本地Windows环境用Docker部署Qdrant时发现：同样的数据量，线上Linux服务器上Qdrant只占几MB磁盘，本地却占几百MB甚至几个GB。请解释这种现象的底层原因是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>这种磁盘占用差异不是因为Qdrant在不同系统下存储了不同数据，而是Linux和Windows文件系统对“稀疏文件（空洞文件）”的支持机制不同，加上Windows下Docker Bind Mount的语义不兼容，导致预分配的空文件在Linux下不占实际磁盘块，在Windows下却按逻辑大小全量落盘。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Qdrant为了保证写入性能，会提前预分配固定大小的文件：比如32MB的segment页文件、WAL日志文件、payload索引文件，这些文件逻辑上大小固定，但刚创建时大部分内容是空的。</li>
+<li>Linux的ext4/xfs等文件系统原生支持稀疏文件：文件看起来有32MB，但未写入内容的空部分不会分配实际磁盘块，所以实际占用只有几MB；用du -h看到的是实际占用，加--apparent-size参数才会显示逻辑大小。</li>
+<li>Windows的NTFS虽然也支持稀疏文件，但Docker Desktop用Windows目录做Bind Mount时，跨文件系统映射层不支持稀疏文件语义，预分配的文件会直接占满逻辑大小的磁盘空间。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以把预分配的文件类比成餐厅提前预留的包间：Linux下的餐厅是“客人来了才摆餐具”，预留的包间如果没人坐，不会消耗服务员、餐具等实际资源，所以看起来预留了100个包间，实际只消耗了有客人的几个包间的资源；而Windows下Bind Mount的餐厅是“只要预留了包间，不管有没有客人都先把餐具摆好、空调打开”，预留多少空间就直接占多少资源。除了预分配文件的问题，如果Qdrant的segment配置不合理，产生大量小segment，每个segment都有独立的预分配页文件，磁盘占用还会进一步升高到几个GB。很多开发者一开始以为是Qdrant的bug，实际上是文件系统机制差异导致的正常现象。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Windows下优化Qdrant磁盘占用的两个方案：一是把存储目录放到WSL2的Linux文件系统里，二是用Docker Named Volume而非Bind Mount到Windows目录，两种方式都使用原生Linux文件系统，支持稀疏文件，磁盘占用和线上环境一致。</li>
+<li>能指出不仅是Qdrant，所有用预分配文件、WAL机制的数据库（如SQLite、PostgreSQL、Elasticsearch）在Windows Bind Mount场景下都会出现类似的磁盘占用过大、IO性能下降问题。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多开发者遇到这种问题会直接删除Qdrant数据、重装容器，实际上只要把存储卷迁移到WSL2或Named Volume，同样数据的磁盘占用会立刻降到和线上一致的水平，不需要删除任何数据。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LLM应用选型 · 工程决策</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在大模型应用开发中，很多团队会纠结是用Few-Shot（少样本提示）还是做模型微调来实现业务目标。请说明两者的核心差异是什么？应该如何根据项目阶段做选型决策？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Few-Shot是通过在提示词里加2-5个示例引导模型输出，零成本、上线快但会持续消耗Token；微调是通过训练改变模型权重，成本高、周期长但长期调用更省Token、效果更稳定。工业界的共识是先用Few-Shot跑通MVP，积累足够高质量数据后再考虑微调。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>本质差异：Few-Shot不改变模型任何参数，只是通过示例让模型“照猫画虎”，理解输出格式、风格和判断边界；微调是用成千上万条标注数据重新训练模型，改变模型本身的权重分布。</li>
+<li>成本差异：Few-Shot几乎零成本，写好提示词就能上线；微调需要显卡算力、数据清洗、训练部署流程，成本高、周期长。</li>
+<li>效果差异：Few-Shot适合规则明确、迭代快的场景，但每次请求都要带示例，消耗Token；微调适合高并发、规则稳定的场景，训练好后不需要带示例，单次调用延迟更低、Token成本更低。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>可以把大模型比作刚入职的实习生：Few-Shot就像你给实习生看2-5份之前做好的样例，告诉他“就按这个格式和标准做”，实习生看完就能上手，但每次做任务都要把那几份样例拿出来参考，占用一定精力（Token）；微调就像给实习生做一个月的专项培训，让他把规则和格式彻底记在脑子里，之后做任务不需要再看样例，速度更快、结果更稳，但培训需要花大量时间和精力（算力、数据成本）。比如做智能客服意图识别，项目刚上线时只有几十条标注样本，根本不够做微调，这时候在提示词里加3-5个不同意图的示例，就能让模型准确识别用户意图，几天就能上线MVP；等项目跑了半年，积累了几万条经过验证的真实用户query和正确标签，且日调用量达到几十万次，这时候再用这些数据做微调，不仅能提升准确率，还能去掉提示词里的示例，省下来的Token成本很快就能覆盖微调的投入。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Few-Shot的示例数量不是越多越好，2-5个是ROI最高的区间，超过10个示例后效果提升不明显，但Token成本会线性上升，甚至会因为示例太多引入噪声导致效果下降。</li>
+<li>能指出微调不是银弹：如果业务规则经常变化（如电商大促期间的客服话术每周迭代），微调的迭代速度根本跟不上，这时候用Few-Shot甚至动态加载示例的方式会更灵活。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多团队刚启动项目就想着做自己的垂直微调模型，结果花了几十万买显卡、标数据，最后效果还不如写好提示词加几个Few-Shot示例，投入产出比极低。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>知识管理 · 开发者工具</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Obsidian作为一款Markdown笔记工具，被很多开发者和研究者称为构建“第二大脑”的神器。请说明它的核心设计理念是什么？为什么在AI时代它的价值反而越来越突出？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Obsidian的核心理念是“本地优先（Local-first）、纯文本存储、双向链接”，用户完全掌控自己的数据，通过双向链接把碎片化笔记织成知识网络，这种特性让它天然适合对接本地大模型、构建LLM Wiki等新一代AI知识管理系统。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>本地优先设计：所有笔记都是纯Markdown格式存储在用户本地硬盘，不依赖云服务，即使软件停更、公司倒闭，笔记依然可以用任何文本编辑器打开，不存在数据绑架问题。</li>
+<li>双向链接机制：通过[[笔记名]]的语法可以在不同笔记之间建立引用，自动生成知识图谱，帮用户发现知识点之间的隐藏关联，完美适配卡片盒笔记法。</li>
+<li>高度可扩展的插件生态：拥有上千个社区插件，可以配置成任务管理器、写作工具、代码片段库，甚至对接本地大模型实现LLM Wiki能力。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统云笔记工具（如Notion、印象笔记）本质是“把数据存在服务商的服务器上，用户通过客户端访问”，不仅有数据泄露、服务商涨价或停服的风险，而且数据存在服务商的专有数据库里，用户很难批量导出、对接自己的AI工具。而Obsidian从一开始就反其道而行之：它只是一个本地的Markdown文件浏览器，不强制绑定云存储（用户可以自由选择同步方式），所有笔记都是最通用的纯文本文件，想怎么处理就怎么处理。在AI时代，这种设计的优势被无限放大：你可以直接把Obsidian的笔记目录对接本地部署的大模型，不需要把私人笔记上传到公有云；可以安装LLM Wiki插件，让大模型自动给笔记加双向链接、生成概念页、做全局问答；甚至可以写脚本批量处理笔记，做知识聚类、找知识盲区，完全不受平台限制。加上它启动速度快、离线可用、基础功能完全免费，非常适合开发者、研究者、内容创作者构建长期知识库。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Obsidian特别适合做技术知识库：原生支持Markdown代码高亮，开发者可以把踩坑记录、代码片段、架构设计思路记在里面，通过双向链接关联相关知识点，排查问题时通过知识图谱能快速找到相关历史记录。</li>
+<li>能指出本地优先的设计天然符合企业数据安全要求：对接企业内部大模型时，笔记数据不需要出内网，不会有敏感数据泄露风险。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多新手刚用Obsidian时会花大量时间装插件、换主题，把笔记软件玩成了换装游戏，实际上Obsidian的核心价值是帮你积累和关联知识，刚开始用的时候只需要用双向链接记笔记，等笔记量上来了再根据实际需求装插件就够了。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>AI编程 · 工程规范</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>现在越来越多的开源项目会在根目录放一个CLAUDE.md（或AGENTS.md）文件，Claude Code、Codex CLI等AI编程助手会自动读取这个文件的内容。请说明这个文件的核心作用是什么？它在AI辅助开发中扮演什么角色？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>CLAUDE.md/AGENTS.md是面向AI编程助手和Agent的“项目说明书”，核心作用是给进入项目的AI规定统一的行为准则、代码规范、目录结构、工作流要求，解决AI因为不了解项目上下文而乱写代码、破坏规范的问题，也是LLM Wiki架构中Schema约束层的核心载体。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>它是项目级的持久化System Prompt：AI工具打开项目时会自动读取这个文件的内容，作为后续所有代码生成、修改操作的前置约束，不需要每次对话都重复说明项目规范。</li>
+<li>核心内容通常包含：项目技术栈、目录结构说明、代码规范（包管理工具、缩进规则、命名规范）、构建和测试命令、禁止修改的文件范围、AI处理任务的工作流要求。</li>
+<li>它是人和AI协作的“契约文件”：不仅AI要遵守，团队的人类开发者也可以参考这个文件快速了解项目核心规范，降低新人上手成本。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果把AI编程助手比作来项目帮忙的外包开发，那CLAUDE.md就是项目组给外包开发的“入职手册”：如果没有这个手册，AI每次写代码都可能问“这个项目用什么框架？”“测试命令是什么？”“这个目录是放什么的？”，甚至可能随便改配置文件、用错依赖版本、写出不符合项目规范的代码；有了CLAUDE.md，AI一进项目就知道：这个项目用FastAPI开发，接口要放在app/api目录下，数据库操作要用SQLAlchemy，提交代码前要跑pytest，不能直接修改main.py里的全局配置。在LLM Wiki架构里，CLAUDE.md就是规范层的核心：它规定大模型整理Wiki时的格式、双向链接规则、来源引用方式、自我纠错机制，保证大模型维护的知识库符合统一规范。现在很多头部开源项目（如React、Next.js生态项目）都已经加入了CLAUDE.md文件，就是为了让AI贡献者也能写出符合项目规范的代码。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到CLAUDE.md的分层加载机制：除了项目根目录的文件，用户目录下的全局CLAUDE.md会被所有项目加载，用来规定个人编码习惯（如“所有注释用中文写”“优先用async/await而非回调”），项目级文件用来规定项目专属规范。</li>
+<li>能指出写好CLAUDE.md能大幅提升AI辅助编程的效率，减少AI犯低级错误的概率，甚至可以把常见的踩坑记录写在里面，让AI自动避开历史问题。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>很多开发者以为CLAUDE.md是Claude专属的配置文件，实际上它已经成为AI编程助手的事实标准，Codex、Cursor、Windsurf等工具都支持读取这个文件作为项目上下文，不是某家厂商的私有格式。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Docker · 跨平台部署</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>很多开发者在Windows上用Docker部署带持久化存储的应用（如数据库、向量库）时，经常遇到磁盘占用大、IO性能差、文件权限不对的问题，社区通常推荐用WSL2文件系统或Docker Named Volume存储持久化数据，而不是直接Bind Mount到Windows的NTFS目录。请解释这三种挂载方式的核心差异是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Bind Mount到Windows目录时，跨文件系统转换层会丢失POSIX语义、不支持稀疏文件、IO性能差；Named Volume和WSL2挂载使用原生Linux文件系统存储数据，和线上服务器环境完全一致，性能更好、功能支持更完整，是本地开发部署持久化应用的最佳实践。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Windows目录Bind Mount：容器内进程读写文件时，需要经过Docker的跨文件系统转换层，把Linux文件系统操作翻译成Windows NTFS操作，这个过程不仅性能差（IO速度可能比原生Linux慢5-10倍），而且不支持稀疏文件、硬链接、POSIX文件权限等Linux原生特性，会导致预分配文件全量占盘、权限报错等问题。</li>
+<li>Docker Named Volume：由Docker自己管理的存储卷，实际数据存在WSL2的虚拟磁盘里，使用原生ext4文件系统，完全支持所有Linux文件系统特性，性能和线上服务器一致。</li>
+<li>WSL2目录挂载：直接把WSL2里的Linux目录映射进容器，和Named Volume一样使用原生Linux文件系统，且用户可以直接在WSL2终端里访问修改文件，兼顾性能和可访问性。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多开发者刚开始用Docker on Windows时，为了方便找文件，喜欢把容器的持久化目录直接Bind Mount到Windows的D盘、E盘目录下，结果部署数据库时发现启动慢、磁盘占用异常、甚至因为文件权限问题启动失败。这本质上是因为Linux和Windows的文件系统模型差异太大：Linux有稀疏文件、硬链接、符号链接、用户组权限这些概念，而NTFS的权限模型、文件分配逻辑完全不同，Docker的转换层不可能100%模拟所有Linux文件系统语义，就像给只懂中文的人实时翻译英文诗歌，总会丢失一些意境和细节。而Named Volume和WSL2挂载是直接在WSL2的虚拟磁盘里用ext4文件系统存数据，容器进程读写文件时不需要跨系统转换，不仅速度快，所有Linux文件特性都能正常支持，和线上Linux云服务器的环境完全一致，不会出现“本地跑的好好的，一上线就出问题”的环境不一致bug。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到如果确实需要在Windows资源管理器里访问容器的持久化文件，可以通过\wsl$\网络路径直接访问WSL2里的文件，不需要用Bind Mount牺牲性能和兼容性。</li>
+<li>能指出跨文件系统挂载的性能问题在处理大量小文件（如node_modules、数据库segment文件）时尤其明显，可能导致应用启动时间从几秒变成几分钟。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<h2>- 很多开发者以为Bind Mount最方便、性能最好，实际上在Windows和MacOS上，Bind Mount到宿主系统目录的性能是最差的，只有在Linux宿主机上Bind Mount才和原生性能一致。</h2>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<hr />
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>LLM Wiki</code> <code>企业知识库</code> <code>知识管理架构</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某120人规模的互联网技术团队，此前基于传统Chunk切片+临时检索的RAG搭建了内部技术知识库，上线后遇到三个核心痛点：① 跨文档知识无法关联（比如查询“Qdrant磁盘占用问题”时，无法关联到“Docker bind mount”“稀疏文件”等分散在不同文档里的知识点）；② 每次问答都要临时做切片检索+大模型总结，高峰期延迟高达3-5秒；③ 知识库和团队日常用的Obsidian笔记生态完全割裂，知识更新需要人工手动同步。请参考Karpathy提出的LLM Wiki设计模式，设计新一代团队知识管理架构，要求支持文档增量录入、知识双向关联、毫秒级问答响应、与Obsidian生态无缝打通。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：锚定LLM Wiki与传统RAG的核心差异，将“检索时临时计算”的逻辑前移到“文档录入时即完成结构化提炼”，从根源解决延迟和知识割裂问题。</li>
+<li>第二步：严格遵循LLM Wiki的三层标准架构（不变量源码层、维基层、约束规范层）做模块拆分，确保事实可溯源、知识可维护。</li>
+<li>第三步：打通与现有Obsidian生态的双向同步链路，让团队不需要改变现有记笔记的习惯就能自动沉淀Wiki。</li>
+<li>第四步：设计低延迟问答链路，直接基于预构建的Wiki概念页做检索，避免每次请求都从头处理原始文档。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整个架构分为四层，完全贴合LLM Wiki的核心设计理念：<br />
+- <strong>第一层：Immutable Sources（不变量源码层）</strong>：做统一的只读原始文档存储，接入三类数据源：① 团队上传的技术方案PDF、排障记录Word；② Obsidian仓库里的日常Markdown笔记（定时拉取，只读不修改）；③ 内部Confluence、GitLab Wiki的公开文档。所有原始文件做哈希校验后存入对象存储，作为最终的事实溯源依据，大模型永久没有修改这一层数据的权限。<br />
+- <strong>第二层：Wiki Processing Pipeline（维基层构建管道）</strong>：新文档入库时异步触发LLM处理流程，不需要等用户提问：① 对原始文档做切片，生成单文档的Source Notes，标注原文页码、引用位置；② 提取文档中的核心概念（如“稀疏文件”“Qdrant segment”），生成独立的Concept Pages，强制用<code>[[双括号]]</code>语法关联相关概念页、源文档笔记、作者页面；③ 检测已有概念页的内容冲突，自动更新观点交锋部分。所有生成的Wiki文件均为标准Markdown格式，存入团队共享的Git仓库。<br />
+- <strong>第三层：Schema Guard（约束规范层）</strong>：用根目录下的<code>AGENTS.md</code>作为核心提示词约束，严格规定LLM维护Wiki的规则：所有概念必须关联源文档链接、必须用标准YAML Frontmatter标注标签和创建时间、双向链接必须覆盖至少2个相关概念、生成后必须做自检（检查断链、事实偏差）。<br />
+- <strong>第四层：Access Layer（访问层）</strong>：一方面将生成的Wiki目录软链接到团队成员的Obsidian仓库，大家可以直接在Obsidian里查看知识图谱、手动补充内容；另一方面提供问答接口，由于所有概念已提前提炼完成，问答时只需在Wiki文件上做轻量检索（甚至直接用grep或轻量向量索引），不需要每次处理几百MB原始文档，延迟可降到几百毫秒。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不能让LLM修改原始Sources层的文件，所有生成的Wiki内容必须标注对应的原始文档链接，避免大模型幻觉导致的事实错误无法溯源。</li>
+<li>不要一开始就做全量文档的Wiki生成，要做增量处理：新文档入库时只处理新增内容、更新相关概念页，避免每次全量重算带来的Token成本爆炸。</li>
+<li>双向链接不能全靠LLM自动生成，要保留人工修正入口：团队成员在Obsidian里手动调整的链接，系统下一次增量更新时要保留，不能被LLM覆盖。</li>
+<li>不要在问答阶段重新走传统RAG的全量切片流程，否则就失去了LLM Wiki“录入即思考”的优势，延迟问题无法根本解决。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>加入知识盲区检测：用Louvain社区发现算法遍历Wiki知识图谱，找出无关联的孤立概念、关联度高但无对应概念页的知识缺口，自动提醒团队补充文档。</li>
+<li>做Wiki的Git版本管理：每次LLM更新都提交Commit，可追溯每一次知识变更的来源，出现幻觉时可快速回滚。</li>
+<li>对接团队IM工具，当群聊中产生新的排障记录时，自动触发管道更新对应概念页，不需要人工手动上传文档。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>开源模型选型</code> <code>Hermes 3</code> <code>多Agent系统</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某创业团队计划开发一套完全本地部署的多Agent自动化办公系统，整体架构为“1个主管调度Agent + N个专用子Agent”：主管Agent负责任务拆解、路由分发、结果校验；子Agent分别负责写SQL查数据、生成会议纪要、调用OA接口发审批、整理周报等单一任务。团队在基座模型选型时对比了原生Llama 3.1、Qwen2.5开源版本和Nous Research的Hermes 3系列，要求：① 工具调用稳定性高，不能频繁出现参数格式错误；② 不要过度对齐，遇到合法的企业内部业务指令不要随便拒绝回答；③ 支持128K长上下文，处理长会议记录时不要漏掉中间的关键信息；④ 硬件成本可控，子Agent可以用消费级显卡部署。请分析Hermes 3是否适合该场景，并给出不同角色Agent的模型尺寸部署策略、Prompt适配要点。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：拆解场景核心需求，对应到模型选型的四个核心评估维度：工具调用准确率、对齐度、长上下文能力、多尺寸覆盖。</li>
+<li>第二步：对比Hermes 3与通用开源模型的特性差异，逐一匹配需求点，判断场景适配性。</li>
+<li>第三步：根据多Agent系统中不同节点的任务复杂度，设计分层的模型尺寸部署方案，平衡成本与效果。</li>
+<li>第四步：给出针对Hermes 3特性的Prompt工程最佳实践，最大化模型效果。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>从核心需求匹配度来看，Hermes 3是该场景的最优选择，核心匹配点如下：<br />
+- <strong>工具调用稳定性匹配</strong>：Hermes 3在微调阶段专门针对Function Calling、JSON/XML结构化输出做了深度优化，相比原生Llama和Qwen的通用对齐版本，它对多工具组合调用的参数格式理解更准确，能正确判断何时调用工具、何时直接返回结果，非常适合LangGraph/AutoGen编排的多Agent流程，可大幅减少格式错误导致的流程重试。<br />
+- <strong>对齐度匹配</strong>：Hermes 3采用Agentic Alignment微调策略，没有做过度的道德审查对齐，不会像通用模型那样遇到“查询上个月员工考勤数据”“生成内部考核通知”这类合法的企业内部指令就触发拒绝机制，会完全服从System Prompt的业务约束，更适合企业内部高权限自动化场景。<br />
+- <strong>长上下文能力匹配</strong>：Hermes 3基于RoPE扩展到128K上下文，并且专门针对“大海捞针”测试做了注意力微调，长文本中间部分的信息召回率远高于同尺寸通用模型，处理数小时会议记录、几十页周报素材时不会出现“中间迷失”问题。<br />
+- <strong>成本匹配</strong>：Hermes 3提供从8B、70B到405B的全尺寸模型，可根据不同Agent的任务复杂度分层部署，不需要所有节点都跑大模型。</p>
+<p>具体分层部署策略：<br />
+- 主管调度Agent：部署Hermes 3 70B（4-bit量化版本，2张3090/4090即可运行），负责任务拆解、多步骤规划、结果校验、异常处理等高复杂度认知任务。<br />
+- 专用子Agent（查SQL、发审批、整理纪要等单一任务）：部署Hermes 3 8B（4-bit量化版本，单张消费级显卡甚至CPU即可运行），由于任务单一、工具固定，8B模型完全可以胜任，响应速度快、硬件成本极低。</p>
+<p>Prompt适配要点：Hermes 3完美适配ChatML格式，写System Prompt时不需要委婉客套，直接用直白指令约束即可；可以要求模型在调用工具前，先在<code>&lt;thinking&gt;</code>标签内做思维链推理，再输出结构化的工具调用参数，能将工具调用准确率进一步提升15%-20%。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要用通用对话版的Hermes 3模型做工具调用，一定要下载带“Function Calling”标识的微调版本，否则工具调用稳定性会大幅下降。</li>
+<li>8B尺寸的Hermes 3不要用来处理跨3个以上工具的复杂任务规划，其推理能力有限，复杂规划必须交给70B尺寸的主管Agent，否则容易出现任务拆解错误导致的流程死循环。</li>
+<li>Hermes 3属于“未过度对齐”模型，一定要在System Prompt里加严格的安全约束，明确禁止执行的操作（如删除数据库、发送外部邮件），不能依赖模型本身的对齐机制做安全防护。</li>
+<li>不要用通用Chat模板套Hermes 3，必须使用官方推荐的ChatML格式（<code>&lt;|im_start|&gt;system/assistant/user&lt;|im_end|&gt;</code>），否则会出现输出格式混乱问题。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以针对具体子Agent任务，用几十条高质量业务样本对Hermes 3 8B做LoRA微调，进一步提升特定场景下的工具调用准确率，微调成本极低，单张4090数小时即可完成。</li>
+<li>给主管Agent配置Hermes 3 405B的云端API作为兜底，遇到跨部门多步骤审批等特别复杂的任务时自动路由到大模型处理，常规任务用本地70B模型处理，平衡成本与效果。</li>
+<li>基于Hermes 3的中立特性，做内部话术的风格适配：给行政类子Agent加友好语气约束，给技术类子Agent加严谨术语约束，不需要担心模型因过度对齐拒绝风格调整。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Codex CLI</code> <code>工程规范</code> <code>Skill开发</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>团队刚全面切换到OpenAI Codex CLI作为AI辅助开发工具，需要设计一套统一的本地开发环境+团队项目的资源目录规范，解决三个常见问题：① 个人常用的Skill、自定义Agent在所有项目里都能调用，不需要每个项目重复安装；② 团队项目专属的Skill可以随Git仓库共享，新同事拉代码后不需要额外配置就能直接用；③ 很多同事安装完资源后找不到、调用不了，分不清Skill、Plugin、Custom Agent三类资源的区别。请写出具体的目录结构、安装流程、验证方法，确保符合Codex的官方规范。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：明确Codex中三类扩展资源的本质区别和官方规定的存放路径，从根源避免路径放错导致的无法识别问题。</li>
+<li>第二步：拆分“个人全局资源”和“项目级共享资源”的边界，全局资源放用户目录，项目资源放仓库内的标准目录并随Git提交。</li>
+<li>第三步：设计标准的Skill安装流程，包含前置校验、路径放置、重载、验证全链路，避免安装失败。</li>
+<li>第四步：给出常见安装问题的排查规则，解决“装了找不到”的痛点。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>首先明确三类资源的官方定义和存放规则，从根上避免路径错误：<br />
+| 资源类型 | 核心作用 | 全局存放路径（所有项目可用） | 项目级存放路径（随仓库共享） | UI可见性 |<br />
+| --- | --- | --- | --- | --- |<br />
+| Skill | 可通过<code>$skill-name</code>直接调用的封装能力，必须包含SKILL.md描述文件 | Windows: <code>C:\Users\&lt;用户名&gt;\.codex\skills</code><br>Mac/Linux: <code>~/.codex/skills</code> | 项目根目录<code>.agents/skills/</code> | 出现在Codex Skills面板，支持$命令调用 |<br />
+| Custom Agent | 自定义子智能体，有独立System Prompt和工具集，需要显式spawn调用 | Windows: <code>C:\Users\&lt;用户名&gt;\.codex\agents</code><br>Mac/Linux: <code>~/.codex/agents</code> | 项目根目录<code>.agents/agents/</code> | 不出现在Skills/Plugins面板，需要点名调用 |<br />
+| Plugin | 官方市场安装的插件，通常是IDE集成、全局功能扩展 | Windows: <code>C:\Users\&lt;用户名&gt;\.codex\plugins</code><br>Mac/Linux: <code>~/.codex/plugins</code> | 不建议放项目级 | 出现在Plugins面板 |</p>
+<p>具体目录结构设计：<br />
+1. <strong>个人全局环境目录</strong>（存于用户目录，不提交Git）：</p>
+<pre><code>~/.codex/
+├── config.toml          # 个人全局Codex配置
+├── skills/              # 个人全局Skill，所有项目可用
+│   └── git-helper/      # 示例：个人常用Git提交助手Skill
+│       ├── SKILL.md     # 必须包含，声明name、description、工作流
+│       └── scripts/
+├── agents/              # 个人全局自定义Agent
+│   └── code-reviewer/   # 示例：个人常用代码审查Agent
+└── plugins/             # 全局插件
+</code></pre>
+<ol start="2">
+<li><strong>团队项目目录</strong>（提交到Git仓库，所有成员共享）：</li>
+</ol>
+<pre><code>your-project/
+├── AGENTS.md            # 项目级全局AI规则（相当于项目级Schema）
+├── .agents/
+│   ├── skills/          # 项目专属Skill，随仓库共享
+│   │   └── deploy-prod/ # 示例：项目专属生产部署Skill
+│   │       ├── SKILL.md
+│   │       └── scripts/
+│   └── agents/          # 项目专属自定义Agent
+│       └── api-tester/  # 示例：项目专属接口测试Agent
+└── 其他项目代码...
+</code></pre>
+<p>标准Skill安装流程：<br />
+1. 前置校验：从GitHub或SkillsLLM获取Skill时，首先确认目标目录下存在SKILL.md文件，且文件头部有<code>---</code>包裹的name和description字段，否则不是标准Codex Skill，不能直接安装。<br />
+2. 路径判断：如果是个人常用通用Skill（如Git助手、代码格式化），复制到全局skills目录；如果是项目专属Skill（如项目部署、规范检查），复制到项目根目录的<code>.agents/skills/</code>下。<br />
+3. 重载生效：安装完成后，在Codex CLI里执行<code>/skills reload</code>强制重载技能，或重启Codex CLI。<br />
+4. 验证：执行<code>/skills list</code>查看新装Skill是否出现在列表中，直接输入<code>$skill-name</code>测试是否能正常触发。<br />
+Custom Agent的验证方法：由于Agent不会出现在Skills列表中，安装后直接输入“用xx Agent简单介绍一下自己”，能正常响应即说明安装成功。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要把项目级Skill放到项目根目录的<code>.codex/skills/</code>下，这是历史遗留的非标准路径，新版本Codex不会识别，且容易和全局配置、缓存文件混淆，项目级Skill必须放<code>.agents/skills/</code>。</li>
+<li>SKILL.md是Skill的唯一标识，没有该文件的目录哪怕放对路径也不会被识别；SKILL.md里的description字段一定要写清楚“什么时候触发这个Skill”，否则Codex无法判断自动调用的时机。</li>
+<li>不要把Custom Agent放到skills目录，也不要把Skill放到agents目录，两类资源的加载逻辑完全不同，放错路径就会出现“装了找不到”的问题。</li>
+<li>Windows系统下注意不要把<code>.codex</code>目录放到OneDrive同步目录里，否则文件锁会导致Codex加载资源失败。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>在项目README里写明项目专属Skill的使用说明，新同事拉代码后只需执行<code>/skills reload</code>即可直接使用，无需额外配置。</li>
+<li>编写全局install_skills脚本，自动把团队公共通用Skill安装到每个人的全局目录，减少手动配置成本。</li>
+<li>给项目级Skill加单元测试，在CI里检查SKILL.md格式是否正确、脚本是否有执行权限，避免提交损坏的Skill导致团队成员无法使用。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Qdrant</code> <code>磁盘排障</code> <code>跨环境差异</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>后端开发小张在本地Windows 11环境用Docker Desktop部署Qdrant做功能开发，docker-compose.yml里配置了<code>./storage:/qdrant/storage</code>的目录挂载，把Qdrant的存储目录映射到Windows的D盘项目目录下。测试时他只导入了2个Collection、共2000条测试向量（原始数据量不到10MB），结果发现本地storage目录占了480MB磁盘空间；而同样版本的Qdrant部署在Linux云服务器上，导入完全相同的数据后，storage目录只占7.2MB。小张一开始以为是数据没同步对，反复删除重建Collection后，本地磁盘占用反而涨到了2.4G，而线上还是不到10MB。请分析该问题的根本原因，给出本地开发环境的优化方案，以及排查segment冗余的具体方法。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：排除数据内容差异的干扰——两边导入的数据完全一致，问题必然出在文件系统机制、挂载方式、Qdrant本身的文件预分配逻辑上。</li>
+<li>第二步：拆解Qdrant的磁盘占用构成：预分配页文件、WAL日志、Payload索引文件、Segment文件，逐一对应Linux和Windows文件系统的差异定位根因。</li>
+<li>第三步：区分“逻辑文件大小”和“实际磁盘占用”的差异，结合稀疏文件（Sparse File）特性解释两边的大小差。</li>
+<li>第四步：给出针对性优化方案，以及Segment冗余的排查清理方法。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>该问题的根本原因是Linux和Windows文件系统对“稀疏文件/空洞文件”的处理机制差异，加上Docker Desktop bind mount的特性、未合并的冗余Segment共同导致，和数据内容本身无关：<br />
+- <strong>核心机制差异解释</strong>：Qdrant运行时会预分配固定大小的文件，比如每个Collection会创建32MB的<code>page_0.dat</code>、<code>chunk_0.mmap</code>页文件，以及固定大小的WAL日志、Payload索引预分配文件。在Linux的ext4/xfs文件系统上，这些预分配文件是“稀疏文件”——逻辑上看文件大小是32MB，但如果没有实际写入数据，操作系统不会分配真实磁盘块，所以用<code>du -h</code>看实际占用只有几MB；只有加<code>--apparent-size</code>参数时，才会显示逻辑上的32MB大小。<br />
+- <strong>Windows本地占用高的原因</strong>：小张用的是Docker Desktop的bind mount模式，把容器内的Linux路径直接映射到Windows NTFS目录下，NTFS在这种跨系统挂载场景下不支持Linux的稀疏文件语义，Qdrant创建的32MB预分配文件会被Windows按完整逻辑大小分配真实磁盘块，不会留空洞，所以仅2个Collection的固定预分配文件就会占掉几百MB空间，这是正常的跨系统差异，不是数据膨胀。<br />
+- <strong>删除重建后占用涨到2.4G的原因</strong>：Qdrant在频繁写入、删除数据时会生成很多小Segment文件，这些Segment在触发compaction合并之前会一直留在磁盘上，哪怕对应的数据已经被删除；而Windows bind mount模式下这些Segment都是按真实大小占用空间，所以越删越大。</p>
+<p>具体优化方案：<br />
+1. 不要把Qdrant的storage目录通过bind mount映射到Windows NTFS目录下，改成两种方式之一：① 把Qdrant存储放到WSL2的Linux文件系统里（如<code>\\wsl$\Ubuntu\home\user\qdrant\storage</code>），此时文件系统为Linux ext4，支持稀疏文件，磁盘占用会和线上一致；② 用Docker named volume存储Qdrant数据，不要绑定到Windows目录，Docker会自动用Linux兼容文件系统存储，也能支持稀疏文件。<br />
+2. 定期触发Qdrant的Segment compaction，测试环境可配置更激进的compaction策略，减少冗余Segment的空间占用；开发测试环境重启Qdrant前可直接删除不需要的Collection，避免残留Segment占空间。</p>
+<p>Segment冗余排查方法：调用Qdrant的Collection信息API（<code>GET /collections/{collection_name}</code>），查看每个Collection的segment count，如果segment数量远大于机器核心数（如8核机器segment数超过32个），说明存在大量冗余小Segment，可手动触发optimize接口强制合并。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要因为本地磁盘占用大就怀疑Qdrant有bug或数据重复写入，只要是bind mount到Windows NTFS目录，几百MB的占用是正常现象，放到WSL2后会立刻降到和线上差不多的大小。</li>
+<li>不要在Windows目录下做Qdrant的性能测试，NTFS和bind mount的开销会导致Qdrant写入、查询性能比真实Linux环境慢3-5倍，测出来的性能数据没有参考价值。</li>
+<li>用ls或Windows资源管理器看到的文件大小是“逻辑大小”，不是实际磁盘占用；在Linux上一定要用不带参数的<code>du -h</code>看真实磁盘块占用，不要被逻辑大小误导。</li>
+<li>如果必须用bind mount到Windows目录，可在Qdrant配置里把预分配文件大小调小（如把<code>mmap_heap_size</code>从默认32MB改成4MB），开发测试环境下可减少预分配空间占用，但生产环境不要修改该配置，会影响性能。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>本地开发环境可直接用Qdrant的内存模式（<code>storage_type: :memory</code>），不需要持久化数据，测试完数据直接丢弃，完全没有磁盘占用问题，启动速度更快。</li>
+<li>编写开发环境清理脚本，每次重启Qdrant前自动删除旧的storage目录，测试数据每次启动时重新导入，避免残留Segment越积越多。</li>
+<li>生产环境部署时不要用Windows主机跑Qdrant，一定要用Linux文件系统，且给存储目录配置定期快照备份，避免Segment损坏导致数据丢失。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agentic Auth</code> <code>企业安全</code> <code>办公Agent</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某制造企业计划从0到1上线一款内部智能办公Agent，员工可以通过自然语言和Agent交互，实现三类能力：① 查询公开的规章制度、考勤记录、个人销售业绩；② 生成销售报表、会议纪要等文档；③ 发起OA审批、修改CRM客户信息、申请差旅报销等带业务副作用的操作。该Agent需要对接内部OA、CRM、PostgreSQL数据仓库三类系统，核心安全风险包括：普通员工越权查询高管薪酬/涉密数据、Agent错误调用删除接口导致数据丢失、Agent代表用户调用第三方系统时的信任传递问题。请设计一套符合Agentic Auth规范的全链路鉴权体系，要求在保障安全的前提下兼顾用户体验，不要给所有操作都加人工审核。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：明确传统静态鉴权（API Key、OAuth）在Agent场景下的核心缺陷：Agent具备自主决策能力，静态凭证容易导致越权、工具滥用、信任链断裂，不能直接套用传统微服务的鉴权方案。</li>
+<li>第二步：按照Agentic Auth的三层技术分层（网关层鉴权、沙箱隔离、分级HITL）做全链路安全控制，从请求入口到工具执行逐层设防。</li>
+<li>第三步：设计分级权限控制策略，区分“查询类无副作用接口”“低风险写操作”“高危操作”，不同风险等级采用不同鉴权强度，平衡安全与体验。</li>
+<li>第四步：补充全链路审计、信任链传递机制，出现安全问题时可快速溯源。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整个鉴权体系分为四层，覆盖从用户发起到工具执行的全链路：<br />
+- <strong>第一层：统一网关层的身份与预过滤</strong><br />
+  首先废弃所有硬编码在Agent代码里的系统API Key，所有Agent节点、MCP Server的调用都必须经过统一LLM网关：① 网关给每个上线的Agent分配唯一的<code>X-Agent-ID</code>身份标识，给每个登录员工发放绑定其组织架构权限的用户Token；② 做强制的向量检索预过滤，当Agent需要查询向量知识库或数据仓库时，网关自动把当前用户的<code>tenant_id</code>、<code>department_id</code>、权限等级作为强制WHERE条件注入检索请求，比如普通员工查询数据时，SQL自动加上“AND salary_level &lt;= 当前员工等级”“AND department_id = 当前用户部门”的条件，从物理层面杜绝越权查询，哪怕Agent被提示词注入，也查不到权限外的数据；③ 实现信任链传递，当Agent A调用Agent B、或Agent通过MCP调用内部系统时，必须在请求头里带上原始用户Token、调用链路Trace ID、每一跳的Agent ID，不允许Agent持有独立的高权限静态凭证，所有调用都可追溯到最初发起请求的真实员工。<br />
+- <strong>第二层：执行环境的沙箱隔离</strong><br />
+  给Agent的代码执行能力（如生成Python脚本分析销售数据）配置用完即毁的轻量级安全容器（用gVisor做内核隔离），沙箱没有宿主机任何权限，不能访问内网其他系统，只能通过网关调用经过授权的工具接口，每次任务执行完立刻销毁沙箱，避免代码执行漏洞导致的宿主机权限泄露；所有工具调用都必须经过网关权限校验，沙箱内的Agent不能直连数据库或业务系统。<br />
+- <strong>第三层：分级人肉安全闸（HITL），杜绝一刀切审核</strong><br />
+  基于操作风险等级设计不同的审核强度：① 低风险操作（查询公开制度、查个人考勤、生成个人周报）：完全自动放行，网关做权限校验后即可执行；② 中风险操作（发起差旅申请、修改自己负责的客户信息、生成部门级报表）：给用户弹二次确认框，展示Agent要执行的操作内容和参数，用户点确认后即可执行，不需要上级审批；③ 高危操作（删除CRM数据、修改商品价格、发起超过阈值金额的报销、查询全公司薪酬数据）：系统自动用LangGraph的<code>interrupt_before</code>机制挂起当前Agent流程，将拓扑状态、thread_id持久化到数据库，一方面给用户弹确认，另一方面根据企业审批流规则推送给对应负责人审批，审批通过后再Resume流程继续执行。<br />
+- <strong>第四层：全链路审计与风控</strong><br />
+  所有Agent的思考过程、工具调用参数、返回结果、人工审批记录都存入审计日志，保留6个月以上，出现安全问题时可通过Trace ID追溯全链路；配置风控规则，比如1分钟内Agent调用某个计费接口超过10次、或尝试访问不在白名单内的系统，立刻熔断当前Agent请求，给管理员发告警。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要给Agent分配账号的最高权限，哪怕是内部系统也要遵循最小权限原则：比如负责查销售数据的Agent，只给它分配销售表的查询权限，不给删除、修改权限，从接口层面堵死误操作可能。</li>
+<li>向量检索的预过滤必须在网关或数据访问层做，不能交给大模型自己判断要不要加过滤条件——大模型可能被提示词注入绕过，必须在代码层面强制注入过滤条件，不允许绕过。</li>
+<li>HITL中断时，一定要把Agent要执行的操作参数原原本本展示给用户，不要只显示“是否确认执行”，要把具体SQL、调用接口、修改字段都列出来，避免Agent偷偷执行用户未授权的操作。</li>
+<li>不要把人工审核当成唯一的安全防线，网关层权限校验、沙箱隔离必须做在前面，否则哪怕有审核，也可能因为用户没仔细看确认内容导致安全事故。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入行为基线风控：基于员工历史操作习惯做异常检测，比如某个员工平时从未查过薪酬数据，突然让Agent查全公司薪酬，哪怕权限足够，也要触发额外的身份校验（如短信验证码）。</li>
+<li>实现权限自动收缩：Agent拿到的用户Token是短时效的，每次调用工具时实时校验用户最新权限，员工离职或岗位调整后权限立刻失效，不需要手动回收Token。</li>
+<li>对接企业DLP（数据防泄漏）系统，Agent返回结果前先扫描内容，若包含涉密信息直接拦截，避免敏感信息通过Agent泄露。</li>
+</ul>
+<hr />
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
