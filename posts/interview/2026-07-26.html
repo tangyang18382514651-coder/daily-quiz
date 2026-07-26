@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-07-26)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-07-26)</h1>
+    <div class="meta">更新于 2026-07-26 11:06</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · 微调 · FlashAttention<br />
+🔄 知识片段：#22, #1, #2（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>SkillsLLM</code> <code>Agent 工具生态</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>什么是 SkillsLLM？它在 AI Agent 工具生态中扮演什么角色？为什么不能把它当作“一键安装源”直接使用，而需要二次判断？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>SkillsLLM 是一个 AI Agent 工具/技能/仓库的聚合搜索站，它汇集了 Codex Skills、MCP Servers、CLI Tools 等多种类型的项目，但并非标准化的一键安装市场，使用时必须根据仓库结构二次判断安装方式。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>SkillsLLM 不是“官方技能商店”，而是广义的聚合目录，收录了约 3395 个 skills/项目，覆盖 Codex、Claude、ChatGPT 等生态。</li>
+<li>收录的项目类型混杂：有的包含 <code>SKILL.md</code> 可安装为 Codex Skill，有的是 MCP Server 需要按 MCP 协议配置，有的只是普通 CLI 工具或 GitHub 仓库，不能直接当 Skill 用。</li>
+<li>判断一个仓库能否作为 Skill 安装的核心依据是：是否包含 <code>SKILL.md</code> 文件，以及该文件是否遵循标准 Skill 规范（包含 name、description、工作流说明）。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>SkillsLLM 的本质是“发现好东西的目录”，而不是“应用商店”。它把各种 AI Agent 相关的开源项目聚合在一起，方便开发者搜索和发现。但正因为来源广泛，里面的项目五花八门：有的仓库是标准的 Codex Skill，可以直接复制到 <code>~/.codex/skills</code> 或 <code>.agents/skills</code> 目录使用；有的则是 MCP Server，需要配置 <code>mcp_servers</code> 并启动服务；还有的只是普通的 Python 包或命令行工具，需要 <code>pip install</code> 或二进制安装。</p>
+<p>如果把 SkillsLLM 当成一键安装源，直接拷贝到 skills 目录，大概率会因为缺少 <code>SKILL.md</code> 或目录结构不对而无法被 Codex 识别。正确的用法是：在 SkillsLLM 上搜索到感兴趣的仓库后，点进去查看其 GitHub 结构，确认是否有 <code>SKILL.md</code>，再决定安装路径和方式。这种“发现 → 验证 → 安装”的流程，才是 SkillsLLM 的正确打开方式。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出 SkillsLLM 收录的典型类型：Codex Skills、MCP Servers、CLI Tools、Agents、Plugins。</li>
+<li>能举例说明判断流程：看 <code>SKILL.md</code>、看 <code>mcp.json</code>、看 <code>setup.py</code>/<code>package.json</code>，分别对应不同安装方式。</li>
+<li>能结合 Codex 的目录规范（<code>~/.codex/skills</code> vs <code>.agents/skills</code>）说明全局与项目级安装的区别。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：认为 SkillsLLM 是 OpenAI 或 Anthropic 官方维护的技能市场。实际上它是社区驱动的聚合站，不保证质量。</li>
+<li>误区2：看到 “Skill” 字样就直接复制到 skills 目录。很多项目只是名字带 Skill，内部并没有 <code>SKILL.md</code>。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Codex Skills</code> <code>目录规范</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 Codex 生态中，安装开源 Skill 时，<code>~/.codex/skills</code>、<code>.agents/skills</code> 和 <code>.codex/skills</code> 这三个路径有什么区别？各自适用于什么场景？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong><code>~/.codex/skills</code> 是用户级全局 Skills 目录，<code>.agents/skills</code> 是项目级 Skills 目录（推荐用于团队共享），<code>.codex/skills</code> 是旧版或非标准路径，不建议作为项目 Skill 的标准存放位置。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Codex 的配置体系分为三层：全局配置（<code>~/.codex/</code>）、项目配置（<code>.agents/</code>）、以及旧版遗留的 <code>.codex/</code> 目录。</li>
+<li>Skills 的加载优先级：项目级 <code>.agents/skills</code> 会覆盖全局 <code>~/.codex/skills</code> 中的同名 Skill，这样团队可以在项目中锁定特定版本的 Skill。</li>
+<li><code>.codex/</code> 目录更多用于 Codex 自身的配置缓存、插件缓存，不是官方推荐的项目 Skill 标准目录。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>当你从 GitHub 上找到一个开源 Skill 并想安装时，首先要决定是给自己用还是给整个团队用。如果是个人使用，直接放到 <code>C:\Users\你的用户名\.codex\skills</code>（Windows）或 <code>~/.codex/skills</code>（Linux/macOS）即可，所有项目都能调用。</p>
+<p>如果是团队协作，应该把 Skill 放到项目根目录的 <code>.agents/skills/</code> 下，并提交到 Git。这样其他同事拉取代码后，Codex 会自动加载项目级 Skills，确保所有人使用的 Skill 版本一致。<code>.agents/skills</code> 是社区和 Codex 文档推荐的标准项目 Skill 目录。</p>
+<p>而 <code>.codex/skills</code> 这个路径容易与 Codex 的内部配置混淆，且不是官方推荐的项目 Skill 目录。很多开发者因为习惯在项目根目录建 <code>.codex</code> 文件夹来放配置，误把 Skills 也放进去，这会导致 Codex 无法正确识别，或者与全局 Skills 产生冲突。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能清晰区分全局与项目级配置的适用场景：个人实验用全局，团队协作锁版本用项目级。</li>
+<li>能指出 <code>.agents/</code> 目录下还可以放 <code>agents/</code>（自定义 Agent）和 <code>config.toml</code>（项目配置），形成完整的项目级 Agent 配置体系。</li>
+<li>能说明 Codex 的 Skills 加载顺序和覆盖规则。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为 <code>.codex/skills</code> 和 <code>.agents/skills</code> 是等价的。实际上 <code>.codex/</code> 是 Codex 内部使用的配置目录，放 Skills 进去可能不会被加载。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Python 装饰器</code> <code>Agent 工具注册</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 AI Agent 开发中，Python 装饰器如何用于实现“工具自动注册”和“Function Calling Schema 生成”？这种模式相比手动维护工具列表有什么优势？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>装饰器可以将普通 Python 函数自动注册为 Agent 的可调用工具，并利用函数的 <code>__doc__</code> 和类型注解自动生成 LLM Function Calling 所需的 JSON Schema，实现“高内聚、低耦合”的插件式工具管理。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>装饰器本质是一个闭包函数，它接收一个函数，返回一个被增强后的函数。在 Agent 框架中，常用 <code>@tool</code> 或 <code>@register_intent</code> 装饰器把函数标记为工具。</li>
+<li>装饰器内部维护一个全局的工具注册表（如列表或字典），被装饰的函数会自动添加到这个注册表中。</li>
+<li>同时，装饰器会提取函数的 <code>__doc__</code>（文档字符串）作为工具描述，提取参数名和类型注解（如 <code>str</code>、<code>int</code>）生成 JSON Schema，直接发送给 LLM，让模型决定何时调用哪个工具。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>想象你正在开发一个智能助理 Agent，它有查天气、订机票、查股票等功能。传统做法是手动维护一个工具列表，每增加一个功能都要修改 Agent 的核心调度代码，容易出错且耦合度高。</p>
+<p>使用装饰器模式后，你只需要写一个普通函数，加上 <code>@register_tool</code> 装饰器：</p>
+<pre><code class="language-python">@register_tool
+def get_weather(city: str) -&gt; str:
+    &quot;&quot;&quot;查询指定城市的实时天气&quot;&quot;&quot;
+    # 实现逻辑
+    return f&quot;{city}天气：晴，25°C&quot;
+</code></pre>
+<p>装饰器会自动完成三件事：<br />
+1. 把 <code>get_weather</code> 函数注册到全局工具注册表。<br />
+2. 提取描述 <code>"查询指定城市的实时天气"</code> 和参数 <code>city: str</code>。<br />
+3. 生成 JSON Schema：<code>{"name": "get_weather", "description": "查询指定城市的实时天气", "parameters": {"city": {"type": "string"}}}</code>。</p>
+<p>Agent 核心调度器只需从注册表中读取所有工具，把 Schema 发给 LLM，LLM 返回要调用的工具名和参数，调度器再动态调用对应函数。新增工具时，完全不需修改调度器代码，完美践行“开闭原则”。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能结合 LangChain 的 <code>@tool</code> 装饰器或 Semantic Kernel 的插件机制举例。</li>
+<li>能说明装饰器模式在 Agent 框架中的“控制反转（IoC）”思想：框架调用你的函数，而不是你的代码调用框架。</li>
+<li>能提到 <code>functools.wraps</code> 保留原函数的元信息，避免装饰器覆盖 <code>__name__</code> 和 <code>__doc__</code>。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为装饰器只是语法糖，没什么实际工程价值。实际上在 Agent 开发中，装饰器是实现插件化工具管理的核心机制。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Python asyncio</code> <code>Agent 并发</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 AI Agent 开发中，为什么需要引入 <code>asyncio</code> 异步编程？它与同步调用相比，在调用多个外部 API（如 LLM、向量数据库、业务接口）时，性能差异的根本原因是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong><code>asyncio</code> 异步编程让 Agent 在等待 I/O 操作（如 LLM 响应、HTTP 请求）时释放线程去处理其他任务，从而将多个外部调用的总耗时从“串行累加”降低为“取最长耗时”，大幅提升吞吐量。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>同步代码中，每个 I/O 操作都会阻塞当前线程，直到响应返回。如果 Agent 需要调用 3 个外部 API，每个耗时 1 秒，总耗时就是 3 秒。</li>
+<li><code>asyncio</code> 基于事件循环（Event Loop）和协程（Coroutine），遇到 <code>await</code> 时，协程会挂起并让出控制权，事件循环可以切换到其他协程执行。3 个请求可以“同时”发出，总耗时约等于最慢的那个请求的时间（~1 秒）。</li>
+<li>Python 的 <code>asyncio</code> 是单线程异步模型，适合 I/O 密集型任务，但不适合 CPU 密集型计算。Agent 的主要瓶颈在于等待 LLM 生成 token、等待数据库返回结果，这正是 <code>asyncio</code> 的最佳场景。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>假设你的 Agent 需要同时完成三个任务：调用 GPT-4 生成摘要、查询向量数据库检索相似文档、调用业务 API 获取用户信息。同步代码会这样执行：</p>
+<pre><code>发起 GPT-4 请求 → 等待 1.2s → 拿到结果
+发起向量检索 → 等待 0.3s → 拿到结果
+发起业务 API → 等待 0.5s → 拿到结果
+总耗时 = 1.2 + 0.3 + 0.5 = 2.0s
+</code></pre>
+<p>使用 <code>asyncio</code> 后：</p>
+<pre><code class="language-python">async def agent_task():
+    results = await asyncio.gather(
+        call_gpt4(prompt),
+        search_vector(query),
+        fetch_user_info(user_id)
+    )
+</code></pre>
+<p>三个协程几乎同时启动，各自等待 I/O，总耗时约等于最慢的 GPT-4 的 1.2s。性能提升接近 40%。</p>
+<p>在 LangChain 和 LangGraph 中，很多组件都支持异步调用（如 <code>aembed_documents</code>、<code>ainvoke</code>），如果你的 Agent 需要处理高并发请求（如作为 API 服务），异步编程是必须掌握的技能。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能解释 <code>asyncio.gather</code> 和 <code>asyncio.create_task</code> 的区别：<code>gather</code> 是批量并发并等待全部完成，<code>create_task</code> 是“火后不管”，适合后台任务。</li>
+<li>能提到 Agent 中常见的异步场景：同时调用多个 LLM 进行投票、并行检索多个知识库、异步写日志/埋点。</li>
+<li>能指出 <code>asyncio</code> 的局限：不适合 CPU 密集型任务，此时应使用 <code>concurrent.futures</code> 线程池或进程池。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为加上 <code>async/await</code> 就一定能提速。如果代码内部没有真正的异步 I/O 操作（如用了同步的 <code>requests</code> 库），反而会因为事件循环开销变慢。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LLaMA Factory</code> <code>AutoDL</code> <code>微调工具链</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>LLaMA Factory 要求本地必须有模型文件才能进行微调，但很多开发者本地没有高性能 GPU 或模型文件。如何利用 AutoDL 等云 GPU 平台实现“零本地模型”微调？这种方案的核心优势和适用场景是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>通过 AutoDL 等云 GPU 平台，开发者可以在浏览器中直接启动预装了大模型和 LLaMA Factory 的云端实例，上传数据集即可开始微调，无需本地下载模型或拥有高端显卡，极大降低了微调门槛。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>AutoDL 等平台提供了预装主流大模型（如 Qwen、Llama 3）的 GPU 实例，开机即用，模型文件已存储在云端高速存储中。</li>
+<li>LLaMA Factory 是一个封装了微调全流程的 Web UI 工具，支持 LoRA/QLoRA 等高效微调方法，只需在浏览器中打开其界面，上传数据集、选择模型和参数，即可一键启动训练。</li>
+<li>云端 GPU 按小时计费（如 24G 显存显卡约 1-2 元/小时），训练完成后可以立即关机，模型权重可以下载到本地或直接部署在云端。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统微调流程需要开发者自己准备三样东西：模型文件（动辄几十 GB）、高性能 GPU（如 RTX 3090/4090）、以及复杂的训练环境配置。这对个人开发者或小团队来说成本高昂。</p>
+<p>AutoDL + LLaMA Factory 的方案彻底改变了这一局面。你只需要：<br />
+1. 在 AutoDL 上租一台带 GPU 的实例（选择预装了 LLaMA Factory 和 Qwen/Llama 的镜像）。<br />
+2. 通过浏览器打开 LLaMA Factory 的 Web UI。<br />
+3. 上传你的数据集（如 HR 问答对、客服对话记录）。<br />
+4. 选择基座模型、微调方法（LoRA/QLoRA）、设置学习率等参数。<br />
+5. 点击“开始训练”，等待几十分钟到几小时。<br />
+6. 训练完成后，下载 LoRA 权重（通常只有几十 MB），与基座模型合并或直接加载使用。</p>
+<p>这种方案的核心优势是“零门槛、低成本、快速验证”。特别适合需要快速试错、验证微调效果的场景，比如企业内部的垂直领域模型原型开发。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能对比三种方案：AutoDL 云端微调（零本地模型）、ModelScope 魔搭在线微调（功能较弱）、本地 GPU 微调（适合长期使用）。</li>
+<li>能说明 LoRA 权重与基座模型的关系：LoRA 是“补丁”，训练产物很小，推理时需要与基座模型合并或动态加载。</li>
+<li>能提到成本控制技巧：使用竞价实例、训练完立即关机、数据集预先清洗以减少训练步数。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为 LLaMA Factory 可以凭空训练模型。实际上它只是微调工具，必须依赖基座模型，只不过基座模型可以存储在云端。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>向量数据库</code> <code>文件系统</code> <code>稀疏文件</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>同一个 Qdrant 向量数据库实例，在 Linux 服务器上只占用几 MB 磁盘空间，但在 Windows 本地（通过 Docker Desktop 挂载）却占用几百 MB。这种差异的根本原因是什么？如何让 Windows 本地的存储表现接近 Linux 线上环境？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>差异源于 Linux 文件系统对“稀疏文件（Sparse File）”的高效支持，而 Windows 的 NTFS 在 Docker bind mount 场景下会将预分配但未写入的空白区域也计算为实际占用空间，导致磁盘占用虚高。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Qdrant 会预分配一些固定大小的页文件（如 32MB 的 <code>page_0.dat</code>、<code>chunk_0.mmap</code>）和 WAL 文件，用于存储向量数据和索引。</li>
+<li>在 Linux（ext4/xfs）上，这些文件通常以稀疏文件形式存在：文件逻辑大小是 32MB，但只有真正写入数据的磁盘块才被分配，未写入的空白区域不占物理空间。因此 <code>du -h</code> 显示的是实际占用（几 MB）。</li>
+<li>在 Windows 上通过 Docker Desktop 的 bind mount 挂载时，Qdrant 在容器内创建的文件最终落在 Windows 的 NTFS 文件系统上。NTFS 对稀疏文件的支持有限，且 bind mount 的转换层容易将预分配的空间全部“落实”为实际磁盘占用，导致几百 MB 的虚高。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>你可以把稀疏文件想象成一本只有前几页写了字的 1000 页笔记本。在 Linux 的“仓库管理系统”中，管理员只记录实际写了字的页数（几页），所以库存显示占用很少。但在 Windows 的“仓库管理系统”中，管理员看到笔记本有 1000 页，就认为它占满了 1000 页的空间，即使大部分是空白。</p>
+<p>这种差异在数据量很小时尤为明显。当 Qdrant 中只有少量向量数据时，预分配的 32MB 页文件大部分是空的，Linux 只算实际写入的几 KB，而 Windows 可能算整 32MB。加上多个 segment 和 WAL 文件的叠加，本地 Windows 很容易显示几百 MB。</p>
+<p>要让 Windows 本地的表现接近 Linux，有两种方法：<br />
+1. 将 Qdrant 的存储路径改为 WSL2 内的 Linux 文件系统（如 <code>/home/user/qdrant_storage</code>），而不是挂载 Windows 目录。<br />
+2. 使用 Docker named volume（<code>docker volume create qdrant_data</code>），它由 Docker 在 Linux VM 中管理，避免 NTFS 的干扰。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能解释 <code>du -h</code> 和 <code>du -h --apparent-size</code> 的区别：前者显示实际磁盘占用，后者显示文件逻辑大小。</li>
+<li>能说明 Qdrant 预分配文件的目的：避免频繁扩展文件带来的性能抖动，保证写入延迟稳定。</li>
+<li>能指出其他向量数据库（如 Milvus）也有类似现象，这是存储引擎设计的通用权衡。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为 Windows 上的几百 MB 是数据内容本身占用。实际上数据内容一样，差异全在文件系统的“空洞”处理上。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>结构化输出</code> <code>约束解码</code> <code>JSON Schema</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 AI Agent 开发中，如何确保大模型稳定输出符合预期的 JSON 结构？请对比“Few-Shot 提示”、“约束解码（Constrained Decoding）”和“后处理修复”三种方案的原理及适用场景。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>确保大模型稳定输出 JSON 的三种主流方案中，约束解码是最可靠但实现门槛最高的方案；Few-Shot 提示最简单但无法 100% 保证格式；后处理修复是兜底策略，适合非实时场景。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>Few-Shot 提示</strong>：在 Prompt 中提供 2-5 个“输入-输出 JSON”示例，让模型模仿格式。原理是利用模型的 In-Context Learning 能力，成本低、实现简单，但无法杜绝模型“自由发挥”（如多输出一个解释字段）。</li>
+<li><strong>约束解码（Constrained Decoding）</strong>：在模型生成每个 token 时，根据预定义的 JSON Schema 或正则表达式，动态屏蔽不符合语法的 token，强制输出合法 JSON。代表实现有 <code>guidance</code>、<code>lm-format-enforcer</code>、<code>outlines</code> 等库，以及 vLLM 的 <code>guided_decoding</code> 参数。可靠性接近 100%，但需要推理框架支持。</li>
+<li><strong>后处理修复</strong>：对模型输出的“半成品”JSON 进行正则提取、括号补全、字段校验等操作。例如用 <code>json.loads</code> 尝试解析，失败后用正则匹配 <code>{...}</code> 再补全。适合对实时性要求不高的离线批处理，但可能丢失信息或引入错误。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在实际 Agent 开发中，这三种方案通常是组合使用的。以智能客服的意图识别为例，我们需要模型输出 <code>{"intent": "查物流", "confidence": 0.95}</code>。</p>
+<ul>
+<li>第一阶段：用 Few-Shot 提示给模型“打样”，大多数情况下模型能正确输出。</li>
+<li>第二阶段：如果推理框架支持（如 vLLM + <code>guided_json</code>），开启约束解码，彻底杜绝格式错误。</li>
+<li>第三阶段：在应用层加一层后处理校验，用 <code>try...except</code> 捕获解析异常，对失败 case 做正则修复或降级处理（如返回默认意图）。</li>
+</ul>
+<p>对于需要高可靠性的生产环境，强烈建议使用约束解码。OpenAI 的 <code>response_format={"type": "json_object"}</code> 和 <code>json_schema</code> 参数本质上也是一种约束解码，但第三方模型需要借助推理框架实现。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出约束解码的核心原理：在自回归生成过程中，每一步只允许采样符合语法规则的 token，本质是一个有限状态机（FSM）引导的采样过程。</li>
+<li>能对比不同约束解码库的优劣：<code>guidance</code> 灵活但侵入性强，<code>outlines</code> 轻量且兼容性好，<code>lm-format-enforcer</code> 性能高。</li>
+<li>能指出 JSON 输出的另一个痛点：模型可能输出正确的 JSON 但字段值不符合业务逻辑（如 intent 不在预定义列表中），这需要业务层的校验。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为 Few-Shot 提示足够可靠。实际上模型在生成长 JSON 或遇到边界 case 时，仍然可能输出多余的文本或缺失括号。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent Memory</code> <code>长短期记忆</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 AI Agent 架构中，“长短期记忆（Long-Short Term Memory）”通常如何分层设计？每一层存储什么信息、使用什么技术实现？这种分层设计解决了什么核心问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agent 的长短期记忆通常分为三层：短期记忆（对话上下文窗口）、中期记忆（向量检索的近期历史）、长期记忆（结构化知识库或用户画像），分别解决“正在说什么”、“最近说过什么”、“一直知道什么”的问题。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>短期记忆（Working Memory）</strong>：直接放在 LLM 的上下文窗口中，包含当前对话的最近几轮消息、工具调用结果等。受限于模型的最大上下文长度（如 128K tokens），需要滑动窗口或摘要压缩来管理。实现最简单，就是 Prompt 拼接。</li>
+<li><strong>中期记忆（Recent Memory）</strong>：将历史对话以向量形式存入向量数据库（如 Milvus/Qdrant），当需要时通过语义检索召回相关片段。适合跨会话的上下文延续，比如用户昨天问过的问题今天接着问。关键技术是 Embedding + 向量检索 + 时间衰减权重。</li>
+<li><strong>长期记忆（Long-term Memory）</strong>：以结构化形式存储的用户画像、偏好、知识库等稳定信息。例如用户是 VIP 客户、常用收货地址、历史订单摘要等。通常存储在关系型数据库（PostgreSQL）或文档数据库中，通过 ID 精确查询，不依赖语义检索。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>想象一个电商客服 Agent，用户说：“我上次买的那个蓝色的 T 恤，能换成红色的吗？”</p>
+<ul>
+<li>短期记忆：Agent 知道当前这句话在问换货，以及上一句用户说“我要换货”。</li>
+<li>中期记忆：通过向量检索找到 3 天前的对话记录，用户当时买了一件蓝色 T 恤，订单号是 12345。</li>
+<li>长期记忆：从用户画像中查到用户的尺码是 XL，收货地址是北京，VIP 等级是金卡（享受免费换货）。</li>
+</ul>
+<p>三层记忆协同工作，Agent 才能准确回答：“您 3 天前购买的蓝色 XL T 恤（订单号 12345）可以免费换红色 XL，还是寄到北京地址吗？”</p>
+<p>这种分层设计的核心价值在于“成本与精度的平衡”：短期记忆最快但容量有限，中期记忆容量大但有检索延迟和精度损失，长期记忆最稳定但需要提前结构化。没有分层，要么上下文爆炸，要么 Agent 失忆。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能结合 LangChain 的 <code>ConversationBufferMemory</code>、<code>VectorStoreRetrieverMemory</code> 等组件说明实现方式。</li>
+<li>能指出中期记忆的常见优化：时间衰减（越近的对话权重越高）、实体提取（只存关键信息而非全文）、定期摘要（用 LLM 把长对话压缩成摘要再存向量）。</li>
+<li>能说明长期记忆的更新策略：事件驱动（用户修改地址时更新）和定期同步（每天凌晨从 CRM 拉取用户标签）。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为把所有历史对话都塞进 Prompt 就是“记忆”。这会导致上下文窗口快速耗尽、推理成本飙升，且模型容易“迷失在中间”。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LangGraph</code> <code>状态持久化</code> <code>Checkpointer</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>LangGraph 如何实现 Agent 工作流的状态持久化？<code>Checkpointer</code> 的核心作用是什么？它如何支持“人机协同（Human-in-the-Loop）”场景中的流程挂起与恢复？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LangGraph 通过 <code>Checkpointer</code> 组件在每个节点执行后自动保存图状态（State）到持久化存储（如 PostgreSQL/Redis），实现流程的断点续跑和“人机协同”中的挂起-审批-恢复机制。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>LangGraph 的图执行是有状态的，每个节点接收 <code>State</code> 并返回更新后的 <code>State</code>。<code>Checkpointer</code> 在每次状态变更后，将完整的 <code>State</code> 对象序列化并写入外部存储。</li>
+<li>状态保存的粒度是“每步（Step）”，即每执行完一个节点就存一次。这样即使进程崩溃，重启后也能从最近的 checkpoint 恢复，不会重复执行已完成的节点。</li>
+<li>对于人机协同场景，LangGraph 提供了 <code>interrupt_before</code> 或 <code>interrupt_after</code> 参数。当图执行到指定节点前/后，会自动挂起，将当前 <code>State</code> 和 <code>thread_id</code> 持久化，释放计算资源。人类审批后，通过相同的 <code>thread_id</code> 调用 <code>graph.stream(None, config)</code> 即可从挂起点恢复执行。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>以“智能客服退款审批”为例，工作流是：用户请求退款 → Agent 查询订单 → 判断金额 → 如果金额 &gt; 500 元，挂起等待人工审批 → 审批通过后执行退款。</p>
+<p>使用 LangGraph 实现时，我们会在“判断金额”节点后设置 <code>interrupt_before="execute_refund"</code>。当金额超过 500 元时，图自动挂起，<code>State</code> 中保存了订单信息、用户信息、退款金额等，并写入 PostgreSQL 的 checkpoints 表。前端轮询或通过 Webhook 检测到挂起状态，弹出审批框。人工点击“同意”后，后端调用 <code>graph.stream(None, {"configurable": {"thread_id": "xxx"}})</code>，LangGraph 从数据库加载 checkpoint，继续执行 <code>execute_refund</code> 节点。</p>
+<p><code>Checkpointer</code> 的持久化存储通常选择 PostgreSQL（支持事务和复杂查询）或 Redis（高性能，适合短生命周期任务）。LangGraph 内置了 <code>SqliteSaver</code>、<code>PostgresSaver</code>、<code>RedisSaver</code> 等实现。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说明 checkpoint 的存储结构：包含 <code>thread_id</code>、<code>checkpoint_id</code>、<code>parent_checkpoint_id</code>、<code>state</code>（序列化后的状态）、<code>metadata</code> 等字段，支持版本链和回溯。</li>
+<li>能指出人机协同的另一种模式：<code>interrupt_after</code> 用于节点执行后挂起，适合需要人工审核工具调用结果的场景。</li>
+<li>能提到 LangGraph 的 <code>send</code> 和 <code>receive</code> 机制，支持更复杂的动态并行和条件分支，同样依赖状态持久化。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为状态持久化只是“保存对话历史”。实际上它保存的是整个图的执行状态，包括当前节点位置、待执行的任务队列、中间变量等，是图恢复的完整快照。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>分布式 Agent</code> <code>集群通信</code> <code>服务治理</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在企业级多 Agent 系统中，当 Agent 数量从个位数扩展到数十甚至上百个时，如何设计分布式 Agent 集群的通信与治理架构？核心需要解决哪些问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>分布式 Agent 集群的通信与治理需要解决三大核心问题：服务发现（Agent 如何找到彼此）、负载均衡与路由（请求如何分配到合适的 Agent 实例）、以及会话保持（同一用户的多轮对话如何路由到同一 Agent 实例），通常通过注册中心、消息队列和一致性哈希等技术实现。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>服务发现</strong>：每个 Agent 实例启动时向注册中心（如 Consul、Nacos、etcd）注册自己的 IP、端口和提供的技能（如“客服意图识别”、“文档摘要”）。调用方通过技能名从注册中心获取可用实例列表。Agent 之间通常通过 MCP 或 A2A 协议通信，注册中心可以存储 MCP Server 的端点信息。</li>
+<li><strong>负载均衡与路由</strong>：当多个 Agent 实例提供相同技能时，需要在网关层或调用方实现负载均衡（如轮询、最少连接、加权随机）。更高级的做法是根据请求内容智能路由：例如，VIP 用户的请求优先路由到高性能实例，普通用户路由到共享实例。</li>
+<li><strong>会话保持（Sticky Session）</strong>：对于多轮对话，同一 <code>thread_id</code> 的请求必须路由到同一个 Agent 实例，因为该实例的内存中保存了对话上下文（或通过分布式缓存共享状态）。通常使用一致性哈希（如根据 <code>thread_id</code> 哈希选择实例）或网关层的会话粘滞（如 Nginx <code>ip_hash</code> 或 <code>sticky cookie</code>）。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>假设你有一个“智能客服 Agent 集群”，包含 10 个客服 Agent 实例和 3 个“订单查询 Agent”实例。用户发来消息“我的订单到哪了？”，网关首先进行意图识别，发现是“查物流”，于是需要调用“订单查询 Agent”。</p>
+<ol>
+<li>网关从注册中心查询“订单查询”技能的可用实例列表。</li>
+<li>根据负载均衡策略（如最少连接数）选择一个实例，比如 <code>agent-order-2</code>。</li>
+<li>网关检查请求中的 <code>thread_id</code>，如果该 <code>thread_id</code> 之前已经绑定到 <code>agent-order-3</code>，则强制路由到 <code>agent-order-3</code>，保证会话连续性。</li>
+</ol>
+<p>如果 <code>agent-order-3</code> 宕机，注册中心通过健康检查将其摘除，网关将请求路由到其他实例，同时从分布式缓存（如 Redis）中恢复该 <code>thread_id</code> 的对话状态，实现故障转移。</p>
+<p>在更复杂的场景中，Agent 之间可能需要直接通信（如客服 Agent 调用订单 Agent），这时需要引入消息队列（如 Kafka/RabbitMQ）进行异步解耦，或者使用 gRPC 实现高性能的点对点调用。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能画出架构图：用户 → API 网关 → 意图路由 → Agent 注册中心 → Agent 集群 → 共享存储（Redis/PostgreSQL）。</li>
+<li>能说明 MCP 协议在 Agent 通信中的作用：标准化工具暴露和调用，降低 Agent 之间的耦合。</li>
+<li>能提到 K8s + Serverless（如阿里云 ACK Serverless）在 Agent 弹性伸缩中的实践：根据请求量自动扩缩 Agent Pod，结合 KEDA 进行事件驱动伸缩。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为 Agent 集群就是简单的多实例部署。实际上，没有会话保持和智能路由，多轮对话会频繁“失忆”，用户体验极差。</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agent 工具系统</code> <code>Python 装饰器</code> <code>上下文管理器</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你正在开发一个企业级 AI Agent 平台，需要让不同业务线的开发者快速编写和接入“技能工具”（如查天气、订机票、查询数据库）。请设计一套基于 Python 装饰器和上下文管理器的<strong>工具插件框架</strong>，要求满足：<br />
+1. 工具函数通过装饰器自动注册到 Agent 的工具列表中，并自动提取函数签名和文档字符串生成 JSON Schema 供大模型 Function Calling 使用；<br />
+2. 所有工具调用必须经过统一的鉴权装饰器（如校验 API Key、租户权限）；<br />
+3. 涉及数据库连接、文件读写等资源的工具，必须使用上下文管理器保证资源绝对释放；<br />
+4. 框架需支持异步工具，并能与 Agent 主流程的异步事件循环无缝集成。<br />
+请给出整体架构设计，并说明各组件如何协作。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>利用 Python 装饰器“给函数穿衣服”的特性，将工具注册、鉴权、Schema 提取等横切关注点从业务代码中剥离。</li>
+<li>设计一个全局 <code>ToolRegistry</code> 单例，装饰器在函数定义时自动将函数元信息（名称、参数类型、docstring）存入注册表。</li>
+<li>鉴权装饰器作为外层包装，在函数执行前校验身份；上下文管理器用于资源型工具的内部实现，确保异常安全。</li>
+<li>通过 <code>asyncio</code> 和 <code>inspect</code> 模块自动识别同步/异步函数，统一封装为可 await 的调用接口。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>核心组件</strong>：</li>
+<li><code>ToolRegistry</code>：维护 <code>Dict[str, ToolMeta]</code>，存储工具名、函数引用、参数 Schema、是否异步等。</li>
+<li><code>@register_tool</code> 装饰器：将函数注册到 Registry，并用 <code>inspect.signature</code> 和 <code>__doc__</code> 生成 JSON Schema。</li>
+<li><code>@auth_required</code> 装饰器：接收 <code>permission</code> 参数，执行前从上下文变量（如 <code>ContextVar</code>）中获取当前租户/用户凭证，进行权限比对。</li>
+<li>
+<p><code>@resource_safe</code> 装饰器或内部上下文管理器：对数据库连接等使用 <code>with</code> 语句或 <code>async with</code>，确保 <code>__exit__</code> 中关闭连接。</p>
+</li>
+<li>
+<p><strong>协作流程</strong>：<br />
+  1. 开发者编写工具函数，加上 <code>@register_tool</code> 和 <code>@auth_required</code>。<br />
+  2. Agent 启动时，扫描所有被装饰的函数，Registry 汇总所有工具 Schema 发送给 LLM。<br />
+  3. LLM 返回 Function Call 请求后，Agent 从 Registry 取出函数，先通过鉴权装饰器校验，再执行。<br />
+  4. 工具内部若涉及资源，使用上下文管理器自动回收。</p>
+</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>装饰器顺序至关重要：<code>@register_tool</code> 应放在最外层，保证注册的是原始函数或包装后的最终函数；<code>@auth_required</code> 在内层。</li>
+<li>异步函数需使用 <code>inspect.iscoroutinefunction</code> 判断，调用时用 <code>await</code>；同步函数在事件循环中需用 <code>loop.run_in_executor</code> 避免阻塞。</li>
+<li>上下文管理器与异步结合时，推荐使用 <code>contextlib.asynccontextmanager</code> 实现异步上下文管理器。</li>
+<li>鉴权信息应通过 <code>ContextVar</code> 传递，而非全局变量，以支持并发请求隔离。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>支持工具版本管理与灰度发布：Registry 可按版本存储，Agent 根据配置选择。</li>
+<li>集成速率限制（Rate Limiting）装饰器，防止工具被高频滥用。</li>
+<li>将工具 Schema 自动同步到 API 网关或 MCP Server，实现多 Agent 共享。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Codex Skills</code> <code>SkillsLLM</code> <code>Agent 工具管理</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你的团队使用 Claude Code（Codex CLI）作为日常开发助手，希望集成社区中优秀的开源 Skills 和自定义 Agents 来提升效率。团队中不同项目可能需要不同的 Skills 组合，且个人也有自己偏好的全局工具。请分析 SkillsLLM 平台在“发现-评估-安装”流程中的作用，并制定一套<strong>项目级与全局级 Skills/Agents 管理策略</strong>，解决冲突和版本不一致问题。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>SkillsLLM 是一个聚合搜索站，收录了 Codex Skills、MCP Servers、Agents 等，但并非所有条目都能直接作为 Codex Skill 安装，需要二次判断。</li>
+<li>安装前需确认目标仓库是否包含 <code>SKILL.md</code>（标准 Skill）或属于 Custom Agents（放在 <code>~/.codex/agents</code>）。</li>
+<li>管理策略应区分全局（个人常用）和项目级（团队共享），利用 <code>.agents/skills</code> 和 <code>~/.codex/skills</code> 的优先级机制，并制定命名规范避免冲突。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li>
+<p><strong>发现与评估流程</strong>：<br />
+  1. 在 SkillsLLM 中按关键词（如 <code>pdf</code>, <code>browser</code>, <code>deploy</code>）搜索。<br />
+  2. 点开结果，查看其 GitHub 仓库结构：</p>
+<ul>
+<li>若根目录或子目录有 <code>SKILL.md</code>，且包含 YAML frontmatter（<code>name</code>, <code>description</code>），则是标准 Skill。</li>
+<li>若为 Agent 项目（通常有 <code>agent.yaml</code> 或说明），则按 Custom Agent 安装。</li>
+<li>若仅为 CLI 工具或普通仓库，则不能直接作为 Skill 使用，需二次封装。<br />
+  3. 确认后，将仓库链接提供给 Codex，使用 <code>帮我安装这个 GitHub skill 到全局 Codex skills</code> 指令自动安装，或手动复制文件夹。</li>
+</ul>
+</li>
+<li>
+<p><strong>管理策略</strong>：</p>
+</li>
+<li><strong>全局 Skills</strong>：放在 <code>C:\Users\&lt;用户名&gt;\.codex\skills</code>，适用于个人在所有项目中常用的工具（如 <code>knowledge-deploy</code>）。优先级低于项目级。</li>
+<li><strong>项目级 Skills</strong>：放在项目根目录的 <code>.agents/skills/</code>，随 Git 版本控制，确保团队成员环境一致。Codex 优先加载项目级 Skills。</li>
+<li><strong>Agents</strong>：放在 <code>~/.codex/agents</code>，调用时通过 <code>@agent-name</code> 或 orchestrator 触发，不显示在 Skills 面板。</li>
+<li><strong>冲突解决</strong>：若项目级和全局级存在同名 Skill，项目级覆盖全局级。通过 <code>SKILL.md</code> 中的 <code>name</code> 字段唯一标识，建议团队在项目 README 中记录所需 Skills 清单和版本（Git commit hash）。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>SkillsLLM 中的条目可能是 MCP Server 或 CLI 工具，直接复制到 skills 目录无效，必须确认有 <code>SKILL.md</code>。</li>
+<li>项目级 Skills 应放在 <code>.agents/skills</code> 而非 <code>.codex/skills</code>，后者易被 Codex 内部配置覆盖。</li>
+<li>更新 Skill 时，需重启 Codex 或执行 Force Reload Skills 才能生效。</li>
+<li>Custom Agents 不会出现在 UI 的 Skills 列表，需通过 <code>@agent-name</code> 调用，容易让新成员困惑，需文档说明。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>编写脚本自动从团队维护的 Skills 清单中批量安装，并校验 <code>SKILL.md</code> 完整性。</li>
+<li>利用 Git submodule 或 VCS 外部依赖管理，将常用 Skills 仓库固定版本引入项目。</li>
+<li>搭建内部 Skills 市场，对 SkillsLLM 中筛选出的高质量 Skill 做镜像和审核。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agent Harness</code> <code>pytest</code> <code>熔断测试</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你负责一个建材报价 Agent，它接收 PDF 图纸，输出 Excel 报价单。每次修改 Prompt 或业务逻辑后，都需要快速验证报价准确性，并确保 Agent 不会陷入死循环或超时。请实现一个基于 <code>pytest</code> 的<strong>极简 Agent Harness 测试脚本</strong>，包含：<br />
+1. 批量注入测试用例（图纸路径 + 标准答案 Excel）；<br />
+2. 为 Agent 设置最大循环次数（max_loops）和超时（timeout）作为熔断机制；<br />
+3. 运行 Agent 后计算误差率，断言误差 &lt; 3%；<br />
+4. 该脚本能直接集成到 CI/CD 流水线中。<br />
+请给出关键代码和解释。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>利用 <code>pytest.mark.parametrize</code> 批量加载测试用例，每个用例包含输入图纸和预期报价 Excel。</li>
+<li>在测试函数内实例化 Agent 时注入熔断参数（<code>max_loops=10, timeout=60</code>），防止无限循环或长时间阻塞。</li>
+<li>调用 Agent 的 <code>run</code> 方法生成结果 Excel，然后通过自定义 <code>calculate_error</code> 函数对比结果与标准答案，计算误差率。</li>
+<li>使用 <code>assert</code> 判断误差是否在阈值内，失败时打印详细错误信息。</li>
+<li>该脚本可直接通过 <code>pytest test_harness.py</code> 运行，集成到 GitHub Actions 或 Jenkins 中。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<pre><code class="language-python"># test_harness.py
+import pytest
+from my_agent import BuildingQuoteAgent
+from utils import load_test_cases, calculate_error
+
+@pytest.mark.parametrize(&quot;case&quot;, load_test_cases())
+def test_agent_quote_accuracy(case):
+    # 1. 注入熔断限制
+    agent = BuildingQuoteAgent(max_loops=10, timeout=60)
+
+    # 2. 运行 Agent
+    result_excel_path = agent.run(drawing_path=case[&quot;drawing_pdf&quot;])
+
+    # 3. 计算误差
+    error_rate = calculate_error(result_excel_path, case[&quot;ground_truth_excel&quot;])
+
+    # 4. 断言
+    assert error_rate &lt;= 0.03, f&quot;算量失败，误差率 {error_rate*100:.2f}% 超过预期！&quot;
+</code></pre>
+<ul>
+<li><code>load_test_cases()</code> 从 JSON/YAML 文件或目录中读取测试集，返回列表，每个元素为包含 <code>drawing_pdf</code> 和 <code>ground_truth_excel</code> 的字典。</li>
+<li><code>calculate_error</code> 根据业务逻辑比较两个 Excel 的对应字段，返回平均相对误差。</li>
+<li>熔断参数应在 Agent 内部实现：利用 <code>signal.alarm</code>（Linux）或线程计时器（跨平台）实现超时；循环次数在 Agent 的思考循环中计数，超过则抛出自定义异常。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>超时机制在 Windows 上不能使用 <code>signal.alarm</code>，需用 <code>threading.Timer</code> 或 <code>concurrent.futures</code> 的 <code>TimeoutError</code>。</li>
+<li>Agent 的 <code>run</code> 方法应返回结果文件路径，若内部异常应抛出而非静默吞掉，否则 <code>assert</code> 无法捕获失败。</li>
+<li>测试用例的 <code>ground_truth_excel</code> 必须与 Agent 输出格式完全一致，包括列名、单位等，否则 <code>calculate_error</code> 匹配失败。</li>
+<li>集成 CI/CD 时，需在测试环境中安装 Agent 的所有依赖，并准备测试图纸文件（可用 Git LFS 管理）。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>增加并发执行：使用 <code>pytest-xdist</code> 插件并行运行多个测试用例，缩短测试时间。</li>
+<li>生成测试报告：集成 <code>pytest-html</code> 或 Allure，记录每次运行的误差分布，便于追踪 Prompt 调整效果。</li>
+<li>自动熔断恢复：当 Agent 触发熔断时，自动记录失败用例的上下文日志，并发送告警通知。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>向量数据库</code> <code>磁盘占用</code> <code>Docker</code> <code>Qdrant</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你在本地 Windows 开发机上使用 Docker Desktop 运行 Qdrant 向量数据库，数据量仅几千条，但发现磁盘占用高达 432MB，而同样的数据在 Linux 生产服务器上仅占用几 MB。请分析造成这种差异的底层原因，并给出至少两种优化方案，使本地开发环境更接近线上表现。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>差异根源在于文件系统的“空洞文件”处理方式不同：Qdrant 会预分配固定大小的段文件（如 32MB 的 <code>page_0.dat</code>、<code>chunk_0.mmap</code>、WAL），Linux 文件系统（ext4/xfs）支持稀疏文件（sparse file），未实际写入的块不占磁盘空间；而 Windows 的 NTFS 或 Docker bind mount 下，这些文件会按完整逻辑大小占用磁盘。</li>
+<li>此外，过多的 segment 文件（未合并）也会增加磁盘占用。</li>
+<li>优化方向：改变存储挂载方式，利用 WSL2 的 Linux 文件系统；或调整 Qdrant 配置减少 segment 数量。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>原因详解</strong>：</li>
+<li>Qdrant 使用内存映射文件（mmap）和预分配机制，创建时即申请固定大小（如 32MB），但内容为空。</li>
+<li>在 Linux 原生文件系统上，<code>du -h</code> 显示实际占用（几 MB），<code>du -h --apparent-size</code> 显示逻辑大小（可能几百 MB）。</li>
+<li>Windows 通过 Docker Desktop 的 bind mount（<code>-v D:\data:/qdrant/storage</code>）将容器内 Linux 文件系统映射到 NTFS，NTFS 不支持稀疏文件，会为每个文件分配完整大小，导致几百 MB 占用。</li>
+<li>
+<p>此外，若 segment 数量过多（未优化），每个 segment 都有预分配文件，放大问题。</p>
+</li>
+<li>
+<p><strong>优化方案</strong>：<br />
+  1. <strong>使用 Docker named volume 或 WSL2 文件系统</strong>：</p>
+<ul>
+<li>将 Qdrant 存储放在 Docker 管理的 volume 中（如 <code>qdrant_data</code>），而非 Windows 目录 bind mount。Docker volume 在 WSL2 后端实际存储在 Linux 文件系统中，支持稀疏文件，磁盘占用与线上一致。</li>
+<li>操作：<code>docker run -v qdrant_data:/qdrant/storage ...</code>。<br />
+  2. <strong>优化 Qdrant 配置减少 segment</strong>：</li>
+<li>调整 <code>optimizers_config</code>，设置合适的 <code>indexing_threshold</code> 和 <code>flush_interval_sec</code>，促使小 segment 及时合并，减少预分配文件数量。</li>
+<li>定期调用 <code>POST /collections/{name}/optimize</code> 触发手动优化。<br />
+  3. <strong>若必须使用 bind mount，可定期清理</strong>：</li>
+<li>删除不用的 collection 或执行 <code>vacuum</code> 操作，但无法根本解决稀疏文件问题。</li>
+</ul>
+</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>切换为 named volume 后，数据不再直接出现在 Windows 资源管理器中，需通过 <code>docker cp</code> 或临时容器挂载来备份。</li>
+<li>WSL2 后端的内存占用可能增加，需在 <code>.wslconfig</code> 中限制内存上限。</li>
+<li>Qdrant 的 segment 合并是异步的，优化后需等待一段时间才能看到磁盘释放。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>在 CI 环境中使用临时 Linux 容器运行 Qdrant 进行测试，彻底避免 Windows 文件系统问题。</li>
+<li>监控 Qdrant 的 Prometheus 指标，设置 segment 数量告警，提前触发优化。</li>
+<li>将开发环境迁移至 Dev Container（VS Code Remote），直接在 Linux 容器内开发，获得与生产一致的存储行为。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>智能客服 Agent</code> <code>Python 特性</code> <code>Harness 测试</code> <code>HITL</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你作为技术负责人，需要从 0 到 1 交付一个企业级智能客服 Agent 产品，核心功能包括：意图识别、多轮对话、调用内部业务 API（查订单、退换货）、人机协同（高危操作需人工确认）。请给出完整的项目规划，重点说明：<br />
+1. 如何利用 Python 装饰器、异步编程、上下文管理器等特性构建高可维护的工具调用层；<br />
+2. 如何设计 Agent Harness 批量测试体系，保证每次迭代的稳定性；<br />
+3. 高危操作的人机协同（HITL）实现方案；<br />
+4. 项目从开发到上线的关键里程碑。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>采用分层架构：意图识别层、对话管理层、工具执行层。工具执行层用装饰器实现自动注册和鉴权，异步编程处理外部 API 并发调用，上下文管理器管理数据库连接。</li>
+<li>建立基于 pytest 的 Agent Harness，覆盖典型对话流程和边界 case，每次代码提交自动运行。</li>
+<li>高危操作通过 LangGraph 的 <code>interrupt_before</code> 机制挂起流程，持久化状态，待人工确认后恢复。</li>
+<li>分阶段交付：MVP 实现核心问答，迭代加入工具调用和 HITL，最后压测上线。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>工具调用层设计</strong>：</li>
+<li>使用 <code>@register_tool</code> 装饰器将业务 API 封装为工具，自动提取参数 Schema 供 LLM 使用。</li>
+<li>所有工具外层加 <code>@auth_required</code> 校验用户身份，内层使用 <code>async/await</code> 并发调用多个外部服务（如同时查订单和物流），降低响应延迟。</li>
+<li>
+<p>数据库连接通过 <code>async with</code> 上下文管理器管理，确保连接池回收，避免泄漏。</p>
+</li>
+<li>
+<p><strong>Agent Harness 测试体系</strong>：</p>
+</li>
+<li>编写 <code>test_harness.py</code>，利用 <code>pytest.mark.parametrize</code> 加载包含“用户输入-预期意图-预期API调用-预期回复”的测试用例。</li>
+<li>每个用例中实例化 Agent（注入熔断参数），模拟完整对话流程，断言最终回复包含关键信息且调用了正确的工具。</li>
+<li>
+<p>集成到 CI/CD，每次 PR 自动运行，失败则阻断合并。</p>
+</li>
+<li>
+<p><strong>HITL 实现</strong>：</p>
+</li>
+<li>在工具定义中标记 <code>dangerous=True</code>，Agent 框架在执行前检查标记，若为 True 则调用 LangGraph 的 <code>interrupt_before</code> 暂停图执行。</li>
+<li>将当前状态（<code>thread_id</code>、用户输入、待执行工具信息）持久化到 PostgreSQL，前端展示确认弹窗。</li>
+<li>
+<p>人工点击确认后，携带 <code>thread_id</code> 调用 Resume API，流程继续执行工具并返回结果。</p>
+</li>
+<li>
+<p><strong>里程碑</strong>：</p>
+</li>
+<li>M1（2周）：搭建基础框架，实现单轮意图识别和固定回答。</li>
+<li>M2（4周）：接入真实业务 API，完成多轮对话和工具调用，引入 Harness 测试。</li>
+<li>M3（6周）：实现 HITL 和权限分级，进行内部灰度测试。</li>
+<li>M4（8周）：性能优化、安全审计、上线生产并监控。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>异步工具中不能混用同步阻塞代码，否则会拖慢整个事件循环，需用 <code>run_in_executor</code> 隔离。</li>
+<li>HITL 的状态持久化需考虑幂等性，避免重复执行高危操作。</li>
+<li>测试用例需覆盖异常场景（如 API 超时、返回错误格式），确保 Agent 优雅降级。</li>
+<li>上线前务必进行负载测试，验证 asyncio 并发能力是否满足峰值 QPS。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入数据飞轮：记录人工确认的对话日志，定期回流微调意图识别模型或优化 Few-Shot 示例。</li>
+<li>构建可视化 Harness 平台，产品经理也能在线添加测试用例并查看成功率趋势。</li>
+<li>实现 A/B 测试框架，对比不同 Prompt 或工具策略的客户满意度。</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
