@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-07-30)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-07-30)</h1>
+    <div class="meta">更新于 2026-07-30 11:05</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：RAG · Agent · LangGraph · 微调 · Milvus · PostgreSQL<br />
+🔄 知识片段：#12, #13, #14（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<p><strong>📝 题目</strong></p>
+<p>Agentic RAG 在注册工具时，工具 Description 的质量会直接影响大模型的决策准确性。请解释工具注册的核心设计原则，以及为什么 Description 是“模型自主决策”的咽喉。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>工具 Description 是 Agent 与工具之间的“API 契约”，它替代了传统 RAG 中硬编码的分支逻辑，让模型在推理时能像人一样阅读说明书并自主选择，因此其清晰度、准确性和约束力直接决定了路由决策的成败。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>工具注册将向量库、后端 API、外部搜索等异构能力抽象为统一工具接口，并附带自然语言说明。</li>
+<li>大模型在收到用户问题后，先阅读所有工具的 Description，再根据任务需求自主判断调用哪个工具、是否需要调用工具。</li>
+<li>Description 必须包含三要素：功能是什么、输入参数格式、输出结果含义，并提供边界约束（如“只能查询财务数据，不能修改”）。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在传统 RAG 中，检索路径是程序员写死的（例如：关键词命中数据库 A，否则走向量库），这种“硬编码路由”遇到复杂问题很容易失效。Agentic RAG 则把“用什么工具”的决策权完全交给大模型，而模型做决策的唯一依据就是工具 Description。如果 Description 写得模糊，比如“查询一些数据”，模型会频繁误判；如果 Description 过度承诺，比如“可以回答任何问题”，模型可能把敏感任务交给不安全的工具。因此，工业级实践中 Description 通常需要遵循“清晰边界+负面约束”原则，例如：“本工具仅用于查询员工花名册，输入必须为员工工号，输出为 JSON 格式的员工信息。不得用于查询薪资或部门预算。”这样才能让模型在思考时主动规避危险操作。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及 OpenAI Function Calling 的 <code>description</code> 字段就是这种思想的体现，官方强烈建议提供详尽说明。</li>
+<li>强调在多租户场景下，Description 中可隐式注入租户权限边界，实现“模型驱动的权限控制”。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 Description 只需要一句功能概述，实际上参数 Schema 和边界约束才是核心。</li>
+<li>认为 Description 越长越好，实际过长的 Prompt 会挤占上下文窗口，需要在完整性和简洁性之间平衡。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>工业界实现大模型稳定输出 JSON 时，常提到“约束解码（Constrained Decoding）”技术。请解释其核心原理，并与 API 原生约束（如 <code>response_format</code>）对比，说明各自的优劣势和适用场景。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>约束解码通过在模型生成每个 Token 时实时过滤非法字符，从语法层面强制输出合法 JSON，是本地部署和开源模型场景下最硬核的格式保障方案；而 API 原生约束依赖服务端内部实现，简便但可控性低。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>约束解码在 Beam Search 或 Greedy Decoding 的每一步，根据预定义的 JSON Schema 或语法规则，计算当前允许的 Token 集合，屏蔽所有可能破坏 JSON 结构的候选 Token。</li>
+<li>它利用有限状态机（FSM）或解析器，实时跟踪当前处于 JSON 的哪个位置（如对象开始、键、值、数组等），确保生成的字符序列始终符合语法。</li>
+<li>实现工具如 Outlines、Guidance、Llama.cpp 的 <code>--json</code> 参数，让模型每生成一个字符都经过语法校验，从根本上杜绝括号不匹配、引号错误等问题。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>API 原生约束（如 OpenAI 的 <code>response_format: {type: "json_object"}</code>）虽然简单，但它的实现是黑盒的——服务商可能在模型内部加了特殊训练或采样层，但对于私有化部署的模型，开发者无法直接复用。约束解码则完全在推理引擎层面实现，不依赖模型本身是否“听话”。比如，模型在生成 <code>"name":</code> 后，下一个字符必须是 <code>"</code>，否则就会被裁剪。这种硬约束让即使格式能力较弱的开源模型也能稳定输出 JSON。不过，约束解码的代价是增加推理延迟（额外的 Token 校验计算），且需要提前定义完整的 Schema，灵活性不如纯 Prompt 控制。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>指出约束解码可以与 KV Cache 优化结合，不会因为 Token 校验而显著破坏推理吞吐。</li>
+<li>强调在金融、医疗等对格式要求 100% 严格的场景，约束解码是唯一能通过审计的方案。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>认为约束解码能替代 Prompt 指令，实际上两者应配合使用：Prompt 引导语义，约束解码保证语法。</li>
+<li>以为所有模型都支持约束解码，实际需要推理框架集成，且对模型架构有一定要求。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>在 KV Cache 优化技术中，PagedAttention 借鉴了操作系统虚拟内存的分页思想，解决了显存碎片化问题。请详细阐述 PagedAttention 的工作原理，以及它为什么能提升并发吞吐量。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>PagedAttention 将连续的 KV Cache 切分为固定大小的“页”（Blocks），允许不连续存储在显存中，从而消除内存碎片，使显存利用率从通常的 20%~40% 飙升至 96% 以上，并发数成倍增长。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>传统 KV Cache 要求每个序列分配一整块连续显存，当序列长度参差不齐时，会产生大量无法利用的碎片。</li>
+<li>PagedAttention 把 KV Cache 划分为固定大小（如 2MB）的物理块，每个序列的 KV 数据按需分配物理块，并通过页表映射逻辑位置和物理块地址。</li>
+<li>在注意力计算时，GPU 内核可以透明地通过页表访问分散的物理块，就像 CPU 访问虚拟内存，无需连续物理内存。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比操作系统：一个进程的逻辑地址空间可以不连续，但通过页表映射到物理内存页。PagedAttention 正是把序列的 KV Cache 看作逻辑地址空间，每个 Token 的 KV 向量存放在物理块中。当旧序列结束、新序列启动时，回收的物理块可以立即被其他序列复用，无需等待大块连续空间释放。这极大提升了显存利用率，在同样的显存下可以容纳更多并发请求。vLLM 框架正是基于此技术，在实际生产环境中将显存利用率提升到 96% 以上，并发吞吐量相比传统方案提升 2~4 倍。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提到 PagedAttention 还支持“内存共享”，多个序列共享相同的 Prompt 前缀的 KV Cache 块，进一步节省显存。</li>
+<li>指出该技术已成为现代推理引擎（如 TensorRT-LLM、SGLang）的标配。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 PagedAttention 会降低推理速度，实际上由于碎片消除和更好的显存带宽利用，反而整体加速。</li>
+<li>认为只适用于长序列，其实短序列并发场景收益更明显。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>在 pgvector 中，HNSW 和 IVFFlat 是两种主要的向量索引算法。请从数据结构、检索速度、内存消耗和召回率角度对比两者的核心区别，并说明在 Agent 场景中如何选择。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>HNSW 基于图结构实现极速检索和高召回率，但内存消耗巨大；IVFFlat 基于聚类实现，内存友好但速度与召回率均逊色。Agent 场景对延迟和召回敏感，通常优先选择 HNSW，仅在内存极度受限时考虑 IVFFlat。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>HNSW（分层可导航小世界图）：构建多层图结构，查询时从顶层开始贪心搜索，逐步下钻到最底层，每次只遍历少量邻居节点，时间复杂度 O(log N)。</li>
+<li>IVFFlat（倒排文件平坦）：将向量空间用 K-Means 聚类成多个区域，查询时先找到最近的几个聚类中心，再在聚类内部扫描，速度取决于聚类质量。</li>
+<li>HNSW 的图结构需要全量缓存，内存占用约为原始向量的 2~3 倍；IVFFlat 只需存储聚类中心索引，内存开销小得多。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>HNSW 的图结构在构建时就像织了一张高速公路网，每个点都与附近点建立连接，检索时相当于沿着高速公路直达目标，几乎不走弯路。但建图过程非常耗时，且需要大量内存来存储所有邻居关系。IVFFlat 则像把城市划分成几个区，查询时先确定在哪个区，然后在该区内逐户排查，如果分区不合理，很容易漏掉边界上的目标，召回率下降。在 Agent 场景中，RAG 检索要求毫秒级响应，且通常数据量在百万到千万级，HNSW 能提供稳定的高召回率，是首选。只有当数据量达到亿级、显存/内存严重不足时，才考虑 IVFFlat 或混合方案。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>指出 pgvector 中 HNSW 支持设置 <code>ef_search</code> 参数动态调节速度与召回率，面试时展示调参经验。</li>
+<li>提到在分布式向量库（如 Milvus）中，HNSW 同样是最常用的索引类型，验证了其工业界地位。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>认为 IVFFlat 的索引构建比 HNSW 快就适合所有场景，忽略了其检索时的召回率衰减。</li>
+<li>混淆“索引构建速度”和“检索速度”，高频读取场景下检索速度才是核心指标。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>在 Agent 架构中，PostgreSQL 的 LISTEN/NOTIFY 机制可以实现状态变更的实时推送。请解释其工作原理，并说明在 Agent 系统中如何利用它避免轮询，实现事件驱动的状态同步。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LISTEN/NOTIFY 是 PostgreSQL 内置的发布/订阅机制，能够将数据库内的数据变更事件实时推送给应用层，让 Agent 系统从“轮询”升级为“事件驱动”，大幅降低延迟和资源消耗。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>客户端连接在 PG 上执行 <code>LISTEN channel_name</code>，即订阅某个频道；当其他会话执行 <code>NOTIFY channel_name, 'payload'</code> 时，所有订阅者立即收到异步通知。</li>
+<li>通知通过数据库连接传输，无需额外消息中间件，且支持事务性：NOTIFY 通常在事务提交后发送，确保通知与数据一致性。</li>
+<li>应用层（如 Python 的 <code>psycopg2</code>）可以结合 <code>select()</code> 或异步驱动，以非阻塞方式监听通知，触发回调函数。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在 Agent 场景中，假设一个“任务状态”表，当 Agent A 完成某个子任务并更新状态为“已完成”时，可以在同一事务中执行 <code>NOTIFY task_status_changed, '{"task_id": "123", "status": "done"}'</code>。Agent B 的进程一直在监听 <code>task_status_changed</code> 频道，收到通知后立即拉取任务结果并继续执行，无需每秒轮询数据库。这种模式不仅实时性高，还避免了无效的轮询查询，减轻数据库压力。对于 LangGraph 等框架，可以结合 <code>checkpointer</code> 的订阅机制，实现多 Agent 间的状态同步。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>强调 LISTEN/NOTIFY 是单数据库事务内保证的，通知不会丢失，且可以携带小型 JSON 负载。</li>
+<li>提到在 Kafka/Pulsar 等重量级消息队列不可用的场景，LISTEN/NOTIFY 是轻量级替代方案。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为 NOTIFY 可以跨数据库实例，实际它只在同一 PostgreSQL 集群内有效，跨实例需借助 pglogical 或外部队列。</li>
+<li>认为通知会堆积，实际上 PG 的通知是即时消费的，假若没有在线监听者，通知会丢弃，因此关键任务需结合持久化状态表。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>多 Agent 协同中，Redis 提供了 Pub/Sub 和 Stream 两种消息模式。请从消息可靠性、消费者组、持久化三个维度对比两者的核心区别，并给出各自的适用场景。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Redis Pub/Sub 是“即发即忘”的广播模式，适合实时通知但无法保证消息不丢失；Redis Stream 提供持久化、消费者组和 ACK 机制，是构建可靠任务队列的首选。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Pub/Sub：发布者将消息发送到频道，所有订阅者实时接收，消息不落盘，无消费者时直接丢弃，不支持消息回溯。</li>
+<li>Stream：采用追加日志结构，消息持久化存储，支持消费者组，多个消费者可以竞争消费同一个消息，消费后需显式 ACK，支持消息重放和回溯。</li>
+<li>Stream 基于 Rax 树实现高效范围查询，可以按时间或 ID 回溯历史消息，而 Pub/Sub 纯粹是内存管道。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在 Agent 协同中，如果任务只是“通知 Agent 刷新配置”，Pub/Sub 足够。但如果是“产品经理 Agent 把需求文档链接发给程序员 Agent 处理”，必须保证任务不丢失，此时 Stream 的消费者组机制完美契合：一组“程序员 Agent”实例共享一个消费者组，每个消息只会被一个实例消费，处理完 ACK 后标记完成。如果某个实例宕机，消息会被重新分配给其他实例，实现高可用。Stream 还支持阻塞读取和消息确认，天然适合构建 Agent 的任务队列。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提及 Redis 5.0 引入 Stream 后，很多场景可以替代 Kafka 做轻量级消息队列，降低运维成本。</li>
+<li>强调 Stream 的 <code>XREADGROUP</code> 和 <code>XACK</code> 命令组合可以实现“至少一次”语义，结合业务幂等性设计可保证最终一致性。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误认为 Redis Stream 可以完全替代 Kafka，实际上 Stream 不具备磁盘消息持久化的事务性保证，且数据量受内存限制。</li>
+<li>在 Pub/Sub 中试图实现消息可靠性，通常会因为网络闪断丢失中间消息。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>Agentic RAG 的自我反思机制通常包含文档打分、幻觉检测和回答完备性验证三个环节。请解释每个环节的具体作用，以及它们如何协同提升最终回答质量。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>自我反思机制让 Agent 在生成回答前主动“质检”——过滤不相关文档、校验生成内容是否被上下文支撑、评估回答是否完整，如果有问题则重写查询并重新检索，从而大幅降低幻觉和答非所问的概率。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>文档打分（Document Grading）：LLM 逐一评估检索到的 Chunk 与问题的相关性，剔除噪声，净化输入上下文。</li>
+<li>幻觉检测（Hallucination Critique）：检查生成的草稿中每个事实陈述是否能被检索到的上下文严格支撑，无支撑的语句标记为“幻觉”并修正。</li>
+<li>回答完备性验证：判断当前回答是否真正解决了用户问题，若发现信息缺失，则重写 Query 触发第二轮检索，补充缺失数据。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>这就像写论文：先筛选参考文献（文档打分），然后检查自己的论述是否都有文献依据（幻觉检测），最后审阅是否回答了研究问题（完备性验证）。在实际工程中，通常使用一个专门的“反思 Prompt”让 LLM 扮演质检员角色。例如，在生成草稿后，系统自动构造一个 Prompt：“请检查以下回答中的每个事实是否都能在提供的文档中找到直接依据，并指出未覆盖的问题点。”如果发现不完整，系统会根据反馈重写 Query，比如“请补充关于XX的文档”，然后再次检索和生成，直到通过质检或达到最大迭代次数。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提到 CRAG（Corrective RAG）和 Self-RAG 是这种机制的典型实现，已经被证明在多个基准上超越传统 RAG。</li>
+<li>指出反思机制会增加 2~3 倍的 Token 消耗，因此需要搭配缓存和智能跳过策略，避免成本失控。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>认为反思机制能绝对消除幻觉，实际上它只能降低概率，最终仍受限于模型能力。</li>
+<li>把文档打分和重排序（Rerank）混淆，前者是二元的“相关/不相关”，后者是细粒度的排序。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>企业级数据库查询优化中，针对千万级数据量的时序数据，分区表与水平分表的选择常被讨论。请从数据组织、查询范围、维护成本三个角度，对比两者的本质区别，并说明为什么时序数据更适合分区表。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>分区表在逻辑上仍是一张表，物理上按规则（如时间范围）分成多个子表，对业务透明，擅长按时间范围查询；水平分表则是将数据散布到多个物理独立的表中，通常需要分库分表中间件，更适用于按某个业务键（如用户ID）均匀分散的场景。时序数据天然按时间范围访问，分区表是更优解。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>分区表：通过 <code>PARTITION BY RANGE</code> 等语法，数据库自动将数据写入对应分区，查询时如果带上分区键，可以自动裁剪无关分区，减少扫描量。</li>
+<li>水平分表：通常通过应用层路由或中间件（如 ShardingSphere）将数据写入不同的物理表，查询时需要指定分片键，否则需要全分片扫描。</li>
+<li>分区表的分区可以独立维护（如删除旧分区只需 <code>DROP PARTITION</code>），而水平分表删除历史数据需要逐表操作。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>假设有一张订单表，每天产生 100 万条数据。如果使用分区表，按月份 <code>RANGE</code> 分区，当查询“上月订单”时，数据库自动只扫描上月分区，性能与全表扫描相比提升几十倍。删除三年前的数据，只需 <code>DROP PARTITION</code>，瞬间完成，不会锁表。而水平分表通常按订单 ID 哈希拆分，虽然可以分散写入压力，但按时间范围查询时会跨所有分片，无法利用分区裁剪。时序数据（如日志、监控、IoT 数据）的查询模式必然是“最近一段时间”的范围查询，分区表完美契合这种访问模式，且维护成本极低。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提到 PostgreSQL 支持原生分区表，且可以结合索引实现分区内高效查询。</li>
+<li>指出在时序数据库（如 TimescaleDB）中，分区表是其核心实现，进一步验证了该模式的业界认可。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>认为分区表能解决所有性能问题，如果写入热点集中在最新分区，仍需配合其他优化（如连接池、批量写入）。</li>
+<li>混淆分区表和分库分表，分区表通常是单库单表逻辑，而分库分表是分布式架构，两者适用场景不同。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>Agentic RAG 中，动态意图路由（Dynamic Routing）和问题拆解多跳推理（Multi-Hop Reasoning）是两种核心设计模式。请分别阐述它们的核心思想，并说明在复杂业务场景中两者如何协同工作。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>动态路由让 Agent 根据用户意图选择最合适的工具或知识库，是一对多的“分流器”；多跳推理则将复杂问题拆解为多个子问题，逐步检索并融合信息，是串行或并行的“连点成线”。两者结合可以实现“先分流，再深挖”的智能检索。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>动态路由：Agent 解析用户问题，识别意图（如“查财报”vs“问天气”），然后动态选择路由到的底层工具（SQL 数据库、向量库、外部 API）。</li>
+<li>多跳推理：Agent 将问题拆解为子问题 A、B、C，先检索 A，将结果作为上下文构造 B 的检索条件，再检索 B，最终整合所有结果生成答案。</li>
+<li>两者协同：路由先确定大体方向（如“财务”），然后在该方向内启动多跳推理（如“去年利润”需要先查“营收”，再查“成本”，最后计算）。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>例如，用户问“根据去年的财务报表，我们部门在哪个季度的利润率最高？”Agent 首先通过动态路由识别出“财务报表”意图，将请求导向 SQL 数据库。然后启动多跳推理：第一步，查询去年的季度营收和成本数据；第二步，计算每个季度的利润率；第三步，比较并找出最高季度。如果没有路由，Agent 可能去向量库检索，但向量库不擅长结构化计算；如果没有多跳推理，Agent 可能只返回去年总利润，不回答“哪个季度”。这种组合极大提升了处理复杂查询的能力。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提到 LangGraph 的 <code>ConditionalEdges</code> 实现动态路由，而 <code>AddNode</code> 和 <code>State</code> 实现多跳推理，两者天然融合。</li>
+<li>指出在 Agentic RAG 中，路由和多跳推理可以递归嵌套，形成决策树，解决极端复杂问题。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>认为动态路由就是简单的 if-else，实际是 LLM 推理，需要良好的工具 Description 支撑。</li>
+<li>混淆多跳推理和并行检索，多跳推理通常是串行依赖的，而上一步结果影响下一步。</li>
+</ul>
+<hr />
+<p><strong>📝 题目</strong></p>
+<p>RAG 文档切片中，为什么需要结合物理版面感知（如 MinerU）和语义标题分割（如 Markdown Header Splitter），而不能仅依赖固定字数切割？请从信息完整性、检索准确性和下游任务表现角度分析。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>固定字数切割会暴力打断表格、图片和语义段落，导致信息碎片化，检索时召回大量无意义片断，LLM 无法理解上下文；而版面感知加语义分割能保留完整的逻辑单元（如整段、整表），显著提升检索的相关性和生成答案的连贯性。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>物理版面感知：通过 OCR 或 LayoutLM 识别 PDF 中的文本块、表格、图片区域，将它们按视觉分隔裁剪，避免表格被从中切断。</li>
+<li>语义标题分割：利用 Markdown 的 <code>#</code>、<code>##</code> 层级结构，将文档按章节自然切分，每个 Chunk 对应一个完整的语义单元。</li>
+<li>固定字数切割：仅按字符数截断，不考虑内容边界，容易将一句话劈成两半，或把表格头与数据分开。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>设想一份 PDF 包含一个描述“员工福利”的表格，表格有 5 列 20 行。固定字数切割可能在中间某行切断，导致前半部分 Chunk 只有表头和不完整的数据，后半部分从某行开始，没有表头。检索时，用户问“公积金比例”，可能命中后半部分，但 LLM 看到的是无表头的数字，完全无法理解。而版面感知会识别整个表格区域，将其作为一个完整 Chunk 转为 Markdown 表格，检索命中后 LLM 看到的是完整表格，能准确回答。另外，语义分割确保标题和正文同属一个 Chunk，不会出现“标题在 A 块，内容在 B 块”的分离，保持了上下文完整性。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>可以提到多模态 RAG 中，图片需要保留原始 URL 并生成描述，固定字数切割可能将图片和描述分到不同 Chunk，导致“图不对文”。</li>
+<li>指出企业级方案通常混合使用：先用版面感知切分大块，再在块内用语义分割做细粒度索引，达到最佳效果。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>认为只要用 Markdown 分割就能解决所有问题，实际上如果 PDF 转换后的 Markdown 质量差（如缺少标题层级），仍需要清洗和补全。</li>
+<li>过度依赖语义分割，忽略版面感知，会导致表格和图片被不当分割，影响多模态信息检索。</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agentic RAG</code> <code>纠错与反思</code> <code>Self-RAG</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级 Agentic RAG 系统中，直接由检索结果驱动生成答案往往会出现“检索到的文档不相关”或“生成内容与检索证据脱节”的问题。请设计一套嵌入在 LangGraph 工作流中的<strong>纠错与反思循环</strong>，要求包含文档打分、幻觉检测、回答完备性验证三个核心环节，并且当任一环节不通过时能自动触发查询重写与补充检索。请画出关键的状态流转，并说明每个环节的判定逻辑和与 LLM 的交互方式。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>将生成过程拆解为“检索→评估→反思→再检索”的闭环，而非一次性生成。</li>
+<li>三个评估环节各自独立，但串联执行：文档打分→生成草稿→幻觉检测→完备性验证，任何一步失败都触发重写 Query。</li>
+<li>利用 LangGraph 的 <code>conditional_edges</code> 实现循环控制，并设置最大重试次数防止死循环。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>文档打分 (Document Grading)</strong>：检索完成后，调用 LLM 对每个 Chunk 按相关性打分（0-10），剔除低于阈值的 Chunk，若有效 Chunk 少于预设数量（如 1），则直接判定“检索质量不足”，重写 Query。</li>
+<li><strong>幻觉检测 (Hallucination Critique)</strong>：先生成答案草稿，再让 LLM 逐句检查草稿中的每一个事实陈述是否都能在保留的 Chunk 中找到依据，输出“完全支撑/部分支撑/无支撑”。若有“无支撑”项，则判定为幻觉，丢弃草稿并重写 Query。</li>
+<li><strong>回答完备性验证</strong>：对通过幻觉检测的草稿，让 LLM 判断是否完全解答了用户原始问题，若回答不够完整，则触发补充检索，只针对缺失的信息生成新 Query。</li>
+<li><strong>状态流转</strong>：在 LangGraph 中定义节点 <code>retrieve</code>, <code>grade_docs</code>, <code>generate</code>, <code>hallucination_check</code>, <code>completeness_check</code>, <code>rewrite_query</code>。<code>grade_docs</code> 后根据分数走条件边，<code>hallucination_check</code> 和 <code>completeness_check</code> 同理，失败时跳转到 <code>rewrite_query</code> 再回到 <code>retrieve</code>。设置最大循环次数 3。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>三个评估环节都会额外交互 LLM，必须使用轻量、快速的模型（如 GPT-3.5-turbo）或小模型，否则延迟和成本急剧增加。</li>
+<li>幻觉检测的 Prompt 必须严格要求“逐句比对”，并提供反例，否则评估流于形式。</li>
+<li>需要记录每次循环的检索日志，方便事后分析召回瓶颈。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>将文档打分改为二分类模型（相关/不相关），用小模型微调，降低 LLM 调用成本。</li>
+<li>引入向量库的多样性检索（MMR），在补充检索时提高多样性，避免重复召回。</li>
+<li>增加人工审核节点（Human-in-the-loop），当循环达到上限仍失败时推送给人工。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>JSON 输出</code> <code>自部署模型</code> <code>约束解码</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某团队使用自部署的开源大模型（如 Llama 3 70B）构建 Agent 服务，业务要求 Agent 输出严格符合 JSON Schema 的结构化数据。但该模型不支持 <code>response_format</code> 参数，团队尝试了“纯 Prompt 指令 + Few-Shot”方案，线上仍频繁出现 JSON 解析失败（如多输出 Markdown 包裹、中文引号、缺少闭合括号等）。请分析该方案不可靠的根本原因，并对比<strong>约束解码（如 Outlines）</strong> 与<strong>强化 Prompt + 后处理兜底</strong>两种改进方案的优缺点，给出最终的推荐策略。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>从 Transformer 自回归生成的本质出发，说明纯 Prompt 无法保证 token 级格式正确。</li>
+<li>对比约束解码（语法级硬约束）和软约束+兜底修复的工程化差异。</li>
+<li>结合项目现状（自部署模型，可控制推理框架），给出组合方案。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>根本原因</strong>：大模型生成本质是概率采样，即使 Prompt 要求“仅输出 JSON”，模型仍可能在生成 <code>{</code> 后采样到 <code>"</code> 以外的字符，或因上下文干扰输出解释性前缀。Prompt 只能影响概率分布，无法杜绝格式错误。</li>
+<li><strong>方案一：约束解码（Outlines / Guidance）</strong><br />
+  原理：在生成过程中，根据 JSON 语法实时屏蔽非法 token，例如对象必须以 <code>{</code> 开头，key 必须用双引号包裹，强制模型只输出合法路径。<br />
+  优点：几乎 100% 格式正确，无需后处理。<br />
+  缺点：需要集成推理框架，略微增加单 token 延迟；对复杂 Schema 的支持需要额外配置。</li>
+<li><strong>方案二：强化 Prompt + 后处理兜底</strong><br />
+  强化 Prompt：加入反例（错误示例+惩罚）、使用 <code>You MUST output only a valid JSON object, no markdown, no comments</code> 等强指令，并结合 Few-Shot。<br />
+  后处理：正则清洗掉 Markdown 标记 → json-repair 自动修复 → Pydantic 校验 → 失败重试。<br />
+  优点：改动小，快速上线。<br />
+  缺点：仍有概率失败，多次重试增加延迟和成本。</li>
+<li><strong>推荐策略</strong>：自部署模型下，<strong>优先约束解码</strong>，因为已具备控制推理引擎的条件。同时保留后处理+重试做最后防线，形成“硬约束 + 兜底修复”的双层保障。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>约束解码工具需要制定 JSON Schema，务必包含所有可能字段，否则合法字段也会被拒绝。</li>
+<li>重试时务必把错误信息（如 Pydantic ValidationError）注入 Prompt，让模型自我修正，避免盲目重试。</li>
+<li>若业务 Schema 频繁变更，约束解码的维护成本会上升，此时可考虑微调模型，用大量标注好的 JSON 数据训练使其原生输出格式更稳定。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>微调模型时加入“格式对齐”训练样本，让模型学会紧跟 Schema 输出，可作为约束解码的补充。</li>
+<li>监控线上 JSON 解析失败率，持续优化正则和修复规则。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>PostgreSQL</code> <code>任务队列</code> <code>SKIP LOCKED</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 Agent 系统中，需要实现一个高可用的异步任务队列，多个 Worker Agent 竞争执行任务，且要求任务不重复消费、支持失败重试和超时恢复。请使用 PostgreSQL 实现该队列，写出核心的<strong>任务出队、状态更新、超时处理</strong>的伪代码，并说明如何利用 <code>SELECT ... FOR UPDATE SKIP LOCKED</code> 和 JSONB 状态字段完成。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>任务表设计包含 <code>status</code> (pending/processing/done/failed)、<code>worker_id</code>、<code>started_at</code>、<code>retry_count</code> 等字段。</li>
+<li>出队时使用 <code>FOR UPDATE SKIP LOCKED</code> 锁定一条 pending 任务，立即更新状态为 processing，避免并发争抢。</li>
+<li>超时恢复：定期扫描 <code>status=processing</code> 且 <code>started_at</code> 超过阈值（如 5 分钟）的任务，重新置为 pending，让其他 Worker 捡起。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>任务表 DDL（简化）：</p>
+<pre><code class="language-sql">CREATE TABLE agent_tasks (
+    id UUID PRIMARY KEY,
+    payload JSONB NOT NULL,
+    status TEXT DEFAULT 'pending',
+    worker_id TEXT,
+    started_at TIMESTAMP,
+    retry_count INT DEFAULT 0,
+    max_retries INT DEFAULT 3,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+</code></pre>
+<p>出队伪代码（Python + psycopg2）：</p>
+<pre><code class="language-python">def dequeue_task(worker_id):
+    with conn.cursor() as cur:
+        # 选择一条 pending 任务并锁定，跳过已锁定的
+        cur.execute(&quot;&quot;&quot;
+            SELECT id, payload, retry_count
+            FROM agent_tasks
+            WHERE status = 'pending'
+            ORDER BY created_at
+            LIMIT 1
+            FOR UPDATE SKIP LOCKED
+        &quot;&quot;&quot;)
+        row = cur.fetchone()
+        if not row:
+            return None
+        task_id, payload, retry = row
+        # 更新状态为 processing
+        cur.execute(&quot;&quot;&quot;
+            UPDATE agent_tasks
+            SET status = 'processing', worker_id = %s, started_at = NOW()
+            WHERE id = %s
+        &quot;&quot;&quot;, (worker_id, task_id))
+        conn.commit()
+        return task_id, payload
+</code></pre>
+<p>任务执行后更新状态：</p>
+<pre><code class="language-python">def complete_task(task_id, success):
+    with conn.cursor() as cur:
+        if success:
+            cur.execute(&quot;UPDATE agent_tasks SET status='done' WHERE id=%s&quot;, (task_id,))
+        else:
+            cur.execute(&quot;&quot;&quot;
+                UPDATE agent_tasks
+                SET status = CASE WHEN retry_count &lt; max_retries THEN 'pending' ELSE 'failed' END,
+                    retry_count = retry_count + 1,
+                    worker_id = NULL,
+                    started_at = NULL
+                WHERE id = %s
+            &quot;&quot;&quot;, (task_id,))
+        conn.commit()
+</code></pre>
+<p>超时恢复（独立调度器或 Cron）：</p>
+<pre><code class="language-python">def recover_stale_tasks(timeout_minutes=5):
+    with conn.cursor() as cur:
+        cur.execute(&quot;&quot;&quot;
+            UPDATE agent_tasks
+            SET status = 'pending',
+                worker_id = NULL,
+                started_at = NULL,
+                retry_count = retry_count + 1
+            WHERE status = 'processing'
+              AND started_at &lt; NOW() - INTERVAL '%s minutes'
+              AND retry_count &lt; max_retries
+        &quot;&quot;&quot;, (timeout_minutes,))
+        # 超过 max_retries 的可以标记为 failed
+        cur.execute(&quot;&quot;&quot;
+            UPDATE agent_tasks
+            SET status = 'failed'
+            WHERE status = 'processing'
+              AND started_at &lt; NOW() - INTERVAL '%s minutes'
+              AND retry_count &gt;= max_retries
+        &quot;&quot;&quot;, (timeout_minutes,))
+        conn.commit()
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><code>FOR UPDATE SKIP LOCKED</code> 必须在事务中执行，且要确保尽快提交，避免长事务锁表。</li>
+<li><code>status</code> 字段建议建索引，提高查询性能。</li>
+<li>超时恢复的阈值要结合任务平均执行时间设置，避免误伤慢任务。</li>
+<li>当任务重试若干次后，应转入死信队列（failed 状态），由人工或专门的服务处理。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入 <code>LISTEN/NOTIFY</code>：任务完成或超时恢复时，向 Worker 发送通知，减少轮询间隔。</li>
+<li>分区表：按日期分区，定期归档或清理旧任务。</li>
+<li>使用 <code>pg_partman</code> 自动管理分区，提升大表性能。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agentic RAG</code> <code>延迟优化</code> <code>成本控制</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你们团队将传统 RAG 升级为 Agentic RAG 后，线上监控显示：端到端延迟从 500ms 飙升至 3s，LLM Token 消耗增长 5 倍，且 GPU 显存偶发 OOM。请分析背后可能的原因，并给出系统性的优化方案（至少涵盖架构调整、模型选择和工程手段）。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>Agentic RAG 引入多次 LLM 调用（思考、工具选择、反思、重写等），导致延迟和 Token 消耗激增。</li>
+<li>显存 OOM 可能源于 KV Cache 无优化或并发请求堆积。</li>
+<li>优化方向：裁剪不必要的 LLM 调用、使用轻量模型承载非核心环节、优化 KV Cache、引入缓存、调整并发策略。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>延迟优化</strong>：</li>
+<li>将文档打分、幻觉检测等评估环节用小型专用模型（如微调的分类器）替代通用大模型，降低单次推理延迟。</li>
+<li>引入并行工具调用：当 Agent 需要同时查询向量库和 API 时，使用 <code>asyncio.gather</code> 并行执行，而非串行。</li>
+<li>对高并发场景，使用 vLLM 等高性能推理框架，并结合 PagedAttention 提升 KV Cache 利用率，减少显存碎片化。</li>
+<li>设置最大反思轮次（如 2 轮），避免无限循环。</li>
+<li><strong>Token 消耗优化</strong>：</li>
+<li>精简 Prompt：去除冗余指令，使用结构化模板，减少上下文中的重复信息。</li>
+<li>使用 <code>Context Cache</code>（如 Anthropic 的 Prompt Caching）缓存公共前缀（System Prompt、工具描述），避免重复计费。</li>
+<li>对反思环节，只传递核心上下文，而非全部历史，裁剪不必要的长文本。</li>
+<li><strong>显存优化</strong>：</li>
+<li>启用 KV 量化（INT8/INT4），降低显存占用。</li>
+<li>调整 <code>max_batch_size</code> 和 <code>max_num_seqs</code> 参数，限制并发请求数，防止显存溢出。</li>
+<li>使用 GQA（Grouped Query Attention）架构的模型（如 Llama 3），天然减少 KV Cache 大小。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>使用小模型做评估时，必须确保小模型对评估任务有足够的判别力，否则会引入新的错误连锁反应。</li>
+<li>Context Cache 仅在相同前缀多次出现时有效，需与业务场景匹配。</li>
+<li>开启 KV 量化后，可能略微影响生成质量，需在精度和显存间权衡，建议先做离线测评。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>实现自适应的“评估深度”：简单问题跳过反思，直接回答；复杂问题才启用多轮检索引擎。</li>
+<li>引入异步 DAG 编排，将检索、评估、生成部分流水线化，进一步提升吞吐。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>HR 智能客服</code> <code>多租户</code> <code>混合架构</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你需要从零开始为一家大型外包公司交付一个 HR 智能客服 Agent，服务华为、腾讯等多个外包项目的员工，要求支持：<br />
+- 多公司知识库严格隔离，不能越权查询；<br />
+- 回答可引用制度原文中的表格和图片，前端能直接展示；<br />
+- 知识库内容可能随时更新，需支持实时生效，且不能影响在线服务；<br />
+- 峰值 QPS 预计达到 200，要求延迟控制在 2s 以内。</p>
+<p>请给出完整的技术选型、数据流设计、多租户隔离方案，以及知识库热更新的实现方案。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>采用“动静分离”的混合架构：专用向量库（如 Milvus）存海量静态知识文档，PostgreSQL 存动态会话状态和租户业务元数据。</li>
+<li>多租户隔离通过自定义 Chunk ID 嵌入 <code>tenant_id</code>，并在检索时注入过滤条件实现。</li>
+<li>知识库热更新：利用自定义 ID 的确定性，实现“一键删除旧文档 + 替换新文档向量”，无需全量重建索引。</li>
+<li>峰值 QPS 靠向量库水平扩展和 Redis 缓存热点问题解决。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>技术选型</strong>：</li>
+<li>向量库：Milvus（分布式，支持标量过滤，适合亿级向量）。</li>
+<li>关系库：PostgreSQL（存租户、用户、会话、任务，用 JSONB 存 Agent 状态）。</li>
+<li>缓存：Redis（缓存热点问答对、会话上下文、限流计数器）。</li>
+<li>大模型：部署 vLLM 集群，推理 Llama 3 70B。</li>
+<li>消息队列：Kafka/RabbitMQ 用于异步处理文档解析入库。</li>
+<li><strong>数据流设计</strong>：<br />
+  1. 文档上传 → 对象存储（TOS），触发异步任务 → 版面解析（MinerU）→ 生成 Markdown 占位符 → 图片提取上传 TOS 并生成描述 → 切片，打上自定义 ID（<code>tenant_id#doc_id#chunk_idx</code>）→ 向量化后写入 Milvus，同时将图片 URL 存入标量字段。<br />
+  2. 用户提问 → API Gateway 鉴权得到 <code>tenant_id</code> → 先去 Redis 查缓存命中 → 未命中则去 Milvus 检索，过滤条件 <code>tenant_id == "huawei"</code> → 向量搜索 + 标量过滤 → 返回相关 Chunk（含图片 URL）→ 组装 Prompt 生成答案 → 缓存结果 → 写入 PostgreSQL 会话历史。</li>
+<li><strong>多租户隔离</strong>：</li>
+<li>所有 Chunk 的 <code>tenant_id</code> 字段在入库时写入，检索时强制过滤，杜绝越权。</li>
+<li>不同租户的文档在 Milvus 中物理上存于同一 Collection，逻辑隔离。</li>
+<li><strong>知识库热更新</strong>：</li>
+<li>管理员更新某文档，系统触发异步任务：解析新文档，生成新 Chunk 列表，并记录旧文档的 <code>doc_id</code>。</li>
+<li>任务执行：先 <code>DELETE FROM milvus WHERE tenant_id='huawei' AND doc_id='entry_2026'</code>，利用自定义 ID 的主键特性批量删除旧向量，再 <code>INSERT</code> 新向量。整个过程秒级完成，前端无需停机。</li>
+<li>向量库支持软删除 + 定期 Compaction，保证删除后空间回收。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>图片 URL 必须使用 CDN 加速，否则前端加载慢。</li>
+<li>缓存热点问题：单个热门问题可能被大量并发请求击穿，需设置分布式锁或使用 <code>Redis SETNX</code> 互斥更新缓存。</li>
+<li>知识库更新时，若并发量高，删除和插入间隙可能查询到旧数据吗？Milvus 的删除是异步的，为确保立即可见，需在删除后调用 <code>flush()</code> 或使用强一致性级别，但会牺牲一点性能。</li>
+<li>峰值 QPS 200，Milvus 单节点可能扛不住，需部署 Proxy + 多个 Query Node 横向扩展。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>使用 PostgreSQL 的 <code>LISTEN/NOTIFY</code> 实现实时通知，当知识库更新时，通知缓存服务主动刷新相关缓存。</li>
+<li>引入多级缓存：本地内存缓存（如 LRU） + Redis 分布式缓存，进一步降低延迟。</li>
+<li>为表格和图片生成专门的摘要文本，并与原文 Chunk 建立索引，提升图表问答的准确率。</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
