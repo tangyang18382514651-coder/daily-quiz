@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-07-31)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-07-31)</h1>
+    <div class="meta">更新于 2026-07-31 11:05</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
+🔄 知识片段：#15, #16, #17（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h1>10 道概念型面试题</h1>
+<hr />
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>多模态RAG</code> <code>图片语义理解</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在RAG系统中处理含有图片的PDF文档时，为什么不能只对图片做OCR文字提取，而必须调用多模态大模型进行“语义理解”？并且，为什么要把图片的原始URL存入向量库的标量字段，而不是只存文本摘要？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>只做OCR会把图片降级为纯文本，丢失视觉语义与展示能力；多模态语义理解能还原图片在上下文中的真实含义，而保留URL则能让前端在召回时直接渲染图片，实现“多模态输出”。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>OCR只能提取图片中的文字，无法理解图片结构与视觉强调（如红圈标注、箭头指向、表单布局），导致信息丢失。</li>
+<li>多模态大模型可以结合前后文（如“这是一张入职表单的填写示例”）进行语义描述，输出“该图片展示紧急联系人一栏被红圈圈出，必须填写直系亲属”这样的结构化理解。</li>
+<li>将图片URL存入向量库标量字段，可以在检索时同时返回文本和图片，前端可以渲染出带红圈的示例图，比纯文本回答体验有质的提升。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在HR入职指南这样的场景中，一张表单示例图的价值远大于文字描述。如果只做OCR，得到的可能是“姓名：<strong><em>_ 紧急联系人：</em></strong>_”这样无意义的文字，完全丢失了“红色圆圈”这个关键视觉提示。多模态大模型能理解图片的“意图”，而不是仅仅描述像素。而将URL保留在向量库中，使得Agent在回答时可以同时给出文字说明和图片链接，前端直接弹出示例图，用户一看就懂。这种“图文联动”的设计，是RAG系统从可用到好用的关键一步。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出“多模态语义理解”与“OCR”的本质区别，强调理解图片“意图”而非提取文字。</li>
+<li>提到“多模态输出”对用户体验的促进作用，体现产品思维。</li>
+<li>能结合具体业务场景（如HR、医疗、金融）说明保留URL的必要性。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为OCR+文字嵌入就能搞定图片，忽略了视觉信息的丢失。</li>
+<li>误区：认为多模态大模型调用成本高就不该用，没有权衡召回质量和用户体验的提升。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>向量入库</code> <code>ID生成时机</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在RAG系统的工程流水线中，为什么自定义ID必须在切片后、转向量前生成，并与chunk强绑定？如果先转向量再给向量打ID，会带来哪些工程灾难？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>ID是用来标记文本块（Chunk）的，不是标记向量（Vector）的；在转向量前生成ID可以保证ID与文本块的一一对应，避免因并发乱序导致的“张冠李戴”和数据结构无法闭环。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>切片后立即生成ID，可以在内存中形成“ID-文本”的强绑定，后续转向量、入库时都携带同一个ID，确保数据一致性。</li>
+<li>Embedding接口通常是并发/异步的，返回的向量顺序不一定与原始切片顺序一致。如果转完向量再按顺序打ID，极易发生ID错配，导致chunk_2的ID贴在了chunk_5的向量上。</li>
+<li>向量数据库的写入接口要求一条完整的对象（id + vector + metadata），如果先转向量后打ID，就需要在入库前做一次额外的“对号入座”操作，增加复杂度和出错概率。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>想象一个场景：你有一批切片文本，为了加速，你并发调用Embedding API。由于网络抖动，第3个请求的向量先返回，第2个请求后返回。如果你在拿到向量后才按顺序打ID，可能会把chunk_2的ID打在chunk_3的向量上。而如果在切片后立即生成ID，并带着ID去调用Embedding，那么无论向量返回顺序如何，每个向量都能准确对应回自己的chunk。此外，在多模态场景中，ID可能需要在转向量前参与图文联动（比如用ID去关联多模态大模型的摘要结果），所以ID必须先生成。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能指出并发乱序的具体风险，展现对异步编程的理解。</li>
+<li>能结合向量数据库的upsert接口要求说明数据结构闭环的必要性。</li>
+<li>提到ID可能参与“语义增强”环节（如图片理解），体现架构全局观。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：以为ID只是简单的自增编号，可以在任何阶段生成，忽略了并发和顺序问题。</li>
+<li>误区：认为向量库可以自动生成ID，但自定义ID通常包含业务语义（如tenant+doc_id+chunk），需要应用层生成。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>文档切片</code> <code>Python vs LLM</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在RAG系统的文档切片阶段，为什么工业界普遍使用Python代码（如MarkdownHeaderTextSplitter、版面解析库）来切分，而不是直接调用大模型（如GPT-4）来“语义切分”？核心考量是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>大模型切片存在幻觉丢数据、成本高、输出格式不稳定三大工程灾难；Python代码切分成本极低、100%忠于原文、格式确定，且能利用成熟的版面解析库实现结构化切分。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><strong>幻觉与丢数据</strong>：大模型在长文本处理中容易漏掉关键段落或自行改写，这对于需要绝对精准的HR政策、法律条款等场景是致命的。</li>
+<li><strong>成本爆炸</strong>：大模型切分需要将整篇文档输入并输出一遍，输入输出双倍Token计费，数百份文档成本极高。</li>
+<li><strong>输出格式不稳定</strong>：即使要求输出JSON，大模型也可能偶尔出现格式错误、缺括号等，导致后端管道崩溃。</li>
+<li>Python生态有成熟的工具链：MarkdownHeaderTextSplitter利用标题层级切分，速度快、零成本；版面解析库（如MinerU、Unstructured）能识别表格、图片等复杂结构，且不依赖生成式模型。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>大模型在切片阶段的正确角色不是“切”，而是对切好的片进行“语义增强”。例如，Python代码把文档切成若干chunk后，大模型可以对图片chunk生成摘要，对表格chunk提炼QA对。这种“Python掌舵，大模型做插件”的架构，兼顾了效率、成本和准确性。如果让大模型直接切分，就像让一个漫画家去用尺子量图纸，既浪费才华又容易出错。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能区分“物理切分”和“语义增强”两个阶段，明确大模型的正确使用场景。</li>
+<li>提到具体的Python库（MarkdownHeaderTextSplitter、Unstructured）和它们的适用场景。</li>
+<li>能结合成本、可靠性、确定性三个维度进行对比分析。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为大模型切分更“智能”，忽略了工程上的稳定性要求。</li>
+<li>误区：觉得Python切分就是简单的if-else或按字数切，不知道有成熟的版面解析库。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LangGraph</code> <code>状态持久化</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>LangGraph的Checkpoint持久化机制与传统的Redis Session缓存持久化相比，核心区别是什么？为什么LangGraph能实现“图中途暂停并持久化”，而普通Session缓存做不到？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LangGraph的Checkpoint是图执行过程中的“节点级快照”，包含parent_id形成的版本树，能精确恢复图中任意节点的状态；而Redis Session缓存只是存储对话历史，无法感知图内的执行进度和节点依赖。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>LangGraph的Checkpoint在每次节点执行完成后自动触发，记录当前State、thread_id、checkpoint_id和parent_id（上一个checkpoint的ID），形成版本树。</li>
+<li>这种设计使得图执行到一半时，如果遇到Interrupt（人工审核节点），可以自动将当前状态持久化到数据库，并释放线程资源。当审核通过后，通过thread_id重新加载最新checkpoint，直接从该节点继续执行，不需要重跑前置节点。</li>
+<li>普通Redis Session缓存只能存储完整的对话历史，如果流程中断，恢复时需要重新从头执行整个流程，无法做到“断点续传”。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>假设你有一个审批流程Agent：节点A（收集信息）→节点B（需人工审批）→节点C（执行操作）。当运行到节点B时，LangGraph会自动生成checkpoint并存入数据库，然后结束线程。第二天审批通过后，系统通过thread_id找到checkpoint，直接从节点B开始执行，而不需要重新收集信息。如果用Redis存Session，你只能把整个对话历史存下来，恢复时需要重新跑节点A，浪费时间和资源。这种“节点级暂停与恢复”是LangGraph在复杂工作流中不可替代的核心能力。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能解释checkpoint的parent_id字段如何形成版本树，支持回滚和分支。</li>
+<li>能对比普通缓存与Checkpoint的底层差异，体现对状态机设计的理解。</li>
+<li>提到Interrupt场景下的资源释放，展现对服务端性能的关注。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为存对话历史就能实现断点续传，忽略了图内执行节点的依赖关系。</li>
+<li>误区：认为LangGraph的Checkpoint只是简单的序列化存储，没有理解其版本树和增量恢复机制。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agentic Token</code> <code>金融支付</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>金融行业近期提出的“Agentic Token”概念，旨在解决Agent支付链路的最后一公里问题。它的核心设计理念是什么？为什么需要严格的意图识别判定机制？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agentic Token是专为AI Agent设计的支付凭证，它通过将用户授权意图、支付范围、时间窗口等条件编码进Token，实现可控的代理支付，而严格的意图识别机制则是防止Agent误操作或恶意攻击的安全基石。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Agentic Token不是简单的API密钥，它包含细粒度的权限控制：比如“仅可支付给指定商户、单笔限额100元、24小时内有效”。</li>
+<li>意图识别机制要求在支付前，系统必须验证Agent的当前操作是否与用户原始授权意图一致，例如用户说“帮我订机票”，Agent不能去订酒店或转账。</li>
+<li>这种Token通常采用短生命周期、可撤销、可审计的设计，区别于传统支付密钥。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在金融场景中，如果让Agent直接使用用户的支付密码或API密钥，风险极高。Agentic Token相当于一张“限时限额的委任状”，用户授权Agent在特定范围内代为支付。而意图识别就像委任状上的“用途说明”，银行在支付前会核对“这笔交易是不是用户当初同意的”。这需要结合NLP和规则引擎，对Agent的支付请求进行语义级校验，例如识别出“买机票”的意图，但实际请求是“转账给个人”，则拒绝执行。这是Agent从“对话工具”走向“交易代理”的关键安全设计。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能指出Agentic Token与OAuth2.0 Scope的区别，强调其动态性和意图绑定。</li>
+<li>提到意图识别需要多层次校验（规则+语义+上下文），展现对安全设计的深度思考。</li>
+<li>结合金融行业的合规要求，说明可审计、可撤销的重要性。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为Agentic Token就是普通的API Token，忽略了其细粒度权限和意图绑定特性。</li>
+<li>误区：觉得意图识别只要靠大模型判断就行，忽略了规则引擎的兜底作用。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Claude Code</code> <code>多Agent协同</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Claude Code源码中设计了Sub Agent机制，主Agent可以派生出隔离的Sub Agent去执行子任务。这种设计的核心原则是什么？为什么主Agent不能直接执行所有任务？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Sub Agent的设计遵循“上下文隔离与降维”原则，通过将非核心任务委派给独立子Agent，防止主上下文被大量中间过程污染，从而保持主Agent的决策质量和Token效率。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>主Agent的上下文窗口（Context Window）是宝贵且有限的资源。如果直接执行所有任务，大量中间结果（如目录扫描的完整输出）会迅速占满上下文，导致注意力分散和Token浪费。</li>
+<li>Sub Agent拥有独立的上下文，执行完毕后只将结果的摘要（Summary）返回给主Agent，既完成了任务，又不会稀释主上下文的集中度。</li>
+<li>这种设计也增强了安全性：Sub Agent可以被赋予更严格的权限限制，即使出错也不会影响主流程。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>想象一个场景：Agent需要在一个大型项目中查找所有使用了某个废弃API的文件。如果主Agent亲自去读每个文件，上下文会迅速被代码片段占满，之后它可能“忘记”了原本要干什么。而派一个Sub Agent，它可以独立扫描文件，最后只报告“找到了3个文件，分别是...”，主Agent拿到这个摘要后，可以继续决策下一步。这种“外包、汇报”的模式，让Agent在多步骤复杂任务中保持清醒。Claude Code的源码还显示，Sub Agent使用Todo机制进行短时记忆，进一步强化了任务的可靠执行。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能联系到“上下文窗口管理”和“注意力稀释”问题，说明Sub Agent的必要性。</li>
+<li>提到Sub Agent的权限隔离与安全加固，体现对企业级Agent的考量。</li>
+<li>能类比现实中的“领导-秘书”工作模式，通俗易懂。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为Sub Agent只是多线程并发，忽略了其上下文隔离的核心价值。</li>
+<li>误区：以为所有任务都应该给Sub Agent，实际上只有非核心、可独立完成的任务才适合委派。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Vibe Coding</code> <code>AI辅助开发</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>“事不过三”原则是Vibe Coding中的重要实践：如果AI连续3次修复同一个Bug依然报错，必须立刻停用AI，改为人工介入。这个原则背后的核心逻辑是什么？为什么不能无限次让AI重试？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>AI在连续失败后会陷入思维死胡同，产生“幻觉修正”或“拆东墙补西墙”，导致问题复杂化；及时人工介入可以打破死循环，避免时间和Token的浪费。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>AI模型在修复Bug时，如果连续失败，会倾向于在错误的假设上继续修补，产生更多的错误代码，形成恶性循环。</li>
+<li>大模型没有真正的“理解”能力，它只是基于概率生成补丁。当多次尝试后，它会开始“编造”不存在的API或逻辑，使问题更难排查。</li>
+<li>人工介入可以用领域知识分析根因，往往能发现AI忽略的底层逻辑问题，一次解决。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>你可能会遇到这种情况：AI修了一个Bug，却引入了两个新Bug，再修新Bug又引入更多问题。这是因为AI没有对代码的全局理解，它只看到局部报错信息。当它连续失败3次，说明这个Bug已经超出了它当前上下文能处理的范围。此时，你应该停下来，自己读代码，理清逻辑，或者换个全新的Chat上下文重新描述问题。这就像让一个修理工修水管，如果他砸了三次墙都没找到漏水点，就该换个思路了，而不是继续砸墙。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能结合AI的“幻觉”和“概率生成”特性，解释为什么重试会失效。</li>
+<li>提出人工介入的策略：分析根因、新开Chat、调整Prompt等。</li>
+<li>体现对AI辅助开发中“人机协同”边界的理解，不是盲目信任AI。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为AI多试几次总能成功，忽略了Token消耗和问题恶化的风险。</li>
+<li>误区：觉得“事不过三”是硬性限制，实际上应根据Bug复杂度和AI表现灵活调整。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent架构</code> <code>状态机</code> <code>有限状态</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在企业级AI流程编排中，行业趋势是“重框架做减法、状态机做加法”，即从早期高自由度的重编排框架转向确定性的有限状态机（FSM）控制。这一转变的核心原因是什么？有限状态机在Agent编排中解决了什么根本问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>高自由度框架虽然灵活，但带来了不可预测的执行路径、调试困难和成本失控；有限状态机通过显式定义所有合法状态和转移，确保了流程的确定性、可观测性和成本可控性，这是企业级Agent稳定运行的基石。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>高自由度框架允许任意节点跳转，但这也意味着流程可能进入未预期的状态，甚至死循环，导致Token消耗不可控。</li>
+<li>有限状态机预先定义了所有可能的状态和状态转移条件，任何执行路径都在预期范围内，便于监控、审计和成本估算。</li>
+<li>在企业场景中，确定性比灵活性更重要：一个HR审批流程必须严格按照“提交→审核→批准”走，不能因为大模型的“创意”跳过审核步骤。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>早期用LangChain等框架，开发者可以自由地写Prompt决定下一步，这虽然灵活，但上线后可能出现“Agent突然决定去调用一个不存在的工具”或者“无限循环调用某个节点”。而有限状态机就像地铁线路图，所有站点和换乘都事先画好，你只能按图走，不会迷路。LangGraph虽然底层是图，但它强调状态管理和条件边，实际上是在鼓励开发者用有限状态机的思维设计流程。这种转变不是否定灵活性，而是把灵活性限制在状态机内部的局部决策中，全局仍是确定的。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能对比高自由度框架与有限状态机的优缺点，结合企业场景说明确定性优先的原因。</li>
+<li>提到LangGraph的状态设计如何体现FSM思想，展现对框架的深入理解。</li>
+<li>能结合成本控制、合规审计等企业需求，说明FSM的价值。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为有限状态机就是死板、不能有任何智能决策，实际上状态机内部的节点仍可调用大模型做智能处理。</li>
+<li>误区：觉得高自由度框架更先进，忽略了企业级应用的稳定性要求。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent合规</code> <code>审计追踪</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>近期微软、Claude等公司开始关注Agent的合规审计和自动治理，中国也提出了Agent需要有自己的“身份证”和密钥来进行溯源管理。为什么Agent需要独立的身份标识？这种身份标识与用户账号有什么本质区别？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agent的独立身份标识是为了实现“谁在操作、谁授权、谁负责”的审计闭环，它将Agent作为独立实体进行行为追踪和权限管理，与用户账号的解耦是合规自动化的基础。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>一个用户可能拥有多个Agent，每个Agent执行不同任务，它们需要独立的身份来区分行为和权限。</li>
+<li>Agent的身份证（Key）可以绑定其运行时环境、允许调用的API范围、操作配额等，便于审计时追溯某次操作是由哪个Agent执行的。</li>
+<li>在合规场景中，如果出现违规操作，需要明确是用户指令错误还是Agent自主决策错误，这需要Agent有独立的日志和身份。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>想象一个企业有多个HR Agent：一个负责招聘，一个负责员工咨询。如果它们都用同一个用户账号调用API，审计时根本无法区分哪个Agent做了什么。而如果每个Agent有自己的身份证，日志中会记录“Agent_HR_Recruit 在10:00调用了简历解析API”，责任清晰。这类似于公司里不同员工有各自的工牌，而不是所有人共用老板的钥匙。中国提出的Agent身份证概念，正是为了在Agent数量爆发时，建立一套可管控的身份体系，防止“影子Agent”乱跑。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能区分Agent身份与用户身份，说明解耦的必要性。</li>
+<li>提到审计时如何通过Agent ID进行行为回溯，体现对合规的重视。</li>
+<li>能结合多Agent场景，说明身份管理对权限控制的意义。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为Agent用用户的API Key就行，忽略了审计和隔离的需求。</li>
+<li>误区：觉得Agent身份证只是简单加个ID，没有理解其背后的权限、日志、追踪等一整套治理体系。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>多模态RAG</code> <code>图文联动</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在多模态RAG系统中，当文档切片遇到图片时，为什么要将图片摘要和图片URL同时存入向量库？只存摘要或只存URL各有什么缺陷？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>图片摘要负责语义匹配，让检索能命中图片；图片URL负责前端渲染，让用户看到图片。只存摘要会导致检索命中后无法展示图片，只存URL则无法通过文本检索找到图片。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>图片本身是二进制数据，无法直接进行向量化检索。需要将图片转化为文本摘要，然后对摘要文本进行嵌入，才能支持语义检索。</li>
+<li>仅存摘要：用户检索时能命中图片相关的chunk，但回答时只能返回文字描述，用户无法看到原图，体验打折。</li>
+<li>仅存URL：向量库中缺少可检索的文本，用户的问题无法匹配到这张图片，导致图片资源被浪费。</li>
+<li>同时存储：摘要用于检索，URL用于输出，两者配合实现“检索得到、展示得出”的闭环。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在HR客服场景中，员工问“紧急联系人怎么填？” 系统通过向量检索，命中了图片摘要“紧急联系人栏被红圈圈出，必须填写直系亲属”。此时，Agent可以回答：“请在紧急联系人栏填写直系亲属，如配偶或父母”，同时前端通过URL直接展示带红圈的示例图。如果只存摘要，员工只能看到文字，可能还是填错；如果只存URL，这个问题可能根本检索不到这张图。因此，摘要和URL是互补的，缺一不可。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能区分“检索”和“展示”两个环节的不同需求，说明设计决策的合理性。</li>
+<li>提到多模态输出的用户体验提升，体现产品思维。</li>
+<li>能结合向量库的标量字段过滤能力，说明如何高效存储和返回URL。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为只需存摘要，因为大模型能描述清楚，忽略了图片的直观解释力。</li>
+<li>误区：觉得存URL可以让大模型直接读取图片，但大模型在回答时无法直接访问外部URL，需要前端配合。</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多模态 RAG</code> <code>图文联动</code> <code>向量检索</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你要为一家公司搭建一个面向新员工的智能入职助手，知识库中包含大量带图的操作指南（如“表单填写示例”、“OA 系统截图”）。要求系统不仅能理解图片中的语义，还能在回答时直接向用户展示相关图片（例如前端弹出“紧急联系人填写示例”的截图）。请设计一套支持图文混合检索与回答的多模态知识库架构，并说明核心模块设计、数据流向以及图片如何与文本 chunk 关联。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>将原始文档解析为文本块（chunk）和图片资源，并为每个图片生成一段语义描述（image summary），然后将文本块与图片描述拼接后转向量，同时保留图片的原始访问 URL。</li>
+<li>向量检索时，用户问题与向量库中的描述内容匹配，命中的 chunk 同时携带文本和图片 URL，大模型在生成回答时可将图片 URL 一并返回给前端展示。</li>
+<li>设计上需要保证图片描述与原文 chunk 的强绑定，以及入库时 ID 顺序不混乱。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整体架构分为四个核心模块：</p>
+<ul>
+<li><strong>文档解析与切片模块</strong>：用版面分析工具（如 MinerU、Unstructured）将 PDF 转成 Markdown，并自动识别出图片区块和文本区块。对文本区块按标题层级切分（如 MarkdownHeaderTextSplitter），对图片区块调用多模态大模型（如豆包-Vision）生成一段约 50 字的图片语义摘要，摘要需结合图片所在上下文（附近文本）来生成，避免脱离语境。</li>
+<li><strong>向量化与入库模块</strong>：对于纯文本 chunk，直接使用其文本内容转向量；对于包含图片的 chunk，将 <code>[图片说明]: {image_summary}</code> 与周围文本拼接后转向量。入库时，向量库的每条记录需包含三个核心字段：</li>
+<li><code>chunk_text</code>：最终用于检索的文本（含图片说明）</li>
+<li><code>image_url</code>：原始图片的可访问地址（必不可少）</li>
+<li><code>vector</code>：由上述内容生成的向量</li>
+<li><strong>检索与重排模块</strong>：用户问题向量化后进行粗召回（Top 20），再通过 Rerank 模型精排，返回最相关的若干 chunk。由于 chunk 中已包含 <code>image_url</code>，检索结果可直接附带图片链接。</li>
+<li><strong>回答生成与前端交互模块</strong>：大模型拿到相关 chunk 的文本内容，用自然语言回答用户问题，并在系统指令中约定：如果所引用的 chunk 包含 <code>image_url</code>，则在回答末尾以特定格式输出图片链接（如 <code>[img:url]</code>）。前端解析后自动渲染图片，实现图文联动。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>图片摘要必须与上下文绑定生成，否则无法准确关联到具体操作步骤。例如，不能只调用模型说“描述这张图片”，而要加上“结合上下文：'{context_text}'，详细描述这张图片传达了什么具体政策、指导信息”。</li>
+<li>向量库中必须同时存储 <code>image_url</code>，不能只存摘要文本。如果丢掉 URL，回答时就只能干巴巴用文字描述，无法展示原图，体验大打折扣。</li>
+<li>入库 ID 必须在调用 Embedding 接口之前生成，并严格绑定到 chunk 对象上，防止异步并发导致向量顺序错乱，张冠李戴。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以引入“图片质量预检”：对调用多模态模型获得的图片摘要进行格式校验，如果摘要为空或明显不符合预期，自动重试或降级为纯文本模式。</li>
+<li>对高频访问的图片做 CDN 加速，前端展示时支持缩略图预览，点击放大。</li>
+<li>支持多图片关联：一个 chunk 可能包含多张图片（如流程图），此时可将所有图片 URL 存储为列表，生成时允许模型决定展示哪一张。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>文档解析</code> <code>切片策略</code> <code>HR 知识库</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某企业历史上积累了 2000 余份 PDF 格式的 HR 制度文件，里面包含大量照片、盖章扫描件、表格和复杂的排版。该企业要求将这些文档构建为内部智能问答知识库，且必须做到：① 回答引用的原文片段 100% 准确，不能出现丢字、篡改；② 对文件中的图片能理解其语义（如“实习协议模板的红章位置”）；③ 更新频繁，需要支持增量更新。请对比“纯大模型切分”和“Python 代码 + 版面分析工具切分”两种方案，并给出你的最终选型及落地流程。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>分析两种方案的核心差异：大模型切分虽语义灵活，但存在幻觉、丢数据、成本高、格式不稳定等致命问题；Python 代码切分借助版面分析工具，可以做到 100% 忠于原文，且成本极低。</li>
+<li>结合企业需求，必须有 100% 原文保真，因此必须采用 Python 代码主导的“物理切分 + 大模型语义增强”混合方案。</li>
+<li>设计完整的落地流程，涵盖文档解析、切片、图片理解、向量化入库及增量更新机制。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>方案对比：</strong></p>
+<ul>
+<li>纯大模型切分：将整个 PDF 内容喂给大模型，让它输出切片。致命缺陷：① 大模型可能“脑补”或遗漏文字，尤其在 2 万字的文档中容易丢失中间某段政策；② 成本为双倍 Token（输入输出各 1 万），2000 份文档成本爆炸；③ 输出格式不稳定，偶尔 JSON 残缺导致 Pipeline 崩溃。</li>
+<li>Python 代码 + 版面分析工具：利用版面解析库（如 MinerU、火山引擎文档解析服务）将 PDF 转为结构化 Markdown，保留表格、标题、图片位置。然后通过 <code>MarkdownHeaderTextSplitter</code> 按标题层级切分，或者用滑动窗口进行语义分块。切分过程纯代码执行，微秒级速度，成本几乎为零，且 100% 不丢字。</li>
+</ul>
+<p><strong>最终选型：</strong> “Python 掌舵，大模型做插件”的混合架构。Python 负责物理切分与 ID 生成，确保原文绝对保真；大模型仅在遇到图片、复杂表格时作为语义增强插件被调用，为图片生成摘要，或为表格生成意图明确的 QA 对。</p>
+<p><strong>落地流程：</strong></p>
+<ol>
+<li>文档解析：所有 PDF 经版面分析工具转成 Markdown，同时提取图片并上传至对象存储，获得固定 URL。</li>
+<li>切片与标记：按 Markdown 标题层级切分为 chunk，遇到图片占位符时，用多模态大模型生成图片摘要，摘要文本 merge 到 chunk 中，同时保留 <code>image_url</code>。</li>
+<li>向量化入库：所有 chunk 在内存中立刻生成唯一 ID（如 <code>doc_id#chunk_N</code>），然后调用 Embedding 生成向量，连同 ID、文本、image_url 一并写入 VikingDB。</li>
+<li>增量更新：文档变化时，重新解析该文档，用相同规则生成新 chunk，通过 ID 进行 upsert，旧 chunk 软删除或覆盖。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>图片上下文必须传递给多模态模型，否则摘要质量差，导致检索时图文匹配不准。</li>
+<li>复杂表格如果直接作为纯文本切分，会丢失行列关系，建议用版面分析工具将表格转成 HTML 或 Markdown 表格再存储。</li>
+<li>增量更新时，要保证 ID 的稳定性，避免反复删除重建导致向量库碎片化。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以引入人工审核环节：对于重要政策文件，在切片入库前由 HR 人员抽检，确保关键条文无误。</li>
+<li>对图片理解模型设置超时与重试机制，避免单张图片卡住整个流水线。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>并发安全</code> <code>ID 生成</code> <code>向量库入库</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>请设计一个文档切片入库流水线的核心代码逻辑（可用伪代码），要求：① 对每个切片在内存中立即生成唯一 ID（如 <code>doc#chunk_3</code>）；② 使用异步 Embedding 接口将切片文本转为向量，且必须保证 ID 与返回的向量严格对应，不能出现顺序错乱；③ 最终组装成包含 ID、向量、文本、元数据的完整对象写入向量库。需说明在并发场景下如何保证 ID 与向量的正确绑定。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>在 for 循环中，每遍历一个 chunk 就立刻生成其 ID，并将 ID 与 chunk 对象强绑定，然后才去调用 Embedding。</li>
+<li>由于 Embedding 接口可能是异步并发返回，顺序可能乱，因此不能依赖返回列表的顺序来匹配 ID，而是采用“请求时带上标识，返回时校验”的策略，或者同步化处理。</li>
+<li>最简单的工业级做法是：在循环内同步等待每个 chunk 的 Embedding 返回，再将结果与 ID 一同打包。如果需要高并发，可以用协程 + 字典映射，但必须确保每个请求与返回的对应关系。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>伪代码如下：</p>
+<pre><code class="language-python">chunks = [{&quot;text&quot;: &quot;段落1&quot;, &quot;img_url&quot;: None}, {&quot;text&quot;: &quot;段落2&quot;, &quot;img_url&quot;: &quot;http://...&quot;}]
+vikingdb_docs = []
+
+for idx, chunk in enumerate(chunks):
+    # 1. 立即生成唯一 ID
+    chunk_id = f&quot;huawei#entry_guide#chunk_{idx}&quot;
+
+    # 2. 处理图片摘要（如有）
+    if chunk[&quot;img_url&quot;]:
+        img_summary = call_doubao_vision(
+            image=chunk[&quot;img_url&quot;],
+            prompt=f&quot;结合上下文描述这张图片...&quot;
+        )
+        final_text = f&quot;[图片说明]: {img_summary} {chunk['text']}&quot;
+        chunk[&quot;chunk_text&quot;] = final_text  # 同时保留原始文本
+    else:
+        final_text = chunk[&quot;text&quot;]
+
+    # 3. 同步调用 Embedding，保证顺序
+    vector = get_embedding(final_text)  # 每个 chunk 串行调用，确保 ID 与向量一致
+
+    # 4. 组装 JSON 对象
+    doc = {
+        &quot;id&quot;: chunk_id,
+        &quot;vector&quot;: vector,
+        &quot;fields&quot;: {
+            &quot;chunk_text&quot;: chunk.get(&quot;chunk_text&quot;, final_text),
+            &quot;image_url&quot;: chunk.get(&quot;img_url&quot;),
+        }
+    }
+    vikingdb_docs.append(doc)
+
+# 5. 批量写入向量库
+vikingdb.upsert(vikingdb_docs)
+</code></pre>
+<p>如果必须提高吞吐量，可采用异步并发，但需要维护一个 <code>id -&gt; future</code> 的映射，并在所有请求完成后按 ID 匹配结果：</p>
+<pre><code class="language-python">import asyncio
+
+async def embed_chunk(chunk):
+    # 同样先生成 ID，然后异步调用 Embedding
+    return {&quot;id&quot;: chunk[&quot;id&quot;], &quot;vector&quot;: await async_embed(chunk[&quot;text&quot;])}
+
+async def main():
+    tasks = [embed_chunk(chunk) for chunk in chunks]
+    results = await asyncio.gather(*tasks)  # 结果顺序与 tasks 顺序一致，gather 保证
+    # 但也要注意 gather 的异常处理
+</code></pre>
+<p>无论哪种方式，<strong>核心原则是：ID 生成必须在向量化之前完成，且最终写入时 ID 与向量必须来自同一个 chunk 对象</strong>。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>如果使用批量 Embedding 接口（一次传入多个文本），返回的向量列表顺序通常与输入顺序一致，但文档未明确保证时，切勿依赖，最好单独处理。</li>
+<li>绝对不能先跑完所有 Embedding，再按索引 0,1,2 去给 chunk 打 ID，因为并发可能打乱顺序，导致 chunk_2 的 ID 贴在了 chunk_5 的向量上，定位问题极其困难。</li>
+<li>对于图片 chunk，必须在生成 ID 的同时就调用多模态模型获取摘要，然后再转向量，否则 ID 无法参与语义增强的上下文准备。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入重试机制：如果某个 chunk 的 Embedding 调用失败，记录错误并跳过或重试，不影响其他 chunk。</li>
+<li>使用消息队列解耦：将生成 ID 后的 chunk 丢入队列，由消费者串行处理 Embedding 和入库，天然保证顺序。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>多模态调用</code> <code>超时</code> <code>成本优化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你在处理一批 HR 文档时，流水线中需要对每一张图片调用多模态大模型（如豆包-Vision）生成语义摘要。实际运行中，发现两个问题：① 图片理解接口频繁超时（约 20% 的请求超过 5 秒），导致整个文档处理流水线被卡住；② 月底账单显示，多模态模型调用费用远超预期，主要原因是大量图片是无关紧要的装饰图或空白页，但也被送去理解。请给出优化方案，既要保证流水线稳定运行，又要大幅降低成本。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>针对超时问题，需要引入超时控制、重试机制和降级策略，确保单个图片的失败不会阻塞整体流水线。</li>
+<li>针对成本问题，需要在调用多模态模型之前增加一个轻量级的“图片过滤”环节，判断图片是否具有业务含义，过滤掉装饰图、空白页等。</li>
+<li>同时可以引入缓存机制，避免重复图片的重复调用。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>超时与稳定性优化：</strong></p>
+<ul>
+<li>设置合理的超时时间（如 3 秒），超时后自动重试一次，若仍失败，则记录日志并跳过该图片，将 chunk 降级为纯文本模式（不包含图片摘要），确保流水线继续。</li>
+<li>引入指数退避重试策略，避免在服务端拥塞时雪上加霜。</li>
+<li>对于特别重要的图片（如带有红章、签名的政策性图片），可以配置较高的重试次数或改用更稳定的模型。</li>
+<li>将图片理解调用从主流程中解耦，改为异步任务队列：如果图片理解失败，先入库纯文本版本，后台任务再补充图片摘要，通过 update 接口更新向量库记录。</li>
+</ul>
+<p><strong>成本优化：</strong></p>
+<ul>
+<li>在调用多模态模型前，先做一个“图片预检”：使用简单的图像处理库（如 Pillow 或 OpenCV）检测图片是否纯白/纯黑或尺寸过小，如果是，则直接跳过，标记为“无意义图片”。</li>
+<li>利用 MD5 或感知哈希对图片进行去重，同一张图片（如公司 logo）可能在多个文档中重复出现，只需调用一次多模态模型，其他直接复用摘要。</li>
+<li>对图片进行分类：如果图片主要是文本截图，可以先用 OCR 提取文字，再判断是否需要多模态理解。若 OCR 文字已足够表达含义，则直接使用 OCR 结果，无需调用昂贵的多模态模型。</li>
+<li>设置“每日调用配额”和“单文档图片数量上限”，防止异常文档（如全是图片的扫描件）刷爆账单。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>超时时间的设置需要平衡：太短会导致大量误报，太长则阻塞流水线。建议通过监控统计 P95 耗时来设定。</li>
+<li>图片过滤规则不能太激进，否则可能漏掉真正有业务含义的图片（如灰色的表格截图），最好结合版面的上下文（附近文本）来判断。</li>
+<li>降级为纯文本后，如果后续检索发现该 chunk 被频繁命中而缺少图片说明，可以触发一个延迟修复任务，人工或自动补齐。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>建立图片摘要缓存库（Redis），键为图片的感知哈希，值为摘要，设置较长的过期时间，大幅减少重复调用。</li>
+<li>引入轻量级图片分类模型（如 MobileNet）来初步判断图片是否包含文字或表格，进一步过滤装饰图。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>从 0 到 1</code> <code>多模态 Agent</code> <code>HR 入职</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你作为技术负责人，需要从 0 到 1 交付一个面向新员工的智能入职助手，该助手需要具备以下能力：① 支持多模态问答，回答中能直接展示相关图片（如表单示例、工位引导图）；② 所有回答必须引用原始 HR 政策文档，确保信息准确；③ 支持运营人员的人工审核与干预，能够对敏感问题（如薪资计算）进行回复前确认。请给出完整的项目实施计划，包括技术选型、架构设计、数据管道、上线流程及迭代计划。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>项目采用 RAG + 多模态 + 工作流编排的架构。知识库构建使用 Python 代码主导的切片与多模态增强，向量库选用 VikingDB，流程编排用 LangGraph 实现人工审核节点。</li>
+<li>分阶段交付：第一阶段完成基础多模态问答，第二阶段加入人工审核与工作流，第三阶段沉淀平台能力。</li>
+<li>实施过程中，将架构解耦为“文档解析管道”、“向量检索服务”、“对话代理服务”和“人工审核平台”四个独立模块，便于迭代和维护。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>技术选型：</strong><br />
+- 文档解析：MinerU / 火山引擎文档服务（转 Markdown + 图片提取）<br />
+- 多模态理解：豆包-Vision（或兼容的视觉模型）<br />
+- 向量数据库：VikingDB（支持标量字段存储 image_url）<br />
+- 流程编排：LangGraph（支持 Interrupt 人工确认节点）<br />
+- 前端：自研聊天界面，支持图片渲染和审批面板</p>
+<p><strong>实施步骤：</strong></p>
+<ol>
+<li>
+<p><strong>数据管道建设（1-2 周）</strong><br />
+   - 收集所有 HR 入职文档，统一清洗，建立文档索引。<br />
+   - 编写解析与切片流水线，实现图文分离、图片摘要生成、ID 生成与向量入库。<br />
+   - 搭建自动化测试集，验证切片的质量和召回率。</p>
+</li>
+<li>
+<p><strong>基础 RAG 服务搭建（2-3 周）</strong><br />
+   - 封装检索与生成接口，实现文本问答。<br />
+   - 集成多模态输出：在 prompt 中约定，当检索到含 image_url 的 chunk 时，回答末尾输出 <code>[img:url]</code>，前端解析后展示图片。<br />
+   - 部署 Docker 容器，单机验证。</p>
+</li>
+<li>
+<p><strong>人工审核与工作流接入（1-2 周）</strong><br />
+   - 设计 LangGraph 图：<code>agent</code> 节点生成回答 → <code>review</code> 节点（敏感问题则挂起 Interrupt）→ 人工确认后继续 → 最终输出。<br />
+   - 运营人员通过简单 Web 界面进行审核，通过后回复自动推送给用户。<br />
+   - 所有审核记录持久化到 PostgreSQL，支持审计。</p>
+</li>
+<li>
+<p><strong>上线与灰度（1 周）</strong><br />
+   - 先在 HR 部门内部小范围灰度，收集反馈。<br />
+   - 监控知识库命中率、人工转接率、用户满意度。<br />
+   - 根据反馈调整分块策略和图片理解模型。</p>
+</li>
+<li>
+<p><strong>迭代优化（持续）</strong><br />
+   - 引入 DPO 微调，优化回答风格。<br />
+   - 对高频问题建立缓存，降低延迟。<br />
+   - 沉淀为可配置的 Agent 平台，支持其他部门的类似需求。</p>
+</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>人工审核节点必须设置超时和队列上限，防止挂起流程耗尽资源；超时自动降级为直接回复或通知运营人员。</li>
+<li>图片版权与隐私：确保图片 URL 访问受控，不在公网泄露内部截图。</li>
+<li>在 LangGraph 中，人工审核后的状态恢复必须依赖 Checkpoint，需要配置 Redis 或 PostgreSQL 持久化，测试环境切勿用内存模式。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>未来可引入“意图识别”模块，自动判断问题是否敏感，减少不必要的人工审核。</li>
+<li>支持多轮对话时，将图片作为上下文的一部分，例如用户问“第一张图里的那个字段怎么填？”，Agent 能结合历史图片进行回答。</li>
+<li>建立知识库自动更新机制，当 HR 制度变化时，触发增量更新流水线，减少人工维护成本。</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
