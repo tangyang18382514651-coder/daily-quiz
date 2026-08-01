@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-08-01)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-08-01)</h1>
+    <div class="meta">更新于 2026-08-01 11:05</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
+🔄 知识片段：#18, #19, #20（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>AI Pipeline 智能过滤</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在自媒体内容运营的 AI 生产管线中，有一个“洗数据”环节：用大模型对抓取到的热点进行筛选，只保留与人力资源、社保、劳动法相关的有用内容，丢弃娱乐八卦等无关信息。请问，为什么需要引入大模型来进行文本过滤，而不是直接使用传统的正则表达式或关键词匹配？这种做法的核心优势是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>大模型过滤的核心优势在于能够理解文本的语义和上下文，对“看似相关实则无关”或“看似无关实则相关”的内容进行精准判定，而传统关键词匹配只能做机械的字符串比对，无法处理多义性和语境变化。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>语义理解 vs 字符串匹配：大模型可以理解“打工人吐槽”和“劳动法案例”的微妙区别，而关键词“工资”可能同时出现在娱乐八卦和社保讨论中，导致误杀或漏放。</li>
+<li>上下文关联判断：大模型能够结合整段文本的语境，判断主题是否真正属于目标领域，避免孤立词匹配的片面性。</li>
+<li>动态适应：当领域边界模糊时，大模型可以通过少量示例或 prompt 调整判断标准，无需重新编写复杂正则。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统关键词过滤就像用固定的筛子筛沙子，只能按照事先定义好的词表进行匹配。例如，设置“社保、劳动法、仲裁”为白名单，但一篇娱乐八卦中可能也会提到“社保”二字（如“明星的社保纠纷”），关键词过滤会将其误认为相关；反过来，一篇讨论“企业用工合规”的专业文章如果没出现预设关键词，则可能被丢弃。大模型则像一个领域专家，能读懂整段话的含义，判断其是否真正属于人力资源范畴。在实际落地中，我们自建了 HR 行业专属词库和黑名单库，但最终由大模型通过语义相似度算法进行二次确认，大幅提升了过滤的准确率和召回率。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提及“大模型做选择题”的成本优化：通常可以用更便宜的小模型（如 SLM）完成过滤任务，避免全部甩给大模型增加成本。</li>
+<li>强调“过滤+合规自检”的双重保障：过滤后仍需合规自检，确保内容合法。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为大模型过滤是万能的。实际上，大模型也可能产生幻觉，需要结合规则词库做兜底。</li>
+<li>误区：一味追求过滤准确性，忽略延迟和成本。可以先用关键词粗筛，再用大模型精筛。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>定时调度策略</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在某自媒体内容运营系统中，热点抓取被设计为每天两次：首次在 09:00 抓取早间热点，二次在 12:30 补充午间新晋话题。为什么需要分两次抓取而不是一次性抓取全天热点？这种设计体现了什么调度原则？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>多次定时抓取的设计是为了捕捉热点话题的时效性和延续性，避免因一次抓取后新热点涌现而导致内容过时，同时通过增量更新减少重复处理和资源浪费。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>热点时效性：社交媒体热点变化极快，上午的热点到下午可能已经被新话题取代，单次抓取无法覆盖全天动态。</li>
+<li>增量更新：第二次抓取只补充午间新出现的热点，并淘汰已过气的旧热点，避免重复处理已生成的内容。</li>
+<li>预留处理时间窗：早间抓取后预留了筛选匹配、AI 生成、人工复核的完整时间窗，二次抓取后的内容可以在下午发布前完成生成。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>热点的生命周期通常只有几个小时，如果只在早上 9 点抓取一次，中午 12 点突然爆发的“某公司大规模裁员”这种与 HR 强相关的热点就会错过，导致内容竞争力下降。分开抓取相当于设置了两个“采样点”，既能保证早间内容准时生成，又能利用午间补抓跟上最新趋势。此外，这种调度还隐含了“淘汰过气热点”的机制，避免 AI 把算力浪费在已经无人关心的旧话题上。这也体现了定时任务设计中的“增量更新”和“延迟容忍”原则：非实时性内容允许在固定时间窗口内批量处理，兼顾质量和效率。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>结合“热点研判节点”说明：第一次抓取后的热点经研判后，第二次抓取时如果发现同一热点热度下降，可以自动降低生成优先级。</li>
+<li>提及“防重机制”：通过 URL 或话题 ID 去重，避免重复生成。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为频率越高越好，导致 API 调用过于频繁，容易触发反爬或被限流。</li>
+<li>误区：忽略人工复核时间窗，导致二次抓取的内容来不及人工审核就直接发布。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Human-in-the-Loop 交互设计</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 AI 文案生成系统中，当运营人员对生成结果不满意时，提供了两种修改方式：方案 A 是“前端肉眼修改”，即运营直接在前端编辑框里修改文案并保存；方案 B 是“提意见让大模型重新生成”，即运营输入一条修改建议，系统将建议和当前内容一起提交给大模型进行重写。请从系统架构和交互设计的角度，分析这两种方案各自的实现原理和优缺点。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>方案 A 是一种纯前端修改，不涉及 AI 推理，适合纠正错别字或微调；方案 B 则是通过 LangGraph 状态回溯触发大模型重写，适合风格调整或内容重构，但需要复杂的工程支撑。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>方案 A：前端直接修改，通过 HTTP 请求将修改后的文本保存到数据库，不调用大模型，实现简单，响应快。</li>
+<li>方案 B：利用 LangGraph 的 <code>graph.update_state()</code> 强行将运营反馈写入状态机，通过条件边重新路由到文案编排 Agent，触发大模型基于旧文案和反馈重新生成。</li>
+<li>方案 A 适合确定性修改，方案 B 适合需要 AI 重新思考的不确定性修改。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>方案 A 的本质是传统的 CRUD 操作，运营拿到 AI 生成的文案后，直接在浏览器里修改错别字、调整句子，然后点击保存，前端发起请求更新数据库。这种模式完全绕过大模型，不会产生额外的 Token 消耗，也没有延迟，适用于对单一文案的微调。方案 B 则是一个“人机协作”的闭环：运营输入“语气太严肃了，多加点 Emoji”，系统会把这个反馈作为新增状态注入到编排图中，Agent 自动回溯到“文案编排”节点，用旧文案和反馈重新生成内容。这种模式能够利用大模型的创造力进行风格化调整，但会增加一次甚至多次 API 调用，且需要额外地处理状态回滚和重试逻辑。在实际项目中，我们通常同时提供两种方式，让运营按需选择。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到“状态持久化”：方案 B 中需要 Checkpointer 记录每次生成的状态，才能实现回溯。</li>
+<li>强调“成本控制”：方案 A 零成本，方案 B 有成本，可以在前端提示用户当前操作会消耗 Token。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为方案 B 就是简单的“再调用一次大模型”。实际上，它需要借助 LangGraph 的图回溯能力，否则会丢失上下文。</li>
+<li>误区：以为所有修改都应该走方案 B，导致不必要的成本浪费。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent 工作流设计</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在自媒体内容运营的 Agent 决策层中，设计了一个包含“热点研判节点”、“内容角度决策节点”、“风格适配节点”和“合规自检节点”的多节点智能工作流。请问，为什么要把决策拆分成多个独立的节点，而不是让一个节点完成所有判断？这种拆分对系统的可维护性和可扩展性有什么好处？</p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>将决策拆分为多个独立节点，可以实现关注点分离，每个节点只负责单一职责，从而降低单个大模型调用的复杂度，提高输出的确定性，并便于后续单独优化或替换某个节点。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>单一职责：每个节点只处理一个明确的子任务（如判断是否适合发布、选择视角、匹配风格、检查合规），Prompt 短且聚焦，幻觉风险低。</li>
+<li>可组合性：节点可以像乐高积木一样灵活组合，例如新增一个“竞品对比节点”只需插入流程，不影响其他节点。</li>
+<li>可观测性：每个节点的输入输出清晰，便于日志追踪和评测，定位问题更快捷。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>如果让一个节点完成所有判断，Prompt 会变得非常长且复杂，大模型容易在多个任务之间混淆，导致输出格式不稳定，甚至忽略某些维度（如合规检查）。拆分成多个节点后，每个节点可以针对性地优化 Prompt，例如“热点研判节点”只需要回答“是否适合”和“理由”，输出可以是简单的 JSON，确定性极高。同时，节点之间可以并行或串行，支持异质模型调用：热点研判可以用小模型，合规自检可以用更严格的模型或规则引擎，实现成本与效果的平衡。从架构演进角度看，当业务规则变化（如新增一种内容风格）时，只需修改或新增对应节点，不会引发全局改动。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>结合 LangGraph 的 conditional_edges：节点间的跳转逻辑由代码控制，而不是由大模型自由决定，保证了流程的确定性。</li>
+<li>提到“子图复用”：某些节点可以封装为子图，在其他 Agent 中复用。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为拆分节点会增加整体延迟。实际上，通过缓存和并行执行，总延迟可能反而降低。</li>
+<li>误区：过度拆分，导致节点过多，管理复杂。需要在粒度上做权衡。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>RAG 增强技术</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 RAG（检索增强生成）系统中，文档切块后常常出现信息碎片化、丢失上下文的问题。Contextual Retrieval（上下文检索）是一种被提出的解决方案，它在入库前为每个 Chunk 自动生成一段包含母文档核心信息的“前缀补全”。请说明 Contextual Retrieval 的核心原理，以及它为什么能提升模糊查询的召回率。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Contextual Retrieval 通过在 Chunk 前插入一条由小模型生成的、概括该 Chunk 所在文档整体背景的文本，解决了切块后语义孤立的问题，使向量检索时能够捕捉到文档级上下文，从而大幅提升召回率。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>信息补全：每个 Chunk 原本只包含局部文本，丢失了文档标题、章节、主旨等全局信息，导致向量匹配时无法关联到文档整体。</li>
+<li>自动生成前缀：使用一个轻量级模型，为每个 Chunk 生成一段简短的描述性文本（如“本文来自《2024 劳动法白皮书》第三章，讨论加班费计算基准”），并拼接到 Chunk 开头。</li>
+<li>联合向量化：将补全后的文本进行 Embedding，使得向量既包含局部细节，又包含文档级语义，从而在检索时能够跨 Chunk 匹配。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统的固定大小切块，经常会把一个完整的段落切散，比如“《劳动合同法》规定，用人单位应当……（见下页）”这样的上下文依赖，切块后第二页的 Chunk 可能就没人知道它在说什么。Contextual Retrieval 相当于给每个 Chunk 贴了一个“微缩档案”，告诉检索系统：“这一段是在讲劳动合同法，属于某文档的某个部分”。这样，即使查询词是“加班费”，如果某 Chunk 的前缀包含了“劳动法”和“加班费”相关背景，就能被准确召回。最重要的是，这个前缀是自动生成的，不需要人工标注，维护成本低。在 RAG 评估中，这种方法能将模糊查询的召回率提升 30% 以上。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到“成本优势”：使用小模型生成前缀，远比使用大模型便宜，且可以离线批量处理。</li>
+<li>结合“多路召回”：Contextual Retrieval 可以和关键词检索、图检索结合，形成混合检索。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：以为只要增加了前缀，任何切块方式都能得到改善。实际上，前缀生成的质量依赖于母文档的完整性和切块策略。</li>
+<li>误区：忽略前缀长度，前缀过长会稀释 Chunk 本身的语义，需要截断控制。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>记忆管理策略</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在多轮对话 Agent 中，通常会设计“近期记忆”和“长期记忆”两种存储策略：近期记忆保留最近 N 轮的原始精确对话，长期记忆则将更早的对话压缩成精简摘要，并作为用户画像存入关系数据库。请解释为什么需要这样区分？如果全部保留原始对话或全部压缩为摘要，会带来什么问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>区分近期记忆和长期记忆是为了在对话连贯性、响应延迟和存储成本之间取得平衡：近期记忆保证当前对话的精确上下文，避免大模型“失忆”；长期记忆则通过摘要压缩节约 Token 和存储空间，并提取用户画像实现跨会话的个性化。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>近期记忆：保留原始精确文本，使大模型能够准确理解当前轮次的指代、细微情绪和对话逻辑，生成连贯回复。</li>
+<li>长期记忆：摘要压缩减少了 Token 消耗和上下文窗口占用，同时将关键事实（如用户是 HR、偏好表格型回答）结构化存入数据库，供后续会话快速加载。</li>
+<li>全部保留原始对话会导致上下文窗口爆炸、API 成本飙升；全部压缩摘要则会丢失细节，导致大模型在需要精确引用历史对话时犯错。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>类比：你和一个朋友聊天，最近几句你记得清清楚楚，但一周前的对话你可能只记得“他上次说喜欢露营”这样的摘要。如果每次都把整个聊天记录翻出来，你脑子会炸；如果全部只记个大概，当朋友问“我刚才说的那个方案你觉得怎么样？”你就答不上来。大模型也是如此。实践中，我们保留最近 3~5 轮原始对话，更早的轮次通过另一个小模型或规则提取为用户画像（如“用户是人力资源经理，关注社保政策”），存入 SQL 数据库。当用户再次发起会话时，Agent 先加载画像和近期对话，再拼接 Prompt，既个性又高效。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到“双重记忆”架构在 LangGraph 中的实现：可以用 Checkpointer 存储近期状态，用自定义节点将长期记忆写入数据库。</li>
+<li>强调“记忆衰减”机制：不是所有更早的对话都压缩，可以按重要性挑选。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为近期记忆窗口越大越好，忽略 Token 成本和首字延迟。</li>
+<li>误区：将长期记忆当作简单的“全文摘要”，丢失了关键事实的结构化。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent 通信协议</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在多 Agent 协作场景中，Agent A 向 Agent B 发送任务时，通常不会直接传输自然语言句子，而是由 A 的工程代码将大模型输出的文本转换为结构化 JSON（如 <code>{"action": "get_inventory", "sku": "123"}</code>）再通过网络传递。为什么需要这样一层转换？直接传输自然语言会有什么风险？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>将大模型输出转换为结构化 JSON 进行 Agent 间通信，是为了保证指令的确定性、可解析性，避免自然语言的歧义和不可控性，同时便于下游系统做自动化处理和校验，遵循“模型思考，代码执行”的原则。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>确定性：自然语言天生具有歧义，同一个意思可能有多种表达，接收方 Agent 需要再次调用大模型来理解，增加延迟和错误风险。</li>
+<li>可解析性：JSON 可以被程序直接解析，无需额外的 NLP 理解步骤，适合作为机器间通信的中间语言。</li>
+<li>安全性：结构化字段可以严格校验，防止 Prompt 注入或恶意指令混入自然语言中。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>Agent 通信的本质是“代码跑腿 + 模型思考”。Agent A 的大模型可能会输出“我需要你去查一下库存里 SKU 为 123 的商品还有多少”，但这句话如果直接发给 Agent B，Agent B 必须再调用一次大模型来提取意图和参数，不仅浪费算力，还可能出现理解错误（比如“查一下”被认为是“修改”）。通过工程代码，我们可以对 A 的输出进行后处理，提取出结构化信息，然后通过 MQ 或 HTTP 发给 B 的代码，B 的代码直接解析 JSON，按字段调用相应的工具函数，而不需要让大模型“猜”要做什么。这种“大模型输出自然语言→代码转结构化→接收方代码解析”的模式，是生产级多 Agent 系统的标准实践。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>结合“MCP 协议”：MCP 正是在标准化工具调用的结构化接口，Agent 通信也遵循类似理念。</li>
+<li>提到“Schema 校验”：使用 JSON Schema 进行参数校验，防止错误数据破坏系统。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为所有 Agent 通信都必须用 JSON，实际上某些场景下（如需要人类阅读的中间结果）也可以附带自然语言。</li>
+<li>误区：忽视网络传输的序列化开销，过度嵌套导致性能问题。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>推理优化</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在大模型推理中，前缀缓存（Prefix Caching）可以显著降低推理延迟和成本。请解释什么是前缀缓存，以及在实际开发中如何通过优化提示词结构来触发前缀缓存。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>前缀缓存是指推理引擎将请求中不变的公共前缀部分的 KV Cache 缓存下来，当后续请求带有相同前缀时，可以直接复用缓存，跳过重复计算，从而降低首字延迟和算力消耗。通过将系统指令、格式要求等固定部分放在 Prompt 开头，并对齐格式，可以最大化触发前缀缓存。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>KV Cache 复用：大模型生成每个 Token 时会计算 Key 和 Value 矩阵，若两个请求的前缀完全相同，则前段的 KV Cache 可共享，无需重复计算。</li>
+<li>固定前缀设计：将不随请求变化的系统提示、角色设定、输出格式要求等放在 Prompt 最前面，作为公共前缀。</li>
+<li>格式对齐：确保所有请求的公共部分完全一致，包括空格、换行，甚至 Token 边界，否则缓存失效。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>假设你有一个法律咨询 Agent，每次请求 Prompt 开头都是“你是一个专业的劳动法律师，请根据以下问题给出回答，输出格式为 JSON…”，这部分每次都一样，但每次都要重新计算一遍，浪费算力。如果推理引擎支持前缀缓存，它会在第一次计算后将这段公共前缀的 KV Cache 存起来，后续请求直接从缓存中读取，直接从不同的问题部分开始计算，首 Token 延迟可以从 2 秒降到 0.5 秒。要实现这一点，需要确保所有请求的公共前缀完全一致，连一个空格都不能差。因此在代码中，我们通常用模板函数生成 Prompt，将可变部分拼接在固定前缀之后，并严格测试对齐。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>结合“会话粘滞”：在分布式集群中，通过网关将同一用户的请求固定到同一台服务器，可以进一步利用前缀缓存（因为用户历史对话也构成前缀）。</li>
+<li>提到“不同模型实现差异”：有些推理框架（如 vLLM）自动支持前缀缓存，开发者只需提供规范格式的 Prompt。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为前缀缓存能节省所有 Token 的计算，实际上只对严格相同的前缀有效，可变部分仍需计算。</li>
+<li>误区：随意改变系统提示的措辞，导致缓存失效，反而增加延迟。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent 健康监控</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 Agent 系统的健康检查中，除了传统的被动健康检查（如 HTTP 200 心跳），还常常引入主动业务探测（Synthetic Monitoring），即每半小时自动向系统发送一个标准业务问题，验证其能否正确调用工具并返回核心结果。请问，为什么需要这种主动探测？它解决了被动健康检查无法覆盖的哪些问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>主动业务探测通过模拟真实用户请求，端到端验证 Agent 的完整链路（包括大模型推理、工具调用、RAG 检索等），弥补了被动健康检查只能确认进程存活和端口可达的盲区，能够提前发现“进程活着但功能失效”的严重故障。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>进程存活 ≠ 功能正常：被动检查只能确认服务没有崩溃，但无法检测大模型 API 是否欠费、工具接口是否超时、RAG 知识库是否损坏。</li>
+<li>端到端验证：主动探测发送一个已知答案的“黄金问题”，检查 Agent 是否能按预期调用工具，返回正确结果，覆盖了从意图识别到工具执行的全流程。</li>
+<li>及时告警：当探测失败时，可以立即通知运维人员，避免用户发现时已经大面积故障。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在传统微服务中，健康检查通常只检查“/health”端点返回 200。但大模型应用非常复杂，可能出现：大模型 API 密钥过期返回权限错误，但进程本身正常运行；工具服务的 URL 被意外修改，导致 Agent 调用失败但自身不报错；RAG 知识库的向量索引损坏，检索结果为空，但 Agent 仍然可能生成一段看似合理的回答（幻觉）。这些“软故障”被动检查完全无法感知。主动探测通过定期发送一个预定义的业务问题（如“社保基数调整的流程是什么？”），并检查回答中是否包含特定关键词或工具调用是否成功，能够及时发现链路问题。在实际落地中，我们通常使用 Langfuse 等工具配置定时评测任务，自动运行并打分，低于阈值就告警。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到“黄金数据集”的管理：需要维护一组标准问题集，并定期更新，防止测试用例过时。</li>
+<li>结合“可观测性”平台：主动探测的结果可以集成到监控大盘，与被动检查一起展示。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为主动探测频率越高越好，过度频繁会增加 API 成本，且可能被误认为是攻击。</li>
+<li>误区：只用单一问题测试，可能遗漏其他功能的故障，需要覆盖多种意图。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>数据采集与反爬</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 AI Agent 的数据采集层，为了抓取小红书等平台的热点数据，通常会使用 Playwright 等动态渲染爬虫，而不是简单的 HTTP 请求库。请解释为什么需要模拟浏览器行为？防封禁和反爬策略主要有哪些要点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>现代社交媒体平台大量使用 JavaScript 渲染、反爬机制和用户行为检测，简单的 HTTP 请求无法获取到完整数据，且极易被识别为爬虫。使用 Playwright 等无头浏览器模拟真实用户行为，可以绕过渲染屏障，配合 Cookie 会话维持、限速、IP 轮换等策略，实现稳定可持续的数据采集。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>动态渲染：小红书等平台的内容是通过 JavaScript 异步加载的，直接 HTTP 请求只能拿到空的 HTML 骨架，无法获取实际数据。</li>
+<li>反爬检测：平台会检测请求头、TLS 指纹、鼠标移动、点击等行为特征，简单的 Requests 库极易被识别。</li>
+<li>模拟真实用户：Playwright 可以控制浏览器，执行点击、滚动、等待，甚至模拟鼠标轨迹，让请求看起来像真人。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>在自媒体内容运营项目中，我们需要抓取小红书热榜、爆款笔记的标题、热度值、标签等。这些数据不是静态页面，而是通过 API 动态返回的，而且 API 本身</p>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>人工反馈回溯</code> <code>状态机</code> <code>工作流编排</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你负责的 AI 文案生成系统已经上线，运营人员经常需要对生成结果进行二次干预：有时只是改几个错别字直接保存，有时则觉得整体风格不对，希望大模型根据一句反馈意见重新生成。请设计一套支持“人工反馈回溯”的工作流架构，要求既能支持前端直接修改入库，又能让运营的反馈意见触发状态机回退，让大模型基于旧文案+反馈意见重新生成，且整个过程不丢失历史版本。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>将整个文案生成流程建模为有限状态机，每个节点代表一个处理阶段（选题、生成、审核、发布）。</li>
+<li>为每条文案任务分配唯一 <code>thread_id</code>，所有状态变更都通过该 ID 关联。</li>
+<li>运营的两种干预行为对应不同的后端处理路径：直接修改走普通更新接口；反馈意见则触发状态机回溯，将流程指针重新指向“文案生成节点”，并注入反馈上下文。</li>
+<li>使用状态机框架（如 LangGraph）的 <code>update_state</code> 能力强行改写当前状态，再借助条件边重新路由。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>状态节点设计</strong>：定义 <code>drafting → reviewing → publishing</code> 三个主节点，其中 <code>reviewing</code> 节点为人工卡点。</li>
+<li><strong>直接修改路径</strong>：前端提供富文本编辑器，运营修改后点击“保存”，前端调用 <code>PATCH /api/content/{thread_id}</code> 接口，后端直接更新数据库中的 <code>final_content</code> 字段，状态不变。</li>
+<li><strong>反馈回溯路径</strong>：运营输入反馈意见（如“语气太严肃，多加 Emoji”），前端调用 <code>POST /api/content/{thread_id}/feedback</code>，携带 <code>feedback</code> 字段。后端执行以下逻辑：<br />
+  1. 通过 <code>graph.update_state(config, {"feedback": feedback, "stage": "drafting"})</code> 将状态机当前节点强制置为 <code>drafting</code>，并注入反馈信息。<br />
+  2. 状态机重新进入 <code>drafting</code> 节点时，从状态中取出 <code>previous_content</code> 和 <code>feedback</code>，拼接成新的 Prompt 再次调用大模型生成。<br />
+  3. 生成结果自动流转到 <code>reviewing</code> 节点，等待运营再次确认。</li>
+<li><strong>历史版本保留</strong>：每次生成或修改都在 <code>content_versions</code> 表中追加一条记录，包含版本号、内容快照、操作人、时间戳，方便回溯对比。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>状态机框架的选型</strong>：必须选用支持动态状态注入和条件路由的框架，否则无法实现“指针回退”。LangGraph 的 <code>update_state</code> 和 <code>conditional_edges</code> 是天然适配。</li>
+<li><strong>并发冲突</strong>：若运营在反馈回溯的同时又进行了直接修改，需要通过乐观锁（版本号）或分布式锁保证数据一致性。</li>
+<li><strong>反馈注入的 Prompt 构造</strong>：不能简单拼接，需要明确指令：“以下是原文案：{old}，用户反馈：{feedback}，请根据反馈重新生成。”避免模型忽略反馈。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入“反馈模板库”，将常见的风格调整（如“更活泼”“更正式”）预置为可选标签，减少运营打字成本。</li>
+<li>记录每次反馈与最终采纳结果，用于后续微调模型，提升一次生成合格率。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>定时任务调度</code> <code>热点抓取</code> <code>批量生成</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某 HR 自媒体团队需要每日自动产出 3~8 篇小红书文案，流程包括：早 9 点抓取全网热点 → 行业过滤 → 13 点开始批量生成 → 14 点人工微调 → 15 点统一发布。中午 12:30 还需补抓一次午间新热点。请设计一套稳定可靠的定时调度方案，要求考虑任务幂等性、失败重试、生成数量可配置，以及如何避免重复发布。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>采用“定时触发器 + 任务队列”的架构，将抓取、过滤、生成、发布拆分为独立任务，通过消息队列解耦。</li>
+<li>每个任务具备幂等性，通过业务唯一键（如日期+批次）防止重复执行。</li>
+<li>生成数量通过配置中心动态下发，生成任务根据配额消费热点。</li>
+<li>人工微调阶段设置时间窗口，超时未审核自动流转或延迟发布。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>定时触发器</strong>：使用轻量级调度框架（如 APScheduler 或 Kubernetes CronJob）定义两个定时点：<code>0 9 * * *</code> 和 <code>30 12 * * *</code>，分别触发“早间抓取”和“午间补抓”任务。</li>
+<li><strong>任务队列</strong>：抓取任务完成后，将过滤后的热点列表写入 Redis List 或 RabbitMQ，生成任务在 13:00 准时启动，从队列中拉取热点进行消费。</li>
+<li><strong>幂等设计</strong>：每条热点记录以 <code>{date}_{source}_{original_id}</code> 作为唯一键存入数据库，抓取时使用 <code>INSERT ... ON DUPLICATE KEY UPDATE</code> 避免重复。</li>
+<li><strong>生成数量控制</strong>：配置中心（如 Nacos、Apollo）存储 <code>daily_quota</code>，生成任务启动时读取，按配额从队列中取对应数量的热点，多余的留待次日或丢弃。</li>
+<li><strong>人工微调窗口</strong>：14:00~14:50 为审核时间，前端展示待审列表，运营可修改或打回。14:50 仍未审核的文案，系统自动标记为“延迟发布”或“取消发布”，并通知运营。</li>
+<li><strong>发布保障</strong>：15:00 发布任务只处理状态为 <code>approved</code> 的文案，发布成功后更新状态为 <code>published</code>，避免重复发布。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>热点时效性</strong>：午间补抓后需要与早间热点去重，且如果早间热点已被生成，补抓的新热点应能插入生成队列头部或单独批次处理。</li>
+<li><strong>生成任务耗时估算</strong>：如果大模型调用耗时较长，需预留足够时间窗口，必要时可提前至 12:30 开始生成。</li>
+<li><strong>人工环节不可跳过</strong>：必须在状态机中强制插入人工审核节点，不能自动跳过，否则可能发布违规内容。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入“热点热度衰减算法”，对午间补抓的热点按时间衰减权重，优先消耗早间高热度话题。</li>
+<li>生成任务支持并行消费，通过多线程或异步 IO 提升吞吐，但需控制大模型 API 并发限制。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>优雅关闭</code> <code>FastAPI</code> <code>长任务保护</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你在 FastAPI 中部署了一个 AI 图文生成服务，单次生成可能需要 10~30 秒。当需要发布新版本或缩容时，直接杀进程会导致正在生成的任务丢失，且前端收到 5xx 错误。请实现一套优雅关闭机制，确保服务收到终止信号后，不再接收新请求，并等待所有进行中的任务完成后才退出。请给出关键代码逻辑和设计要点。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>使用 FastAPI 的 <code>lifespan</code> 异步上下文管理器监听应用生命周期。</li>
+<li>在 <code>lifespan</code> 中注册 SIGTERM/SIGINT 信号处理器，收到信号后设置全局关闭标志。</li>
+<li>每个请求处理前检查关闭标志，若已关闭则直接返回 503，拒绝新请求。</li>
+<li>维护一个全局任务计数器，请求开始时加 1，结束时减 1；关闭逻辑循环等待计数器归零。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<pre><code class="language-python">import asyncio
+import signal
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, HTTPException
+
+# 全局状态
+shutting_down = False
+active_tasks = 0
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global shutting_down
+    loop = asyncio.get_event_loop()
+
+    def signal_handler():
+        global shutting_down
+        shutting_down = True
+        print(&quot;Received termination signal, start graceful shutdown...&quot;)
+
+    # 注册信号
+    for sig in (signal.SIGTERM, signal.SIGINT):
+        loop.add_signal_handler(sig, signal_handler)
+
+    yield  # 应用运行中
+
+    # 优雅关闭逻辑
+    while active_tasks &gt; 0:
+        print(f&quot;Waiting for {active_tasks} active tasks to complete...&quot;)
+        await asyncio.sleep(1)
+    print(&quot;All tasks done, exiting.&quot;)
+
+app = FastAPI(lifespan=lifespan)
+
+@app.middleware(&quot;http&quot;)
+async def check_shutdown(request, call_next):
+    if shutting_down:
+        return JSONResponse(status_code=503, content={&quot;detail&quot;: &quot;Server is shutting down&quot;})
+    global active_tasks
+    active_tasks += 1
+    try:
+        response = await call_next(request)
+        return response
+    finally:
+        active_tasks -= 1
+
+@app.post(&quot;/generate&quot;)
+async def generate():
+    # 模拟长任务
+    await asyncio.sleep(15)
+    return {&quot;content&quot;: &quot;generated&quot;}
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>信号处理与事件循环</strong>：必须使用 <code>loop.add_signal_handler</code> 而非 <code>signal.signal</code>，否则会阻塞事件循环。</li>
+<li><strong>中间件顺序</strong>：关闭检查中间件应放在最外层，确保所有路由都先经过判断。</li>
+<li><strong>任务计数器的线程安全</strong>：由于 FastAPI 基于 asyncio，单线程内 <code>+=1</code> 是安全的，但若使用多 worker，需用 Redis 等外部计数器。</li>
+<li><strong>Kubernetes 环境适配</strong>：K8s 发送 SIGTERM 后会等待 <code>terminationGracePeriodSeconds</code>（默认 30s），需确保任务完成时间小于该值，否则会被强制 kill。可适当延长该参数。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>对于超长任务（&gt;30s），可在关闭时主动将任务状态持久化到数据库，并通知调度器在其他节点重试。</li>
+<li>结合健康检查端点，在关闭期间返回非 200，让负载均衡器提前摘除流量。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>KV Cache</code> <code>会话粘滞</code> <code>首字延迟</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你们团队的大模型对话服务部署在 4 台 GPU 服务器上，前端通过 Nginx 轮询分发请求。用户反馈每次开启新对话或刷新页面后，第一句话的响应明显比后续对话慢很多（首字延迟从 1s 飙升至 4s）。经分析，原因是每次请求被随机分配到不同服务器，导致大模型的 KV Cache 无法复用，每次都需要重新计算全部上下文。请提出优化方案，并说明如何在网关层实现。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>根本原因：大模型推理时，历史上下文的 Key 和 Value 矩阵会被缓存（KV Cache），若同一会话的后续请求打到同一台服务器，可直接复用缓存，跳过重复计算，大幅降低首字延迟。</li>
+<li>解决方案：在网关层实现会话粘滞（Session Sticky），根据会话 ID 将同一用户的请求始终路由到同一台后端服务器。</li>
+<li>同时需要保证当该服务器宕机或发布时，能自动 failover 到其他节点，并触发缓存重建。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>Nginx 配置会话粘滞</strong>：使用 <code>hash</code> 指令基于请求参数中的 <code>session_id</code> 进行一致性哈希。</li>
+</ul>
+<pre><code class="language-nginx">upstream llm_backend {
+    hash $arg_session_id consistent;
+    server 192.168.1.10:8000;
+    server 192.168.1.11:8000;
+    server 192.168.1.12:8000;
+    server 192.168.1.13:8000;
+}
+
+server {
+    listen 80;
+    location /v1/chat {
+        proxy_pass http://llm_backend;
+        proxy_http_version 1.1;
+        proxy_set_header Connection &quot;&quot;;
+    }
+}
+</code></pre>
+<ul>
+<li><strong>应用层配合</strong>：前端在每次对话开始时生成唯一 <code>session_id</code>，并在后续请求中一直携带该参数。</li>
+<li><strong>缓存失效与 failover</strong>：当某台服务器宕机，Nginx 会自动将其摘除，请求会路由到新节点，此时 KV Cache 需重建，但这是可接受的降级。为减少影响，可配置 <code>max_fails</code> 和 <code>fail_timeout</code> 快速摘除故障节点。</li>
+<li><strong>发布时的缓存保持</strong>：若需更新模型或代码，应采用滚动发布，并配合优雅关闭，让旧节点处理完存量会话再退出，新会话自然分配到新节点。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>哈希键的选择</strong>：必须使用业务层的 <code>session_id</code>，不能用客户端 IP，因为 NAT 或移动网络下 IP 易变。</li>
+<li><strong>一致性哈希的平衡性</strong>：若 <code>session_id</code> 分布不均，可能导致个别节点过热，可考虑使用 <code>hash $arg_session_id consistent</code> 结合权重调整。</li>
+<li><strong>大模型 Prefix Caching 的兼容性</strong>：部分模型服务框架（如 vLLM）支持自动前缀缓存，只要请求的 prompt 前缀相同即可命中。此时会话粘滞可进一步保证前缀完全一致，最大化缓存收益。</li>
+<li><strong>长连接的保持</strong>：Nginx 与后端之间建议使用 HTTP/1.1 长连接，减少握手开销。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入更智能的负载均衡策略：如根据 GPU 显存使用率动态调整权重，将新会话优先分配给空闲节点。</li>
+<li>在应用层实现“缓存迁移”：当节点需要下线时，将 KV Cache 序列化并传输给其他节点（技术难度高，一般不做）。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>HR自媒体Agent</code> <code>从0到1</code> <code>系统交付</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你被任命为技术负责人，需要从 0 到 1 交付一款面向 HR 领域的 AI 自媒体内容自动生成系统。核心需求包括：① 每日自动抓取小红书、微博等平台的热点，过滤出与劳动法、社保、招聘等相关的 HR 垂直话题；② 自动生成多视角（企业 HR 视角/打工人视角/政策解读视角）的小红书风格文案，包含标题、正文、Emoji、话题标签；③ 支持运营人工审核、直接修改或反馈意见让 AI 重写；④ 定时每日 15:00 统一发布。请描述整体架构设计、技术选型、关键模块实现，以及上线后的监控运维策略。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>采用四层架构：数据采集层 → 智能筛选层 → Agent 决策层 → 内容生成交付层。</li>
+<li>技术选型：爬虫用 Playwright + 开源 SDK，过滤用语义相似度+行业词库，编排用状态机框架，大模型用豆包/DeepSeek 等，存储用 PostgreSQL + Redis。</li>
+<li>关键模块：定时调度、热点抓取与过滤、多视角生成、人工反馈回溯、发布控制。</li>
+<li>运维监控：健康检查三层体系（服务存活、工具连通、逻辑防死循环）、全链路 Trace、成本告警。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<ul>
+<li><strong>架构分层</strong>：</li>
+<li><strong>数据采集层</strong>：Playwright 动态渲染 + 小红书 SDK，定时 9:00 和 12:30 抓取热榜，字段包括标题、热度、标签、互动数据。通过 IP 代理池和 Cookie 维持防封。</li>
+<li><strong>智能筛选层</strong>：自建 HR 行业白名单（社保、劳动法、仲裁…）和黑名单（娱乐、情感…），使用文本分类模型或大模型进行语义相似度打分，仅保留高相关性热点。</li>
+<li><strong>Agent 决策层</strong>：基于状态机编排工作流，节点包括：热点研判（是否适合发布）、视角选择（HR/打工人/政策）、风格适配（小红书轻量化/干货型）、合规自检（规避敏感词）、生成执行。</li>
+<li><strong>内容生成交付层</strong>：调用大模型生成标题、正文、Emoji、Tag，并自动拼装成发布格式。生成结果存入 <code>content</code> 表，状态为 <code>pending_review</code>。</li>
+<li><strong>人工反馈回溯</strong>：实现方式如 Q1 所述，支持直接修改和反馈重写。</li>
+<li><strong>定时发布</strong>：15:00 定时任务扫描 <code>approved</code> 状态的文案，调用小红书开放平台 API（或模拟发布）进行发布，并更新状态。</li>
+<li><strong>技术选型补充</strong>：</li>
+<li>状态机框架：LangGraph（支持动态状态注入和条件边）。</li>
+<li>数据库：PostgreSQL 存储文案、版本、用户操作日志；Redis 缓存热点队列、会话状态。</li>
+<li>部署：Docker Compose 或 K8s，按基础服务→网关→业务服务的顺序分层发布。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>合规性</strong>：HR 领域对劳动法表述极其敏感，必须在生成后、发布前加入合规自检节点，使用规则引擎+敏感词库硬性拦截，不能仅靠大模型自觉。</li>
+<li><strong>多视角生成的 Prompt 工程</strong>：需要为每个视角设计专门的 System Prompt，并注入行业知识，否则生成内容会泛泛而谈。</li>
+<li><strong>发布接口的稳定性</strong>：若使用模拟发布，需处理验证码、反爬等问题；若有官方 API，需提前申请权限并处理频率限制。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入 A/B 测试框架，对不同视角、风格的文案进行效果追踪（阅读量、互动量），反馈给生成策略。</li>
+<li>构建“爆款文案特征库”，将高互动文案的结构、话术提炼为模板，供大模型参考。</li>
+<li>实现多平台分发（抖音、公众号），统一内容中台管理。</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
