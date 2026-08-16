@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-08-16)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-08-16)</h1>
+    <div class="meta">更新于 2026-08-16 11:03</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · 微调 · FlashAttention<br />
+🔄 知识片段：#22, #1, #2（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h1>AI Agent 面试备战 · 概念题 10 连击</h1>
+<hr />
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agentic Auth</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在传统微服务架构中，OAuth 2.0 + API Key 是事实上的鉴权标准。但当 AI Agent 进入生产环境后，一个普通员工可以指挥高权限 Agent 执行任意操作，传统静态鉴权体系面临“人机越权”风险。请说明 Agentic Auth（智能体鉴权）为什么必须引入“网关层身份标识 + 沙箱隔离 + 人肉安全闸”三层体系？它与传统 OAuth 的核心差异是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agentic Auth 的本质是把“谁在调用”从静态凭证升级为“谁在指挥 + 什么权限 + 什么副作用”的三维动态判定，核心差异在于 Agent 的自主性和不可预测性使传统“一次授权、长期有效”的模式彻底失效。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Agent 的行为链路是动态生成的：同一个 Agent 在不同对话上下文中可能调用完全不同的工具组合，传统 OAuth 的 scope 模型无法预判</li>
+<li>人机越权是全新攻击面：用户张三（低权限）可以通过自然语言“诱导”高权限 Agent 执行超出其自身权限的操作</li>
+<li>信任链需要逐跳传递：Agent A 调用 Agent B 时，B 需要知道“A 代表谁、经过了谁的授权”，而非仅仅信任 A 的 API Key</li>
+<li>副作用必须分级管控：查询类操作可以自动放行，但删除、修改、财务等操作必须强制 HITL 确认</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统 OAuth 的设计前提是“调用方是一个确定的程序或人类”，授权边界在授权时刻就固定了。但 Agent 的调用图谱是运行时才展开的：一个“数据分析 Agent”可能先查数据库，再写 Python 脚本，最后调用 Slack 发消息——这三步在 OAuth 体系下需要三个不同的 scope，但 Agent 的思考过程让“它下一步要干什么”变得不可预测。</p>
+<p>更危险的是<strong>人机越权</strong>：用户张三本身没有权限查看高管薪酬，但他可以对话式地引导一个拥有全量数据库权限的 Agent：“帮我分析一下公司各部门的薪酬分布，输出一个报告”。如果 Agent 只校验“自己有没有数据库权限”而不校验“张三有没有这个权限”，越权就发生了。</p>
+<p>Agentic Auth 的三层落地体系对应三个防线：<strong>网关层</strong>做身份标识和多租户预过滤（在向量检索前强制注入 <code>tenant_id</code> 等 WHERE 条件）；<strong>沙箱层</strong>保证 Agent 执行代码时无法逃逸到宿主机；<strong>HITL 层</strong>在副作用操作前强制挂起，等待人类确认后 Resume。这三层缺一不可，因为任何单层被突破都会导致整体失守。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出“X-Agent-ID”和“X-MCP-Token”这类自定义身份标识头，以及它们与 MCP 协议的关系</li>
+<li>能提到 LangGraph 的 <code>interrupt_before</code> 机制如何实现 HITL，以及 <code>thread_id</code> 持久化恢复流程</li>
+<li>能对比 gVisor / Kata Containers / E2B 等沙箱方案的隔离级别和适用场景</li>
+<li>能指出 Agentic Auth 正在成为“AI 界的 OAuth / USB-C 标准”这一行业趋势</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：认为给每个子 Agent 单独发一个 API Key 就够了——这恰恰是最危险的做法，因为 Agent 的自主性会让 Key 的权限边界被无限放大</li>
+<li>误区2：把 HITL 做成“所有操作都要人工确认”——这会导致用户体验灾难，正确做法是严格区分查询接口和副作用接口</li>
+<li>误区3：忽略了“信任链流转”——Agent A 调用 Agent B 时，B 必须能追溯到“最初的人类授权者是谁”</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LLM Wiki</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Andrej Karpathy 在 2026 年初提出了“LLM Wiki”这一知识管理架构，它与传统 RAG 的本质区别在于“思考时机”的转移。请说明 LLM Wiki 的三层核心架构（Immutable Sources / The Wiki / The Schema），以及为什么说它解决了传统 RAG“临时抱佛脚”的痛点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LLM Wiki 的核心思想是把 LLM 的“理解”从查询时提前到录入时——让模型在文档入库阶段就完成实体提取、概念抽象和跨文档关联，而不是每次用户提问时才临时从向量库中“盲捞”切片。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>传统 RAG 是“查询时计算”：用户提问 → 向量检索 → 拼接切片 → 生成答案，每次检索都是“从零开始”</li>
+<li>LLM Wiki 是“录入时计算”：新文档进入系统时，LLM 立即提取实体、概念、论点，并写入持久化的 Markdown 知识网络</li>
+<li>三层架构各司其职：Immutable Sources 保证原始事实不被篡改；The Wiki 是 LLM 完全拥有的动态知识层；The Schema 用提示词约束 LLM 的维护行为</li>
+<li>双向链接（<code>[[双括号]]</code>）让知识从“碎片化切片”变成“网状结构”，支持跨文档的实体关联和观点交锋</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统 RAG 的致命缺陷在于<strong>语义截断</strong>。当知识散落在不同的 PDF、研报、会议记录中时，向量检索只能返回“与问题最相似的 Top-K 切片”，但无法建立“文档 A 中的论点 X 与文档 B 中的论点 Y 是什么关系”这样的跨文档关联。用户问一个需要综合多来源信息的问题时，RAG 给出的答案往往是肤浅且割裂的。</p>
+<p>LLM Wiki 的解法是<strong>让 LLM 像人类学者一样做研究</strong>。当一个新文档进入系统时，LLM 不是简单地切片存储，而是：<br />
+1. 提取文档中的核心实体（人物、概念、术语）<br />
+2. 生成 Source Notes（对单一文档的摘要和直接引述）<br />
+3. 创建或更新 Concept Pages（跨文档的概念聚合页）<br />
+4. 在相关页面之间建立双向链接</p>
+<p>这样，当用户提问时，系统不再需要“临时检索”，而是直接访问一个已经高度结构化的知识网络。The Schema 层（通常是 <code>CLAUDE.md</code> 或 <code>AGENTS.md</code>）则像一本“图书管理员操作手册”，规定 LLM 如何命名文件、如何写 Frontmatter、如何建立链接、如何自我纠错（Lint），确保知识库不会随着时间推移而熵增。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能对比 LLM Wiki 与传统 RAG 在“知识沉淀由谁完成”“思考时机”“交互界面”三个维度的差异</li>
+<li>能提到 Obsidian 的 Karpathy LLM Wiki 插件，以及 Louvain 算法在图聚类中的应用</li>
+<li>能指出 LLM Wiki 特别适合“需要深度提炼和跨文档综合”的场景，而传统 RAG 更适合“快速问答”</li>
+<li>能说出“录入即思考”这一核心设计哲学</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：把 LLM Wiki 等同于“用 LLM 自动写笔记”——它远不止于此，核心是 LLM 异步、增量、全自动地维护一个结构化知识网络</li>
+<li>误区2：认为 LLM Wiki 可以完全替代 RAG——两者适用场景不同，LLM Wiki 适合深度知识管理，RAG 适合高频快速问答</li>
+<li>误区3：忽视 The Schema 层的重要性——没有约束规范的 LLM Wiki 会很快退化成“一堆 AI 生成的乱码文件”</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Few-Shot</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在智能客服 Agent 的意图识别模块中，团队面临一个选择：用 Few-Shot 提示词工程还是做 Fine-Tuning 微调？请说明 Few-Shot 的核心工作原理，以及它与 Fine-Tuning 在“成本、灵活性、适用场景”三个维度的本质区别。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Few-Shot 是通过在提示词中注入 2~5 个高质量示例来“锁定”模型的输出格式、语言风格和判断边界，本质是“照猫画虎”；而 Fine-Tuning 是通过修改模型权重来改变模型的内在行为，本质是“重塑大脑”。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Few-Shot 利用了大模型的 In-Context Learning（上下文学习）能力：模型在推理时临时“模仿”示例中的模式，但权重不变</li>
+<li>Few-Shot 能瞬间锁死三个核心要素：输出格式（如强制 JSON）、语言风格（如客服话术）、判断边界（如意图分类的标签集合）</li>
+<li>Fine-Tuning 需要准备标注数据集、训练算力、评估流程，周期以小时到天计算；Few-Shot 只需修改 Prompt，周期以分钟计算</li>
+<li>Few-Shot 的“知识注入”是临时的，每次推理都要带上示例；Fine-Tuning 的“知识注入”是永久的，模型权重已经改变</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>Few-Shot 之所以有效，是因为大语言模型在预训练阶段已经见过海量的“输入-输出”模式。当你给它几个高质量的示例时，它不需要“学习新知识”，只需要“识别并复制模式”。这就像一个经验丰富的实习生，你给他看两三个格式样例，他就能立刻按照同样的格式处理后续任务。</p>
+<p>但 Few-Shot 的局限也很明显：<strong>示例占据上下文窗口</strong>。如果你的意图分类有 50 个类别，每个类别给 2 个示例，光示例就占了几千 Token，这会挤压用户实际问题的空间，也增加每次推理的成本。此外，Few-Shot 的“模式识别”能力受限于模型的基础能力——如果模型本身对某个领域完全不理解，给再多示例也没用。</p>
+<p>Fine-Tuning 的优势在于<strong>改变模型的内在行为</strong>。当你需要模型学会一个全新的专业领域（如医疗诊断、法律文书、企业内部黑话），或者需要模型始终遵循某种极其复杂的规则时，Few-Shot 的“临时模仿”就不够了。微调让模型“真正学会了”这个领域的知识，推理时不需要再带示例，节省 Token。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出“先用 Few-Shot 验证可行性，再决定是否微调”的工程最佳实践</li>
+<li>能指出 Few-Shot 示例选择的重要性：示例必须覆盖“边界情况”，否则模型会在边界上出错</li>
+<li>能对比 Zero-Shot / One-Shot / Few-Shot 的适用场景</li>
+<li>能提到“Few-Shot 示例本质上是把 Prompt 变成了一个微型训练集”</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：认为 Few-Shot 可以完全替代 Fine-Tuning——当任务需要模型学习全新领域知识时，Few-Shot 无能为力</li>
+<li>误区2：示例越多越好——过多的示例会占据上下文窗口，反而降低模型对真实问题的关注度</li>
+<li>误区3：忽视示例的“代表性”——如果示例都是“标准情况”，模型在遇到“边界情况”时会表现极差</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent Harness</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 Agent 工程中，“Harness”和“Runtime”是两个容易混淆的概念。请说明 Agent Harness 的核心职责是什么，以及为什么说“Harness 挂了会导致 Agent 逻辑死循环，而 Runtime 挂了只会导致权限不足”？一个最小可用的 Agent Harness 至少需要包含哪些能力？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agent Harness 是包裹在 Agent 外层的“测试与控制框架”，负责注入边界条件（最大循环数、超时时间）、批量执行测试集、收集执行轨迹并判定结果；而 Runtime 是 Agent 实际运行时的执行环境，只负责“能不能跑起来”。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Harness 的职责是“控制”：设置熔断限制（max_loops、timeout）、注入测试用例、收集 Trace、计算误差率、判定通过/失败</li>
+<li>Runtime 的职责是“执行”：提供 Agent 运行所需的依赖、权限、沙箱环境，保证 Agent 能正常启动和调用工具</li>
+<li>Harness 挂了意味着 Agent 可能无限循环、超时无响应、输出质量无法验证——这是“逻辑正确性”问题</li>
+<li>Runtime 挂了意味着 Agent 无法访问某个 API、缺少某个依赖、沙箱权限不足——这是“环境可用性”问题</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>用“马车”来类比：Runtime 是“马”，负责拉动马车前进；Harness 是“缰绳和马具”，负责控制马的方向和速度。如果马具断了（Harness 挂了），马可能会乱跑甚至把车拉翻（Agent 死循环、输出失控）；如果马本身病了（Runtime 挂了），车根本动不了（Agent 无法启动）。这两类故障的性质完全不同，排查思路也不同。</p>
+<p>一个最小可用的 Agent Harness 至少需要包含四个核心能力：</p>
+<ol>
+<li><strong>熔断注入</strong>：在创建 Agent 实例时强制设置 <code>max_loops=10</code> 和 <code>timeout=60</code>，确保任何一次测试运行都不会无限挂起</li>
+<li><strong>批量测试集注入</strong>：使用 <code>@pytest.mark.parametrize</code> 将多组“输入图纸 + 标准答案”自动注入测试函数</li>
+<li><strong>业务对账判定</strong>：运行结束后，调用独立的 <code>calculate_error()</code> 函数将 Agent 输出与标准答案比对，计算出误差率</li>
+<li><strong>断言与报告</strong>：用 <code>assert error_rate &lt;= 0.03</code> 这样的硬断言判定通过/失败，并输出清晰的错误信息</li>
+</ol>
+<p>在工程实践中，Harness 可以有三个层次的实现方案：<strong>方案 A</strong> 是直接使用 LangSmith 等框架自带工具，最推荐；<strong>方案 B</strong> 是用 pytest + Docker API 自建，最省事；<strong>方案 C</strong> 是引入 SWE-bench / Promptbench 等学术级工具，适合重工业场景。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能写出一个最小 Harness 的伪代码结构（参数化测试 + 熔断限制 + 对账判定 + 断言）</li>
+<li>能说出“Harness 让 Prompt 修改从玄学变成工程”——每次改 Prompt 后跑一遍 Harness，效果提升/退化一目了然</li>
+<li>能对比 LangSmith（方案 A）、pytest + Docker（方案 B）、SWE-bench（方案 C）的适用场景</li>
+<li>能指出“熔断检查”是 Harness 最容易忽略但最关键的职责——没有熔断，批量测试可能永远跑不完</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：把 Harness 等同于单元测试——Harness 不仅测试“对不对”，还测试“会不会死循环、会不会超时、输出格式是否稳定”</li>
+<li>误区2：认为 Harness 只在开发阶段有用——实际上 Harness 应该融入 CI/CD 流程，每次代码变更自动跑批量回归</li>
+<li>误区3：一开始就追求完美的沙盒系统——正确做法是先写一个 15 分钟的极简 Harness，再逐步迭代</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>向量数据库选型</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 RAG 落地中，团队需要在 Qdrant 和 Milvus 之间做向量数据库选型。请从“部署复杂度、扩展性、适用场景”三个维度对比两者的核心差异，并说明为什么“向量数据库在 Linux 和 Windows 上占用空间差异巨大”这一现象背后的文件系统原理。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Qdrant 主打轻量易用、单机友好，适合中小规模 RAG 项目快速落地；Milvus 主打分布式扩展、海量数据吞吐，适合企业级大规模向量检索场景；而 Linux/Windows 空间差异的根源在于 sparse file（稀疏文件）在不同文件系统上的落盘机制不同。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Qdrant 用 Rust 编写，单二进制部署，自带 Web UI，适合开发阶段和中小规模生产环境；Milvus 基于云原生架构，依赖 etcd、MinIO、Pulsar 等组件，部署复杂度高但支持水平扩展</li>
+<li>Qdrant 的索引主要基于 HNSW，查询性能优秀；Milvus 支持多种索引类型（HNSW、IVF、DiskANN 等），在亿级向量规模下性能更稳定</li>
+<li>sparse file 是“逻辑大小大于物理占用”的文件：Linux 文件系统（ext4/xfs）天然支持，未写入的空白块不占磁盘；Windows NTFS 在 bind mount 场景下往往按完整逻辑大小分配磁盘空间</li>
+<li>Qdrant 在运行时创建大量固定大小的页文件（如 32MB 的 <code>page_0.dat</code>）和 WAL 文件，这些文件在 Linux 上只占实际写入的几 MB，在 Windows 上可能占完整的几百 MB</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>Qdrant 和 Milvus 的选型本质上是“单机优先”和“分布式优先”两种架构哲学的碰撞。Qdrant 的设计目标是“让向量检索像 SQLite 一样简单”——你只需要启动一个进程，数据存本地，API 简洁，非常适合 RAG 原型开发和中小团队。Milvus 的设计目标是“让向量检索像 HBase 一样能扛”——它把存储、索引、查询、元数据管理拆分成独立的微服务组件，虽然部署复杂，但在十亿级向量规模下依然能保持稳定的查询延迟。</p>
+<p>关于 Linux/Windows 空间差异，这是一个非常经典的工程陷阱。Qdrant 在运行时会创建一些逻辑上很大的文件（比如 32MB 的页文件），但这些文件的大部分空间是“预留”的，实际数据还没写入。在 Linux 的 ext4/xfs 文件系统上，这些空白区域不会被分配物理磁盘块（sparse file 机制），所以 <code>du -h</code> 看到的实际占用只有几 MB。但在 Windows 的 NTFS 文件系统上，特别是通过 Docker Desktop 的 bind mount 挂载时，这些文件往往被按完整逻辑大小分配磁盘空间，导致同样的数据占用几百 MB。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出 <code>du -h</code> 和 <code>du -h --apparent-size</code> 的区别，以及为什么在 Linux 上两者差距巨大</li>
+<li>能指出“Windows bind mount 下 Qdrant 空间膨胀”的解决方案：使用 WSL2 文件系统或 Docker named volume</li>
+<li>能对比 Qdrant 和 Milvus 的索引类型差异，以及 HNSW 索引在毫秒级响应中的关键作用</li>
+<li>能说出“segment 数量过多也会导致磁盘空间膨胀”这一容易被忽视的优化点</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：认为“文件看起来一样，数据就应该一样大”——文件系统的 sparse file 机制会导致同一份数据在不同 OS 上占用差异巨大</li>
+<li>误区2：小项目直接上 Milvus——部署复杂度高，维护成本大，Qdrant 完全够用</li>
+<li>误区3：忽视 segment 管理——segment 太多不仅占空间，还会拖慢查询性能，需要定期合并或优化</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Skills 与 Agents 体系</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在 Codex / Claude Code 等 Agent 编程工具中，Skills、Agents、Plugins 是三个容易混淆的概念。请说明三者的核心区别（存放位置、调用方式、适用场景），以及为什么“项目内推荐用 <code>.agents/skills</code> 而不是 <code>.codex/skills</code>”？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Skills 是“可复用的能力包”（以 SKILL.md 为核心，通过 <code>$skill-name</code> 调用），Agents 是“可自主决策的子智能体”（通过点名或 spawn 调用），Plugins 是“扩展工具链的插件”（通过 Plugin 面板管理）；项目内推荐 <code>.agents/skills</code> 是因为它是随项目共享的标准目录，而 <code>.codex/</code> 更多偏个人配置和缓存。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Skills 的标识是 <code>SKILL.md</code> 文件，其中必须包含 <code>name</code> 和 <code>description</code>（YAML Frontmatter），描述“什么时候使用这个 skill”</li>
+<li>Agents 是 Custom Agents / Subagents，存放在 <code>~/.codex/agents</code>，它们不一定出现在 Skills/Plugins 列表中，而是在你点名调用或 spawn 子 Agent 时体现</li>
+<li>Plugins 存放在 <code>~/.codex/plugins</code>，通过 marketplace 管理，会出现在 Plugins 面板中</li>
+<li>目录约定：全局 Skills 在 <code>~/.codex/skills</code>，项目级 Skills 在 <code>项目根目录/.agents/skills</code>，两者互不干扰</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>这三个概念的混淆源于 Codex 生态的快速演进。一个实用的判断标准是：</p>
+<ul>
+<li><strong>Skill</strong> 是“给 Agent 增加一个能力”，比如“PDF 解析”“浏览器自动化”“Markdown 排版”。它本质是一段结构化的提示词 + 可选的脚本，告诉 Agent“遇到什么情况时应该怎么做”</li>
+<li><strong>Agent</strong> 是“一个独立的决策者”，比如“ai-engineer”“agents-orchestrator”。它有自己的思考循环，可以调用工具和 Skills，通常用于任务委派</li>
+<li><strong>Plugin</strong> 是“扩展 Codex 本身的功能”，比如“新的 UI 面板”“新的快捷键”“新的文件类型支持”</li>
+</ul>
+<p>关于目录约定，一个关键的设计哲学是<strong>“全局 vs 项目级”的分离</strong>：<br />
+- <code>~/.codex/skills</code> 是你个人在所有项目中都能用的全局技能<br />
+- <code>项目根目录/.agents/skills</code> 是随项目共享的团队级技能，提交到 Git 后其他成员也能用<br />
+- <code>.codex/</code> 目录更多存放 Codex 的配置、插件缓存、项目配置，不建议作为项目 Skill 的标准目录</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出“判断一个 GitHub 仓库是不是标准 Skill 的唯一标准是看有没有 SKILL.md”</li>
+<li>能指出 SkillsLLM 这类聚合站的内容需要“二次判断”——不是所有列出的项目都能直接安装为 Skill</li>
+<li>能说出“把常用 Agent 改造成 SKILL.md 格式”的工程实践，让能力出现在 Skills 面板中</li>
+<li>能区分“全局安装”和“项目级安装”的适用场景：个人用装全局，团队共享装项目</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：把 <code>.codex/agents</code> 和 <code>.codex/skills</code> 混为一谈——它们是两套完全不同的体系</li>
+<li>误区2：认为 Skills 安装后会出现在 Plugins 面板——实际上 Skills 有自己的面板，Agents 甚至可能没有单独列表</li>
+<li>误区3：把普通 GitHub 仓库直接当 Skill 用——必须确认有 SKILL.md 且格式符合规范</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>RAG Embedding 选型</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在阿里云百炼平台上搭建 RAG 系统时，团队面临文本 Embedding 和多模态 Embedding 的选型问题。请说明 <code>text-embedding-v4 + qwen3-rerank</code> 和 <code>qwen3-vl-embedding + qwen3-vl-rerank</code> 两条技术路线的核心差异，以及为什么官方建议“不要一开始就全部切到多模态”？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>纯文本 RAG 场景应优先选择 <code>text-embedding-v4 + qwen3-rerank</code>，因为速度更快、成本更低、维度选择更多；只有当“图片本身的信息必须被检索到”时才需要引入多模态 Embedding，而“文档里存在图片”不等于“必须用多模态”。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li><code>text-embedding-v4</code> 专注于文本语义向量化，速度快、成本低，支持多种维度选择（如 512、768、1024 维），适合纯文本、表格、OCR 后的文档内容</li>
+<li><code>qwen3-rerank</code> 是纯文本重排序模型，在召回阶段后对候选文档进行精细排序，显著提升 RAG 的 Top-K 准确率</li>
+<li><code>qwen3-vl-embedding</code> 和 <code>qwen3-vl-rerank</code> 支持图文混合检索，能将图片中的视觉信息也编码为向量，但计算成本更高</li>
+<li>“文档里有图片”和“图片信息需要被检索”是两个不同的需求：如果图片内容可以通过 OCR 转成文字，走文本链路通常更划算</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>RAG 系统中的 Embedding 选型是一个典型的“需求驱动”决策，而不是“技术炫技”决策。很多团队一上来就选择多模态 Embedding，理由是“我们的文档里有图片”——但仔细分析后发现，这些图片大多是流程图、架构图、截图，其核心信息完全可以通过 OCR 或人工标注转成文字。</p>
+<p>多模态 Embedding 的真实适用场景是：<strong>用户需要通过图片来搜索</strong>。比如“找一张和这张设计稿相似的图片”“检索所有包含红色柱状图的报告页面”。如果用户只会用文字提问，那么多模态 Embedding 的额外能力就是浪费。</p>
+<p>一个务实的落地策略是分阶段演进：<br />
+- <strong>第一阶段</strong>：全量文档 OCR + 文本 Embedding，跑通 RAG 主链路<br />
+- <strong>第二阶段</strong>：分析用户真实查询日志，看是否存在“图片检索”需求<br />
+- <strong>第三阶段</strong>：如果确实存在图片检索需求，再引入多模态 Embedding 和重排序</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出“Embedding + Rerank”两阶段检索的架构优势：Embedding 负责召回，Rerank 负责精排</li>
+<li>能指出“维度选择”对成本和性能的影响：低维度速度更快但精度可能下降，高维度精度更高但存储和计算成本上升</li>
+<li>能说出“OCR 先行”的工程策略：将图片中的文字提取出来，走文本链路，避免过早引入多模态复杂度</li>
+<li>能对比“文搜图”和“图搜图”两种跨模态检索场景，以及它们对 Embedding 模型的不同要求</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：认为“文档里有图片就必须用多模态”——实际上大部分图片信息可以通过 OCR 转成文字</li>
+<li>误区2：忽视 Rerank 的作用——只用 Embedding 做相似度检索，Top-K 的精度往往不够，Rerank 能显著提升</li>
+<li>误区3：一开始就追求“全模态覆盖”——这会导致成本飙升、延迟增加，而用户实际需求可能只是纯文本问答</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>微调训练环境</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>团队要微调一个 HR 领域的 Qwen 模型，但本地没有高性能 GPU。请说明使用 AutoDL / 阿里云 GPU 进行微调的核心流程，以及为什么“本地完全可以不用有大模型文件”这一说法成立？LLaMA Factory 在这个流程中扮演什么角色？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>云 GPU 平台（AutoDL）自带主流大模型文件，用户只需上传数据集、启动 LLaMA Factory 即可开始微调，全程不需要本地存储模型或拥有高性能显卡；LLaMA Factory 是一个开源的微调训练框架，封装了数据预处理、训练配置、LoRA/全参微调、推理验证等全流程。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>AutoDL / 阿里云 GPU 平台预置了 Qwen、Llama 等主流模型文件，用户开机即可使用，无需下载</li>
+<li>云 GPU 按小时计费（24G 显存约 1~2 元/小时），训练完成后关机即可，成本极低</li>
+<li>LLaMA Factory 提供 Web UI 和命令行两种交互方式，支持 LoRA、QLoRA、全参微调等多种训练模式</li>
+<li>微调的核心产出是“适配器权重”（LoRA 权重）或“全量模型权重”，前者体积小（几十 MB），可以下载到本地合并</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>“本地不用有模型”这一说法的关键在于<strong>云 GPU 平台已经预置了模型文件</strong>。以 AutoDL 为例，它的镜像中通常已经包含了 Qwen、Llama 等热门模型，用户开机后直接在 <code>/root/models</code> 或类似路径下就能找到模型文件，不需要从 HuggingFace 下载（下载一个 7B 模型需要 15GB+ 的带宽和存储）。</p>
+<p>LLaMA Factory 的角色是“微调训练的瑞士军刀”。它把原本需要手动编写的训练脚本、数据预处理、LoRA 配置、评估逻辑全部封装成了可视化操作。用户只需要：<br />
+1. 上传 HR 数据集（JSON 格式的问答对）<br />
+2. 在 Web UI 中选择基座模型（如 Qwen2.5-7B）<br />
+3. 配置训练参数（学习率、epoch、LoRA rank 等）<br />
+4. 点击“开始训练”</p>
+<p>训练完成后，如果使用 LoRA 模式，产出的适配器权重只有几十 MB，可以轻松下载到本地，与基座模型合并后部署。如果使用全参微调，产出的是完整的模型权重，体积较大，但可以直接替换原模型。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出“LoRA 微调产出的是适配器权重而非完整模型”，以及这一设计对存储和部署的巨大优势</li>
+<li>能指出 AutoDL 的“开机即用”特性：平台自带模型 + 自带 LLaMA Factory 镜像，1 分钟就能开始训练</li>
+<li>能对比三种微调方案：云 GPU（最推荐）、在线平台如 ModelScope（最省事）、本地 GPU（适合长期使用）</li>
+<li>能说出“训练完成后立即关机”的成本控制策略，避免云 GPU 闲置计费</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：认为微调必须本地有模型文件——云 GPU 平台已经预置了模型，本地只需要准备数据集</li>
+<li>误区2：认为微调必须用 A100/H100 级别显卡——对于 7B 模型的 LoRA 微调，24G 显存的 3090/4090 完全够用</li>
+<li>误区3：忽视数据集质量——微调效果的上限由数据集质量决定，而不是模型大小或训练时长</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Obsidian 知识管理</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Obsidian 被称为“第二大脑”的终极神器，其核心理念是“本地优先 + 双向链接”。请说明 Obsidian 的双向链接（Backlinks）机制如何帮助用户构建知识网络，以及它与 Notion 等云端笔记工具的本质区别是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Obsidian 的双向链接通过 <code>[[另一篇笔记]]</code> 语法让笔记之间建立显式关联，并自动生成关系图谱（Graph View），把孤立的碎片笔记编织成知识网络；它与 Notion 的本质区别在于“数据掌控权”——Obsidian 的笔记以纯 Markdown 文件存在本地硬盘，即使公司倒闭也不影响数据可用性。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>双向链接是“显式关联”：在一篇笔记中用 <code>[[另一篇笔记]]</code> 引用，Obsidian 会自动在“另一篇笔记”的末尾显示“哪些笔记链接到了这里”</li>
+<li>Graph View 是“可视化知识网络”：所有笔记作为节点，链接作为边，自动生成关系图谱，帮助用户发现知识之间的隐藏联系</li>
+<li>本地优先意味着“数据主权”：所有笔记以 <code>.md</code> 纯文本格式保存在用户自己的硬盘上，不依赖云端服务</li>
+<li>卡片盒笔记法（Zettelkasten）是 Obsidian 的核心方法论：记录碎片化灵感，通过标签和链接逐步聚沙成塔</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>Obsidian 和 Notion 的最大区别不是“功能多少”，而是“数据归属”。Notion 的数据存在 Notion 的服务器上，虽然提供了导出功能，但用户实际上并不真正“拥有”自己的数据——如果 Notion 倒闭、涨价、修改服务条款，用户就面临数据迁移的困境。Obsidian 的数据就是本地硬盘上的 <code>.md</code> 文件，你用任何文本编辑器都能打开，用 Git 就能做版本管理，用任何云盘就能同步。</p>
+<p>双向链接的价值在于<strong>降低知识关联的成本</strong>。在传统笔记软件中，如果你在两篇笔记之间建立关联，需要手动复制链接、跳转、返回，操作成本很高。Obsidian 的 <code>[[双括号]]</code> 语法让建立关联变成“输入两个字符”的事情。更重要的是，反向链接是自动生成的——你不需要在“另一篇笔记”中手动添加“谁链接到了我”，Obsidian 会自动追踪。</p>
+<p>这种机制特别适合<strong>渐进式知识积累</strong>：你不需要一开始就规划好知识结构，只需要随手记录碎片笔记，当笔记数量增长到一定程度后，Graph View 会自然浮现出知识聚类和隐藏关联。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出“本地优先”的三个核心优势：数据掌控、极速离线、永不绑架</li>
+<li>能对比 Obsidian 和 Notion 的适用人群：重度笔记爱好者 / 研究人员 / 程序员 更适合 Obsidian，团队协作 / 可视化数据库 更适合 Notion</li>
+<li>能提到 Obsidian 的插件生态（上千个社区插件）如何让它从“记事本”变成“看板、思维导图、个人仪表盘”</li>
+<li>能指出“新手不要盲目折腾插件”的建议：先当普通记事本用，等笔记量大起来后再根据痛点寻找插件</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：认为 Obsidian 是“免费版 Notion”——两者的设计哲学完全不同，Obsidian 是本地文件 + 双向链接，Notion 是云端数据库 + Block 编辑</li>
+<li>误区2：一开始就安装几十个插件——这会导致上手门槛陡增，正确做法是先体验核心功能</li>
+<li>误区3：忽视双向链接的价值——如果只是把 Obsidian 当普通 Markdown 编辑器用，就浪费了它最核心的能力</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent 意图识别方案</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在一个多业务线的 AI Agent 系统中（如同时支持查天气、订机票、闲聊、查股票），团队需要设计意图识别模块。请对比三种意图识别方案（前端路由、关键词检索、轻量 LLM 分析）的优缺点，并说明为什么“装饰器 + 意图注册”模式能实现高内聚低耦合的工具管理？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>前端路由适合业务线清晰、意图可预判的场景；关键词检索适合规则明确、响应速度要求极高的场景；轻量 LLM 分析适合意图复杂、需要语义理解的场景；而“装饰器 + 意图注册”模式通过自动将函数注册到意图网络，让新增工具无需修改核心代码，实现高内聚低耦合。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>前端路由：不同业务入口直接调用不同 Agent 接口，优点是简单可靠、响应快，缺点是用户必须自己判断走哪个入口</li>
+<li>关键词检索：预设关键词映射表，匹配到关键词后路由到对应工具，优点是速度快、可控性强，缺点是覆盖不全、容易误判</li>
+<li>轻量 LLM 分析：用一个小模型（或大模型 + Few-Shot）分析用户输入的意图，优点是语义理解强、覆盖广，缺点是延迟高、成本高</li>
+<li>装饰器模式：<code>@register_intent("查天气")</code> 装饰器在函数定义时自动将函数注册到意图网络，并提取函数的 <code>__doc__</code> 和参数类型生成 JSON Schema，供 LLM Function Calling 使用</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>意图识别的本质是“把用户的自然语言输入映射到正确的工具调用”。三种方案各有适用场景：</p>
+<ul>
+<li><strong>前端路由</strong>最适合“业务线清晰”的场景。比如一个企业有“客服机器人”和“数据分析机器人”两个独立入口，用户自己选择走哪个入口，根本不需要意图识别。缺点是用户体验割裂。</li>
+<li><strong>关键词检索</strong>最适合“规则明确”的场景。比如“退款”这个词出现就一定是退款意图，不需要语义理解。缺点是用户换个说法（“我不想要了”“给我退了吧”）就匹配不到。</li>
+<li><strong>轻量 LLM 分析</strong>最适合“意图复杂”的场景。比如用户说“帮我看看我的快递到哪了”，LLM 能理解这是“查物流”意图，而不是“闲聊”。缺点是每次都要调用 LLM，延迟和成本都高。</li>
+</ul>
+<p>“装饰器 + 意图注册”模式的精妙之处在于<strong>解耦</strong>。当你新增一个“查股票”工具时，不需要修改 Agent 的核心调度代码，只需要：<br />
+1. 写一个函数，用 <code>@register_intent("查股票")</code> 装饰<br />
+2. 装饰器自动提取函数的 <code>__doc__</code> 和参数类型<br />
+3. 自动生成 JSON Schema 并注册到意图网络<br />
+4. Agent 自动获得这个新能力</p>
+<p>这就是“高内聚”（每个工具函数只关注自己的业务逻辑）和“低耦合”（工具之间互不依赖，通过注册机制松耦合）的完美体现。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出“装饰器提取 <code>__doc__</code> 转 JSON Schema”这一关键机制，以及它与 LLM Function Calling 的对接方式</li>
+<li>能指出“意图识别方案可以混合使用”：先用前端路由分流，再用关键词检索兜底，最后用 LLM 分析处理复杂意图</li>
+<li>能对比“意图识别”和“槽位填充”的关系：意图识别是“用户想干什么”，槽位填充是“用户提供了哪些参数”</li>
+<li>能说出“追问参数机制”在意图识别后的作用：当用户意图明确但缺少必要参数时，Agent 需要主动追问</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区1：认为意图识别必须用 LLM——对于规则明确的场景，关键词检索更快更便宜</li>
+<li>误区2：把所有工具都注册到一个大意图网络中——这会导致意图混淆，正确做法是按业务域拆分</li>
+<li>误区3：忽视装饰器在“工具自动发现”中的作用——很多开发者手动维护工具列表，新增工具时容易遗漏注册</li>
+</ul>
+<hr />
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h1>🛠 应用题 · Q1 · 架构设计</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agentic Auth</code> <code>MCP</code> <code>多租户</code> <code>网关鉴权</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你所在的公司正在构建一套面向多家企业客户的 SaaS 化智能客服 Agent 平台。每个企业租户拥有独立的知识库（向量数据库）、独立的业务数据（订单/客户信息），以及不同的工具权限（例如 A 企业允许 Agent 调用退款接口，B 企业禁止）。现在有一个核心难题：当用户通过企业微信/钉钉等渠道向 Agent 发起请求时，Agent 需要自主决定调用哪些工具、检索哪些数据，但<strong>绝不能发生跨租户数据泄露或越权操作</strong>。</p>
+<p>请设计一套完整的 <strong>Agentic Auth（智能体鉴权）架构方案</strong>，重点解决以下三个问题：<br />
+1. 如何为每个 Agent 节点统一注入身份标识，实现多租户数据隔离？<br />
+2. 如何防止 Agent 在自主推理过程中"幻觉式"调用高危工具（如退款、删除数据）？<br />
+3. 当 Agent A 通过 MCP 协议调用企业内部的其他 Agent B 或微服务时，如何保证授权链的完整性？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>第一步：识别信任边界。</strong> 传统 OAuth/API Key 是"静态凭证"——一旦颁发就始终有效，无法感知"当前这个请求到底是谁发起的、通过什么链路到达的、Agent 自主推理到了哪一步"。Agentic Auth 的核心思路是把"身份"从静态凭证升级为<strong>动态上下文感知的信任链</strong>。</li>
+<li><strong>第二步：分层设计。</strong> 参考知识片段中的三层架构——网关层做身份注入与预过滤、沙箱层做环境隔离、HITL 层做高危操作拦截。每一层解决不同维度的安全问题，不能混为一谈。</li>
+<li><strong>第三步：确定技术选型。</strong> 网关层用统一 LLM Gateway（如 LiteLLM + 自研插件），向量数据库用 pgvector/Milvus 的标量过滤能力，沙箱用 K8s + gVisor/Kata Containers，HITL 用 LangGraph 的 <code>interrupt_before</code> 机制。</li>
+<li><strong>第四步：设计授权链传播机制。</strong> 当 Agent A 调用 Agent B 时，不能简单地把 A 的凭证透传给 B，而是需要一种"令牌交换"或"身份降级"机制，确保 B 知道"这个请求最初来自哪个租户的哪个用户"。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>① 网关层：统一身份注入与多租户隔离</strong></p>
+<ul>
+<li>在 LLM Gateway 中为每个 Agent 节点颁发统一的身份标识（如 <code>X-Agent-ID</code>），所有出站请求（调用 LLM、工具、MCP Server）都必须经过 Gateway。</li>
+<li>当用户请求进入 Gateway 时，Gateway 从会话上下文中提取 <code>tenant_id</code>、<code>user_id</code>、<code>department_id</code> 等元数据，并将其注入到后续所有工具调用的请求头中。</li>
+<li>对于向量数据库检索，在代码层<strong>强制注入标量预过滤</strong>：<code>WHERE tenant_id = $current_tenant_id AND collection = $allowed_collection</code>。这个过滤条件必须在向量相似度检索<strong>之前</strong>执行，而不是先检索再过滤（后者会导致数据泄露）。</li>
+<li>关键点：<strong>不允许任何子 Agent 直接持有数据库连接字符串或 API Key</strong>。所有数据访问必须经过 Gateway 的代理层。</li>
+</ul>
+<p><strong>② 工具权限分级与 HITL 拦截</strong></p>
+<ul>
+<li>将工具分为三类：<strong>只读查询类</strong>（如查天气、查知识库）、<strong>条件写操作类</strong>（如创建工单、修改备注）、<strong>高危副作用类</strong>（如退款、删除数据、发送外部通知）。</li>
+<li>在工具注册时声明其风险等级：<code>@register_tool(risk_level="HIGH", requires_human_approval=True)</code>。</li>
+<li>当 Agent 的推理链路尝试调用高危工具时，利用 LangGraph 的 <code>interrupt_before</code> 节点挂起流程，将当前图状态（包括 <code>thread_id</code>、工具参数、Agent 推理摘要）持久化到 PostgreSQL/Redis，然后释放线程。前端弹窗让真实人类点击确认后，再通过 Resume API 恢复执行。</li>
+<li>关键点：HITL 的确认粒度应该是<strong>"工具 + 参数"级别</strong>，而不是笼统的"允许 Agent 继续执行"。用户必须看到"Agent 想要调用退款接口，金额 ¥299，订单号 xxx，原因：用户投诉尺码不符"这样的具体信息。</li>
+</ul>
+<p><strong>③ 沙箱隔离</strong></p>
+<ul>
+<li>对于需要执行代码的 Agent（如 Data Agent 编写 Python 脚本做数据分析），在 K8s 中使用 gVisor 或 Kata Containers 创建<strong>用完即毁</strong>的沙箱容器。</li>
+<li>每次任务启动一个全新容器，任务结束后立即销毁，不保留任何状态。容器内不挂载宿主机文件系统，网络出口通过白名单控制。</li>
+<li>关键点：沙箱的重置必须做到"秒级创建、秒级销毁"，否则会严重影响 Agent 的响应速度。</li>
+</ul>
+<p><strong>④ 授权链传播（Agent-to-Agent / MCP）</strong></p>
+<ul>
+<li>当 Agent A 通过 MCP 协议调用 Agent B 时，A 不能直接把用户的原始凭证透传给 B。而是由 Gateway 执行一次<strong>令牌交换</strong>：A 携带 <code>X-Agent-ID: agent-a</code> 和 <code>X-Original-Tenant-ID: tenant-123</code> 请求 Gateway，Gateway 验证 A 的身份后，为 B 签发一个<strong>受限的短期令牌</strong>，该令牌中明确声明了"代表 tenant-123 的用户 user-456 执行以下操作"。</li>
+<li>B 收到令牌后，只信任 Gateway 签发的声明，而不是 A 自己声称的身份。这类似于 OAuth 2.0 中的"委托授权"模式，但增加了 Agent 自主性的上下文。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>不要用 API Key 直接做多租户隔离。</strong> API Key 只能证明"是某个 Agent 在调用"，无法证明"这个 Agent 当前正在为哪个租户服务"。必须配合请求头中的租户上下文一起使用。</li>
+<li><strong>向量检索的预过滤必须在查询层做，不能在应用层做。</strong> 如果先检索出 Top-K 结果再在 Python 里过滤 <code>tenant_id</code>，K 值不够大时会导致合法数据被挤掉，而且已经发生了数据泄露（数据已经传到了应用层）。</li>
+<li><strong>HITL 不能只做"确认弹窗"。</strong> 如果每次高危操作都弹窗，用户会疲劳点击"确认"，失去安全意义。应该加入<strong>风险评分机制</strong>：低风险操作自动放行，中风险操作弹窗确认，高风险操作需要二次身份验证（如短信验证码）。</li>
+<li><strong>沙箱容器冷启动延迟。</strong> gVisor 的启动时间比普通容器慢，建议使用预热池（Warm Pool）技术，预先启动一批空闲沙箱，任务到达时直接分配。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>审计日志全链路追踪。</strong> 每次 Agent 的工具调用、数据检索、HITL 确认都记录完整的 Trace（可参考 LangSmith 的 Trace 机制），事后可以回溯"Agent 为什么做了这个决定"。</li>
+<li><strong>动态权限调整。</strong> 基于用户的历史行为和风险评分，动态调整 Agent 的自主权限范围。例如，新用户前 30 天的退款操作全部需要人工确认，30 天后如果行为正常，可以降级为自动执行。</li>
+<li><strong>多级 HITL 审批流。</strong> 对于金额超过 ¥1000 的退款，需要用户主管二次确认；超过 ¥10000 需要财务部门确认。审批流可以配置化，不同租户可以自定义规则。</li>
+</ul>
+<hr />
+<h1>🛠 应用题 · Q2 · 场景分析</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>LLM Wiki</code> <code>Obsidian</code> <code>知识管理</code> <code>RAG对比</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你在一家咨询公司担任 AI 架构师。公司的分析师团队每天要阅读大量行业研报、财报、新闻，并在撰写报告时引用其中的数据和观点。目前团队使用传统 RAG 系统（向量检索 + LLM 问答），但反馈效果不好：跨文档的关联性差、回答浅层、无法形成体系化的知识沉淀。你了解到 Karpathy 提出的 <strong>LLM Wiki</strong> 模式可能是一个更好的解决方案。</p>
+<p>请分析：<br />
+1. 传统 RAG 与 LLM Wiki 在"知识处理时机"和"知识组织方式"上的本质区别是什么？<br />
+2. 如果要在公司内部落地 LLM Wiki，你会如何设计三层架构（Sources / Wiki / Schema）？<br />
+3. Obsidian 在这个方案中扮演什么角色？为什么它比直接用数据库存储 Markdown 文件更合适？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>第一步：先诊断传统 RAG 的病根。</strong> 传统 RAG 是"查询时临时检索"，每次用户提问都要从零开始切片、向量化、相似度匹配。这种方式的问题在于：知识之间的关联关系没有被预先建立，LLM 只能看到一堆碎片化的 Chunk，无法形成全局视角。</li>
+<li><strong>第二步：理解 LLM Wiki 的"录入即思考"哲学。</strong> LLM Wiki 把知识处理的重心从"查询时"前移到"录入时"。当新文档进入系统时，LLM 就主动提取实体、概念、论点，并将它们写入一个持久化的、相互链接的 Markdown 知识网络。查询时只是在这个已经构建好的知识网络上进行导航。</li>
+<li><strong>第三步：选型判断。</strong> Obsidian 作为 LLM Wiki 的载体，其核心优势在于：本地优先、Markdown 原生、双向链接、Graph View 可视化。这些特性与 LLM Wiki 的需求天然契合。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>① 传统 RAG vs LLM Wiki 的本质区别</strong></p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>传统 RAG</th>
+<th>LLM Wiki</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>知识处理时机</td>
+<td>查询时临时检索</td>
+<td>录入时主动结构化</td>
+</tr>
+<tr>
+<td>知识组织方式</td>
+<td>向量空间中的碎片化 Chunk</td>
+<td>Markdown 文件 + 双向链接的知识网</td>
+</tr>
+<tr>
+<td>跨文档关联</td>
+<td>依赖向量相似度的"软关联"</td>
+<td>显式的 <code>[[双括号]]</code> 引用</td>
+</tr>
+<tr>
+<td>知识沉淀</td>
+<td>无持久化沉淀，每次查询从零开始</td>
+<td>增量式积累，越用越丰富</td>
+</tr>
+<tr>
+<td>查询深度</td>
+<td>浅层问答，容易割裂</td>
+<td>支持概念级、跨文档的深度推理</td>
+</tr>
+</tbody>
+</table>
+<p><strong>② 三层架构设计</strong></p>
+<ul>
+<li><strong>Immutable Sources（不变量源码层）：</strong> 将公司内部的 PDF 研报、财报、会议纪要等原始文件存储在只读目录中（如 S3 或 NAS）。LLM 绝不修改这些文件，它们作为最终的事实依据。每次 LLM Wiki 生成的内容如果与 Sources 冲突，以 Sources 为准。</li>
+<li><strong>The Wiki（维基层）：</strong> 这是 LLM 动态维护的核心。包含三类内容：</li>
+<li><strong>Source Notes（源文档摘要）：</strong> 每篇研报生成一个 Markdown 文件，包含核心论点、关键数据、页码引用。</li>
+<li><strong>Concept Pages（概念页）：</strong> 提取跨文档的核心概念（如"AI Agent 市场规模"、"新能源电池技术路线"），汇总所有相关文档中的观点和数据。</li>
+<li><strong>Debate Pages（观点交锋页）：</strong> 当不同文档对同一问题有不同观点时，自动生成对比页面，列出各方论据。</li>
+<li><strong>The Schema（约束规范层）：</strong> 编写一个 <code>CLAUDE.md</code> 或 <code>AGENTS.md</code> 文件，严格规定：</li>
+<li>Markdown 文件的 YAML Frontmatter 格式（必须包含 <code>tags</code>、<code>source</code>、<code>last_updated</code> 字段）。</li>
+<li>强制使用 <code>[[双括号]]</code> 建立双向链接。</li>
+<li>自我纠错机制：每次更新后运行 Lint 检查，确保没有死链接、格式错误。</li>
+</ul>
+<p><strong>③ Obsidian 的角色</strong></p>
+<ul>
+<li><strong>为什么不用数据库？</strong> 数据库存储的是结构化数据，但 LLM Wiki 的核心价值在于<strong>非线性的知识关联</strong>。Markdown 文件 + 双向链接的方式更接近人类大脑的思考方式，LLM 可以直接读写 Markdown 文件，不需要经过数据库的序列化/反序列化。</li>
+<li><strong>Obsidian 的核心优势：</strong></li>
+<li><strong>Graph View：</strong> 分析师可以直观地看到知识图谱，发现"原来这篇研报和那篇新闻在讨论同一个问题"。</li>
+<li><strong>本地优先：</strong> 所有数据以 <code>.md</code> 文件保存在公司内部服务器，不依赖云端服务，符合数据安全要求。</li>
+<li><strong>插件生态：</strong> 可以安装 Karpathy LLM Wiki 插件，自动生成概念实体和双向链接。</li>
+<li><strong>搜索速度：</strong> 本地全文搜索毫秒级响应，远超数据库查询。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>LLM Wiki 不是一次性构建的。</strong> 它是一个增量式、异步的过程。新文档进来后，LLM 在后台慢慢处理，不需要实时响应。可以用消息队列（如 Celery + Redis）来调度处理任务。</li>
+<li><strong>避免"Wiki 膨胀"。</strong> 如果 LLM 无节制地创建新页面，Wiki 会变得越来越臃肿。需要在 Schema 中规定"何时创建新概念页 vs 何时合并到已有页面"的规则。</li>
+<li><strong>Sources 与 Wiki 的同步问题。</strong> 如果原始文档更新了，Wiki 中的摘要需要同步更新。可以设计一个"变更检测"机制，当 Sources 目录中的文件 Hash 变化时，触发 LLM 重新处理。</li>
+<li><strong>不要指望 LLM 一次就写对。</strong> LLM 生成的 Markdown 可能需要多轮迭代。可以在 Schema 中定义"自我纠错"流程：LLM 生成后自己读一遍，检查格式、链接、逻辑一致性，发现问题自动修正。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>与 RAG 混合使用。</strong> LLM Wiki 适合深度知识沉淀，但查询时仍然可以用向量检索加速定位。可以将 Wiki 中的每个 Markdown 文件也做 Embedding 存入向量库，实现"先向量检索定位页面，再让 LLM 深度阅读该页面及其链接的页面"。</li>
+<li><strong>多用户协作。</strong> 当多个分析师同时使用 LLM Wiki 时，可以引入 Git 版本控制（如 GitBook 模式），每次 LLM 更新 Wiki 都创建一个 Commit，方便回溯和审查。</li>
+<li><strong>知识盲区发现。</strong> 利用图算法（如 Louvain 社区发现）自动识别 Wiki 中的知识聚类和盲区，提醒分析师"这些领域还缺乏足够的文档覆盖"。</li>
+</ul>
+<hr />
+<h1>🛠 应用题 · Q3 · 工程实现</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agent Harness</code> <code>pytest</code> <code>批量测试</code> <code>熔断机制</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你正在开发一个<strong>建材报价 Agent</strong>，它接收用户上传的 CAD 图纸（PDF 格式），通过多轮 LLM 推理和工具调用（如钢筋算量、混凝土算量），最终生成一份 Excel 报价单。在开发过程中你发现：每次修改 System Prompt 或调整工具调用逻辑后，Agent 的行为可能发生微妙变化——有时钢筋算量偏低 5%，有时陷入死循环。手动测试 20 张图纸需要 2 小时，效率极低。</p>
+<p>请设计一个<strong>极简版 Agent Harness</strong>（测试马具），用 Python 实现以下能力：<br />
+1. 批量注入测试集（图纸 + 标准答案 Excel），自动并发测试。<br />
+2. 注入熔断限制（最大循环次数、超时时间），防止 Agent 死循环。<br />
+3. 自动计算误差率并断言，误差超过阈值时输出详细报告。<br />
+4. 测试结果可以生成一份"行为报告"，告诉你哪些图纸算量偏差大、哪些触发了熔断。</p>
+<p>请给出核心代码框架（伪代码或 Python 均可），并说明关键设计决策。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>第一步：确定 Harness 的职责边界。</strong> Harness 不关心 Agent 内部如何推理，它只做三件事：<strong>喂数据、跑 Agent、判结果</strong>。这类似于单元测试框架（pytest）的职责——测试代码不关心业务逻辑实现，只关心输入输出是否符合预期。</li>
+<li><strong>第二步：设计测试数据结构。</strong> 每个测试用例包含：图纸路径、标准答案 Excel 路径、期望的最大误差率、超时时间。用 <code>dataclass</code> 或 <code>dict</code> 来组织。</li>
+<li><strong>第三步：熔断机制的实现位置。</strong> 熔断不应该只依赖 Agent 内部的 <code>max_loops</code> 参数，Harness 层还需要一个<strong>外部超时看门狗</strong>。因为 Agent 可能卡在某个工具调用上（如 LLM API 挂起），内部循环计数根本不会增长。</li>
+<li><strong>第四步：误差计算与报告生成。</strong> 误差计算是业务相关的（需要对比 Excel 中的钢筋量、混凝土量等字段），但报告生成是 Harness 的通用能力。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<pre><code class="language-python"># test_harness.py
+import pytest
+import asyncio
+import time
+from dataclasses import dataclass
+from typing import List, Dict, Optional
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from my_agent import BuildingQuoteAgent
+from utils.excel_compare import calculate_error_rate
+
+# ========== 1. 测试用例数据结构 ==========
+@dataclass
+class TestCase:
+    case_id: str
+    drawing_path: str
+    ground_truth_excel: str
+    max_error_rate: float = 0.03      # 默认误差率 3%
+    max_loops: int = 10               # 最大循环次数
+    timeout_seconds: int = 60         # 超时时间（秒）
+    tags: List[str] = None            # 标签，用于分类报告
+
+# ========== 2. 测试集加载器 ==========
+def load_test_cases(cases_dir: str = &quot;./test_cases&quot;) -&gt; List[TestCase]:
+    &quot;&quot;&quot;从 JSON/YAML 配置文件加载测试集&quot;&quot;&quot;
+    import json
+    with open(f&quot;{cases_dir}/manifest.json&quot;, &quot;r&quot;) as f:
+        raw_cases = json.load(f)
+    return [TestCase(**c) for c in raw_cases]
+
+# ========== 3. 熔断看门狗 ==========
+class AgentTimeoutError(Exception):
+    &quot;&quot;&quot;Agent 执行超时异常&quot;&quot;&quot;
+    pass
+
+def run_agent_with_watchdog(agent: BuildingQuoteAgent, 
+                            drawing_path: str, 
+                            timeout_seconds: int) -&gt; str:
+    &quot;&quot;&quot;在独立线程中运行 Agent，主线程负责超时监控&quot;&quot;&quot;
+    result_holder = {}
+
+    def _target():
+        result_holder[&quot;excel_path&quot;] = agent.run(
+            drawing_path=drawing_path,
+            max_loops=10
+        )
+
+    # 使用线程池执行，主线程等待结果或超时
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        future = executor.submit(_target)
+        try:
+            future.result(timeout=timeout_seconds)
+            return result_holder.get(&quot;excel_path&quot;)
+        except TimeoutError:
+            future.cancel()
+            raise AgentTimeoutError(
+                f&quot;Agent 执行超时（&gt;{timeout_seconds}s），疑似死循环或工具挂起&quot;
+            )
+
+# ========== 4. 批量测试执行器 ==========
+def run_batch_tests(cases: List[TestCase], 
+                    max_workers: int = 4) -&gt; List[Dict]:
+    &quot;&quot;&quot;并发执行批量测试，返回结果报告&quot;&quot;&quot;
+    results = []
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_map = {
+            executor.submit(run_single_test, case): case 
+            for case in cases
+        }
+
+        for future in as_completed(future_map):
+            case = future_map[future]
+            try:
+                result = future.result()
+                results.append(result)
+            except Exception as e:
+                results.append({
+                    &quot;case_id&quot;: case.case_id,
+                    &quot;status&quot;: &quot;ERROR&quot;,
+                    &quot;error_message&quot;: str(e),
+                    &quot;drawing_path&quot;: case.drawing_path
+                })
+
+    return results
+
+def run_single_test(case: TestCase) -&gt; Dict:
+    &quot;&quot;&quot;执行单个测试用例&quot;&quot;&quot;
+    start_time = time.time()
+
+    try:
+        # 1. 创建 Agent 实例（注入熔断限制）
+        agent = BuildingQuoteAgent(
+            max_loops=case.max_loops,
+            timeout=case.timeout_seconds
+        )
+
+        # 2. 带看门狗运行 Agent
+        result_excel_path = run_agent_with_watchdog(
+            agent, 
+            case.drawing_path, 
+            case.timeout_seconds
+        )
+
+        # 3. 计算误差率
+        error_rate, details = calculate_error_rate(
+            result_excel_path, 
+            case.ground_truth_excel
+        )
+
+        # 4. 判断是否通过
+        passed = error_rate &lt;= case.max_error_rate
+
+        return {
+            &quot;case_id&quot;: case.case_id,
+            &quot;status&quot;: &quot;PASSED&quot; if passed else &quot;FAILED&quot;,
+            &quot;error_rate&quot;: error_rate,
+            &quot;max_allowed&quot;: case.max_error_rate,
+            &quot;elapsed_seconds&quot;: time.time() - start_time,
+            &quot;details&quot;: details,  # 各字段的详细误差
+            &quot;drawing_path&quot;: case.drawing_path
+        }
+
+    except AgentTimeoutError as e:
+        return {
+            &quot;case_id&quot;: case.case_id,
+            &quot;status&quot;: &quot;TIMEOUT&quot;,
+            &quot;error_message&quot;: str(e),
+            &quot;elapsed_seconds&quot;: time.time() - start_time
+        }
+    except Exception as e:
+        return {
+            &quot;case_id&quot;: case.case_id,
+            &quot;status&quot;: &quot;ERROR&quot;,
+            &quot;error_message&quot;: str(e),
+            &quot;elapsed_seconds&quot;: time.time() - start_time
+        }
+
+# ========== 5. 行为报告生成器 ==========
+def generate_behavior_report(results: List[Dict]) -&gt; str:
+    &quot;&quot;&quot;生成人类可读的行为报告&quot;&quot;&quot;
+    total = len(results)
+    passed = sum(1 for r in results if r[&quot;status&quot;] == &quot;PASSED&quot;)
+    failed = sum(1 for r in results if r[&quot;status&quot;] == &quot;FAILED&quot;)
+    timeout = sum(1 for r in results if r[&quot;status&quot;] == &quot;TIMEOUT&quot;)
+    errors = sum(1 for r in results if r[&quot;status&quot;] == &quot;ERROR&quot;)
+
+    report = f&quot;&quot;&quot;
+    ═══════════════════════════════════════
+    Agent Harness 行为报告
+    ═══════════════════════════════════════
+    总测试数: {total}
+    ✅ 通过: {passed} ({passed/total*100:.1f}%)
+    ❌ 失败: {failed} ({failed/total*100:.1f}%)
+    ⏰ 超时: {timeout} ({timeout/total*100:.1f}%)
+    💥 异常: {errors} ({errors/total*100:.1f}%)
+
+    ─── 失败详情 ───
+    &quot;&quot;&quot;
+
+    for r in results:
+        if r[&quot;status&quot;] == &quot;FAILED&quot;:
+            report += f&quot;&quot;&quot;
+    [FAILED] {r['case_id']}
+      误差率: {r['error_rate']*100:.2f}% (阈值: {r['max_allowed']*100:.1f}%)
+      耗时: {r['elapsed_seconds']:.1f}s
+      详细误差:
+    &quot;&quot;&quot;
+            for field, err in r[&quot;details&quot;].items():
+                report += f&quot;        - {field}: {err*100:.2f}%\n&quot;
+        elif r[&quot;status&quot;] == &quot;TIMEOUT&quot;:
+            report += f&quot;&quot;&quot;
+    [TIMEOUT] {r['case_id']}
+      原因: {r['error_message']}
+    &quot;&quot;&quot;
+
+    return report
+
+# ========== 6. pytest 入口 ==========
+@pytest.mark.parametrize(&quot;case&quot;, load_test_cases())
+def test_agent_quote_accuracy(case):
+    &quot;&quot;&quot;pytest 测试函数，每个用例独立运行&quot;&quot;&quot;
+    agent = BuildingQuoteAgent(max_loops=case.max_loops, timeout=case.timeout_seconds)
+    result_excel_path = run_agent_with_watchdog(agent, case.drawing_path, case.timeout_seconds)
+    error_rate, _ = calculate_error_rate(result_excel_path, case.ground_truth_excel)
+    assert error_rate &lt;= case.max_error_rate, \
+        f&quot;算量失败，误差率 {error_rate*100:.2f}% 超过预期 {case.max_error_rate*100:.1f}%&quot;
+
+# ========== 7. 命令行入口（非 pytest 模式） ==========
+if __name__ == &quot;__main__&quot;:
+    cases = load_test_cases()
+    results = run_batch_tests(cases, max_workers=4)
+    report = generate_behavior_report(results)
+    print(report)
+
+    # 将报告写入文件
+    with open(&quot;harness_report.txt&quot;, &quot;w&quot;) as f:
+        f.write(report)
+</code></pre>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>超时看门狗必须放在独立线程/进程中。</strong> 如果 Agent 内部调用了阻塞的 LLM API（如 OpenAI SDK 的同步调用），主线程会完全卡死，内部循环计数根本不会增长。外部看门狗是最后的防线。</li>
+<li><strong>并发测试时注意 Agent 实例的隔离性。</strong> 如果 Agent 内部使用了全局变量或共享状态，并发测试会相互干扰。建议每个测试用例创建独立的 Agent 实例，或者使用进程池（<code>ProcessPoolExecutor</code>）代替线程池。</li>
+<li><strong>误差率计算要细分到字段级别。</strong> 不要只计算一个总误差率，要输出"钢筋量误差 5%、混凝土量误差 2%、模板面积误差 8%"这样的详细报告。这样才能定位问题出在哪个工具调用上。</li>
+<li><strong>测试集需要定期更新。</strong> 随着业务发展，新的图纸类型（如桥梁、隧道）需要加入测试集。测试集本身也应该有版本管理。</li>
+<li><strong>熔断触发后的恢复。</strong> 当 Agent 触发熔断（超时或循环次数超限）后，需要确保下一次测试从一个干净的状态开始。如果 Agent 内部有缓存或状态，需要显式重置。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>接入 LangSmith 或 Phoenix。</strong> 当 Harness 跑完测试后，自动将 Trace 上传到观测平台，可视化查看每一步工具调用的输入输出，快速定位问题。</li>
+<li><strong>差分测试（Differential Testing）。</strong> 同时运行旧版本和新版本的 Agent，对比两者的输出差异，自动标记"行为变化"的用例。</li>
+<li><strong>自动化回归。</strong> 将 Harness 集成到 CI/CD 流程中，每次提交代码后自动运行测试集，失败则阻断合并。</li>
+<li><strong>LLM-as-a-Judge。</strong> 对于文本类输出（如报价说明、备注），除了数值误差外，还可以用 LLM 当裁判来评估输出质量。</li>
+</ul>
+<hr />
+<h1>🛠 应用题 · Q4 · 排障优化</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Qdrant</code> <code>向量数据库</code> <code>存储优化</code> <code>Docker</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你在本地 Windows 开发环境中使用 Docker Desktop 运行 Qdrant 向量数据库，用于存储 RAG 知识库的 Embedding 向量。某天你发现本地磁盘空间急剧下降——Qdrant 的存储目录占用了 <strong>2.5GB</strong>，但线上 Linux 服务器上同样的数据量只占 <strong>几 MB</strong>。你检查了数据内容，确认两边存储的向量数量和维度完全一致。</p>
+<p>请分析：<br />
+1. 为什么同样的数据在 Windows 本地和 Linux 线上占用的磁盘空间差异如此巨大？<br />
+2. 你发现本地 Qdrant 的 storage 目录是通过 <code>./storage:/qdrant/storage</code> 挂载到 Windows 项目目录的。这个挂载方式是否是问题的根源？为什么？<br />
+3. 请给出至少三种优化方案，将本地磁盘占用降到合理水平。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>第一步：理解"看起来一样，实际不一样"的本质。</strong> 向量数据本身没有变化，但文件系统对"预分配文件"和"空洞文件（Sparse File）"的落盘机制不同。Linux 的 ext4/xfs 文件系统支持稀疏文件——文件逻辑大小可能是 32MB，但只有实际写入的块才占用磁盘空间。Windows 的 NTFS 文件系统对稀疏文件的支持有限，特别是在 Docker Desktop 的 bind mount 场景下，稀疏文件的"空洞"会被实际填充。</li>
+<li><strong>第二步：定位 Docker Desktop 的 bind mount 问题。</strong> 当你在 Windows 上使用 <code>./storage:/qdrant/storage</code> 时，数据写入路径是：Qdrant 容器 → Linux 虚拟机（WSL2）→ Windows 文件系统（NTFS）。这个多层转换过程中，稀疏文件的特性会丢失。</li>
+<li><strong>第三步：检查 segment 数量。</strong> 2.5GB 的占用不仅仅是文件系统差异造成的。Qdrant 的 segment 机制也会导致磁盘膨胀——如果 segment 太多（频繁写入删除导致碎片化），每个 segment 都有独立的预分配文件，即使大部分是空的也会占用目录空间。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>① 根因分析</strong></p>
+<p>Qdrant 在创建 collection 时会预分配一些固定大小的文件：<br />
+- <code>page_0.dat</code>：存储向量数据的页文件，可能预分配 32MB。<br />
+- <code>chunk_0.mmap</code>：内存映射文件。<br />
+- WAL（Write-Ahead Log）文件：预写日志。<br />
+- Payload Index 文件：存储标量索引。</p>
+<p>在 Linux 上，这些文件是<strong>稀疏文件</strong>——<code>ls -lh</code> 显示 32MB，但 <code>du -h</code> 显示实际占用可能只有几 MB。未写入的部分不占磁盘块。</p>
+<p>在 Windows + Docker Desktop bind mount 场景下，这些预分配文件的"空洞"会被实际写入 0 或随机数据，导致完整占用 32MB 的磁盘空间。如果有 50 个 segment，就是 50 × 32MB = 1.6GB 的浪费。</p>
+<p><strong>② 验证方法</strong></p>
+<pre><code class="language-bash"># 在 Linux 容器内查看实际占用
+docker exec -it qdrant_container du -h /qdrant/storage
+
+# 查看逻辑大小（对比）
+docker exec -it qdrant_container du -h --apparent-size /qdrant/storage
+
+# 查看 segment 数量
+docker exec -it qdrant_container ls /qdrant/storage/collections/your_collection/ | wc -l
+</code></pre>
+<p>如果 <code>du -h</code> 和 <code>du -h --apparent-size</code> 的差异很大，说明存在大量稀疏文件。</p>
+<p><strong>③ 三种优化方案</strong></p>
+<p><strong>方案 A：使用 Docker Named Volume 替代 bind mount（推荐）</strong></p>
+<pre><code class="language-yaml"># docker-compose.yml
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    volumes:
+      - qdrant_data:/qdrant/storage  # 使用命名卷
+
+volumes:
+  qdrant_data:
+    driver: local
+</code></pre>
+<p>命名卷存储在 Docker Desktop 管理的 Linux 虚拟机文件系统中，而不是 Windows 的 NTFS。这样稀疏文件的特性得以保留，磁盘占用与线上 Linux 一致。</p>
+<p><strong>方案 B：将 Qdrant storage 放到 WSL2 文件系统</strong></p>
+<pre><code class="language-yaml"># docker-compose.yml
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    volumes:
+      - /home/username/qdrant_storage:/qdrant/storage  # WSL2 路径
+</code></pre>
+<p>在 WSL2 中创建目录，然后将 Qdrant 数据挂载到 WSL2 的文件系统。WSL2 使用 ext4 文件系统，完全支持稀疏文件。</p>
+<p><strong>方案 C：优化 Qdrant 的 segment 管理</strong></p>
+<ul>
+<li><strong>手动触发段合并（Segment Optimization）：</strong> Qdrant 会自动合并小的 segment，但可以手动触发：</li>
+</ul>
+<pre><code class="language-python">from qdrant_client import QdrantClient
+
+client = QdrantClient(host=&quot;localhost&quot;, port=6333)
+client.update_collection(
+    collection_name=&quot;your_collection&quot;,
+    optimizer_config={
+        &quot;deleted_threshold&quot;: 0.2,
+        &quot;vacuum_min_vector_number&quot;: 1000,
+        &quot;default_segment_number&quot;: 2,
+        &quot;max_segment_size&quot;: 200000,
+        &quot;memmap_threshold&quot;: 200000,
+        &quot;indexing_threshold&quot;: 20000,
+        &quot;flush_interval_sec&quot;: 5,
+        &quot;max_optimization_threads&quot;: 1
+    }
+)
+</code></pre>
+<ul>
+<li><strong>清理已删除的向量：</strong> 如果频繁删除向量，需要触发 Vacuum 操作来回收空间。</li>
+<li><strong>减少 collection 数量：</strong> 如果创建了多个 collection 但只使用其中一两个，删除不用的 collection 可以释放大量空间。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>不要直接在 Windows 项目目录下运行 Qdrant。</strong> 这是最常见的错误。bind mount 到 NTFS 不仅导致空间膨胀，还会导致性能下降（NTFS 的随机读写性能远低于 ext4）。</li>
+<li><strong>WSL2 的磁盘空间是动态增长的。</strong> 即使使用 WSL2 文件系统，WSL2 的虚拟磁盘（ext4.vhdx）在 Windows 上也会占用空间。但这是"逻辑占用"，WSL2 会自动回收未使用的空间。</li>
+<li><strong>segment 数量过多是另一个独立问题。</strong> 即使解决了文件系统差异，如果 segment 数量从 50 个降到 2 个，磁盘占用也会大幅下降。定期执行优化操作是必要的。</li>
+<li><strong>注意 Qdrant 的 <code>memmap_threshold</code> 参数。</strong> 这个参数控制何时使用内存映射文件。如果设置得太低，会创建大量小文件；设置得太高，会占用过多内存。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>监控磁盘占用趋势。</strong> 在 Qdrant 的监控面板（Prometheus + Grafana）中添加磁盘占用指标，当占用超过阈值时自动告警。</li>
+<li><strong>冷热数据分离。</strong> 对于不常访问的旧数据，可以迁移到对象存储（如 S3），只保留热数据在 Qdrant 中。</li>
+<li><strong>定期巡检。</strong> 编写一个定时任务，每周检查 Qdrant 的 segment 数量和磁盘占用，自动触发优化操作。</li>
+</ul>
+<hr />
+<h1>🛠 应用题 · Q5 · 综合落地</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>微调</code> <code>云GPU</code> <code>LLaMA Factory</code> <code>HR智能客服</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你是一家大型企业的 AI 团队负责人。业务部门提出需求：构建一个 <strong>HR 智能客服机器人</strong>，能够回答员工关于考勤、请假、薪酬、社保等政策的问题。目前使用通用大模型（如 Qwen-72B）的 API 效果不理想——模型不了解公司内部的具体政策，经常给出通用答案或"幻觉"回答。你决定对一个小型开源模型（如 Qwen-7B）进行<strong>领域微调</strong>，让它精通公司内部的 HR 政策知识。</p>
+<p>但你的团队面临以下约束：<br />
+1. 团队没有本地 GPU 资源，只有普通办公电脑。<br />
+2. 预算有限，不能长期租用昂贵的 GPU 实例。<br />
+3. 微调数据只有约 500 条 HR 问答对（公司内部政策文档整理而成）。<br />
+4. 微调完成后需要部署到生产环境，供 5000 名员工使用。</p>
+<p>请设计一套<strong>从 0 到 1 的完整落地方案</strong>，包括：微调数据准备、训练环境选择、训练工具选型、训练过程管理、模型评估、生产部署。重点说明为什么在数据量只有 500 条的情况下微调仍然有效，以及如何控制成本。</p>
+<p><strong>💡 参考答案</strong></p>
+<p>**▎</p>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
