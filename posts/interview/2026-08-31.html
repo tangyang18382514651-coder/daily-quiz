@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-08-31)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-08-31)</h1>
+    <div class="meta">更新于 2026-08-31 11:05</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · LoRA · 微调<br />
+🔄 知识片段：#1, #2, #3（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h1>AI Agent 面试知识库 · 概念题 10 连击（第 X 期）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>向量数据库 · 文件系统 · 部署运维</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你在本地 Windows（Docker Desktop + bind mount）部署 Qdrant 时发现存储目录占用 432MB，但同样的数据在线上 Linux 服务器上只显示几 MB。同事说“这是数据损坏了”，你认为真正的原因是什么？请从文件系统稀疏文件（Sparse File）机制的角度解释这一现象，并说明这对向量数据库生产部署的启示。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>这不是数据损坏，而是 Linux 与 Windows/NTFS 对稀疏文件（Sparse File）落盘策略的差异导致的统计口径不同。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Qdrant 在启动时会预创建逻辑大小固定的页文件（如 32MB 的 <code>page_0.dat</code>、<code>chunk_0.mmap</code>）和 WAL 文件，但实际写入的数据量可能只有几 MB。</li>
+<li>Linux 的 ext4/xfs 等文件系统原生支持稀疏文件：逻辑大小和物理占用分离，未写入的空白区域不占磁盘块，<code>du -h</code> 显示的是实际物理占用。</li>
+<li>Windows NTFS 在 Docker Desktop bind mount 场景下，稀疏文件的“空洞”往往被实体化，文件按完整逻辑大小占用磁盘空间。</li>
+<li>用 <code>du -h --apparent-size</code> 在 Linux 上可以看到与 Windows 接近的“逻辑大小”，证明数据内容一致，只是统计方式不同。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>把 Qdrant 的预分配文件想象成一本“提前印好 1000 页空白格子的账本”。在 Linux 上，仓库管理员很聪明：只有你真正写了字的页面才放进仓库货架，空白页只登记一个编号，不占物理空间。但 Windows 的仓库管理员比较“实在”：账本说 1000 页，就真的在货架上摆满 1000 页，哪怕 950 页是空白的。</p>
+<p>向量数据库之所以要预创建大文件，是因为向量索引（HNSW 图结构）在写入时需要频繁随机读写，预分配连续的磁盘空间可以避免运行时频繁扩容带来的碎片化和延迟抖动。但这也意味着，如果你用 <code>ls -l</code> 或 Windows 资源管理器看文件大小，看到的是“逻辑大小”；只有 <code>du -h</code>（在 Linux 上）才能反映真实的物理占用。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能主动提到 <code>du -h --apparent-size</code> 这个验证命令，展示实操经验。</li>
+<li>能进一步指出：将 Qdrant storage 放在 WSL2 文件系统或 Docker named volume 中，而非 Windows 项目目录 bind mount，可以让本地环境更贴近线上表现。</li>
+<li>能关联到生产监控：不能用文件系统剩余空间简单估算向量库容量，要关注 segment 数量和预分配策略。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误以为“数据内容不一样”，实际上是文件系统统计口径差异。</li>
+<li>误以为“把预分配调小就能解决问题”，预分配是性能优化手段，贸然关闭会导致写入性能下降。</li>
+<li>忽略 segment 数量对磁盘占用的影响——大量小 segment 即使内容很少，也会因文件系统块对齐而放大占用。</li>
+</ul>
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent 鉴权 · 安全架构 · 人机协同</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在传统软件系统中，OAuth 2.0 和 API Key 足以解决身份验证问题。但知识库指出，当 AI Agent 进入生产环境并获得自主调用 API、修改数据库、发送邮件等高权限后，传统鉴权机制“不再适用”，需要引入 Agentic Auth（智能体鉴权）。请解释：为什么传统静态凭证机制在 Agent 场景下会失效？Agentic Auth 的三个核心落地层级分别解决什么问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>传统 Auth 是“给人或固定程序设计的静态凭证”，而 Agent 是“动态、自主、不可预测的执行体”，两者的信任模型存在根本性冲突，因此需要 Agentic Auth 从网关层、沙箱层、人肉闸三层重新建立安全边界。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>人机越权风险：普通员工可以指挥高权限 Agent 执行超出自身权限的操作（如查高管薪酬），Agent 若只验证“自己是谁”而不验证“指挥者是谁”，就会越权。</li>
+<li>信任链流转问题：Agent A 调用 Agent B，或 Agent 通过 MCP 访问企业内网工具时，如何证明这次调用得到了真实人类的授权？静态 API Key 无法表达“委托链”。</li>
+<li>工具滥用与死循环：Agent 在推理过程中可能误调用或恶意高频调用计费 API、破坏性接口，静态凭证无法感知“行为是否合理”。</li>
+<li>三层落地：网关层做身份标识与多租户标量预过滤；沙箱层做用完即毁的隔离执行环境；HITL 层对高危副作用操作强制人工确认。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统 OAuth 的信任模型是“点对点”的：用户授权一个 App 访问自己的数据，授权范围在授权时刻就固定了。但 Agent 场景是“链式”的：用户 → 主 Agent → 子 Agent → MCP Server → 数据库。这条链上每一跳都可能放大权限，而原始用户的身份信息在传递过程中可能丢失或被伪造。</p>
+<p>Agentic Auth 的核心思想是把“身份”从“凭证”升级为“上下文”。每个 Agent 节点携带的不仅是自己的 ID，还包括发起请求的真实用户 ID、租户 ID、会话 ID、任务 ID。在向量检索时，这些 ID 被强制注入为标量预过滤条件（如 <code>WHERE tenant_id = ? AND department_id = ?</code>），从物理层面卡死越权空间。这比“先检索再过滤”安全得多——后者在 Top-K 截断时可能把合法数据挤出去，也可能在过滤前就泄露了不该被看到的内容。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能举例说明“先检索再过滤”的安全漏洞：向量相似度计算本身就可能暴露敏感信息的存在性。</li>
+<li>能提到 LangGraph 的 <code>interrupt_before</code> 机制实现 HITL：将图状态持久化到 PostgreSQL/Redis，释放线程，等待人工确认后 Resume。</li>
+<li>能关联到 K8s 安全容器（gVisor、Kata Containers）或 E2B/Modal 等沙箱方案。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为“给 Agent 配一个 API Key 就够了”——这恰恰是最危险的做法，硬编码凭证一旦泄露，Agent 的自主性会放大破坏力。</li>
+<li>以为“HITL 就是所有操作都让人点确认”——实际上应该区分查询接口（放行）和副作用接口（拦截），否则人工审批会成为瓶颈。</li>
+</ul>
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>知识管理 · LLM Wiki · RAG 进化</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Karpathy 提出的 LLM Wiki 模式被称为“对传统 RAG 工作流的颠覆”。请解释：LLM Wiki 的“录入即思考”与传统 RAG 的“查询时检索”在知识处理时机上有什么本质区别？三层架构（Immutable Sources / The Wiki / The Schema）各自承担什么职责？这种模式为什么更适合终端/IDE 交互而非 Web Chatbox？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LLM Wiki 将知识的结构化工作从“查询时”提前到“录入时”，让 LLM 异步、增量地维护一个持久化的 Markdown 知识库，而不是每次提问时临时从原始文档中“盲捞”切片。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>传统 RAG 是“临时抱佛脚”：每次用户提问时才做向量检索、切片、拼接，无法建立跨文档的实体关联，回答容易肤浅割裂。</li>
+<li>LLM Wiki 是“录入即思考”：在文档输入阶段，LLM 就主动提取实体、概念、论点，写入用 <code>[[双括号]]</code> 互联的 Markdown 文件，形成持久化的知识网络。</li>
+<li>三层架构：Immutable Sources（只读原始文档，作为事实依据）、The Wiki（LLM 动态维护的结构化知识层）、The Schema（CLAUDE.md 等提示词配置，规定维护规范和自纠错机制）。</li>
+<li>终端/IDE 交互优势：Markdown 文件天然适合 Git 版本管理、diff 审查、代码级插拔，而非 Web Chatbox 的无状态单轮交互。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统 RAG 的隐喻是“考试时翻书”：学生平时不整理笔记，考试时临时翻课本找答案。问题是，课本是线性的、分散的，翻到第 3 页的公式和第 200 页的定理之间的关系，学生很难在考试那几秒钟内建立起来。</p>
+<p>LLM Wiki 的隐喻是“学霸的笔记系统”：学霸在读书时就不断整理笔记，把概念之间的关系画成思维导图，把不同书里的观点交锋记录在同一个页面上。考试时，学霸不需要翻遍所有课本，直接查自己的笔记就能给出有深度的回答。</p>
+<p>更深层的差异在于“思考的复用”。传统 RAG 每次查询都要重新做一遍“理解-检索-拼接”，计算成本高且结果不稳定。LLM Wiki 把“理解”这件事只做一次，沉淀在 Wiki 里，后续查询直接站在已结构化的知识之上。这也是为什么 LLM Wiki 更适合 Claude Code / Cursor 这类终端环境——Markdown 文件可以被 Git 追踪，AI 的每次修改都可以 diff、review、回滚，这种“代码级的知识管理”是 Web Chatbox 无法提供的。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到 Obsidian 的 Karpathy LLM Wiki 插件和 Louvain 算法做知识聚类，展示对生态的了解。</li>
+<li>能对比三种知识管理范式的差异：人类手工（Notion/Obsidian）、AI 临时抽取（RAG）、AI 异步维护（LLM Wiki）。</li>
+<li>能指出 LLM Wiki 的适用边界：适合知识密集、需要深度关联的场景，不适合实时性要求高的问答。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为 LLM Wiki 是“又一个 RAG 框架”——它本质上是知识管理范式的转变，不是检索算法的优化。</li>
+<li>以为 Wiki 层可以替代原始文档——Immutable Sources 层始终保留，作为事实依据防止 AI 幻觉污染知识。</li>
+</ul>
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Skills 体系 · Agent 组织架构 · 配置管理</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>知识库中区分了 Codex 的三类扩展机制：Skills（<code>~/.codex/skills</code> 或 <code>.agents/skills</code>）、Agents（<code>~/.codex/agents</code>）、Plugins（<code>~/.codex/plugins</code>）。请解释这三者在定位、存放位置、调用方式上的本质区别。为什么知识库强调“项目级 skills 应该放 <code>.agents/skills</code> 而不是 <code>.codex/skills</code>”？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Skills 是“能力锦囊”（通过 <code>$skill-name</code> 调用的提示词工作流），Agents 是“可被 spawn 的子智能体”（点名调用），Plugins 是“扩展功能模块”（出现在插件市场/列表中），三者在 UI 可见性、调用机制和共享范围上完全不同。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Skills 的核心是一个 <code>SKILL.md</code> 文件（含 YAML frontmatter 的 name 和 description），本质是“封装好的提示词 + 可选脚本”，通过 <code>$skill-name</code> 触发。</li>
+<li>Agents 是自定义子智能体，存放在 <code>~/.codex/agents</code>，通过点名调用（如“用 ai-engineer agent 帮我…”），不一定出现在 UI 列表中。</li>
+<li>Plugins 是功能扩展，出现在 Plugins 面板/marketplace 中，具有更完整的插件结构。</li>
+<li>项目级 Skills 放 <code>.agents/skills</code> 而非 <code>.codex/skills</code> 的原因：<code>.codex/</code> 偏配置和缓存，<code>.agents/</code> 是项目共享标准，方便团队协作和版本管理。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>把 Codex 想象成一个公司：Skills 是“标准作业流程手册”（SOP），任何人说“按这个流程做”就能执行；Agents 是“专家顾问”，你需要点名“让王工来看看”；Plugins 是“新购置的设备”，装好后就出现在工具清单里。</p>
+<p>这三者经常被混淆，因为它们的边界在某些场景下是模糊的。比如，一个复杂的 Agent 内部可能调用了多个 Skills；一个 Skill 的 <code>SKILL.md</code> 里可能包含“调用某个 Agent”的指令。但判断标准很清晰：<strong>看它有没有 <code>SKILL.md</code> 文件，看它被调用的方式，看它在 UI 里是否可见。</strong></p>
+<p>项目级路径选择 <code>.agents/skills</code> 的原因在于团队协作：<code>.codex/</code> 目录通常包含个人配置、插件缓存、临时文件，不适合作为团队共享的 Skill 仓库。<code>.agents/</code> 目录语义更清晰——它就是“这个项目的 Agent 相关资源”，可以被 Git 追踪，随项目一起分发。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能准确说出标准 Skill 的最小结构：一个文件夹 + 一个含 <code>name</code> 和 <code>description</code> 的 <code>SKILL.md</code>。</li>
+<li>能区分全局（<code>~/.codex/skills</code>）和项目级（<code>.agents/skills</code>）的适用场景：个人通用能力放全局，团队/项目专用放项目。</li>
+<li>能指出 SkillsLLM 这类聚合站的“发现”价值与“安装前二次判断”的必要性。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为“装到 <code>~/.codex/agents</code> 的 agents 会出现在 Skills 列表里”——它们不会，这是两套独立体系。</li>
+<li>以为“SkillsLLM 上的所有东西都能直接当 Skill 用”——其中有 MCP Server、CLI 工具、普通 GitHub 项目，需要逐一判断。</li>
+</ul>
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>向量数据库选型 · 架构对比 · 运维成本</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在向量数据库选型中，Qdrant 与 Milvus Standalone 都是单机部署的热门选择，但架构哲学截然不同：Qdrant 是“单体二进制 + 内置存储”，Milvus Standalone 是“多组件协同（Milvus + MinIO + etcd）”。请从运维复杂度、硬件资源消耗、备份策略三个维度对比两者，并说明为什么知识库认为“中小企业给 Qdrant 的最终决策建议”是首选。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Qdrant 以“单体 Rust 二进制 + 内置存储”实现了极低的运维心智负担和硬件资源压榨能力，而 Milvus Standalone 虽然功能更丰富，但捆绑的 MinIO + etcd 组件带来了更高的运维复杂度和硬件开销，因此中小企业单机场景首选 Qdrant。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>运维复杂度：Qdrant 只需一个 Docker 容器、一个挂载卷；Milvus Standalone 需要三个容器（milvus-standalone、milvus-minio、milvus-etcd），且 etcd 对磁盘性能敏感，官方建议 NVMe/SSD。</li>
+<li>硬件资源消耗：Qdrant 支持 Int8 标量量化、On-disk 索引、Payload 倒排索引，能在低配服务器上跑出毫秒级响应；Milvus 的 etcd + MinIO 组件本身就要吃掉额外的内存和磁盘 IO。</li>
+<li>备份策略：Qdrant 只需备份一个 <code>storage</code> 目录；Milvus 需要备份 <code>volumes/etcd</code>、<code>volumes/minio</code>、<code>volumes/milvus</code> 三个目录，且要保证三者的一致性。</li>
+<li>数据规模匹配：Qdrant 适合百万到数亿级向量、单机极致性价比场景；Milvus Standalone 适合中等规模但有明确扩展预期的场景；Milvus Distributed 才适合亿级以上高并发。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>Qdrant 的设计哲学是“把复杂留给自己，把简单留给用户”。它用 Rust 从头实现了向量索引、标量过滤、Payload 存储，不需要依赖外部组件。这意味着你在阿里云上买一台 4核16G 的 ECS，拉一个 Docker 镜像，挂一个数据卷，就能跑生产级向量检索服务。</p>
+<p>Milvus 的设计哲学是“为大规模而生”。即使 Standalone 模式，它也保留了分布式架构的组件拆分：etcd 负责元数据管理，MinIO 负责对象存储，Milvus 本体负责向量计算。这种拆分在分布式场景下是优势（各组件独立扩缩容），但在单机场景下就成了负担——你需要维护三个容器的健康状态，备份时要保证三者的一致性，etcd 对磁盘性能的敏感性还可能成为稳定性隐患。</p>
+<p>知识库中提到的“标量过滤不丢 Top-K”是 Qdrant 的一个关键杀手锏：传统“先向量检索再用代码过滤标签”的方式会导致 Top-K 数量残缺，而 Qdrant 在底层原生支持标量与向量的单阶段混合检索，这对多租户权限隔离场景至关重要。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能具体说出 Qdrant 的三个“杀手锏”：量化 + On-disk 存储、Payload 标量过滤不丢 Top-K、DevOps 心智负担极低。</li>
+<li>能对比 pgvector 的定位：千万级以内、重度依赖关系表联合查询时用 pgvector；超越这个量级才考虑专用向量库。</li>
+<li>能提到 Milvus Lite 的定位：本地 PoC 和 Notebook 场景，不适合生产。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为“Milvus 比 Qdrant 高级，所以应该选 Milvus”——选型要看场景匹配度，不是看功能多寡。</li>
+<li>以为“Qdrant 单体架构不适合生产”——单体不等于脆弱，Qdrant 在数亿向量规模下依然稳定。</li>
+</ul>
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>MCP 安全 · 上下文管理 · 企业集成</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>MCP（Model Context Protocol）被比喻为“AI 时代的 USB-C 接口”，实现了模型推理与工具执行的解耦。但在生产环境中，MCP 面临两大痛点：上下文膨胀（Context Bloat）和安全越权问题。请解释这两个痛点的具体表现，以及知识库提出的应对策略（动态路由发现、细粒度沙盒隔离与 RBAC 鉴权）分别如何解决它们。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>MCP 的“万能插座”特性带来了工具生态的爆发，但也导致 Server 注册过多时上下文被工具描述淹没、以及模型可能越权调用敏感工具两大问题，需要动态路由发现和分层安全机制来收敛。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>上下文膨胀：当 MCP Server 注册过多时，每个 Server 暴露的工具名称、描述、参数 Schema 都会塞进模型的上下文窗口，挤占真正的业务数据空间，甚至导致模型“迷失在工具列表中”。</li>
+<li>安全越权：MCP Server 往往暴露高权限操作（如数据库写入、文件删除），模型在推理过程中可能误调用或恶意调用这些接口，传统 API Key 无法感知“这次调用是否合理”。</li>
+<li>动态路由发现：不是把所有 MCP Server 的工具一次性注入上下文，而是根据当前任务动态发现和加载相关工具，减少无关工具的上下文占用。</li>
+<li>细粒度沙盒隔离与 RBAC：对 MCP Server 的每个工具做权限分级，模型只能调用与其身份和任务匹配的工具子集，高危操作必须经过额外审批。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>上下文膨胀的隐喻是“工具箱太大反而找不到锤子”。如果你把 50 个 MCP Server、500 个工具的描述全部塞给模型，模型就像站在一个 500 平方米的工具仓库里，光看工具目录就花掉了大半的注意力预算，真正用来思考用户问题的空间所剩无几。动态路由发现相当于给模型配了一个“智能工具管理员”：你告诉它你要干什么，它帮你从仓库里挑出最相关的 5 个工具放在你面前。</p>
+<p>安全越权的隐喻是“万能钥匙的诅咒”。MCP 让企业内网工具可以安全暴露给公有云上的模型，这本是好事，但如果模型拿到了一把万能钥匙，它可能在用户问“帮我查一下天气”时，顺手把“删除数据库”的工具也调用了。RBAC 的本质是把万能钥匙换成“分级门禁卡”：模型只能进入与当前任务相关的房间，进入高危房间还需要额外的人工刷卡确认。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能指出 MCP 解决的核心矛盾：“模型计算在公有云，核心资产留在企业内网”，无需迁移数据即可实现安全集成。</li>
+<li>能关联到 Agentic Auth 的网关层设计：MCP Server 调用时携带 <code>X-Agent-ID</code> 或 <code>X-MCP-Token</code>，实现身份透传。</li>
+<li>能提到 MCP 正逐渐成为“AI 界的 OAuth / USB-C 标准”的行业趋势判断。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为“MCP 就是工具调用协议，和安全无关”——实际上 MCP 的安全设计直接决定了企业是否敢把内网工具暴露给模型。</li>
+<li>以为“把所有 MCP 工具都注册上，让模型自己选”——这会导致上下文膨胀和选择困难，应该按需动态加载。</li>
+</ul>
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型微调 · 生产部署 · 多租户架构</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>知识库指出，大模型微调接入生产环境时，LoRA 补丁的部署方式是“1 个共享大底座 + N 个租户小补丁”，而非“为每个租户部署一套独立模型”。请解释：为什么不能为每个租户部署独立模型？LoRA 补丁的“肉身”是什么（文件层面）？vLLM 框架是如何实现多租户 LoRA 的动态加载和切换的？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>为每个租户部署独立 7B 模型会导致显存和运维成本线性爆炸，而 LoRA 补丁（本质是几 MB 到几百 MB 的 <code>adapter_model.safetensors</code> 权重矩阵）可以在共享底座上动态插拔，vLLM 通过内置的 LoRA 支持实现了“秒级热切换”。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>独立部署的不可行性：一个 7B 模型 BF16 权重约 14GB 显存，200 个租户就是 2.8TB 显存，加上推理框架开销，硬件成本无法承受。</li>
+<li>LoRA 补丁的文件结构：核心是 <code>adapter_model.safetensors</code>（真正的权重数据），配合 <code>adapter_config.json</code>（超参数配置），通常只有几 MB 到几百 MB。</li>
+<li>vLLM 的 LoRA 支持：vLLM 内置了 LoRA 参数管理，可以在运行时动态加载/卸载不同租户的 LoRA 补丁，前端请求带上租户 ID 即可路由到对应的 LoRA。</li>
+<li>底座共享的优势：底座权重只需加载一次，所有租户共享；切换 LoRA 只需替换补丁矩阵，不需要重新加载底座。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>把底座模型想象成一台“通用发动机”，LoRA 补丁是“不同车型的调校参数”。你不需要为每个客户造一台全新的发动机，只需要在同一台发动机上刷入不同的 ECU 调校程序。LoRA 的数学本质是低秩矩阵分解：原始权重 W 保持不变，训练时只学习 ΔW = A × B（两个小矩阵的乘积），推理时 W' = W + ΔW。这个 ΔW 就是 <code>adapter_model.safetensors</code> 里的内容。</p>
+<p>vLLM 的 LoRA 支持相当于给发动机装了一个“快速换装系统”：底座模型常驻显存，每个租户的 LoRA 补丁按需加载到显存中。当请求带上租户 ID 进来时，vLLM 的路由层找到对应的 LoRA 补丁，将其注入底座模型的计算图中。切换租户时，旧 LoRA 被标记为可回收，新 LoRA 被激活，整个过程在毫秒到秒级完成。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出 LoRA 补丁文件夹的标准结构：<code>adapter_config.json</code> + <code>adapter_model.safetensors</code> + <code>README.md</code>。</li>
+<li>能指出 LoRA 补丁的存储位置可以放在 OSS、显存、数据库或配置中心，前端调用时带上企业 ID 即可。</li>
+<li>能关联到“微调落地 + SaaS 个性化架构”的完整链路：训练 → 导出 LoRA → 上传存储 → vLLM 加载 → 请求路由。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为“LoRA 补丁可以脱离底座单独运行”——LoRA 只是权重增量，必须配合原始底座模型使用。</li>
+<li>以为“vLLM 加载 LoRA 需要重启服务”——vLLM 支持运行时动态加载，不需要重启。</li>
+</ul>
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>推理框架 · 模型部署 · 硬件适配</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在大模型推理框架选型中，vLLM、TensorRT-LLM、Ollama、llama.cpp 等框架各有定位。请从“部署场景（本地开发 vs 生产服务器）”“优化手段（PagedAttention、量化、编译优化）”“易用性”三个维度，说明在什么场景下应该选择哪种推理框架，并解释为什么知识库强调“生产环境不要用 Ollama 跑高并发服务”。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>推理框架选型的核心逻辑是“场景匹配”：本地开发用 Ollama/llama.cpp 追求易用性，生产高并发用 vLLM 追求吞吐量和显存效率，极致性能场景用 TensorRT-LLM 追求硬件级优化。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Ollama/llama.cpp 定位：本地开发、个人使用、小规模测试，优势是一键安装、模型管理方便、支持 CPU 推理和 GGUF 量化格式。</li>
+<li>vLLM 定位：生产级高并发推理服务，核心优势是 PagedAttention（显存分页管理）、Continuous Batching（连续批处理）、内置 LoRA 支持，吞吐量比朴素推理高一个数量级。</li>
+<li>TensorRT-LLM 定位：NVIDIA GPU 上的极致性能优化，通过算子融合、内核自动调优、量化编译等手段榨干硬件性能，但上手门槛和部署复杂度最高。</li>
+<li>生产环境不用 Ollama 的原因：Ollama 默认配置下缺乏 PagedAttention 和 Continuous Batching，高并发下吞吐量低、显存利用率差，且不适合多租户 LoRA 动态切换。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>把推理框架想象成不同的“运输工具”：Ollama 是“家用轿车”——上手快、灵活方便，但你不会用它跑货运；vLLM 是“集装箱卡车”——装载量大、效率高，适合物流干线；TensorRT-LLM 是“F1 赛车”——速度极致，但需要专业团队调校。</p>
+<p>vLLM 的 PagedAttention 是它的核心杀手锏。传统推理框架为每个请求分配连续的显存空间，就像给每个乘客分配一整排座位，即使他只占半个座位。PagedAttention 把显存分成 4KB 的“页”，按需分配，就像共享单车的“随用随停”，显存利用率大幅提升。Continuous Batching 则让多个请求可以在同一批次中动态进出，而不是等整个批次完成才能加入新请求。</p>
+<p>Ollama 在生产环境的短板在于它优先考虑易用性而非极致性能。它的默认推理路径没有做 PagedAttention 级别的显存优化，也没有 Continuous Batching 的精细调度，在高并发场景下吞吐量会迅速饱和。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能说出 vLLM 的三大核心优化：PagedAttention、Continuous Batching、内置 LoRA 支持。</li>
+<li>能指出 TensorRT-LLM 的适用边界：NVIDIA GPU 独占、需要编译步骤、适合对延迟有极致要求的场景。</li>
+<li>能关联到实际部署经验：生产环境通常用 vLLM + FastAPI 封装对外服务，Ollama 只用于本地调试。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为“Ollama 能跑模型就能用于生产”——Ollama 的默认配置在高并发下吞吐量会严重下降。</li>
+<li>以为“TensorRT-LLM 一定比 vLLM 快”——TensorRT-LLM 在特定硬件和模型上确实快，但编译成本高，且对动态形状支持不如 vLLM 灵活。</li>
+</ul>
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent 通信 · A2A · 企业集成</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>知识库提到了 A2A（Agent to Agent）通信协议，以及企业级大模型 Agent 通信模式。请解释：为什么需要专门的 A2A 协议，而不是直接让 Agent A 通过 HTTP 调用 Agent B 的 API？A2A 协议的核心设计要素是什么？在企业级分布式 Agent 集群中，A2A 通信需要解决哪些传统微服务通信不存在的难题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>A2A 协议的存在是因为 Agent 之间的通信不是简单的“请求-响应”，而是涉及能力发现、任务协商、上下文传递、状态同步的复杂协作，传统微服务的 HTTP/RPC 调用无法表达这些语义。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>能力发现：Agent A 需要知道 Agent B 能做什么、擅长什么、输入输出格式是什么，这需要一种标准化的“能力描述语言”，而不是硬编码的 API 文档。</li>
+<li>任务协商：Agent 之间的协作可能是多轮的、有条件的、可拒绝的。Agent B 可能说“我做不了这个，但我认识能做的人”，这种协商语义超出了 HTTP 状态码的表达能力。</li>
+<li>上下文传递：Agent A 调用 Agent B 时，需要传递的不仅是参数，还有任务背景、历史对话、约束条件、用户身份等上下文信息。</li>
+<li>状态同步与审计：在长链路多 Agent 协作中，需要追踪“谁在什么时候做了什么决定”，这需要 A2A 协议内置的追踪和审计机制。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统微服务通信的隐喻是“点外卖”：你（服务 A）给餐厅（服务 B）下单，餐厅做好后给你送来，交易结束。A2A 通信的隐喻是“项目外包”：你（Agent A）把任务交给承包商（Agent B），承包商可能说“我需要更多信息”“这个我做不了，但我推荐 C”“我完成了 60%，剩下的需要你确认”，整个过程中有持续的协商和状态同步。</p>
+<p>A2A 协议的核心设计要素包括：<strong>Agent Card</strong>（能力描述文件，类似 OpenAPI Spec 但更丰富，包含 Agent 的能力边界、输入输出格式、约束条件）、<strong>Task 生命周期管理</strong>（任务从提交到完成的状态机，支持暂停、恢复、取消）、<strong>上下文传递机制</strong>（如何携带用户身份、会话历史、任务背景）、<strong>安全与鉴权</strong>（如何证明这次 A2A 调用得到了真实人类的授权）。</p>
+<p>在企业级分布式 Agent 集群中，A2A 通信还面临一个传统微服务没有的难题：<strong>Agent 的不可预测性</strong>。微服务的响应是确定性的，但 Agent 的响应取决于模型推理，可能产生幻觉、拒绝执行、或者给出不符合预期的输出。A2A 协议需要设计容错和降级机制来应对这种不确定性。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到 MCP 和 A2A 的分工：MCP 解决“Agent 与工具之间的通信”，A2A 解决“Agent 与 Agent 之间的通信”。</li>
+<li>能关联到 Agentic Auth 的信任链流转问题：A2A 通信中如何证明“Agent A 调用 Agent B 是经过用户授权的”。</li>
+<li>能指出 A2A 在企业内网穿透场景的价值：模型在公有云，Agent 在内网，A2A 协议作为安全桥梁。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为“A2A 就是 Agent 之间调 HTTP API”——A2A 协议的语义丰富度远超 HTTP 请求-响应模型。</li>
+<li>以为“A2A 和 MCP 是竞争关系”——它们是互补的，解决不同层次的通信问题。</li>
+</ul>
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>意图识别 · 智能客服 · 参数追问</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>知识库在讨论 HR 智能客服时，提出了“意图识别 + 追问参数机制”的行业做法。请解释：为什么不能把“意图识别”和“参数提取”合并成一步完成？追问参数机制的核心设计原则是什么？在“强管控工具”（如开证明、改订单）和“纯 RAG 文本”（如政策咨询）之间，意图识别和参数追问的策略有什么不同？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>意图识别和参数提取必须分离，因为意图识别是“分类问题”（确定用户想干什么），参数提取是“槽位填充问题”（确定操作的具体对象和条件），两者的错误处理策略和追问逻辑完全不同；强管控工具需要严格的参数完整性和人工确认，纯 RAG 文本则允许模糊查询和渐进式澄清。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>意图识别的本质：将用户输入映射到有限的意图标签集合（如查物流、退换货、闲聊），是一个分类问题，可以用 Few-Shot Prompt 或轻量分类模型解决。</li>
+<li>参数提取的本质：从用户输入中识别出执行操作所需的槽位（如订单号、日期、金额），是一个序列标注或信息抽取问题，需要结合上下文和业务规则。</li>
+<li>追问参数机制的核心原则：只追问“缺失的必要参数”，不追问“可推断的参数”；追问时给出明确的格式示例；设置最大追问轮数，超过后转人工。</li>
+<li>强管控工具与纯 RAG 文本的区别：前者需要参数完整性校验 + HITL 确认，后者可以接受模糊查询，通过 RAG 检索返回最相关的答案。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>把意图识别和参数提取合并成一步的隐喻是“让前台同时做接待和收银”。前台既要判断客人是来吃饭还是来住店（意图），又要收集客人的身份证、房型偏好、入住天数（参数）。如果客人说“我要住店”，前台立刻问“身份证号多少”，但客人可能只是想问问房价——意图还没确认清楚就急着收参数，会导致用户体验极差。</p>
+<p>正确的做法是“先分类，再填表”。意图识别先把用户的路由方向确定下来（是咨询类还是操作类），然后参数提取模块根据该意图对应的“参数模板”逐项检查：哪些参数已经有了，哪些缺失，哪些可以默认。追问时只问缺失的必要参数，比如用户说“帮我查快递”，系统只追问“快递单号是多少”，不会追问“你用什么快递公司”——因为单号本身就包含了快递公司信息。</p>
+<p>对于强管控工具，参数完整后还需要 HITL 确认。比如“帮我把订单改成退款状态”，即使参数齐全（订单号、退款金额、退款原因），系统也应该弹出确认框让用户核实，因为这是一个不可逆的副作用操作。而对于纯 RAG 文本查询，如“婚假有几天”，参数提取的容错率可以高很多——即使用户没说清楚是哪个地区，系统也可以检索出多个相关答案供用户选择。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能举例说明 Few-Shot Prompt 在意图识别中的应用：给出 2-5 个“用户输入 → JSON 意图标签”的示例，让模型锁定输出格式。</li>
+<li>能指出追问参数机制中的“最大追问轮数”设计：通常 2-3 轮后转人工，避免用户陷入无限追问循环。</li>
+<li>能关联到 Agentic Auth 的 HITL 机制：强管控工具的参数确认与人工审批是同一套安全理念的体现。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>以为“意图识别准确率 100% 才能上线”——实际上意图识别 + 追问机制 + 转人工兜底可以容忍一定的识别误差。</li>
+<li>以为“追问越多越好”——追问轮数过多会消耗用户耐心，应该设置上限并在追问中提供选项（如“是 A 还是 B”）。</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h1>🛠 应用题 · Q1 · 架构设计</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agentic Auth</code> <code>MCP 网关</code> <code>多租户隔离</code> <code>HITL</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你正在为一家大型金融机构设计一套「企业级 Agent 智能办公平台」。该平台包含多个子 Agent：<code>DataAgent</code>（可查询核心业务数据库）、<code>FinanceAgent</code>（可发起内部转账/报销审批）、<code>HR_Agent</code>（可查全员薪资与绩效）。这些 Agent 通过 MCP 协议与内网各业务系统通信，同时约有 200 个租户（子公司/部门）共用一套模型底座。</p>
+<p>请设计一套完整的 <strong>Agentic Auth（智能体鉴权）方案</strong>，说明：① 如何从网关层实现「Agent 身份 + 用户身份」的双重鉴权与多租户数据隔离？② 如何防止普通员工通过自然语言诱导高权限 Agent 越权操作？③ 在「查询类接口」与「副作用接口」之间，如何设计人肉安全闸（HITL）的拦截与恢复机制？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>先拆解信任链</strong>：该场景的鉴权不能只看「Agent 有没有权限」，必须同时校验「发起请求的人是谁」+「这个 Agent 被授权代表谁」+「目标接口的副作用等级」三层信息。</li>
+<li><strong>网关层做统一身份注入</strong>：所有 Agent 调用 MCP Server 或业务 API 时，不直接持有目标系统的 API Key，而是由统一的 LLM Gateway 在请求头注入 <code>X-Agent-ID</code> 和 <code>X-User-ID</code>，后端业务系统据此做二次校验。</li>
+<li><strong>向量检索强制预过滤</strong>：DataAgent 查询向量库（如 pgvector/Qdrant）时，网关在每次检索请求中强制注入 <code>tenant_id</code> 和 <code>department_id</code> 的标量过滤条件，从物理层面杜绝跨租户数据泄漏。</li>
+<li><strong>副作用接口挂起 + HITL 恢复</strong>：涉及写操作、财务操作、权限变更等接口，在代码层（如 LangGraph 的 <code>interrupt_before</code>）强制中断，将当前状态序列化持久化，等待人类确认后恢复执行。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>第一层：网关层双重身份鉴权</strong></p>
+<p>在 LLM Gateway 中为每个 Agent 节点签发独立的身份标识（<code>X-Agent-ID</code>），同时从上游用户请求中提取真实用户身份（<code>X-User-ID</code>）。所有 Agent 到 MCP Server 或业务 API 的调用必须经过网关，网关负责：</p>
+<ul>
+<li>校验 <code>X-Agent-ID</code> 是否在白名单内；</li>
+<li>校验该 Agent 是否被授权代表该 <code>X-User-ID</code> 执行操作；</li>
+<li>将用户身份透传给下游业务系统，由业务系统做最终权限裁决。</li>
+</ul>
+<p><strong>第二层：多租户向量检索预过滤</strong></p>
+<p>DataAgent 在执行 RAG 检索时，网关在请求进入向量数据库之前，强制注入标量过滤条件：</p>
+<pre><code class="language-python"># 伪代码：网关层注入租户过滤
+def build_search_filter(request):
+    return {
+        &quot;must&quot;: [
+            {&quot;key&quot;: &quot;tenant_id&quot;, &quot;match&quot;: {&quot;value&quot;: request.user.tenant_id}},
+            {&quot;key&quot;: &quot;department_id&quot;, &quot;match&quot;: {&quot;value&quot;: request.user.dept_id}},
+        ]
+    }
+</code></pre>
+<p>这样即使 Agent 被诱导执行了错误的检索，也无法获取到其他租户的数据。</p>
+<p><strong>第三层：安全沙箱隔离</strong></p>
+<p>DataAgent 如果需要现场编写 Python 代码进行数据分析，不允许直接在宿主机上执行。将其运行环境部署在 K8s 的 gVisor 安全容器或 E2B 沙箱中，每次任务创建独立的隔离环境，任务结束后立即销毁。</p>
+<p><strong>第四层：HITL 人肉安全闸</strong></p>
+<p>将工具按副作用等级分为三类：</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>类型</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0</td>
+<td>纯查询（查政策、查天气）</td>
+<td>自动放行</td>
+</tr>
+<tr>
+<td>L1</td>
+<td>敏感查询（查薪资、查客户隐私）</td>
+<td>记录审计日志，触发二次确认弹窗</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>副作用操作（转账、删除、审批通过）</td>
+<td>强制中断，必须人类确认</td>
+</tr>
+</tbody>
+</table>
+<p>在 LangGraph 中实现：</p>
+<pre><code class="language-python">from langgraph.checkpoint import MemorySaver
+from langgraph.graph import StateGraph
+
+# 对 L2 接口设置 interrupt_before
+graph = StateGraph(AgentState)
+graph.add_node(&quot;call_finance_api&quot;, finance_node)
+graph.add_edge(&quot;router&quot;, &quot;call_finance_api&quot;)
+graph.compile(
+    checkpointer=MemorySaver(),
+    interrupt_before=[&quot;call_finance_api&quot;]  # 执行前强制中断
+)
+</code></pre>
+<p>中断后，将 <code>thread_id</code> 和当前状态持久化到 PostgreSQL/Redis，前端弹出确认框。人类点击「确认」后，携带 <code>thread_id</code> 调用 Resume API 恢复执行。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>不要在 Prompt 里做鉴权</strong>：很多人试图在 System Prompt 里写「不要查询其他部门的数据」，这在 Agent 幻觉或注入攻击面前形同虚设。鉴权必须在代码层、网关层硬性拦截。</li>
+<li><strong>HITL 中断后的状态恢复要幂等</strong>：用户确认后恢复执行时，要确保不会重复执行已经完成的前置步骤（如已扣款但未发货）。建议在状态中记录「已执行节点清单」，恢复时跳过已完成节点。</li>
+<li><strong>审计日志必须完整记录「人→Agent→工具→参数→结果」全链路</strong>：金融场景合规要求高，每次 HITL 确认都要留痕，包括确认人、确认时间、确认时看到的参数快照。</li>
+<li><strong>Token 不要硬编码在 Agent 代码里</strong>：所有 API Key 和 MCP Token 应由网关统一管理和注入，Agent 代码中不出现任何明文凭证。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>引入动态权限衰减机制</strong>：根据用户的历史行为、当前上下文风险评分，动态调整 Agent 的权限范围。例如，深夜时段的转账操作自动升级为「必须双人确认」。</li>
+<li><strong>接入 SOAR（安全编排自动化响应）</strong>：当检测到 Agent 异常行为（如高频调用敏感接口）时，自动触发安全响应流程，临时冻结 Agent 的调用权限。</li>
+<li><strong>基于 OPA（Open Policy Agent）的策略引擎</strong>：将鉴权规则从代码中解耦，用声明式策略语言统一管理，支持租户级别的自定义权限策略。</li>
+</ul>
+<hr />
+<h1>🛠 应用题 · Q2 · 场景分析</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>LLM Wiki</code> <code>知识管理</code> <code>RAG 替代方案</code> <code>写入时思考</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你所在的公司有一个 200 人的研发团队，内部沉淀了约 5000 份技术文档（包括架构设计文档、API 规范、故障复盘报告、会议纪要等），分散在 Confluence、飞书文档和 Git 仓库中。现有的 RAG 系统存在明显痛点：跨文档的关联性问题（比如「A 系统的缓存设计」和「B 系统的缓存故障复盘」之间的关联）无法被有效发现，检索结果割裂且缺乏深度。</p>
+<p>团队最近关注到了 Karpathy 提出的 <strong>LLM Wiki 模式</strong>（录入时即思考、构建持久化 Markdown 知识库），但不确定是否应该用它完全替代现有 RAG 系统。请分析：① LLM Wiki 与传统 RAG 在「知识沉淀时机」和「跨文档关联能力」上的本质差异；② 给出一个「LLM Wiki + RAG 共存」的混合架构方案；③ 说明这种混合架构中，哪些场景走 Wiki、哪些场景走 RAG，以及两者如何协同。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>先定位 LLM Wiki 与传统 RAG 的本质差异</strong>：RAG 是「查询时临时检索」，LLM Wiki 是「写入时深度加工」。前者的知识是散落在原始文档中的切片，后者的知识是经过 LLM 提炼、互链的结构化概念网络。</li>
+<li><strong>分析当前团队的痛点归属</strong>：跨文档关联性差、检索结果割裂，这恰恰是传统 RAG 的先天缺陷，而 LLM Wiki 的双向链接和概念页机制天然擅长解决这个问题。</li>
+<li><strong>设计混合架构</strong>：不是「二选一」，而是让 LLM Wiki 负责「知识沉淀层」，RAG 负责「快速检索层」，两者通过统一的查询入口协同工作。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>第一步：构建 LLM Wiki 层（离线、异步）</strong></p>
+<p>在文档录入阶段，用 LLM 对每一份新文档执行以下加工：</p>
+<ul>
+<li><strong>生成 Source Note</strong>：提取文档的核心观点、关键结论、直接引述，并标注来源页码或段落；</li>
+<li><strong>抽取 Concept Page</strong>：识别文档中出现的核心概念（如「缓存一致性」「熔断降级」「分布式事务」），为每个概念建立独立页面，并自动挂载所有相关文档的引用链接；</li>
+<li><strong>建立双向链接</strong>：在 Wiki 页面之间通过 <code>[[概念名]]</code> 建立引用关系，形成知识图谱。</li>
+</ul>
+<p>这一过程是<strong>异步、增量式</strong>的，不阻塞用户实时查询。</p>
+<p><strong>第二步：保留 RAG 层（在线、实时）</strong></p>
+<p>RAG 层仍然负责快速检索，但检索的数据源从「原始文档切片」升级为「LLM Wiki 页面 + 原始文档切片」的双层结构：</p>
+<ul>
+<li><strong>Wiki 层</strong>：检索概念页和 Source Notes，这些内容经过提炼，信息密度高、跨文档关联清晰；</li>
+<li><strong>Raw 层</strong>：当 Wiki 层无法覆盖用户的具体问题时（比如需要查看某个 API 的原始参数定义），回退到原始文档切片。</li>
+</ul>
+<p><strong>第三步：统一查询入口（路由分发）</strong></p>
+<p>在查询入口处做意图分类：</p>
+<table>
+<thead>
+<tr>
+<th>查询类型</th>
+<th>路由目标</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>概念性问题（「什么是缓存穿透？我们有哪些相关实践？」）</td>
+<td>LLM Wiki 优先</td>
+<td>Wiki 已提炼概念和关联</td>
+</tr>
+<tr>
+<td>事实性/细节性问题（「订单服务的超时参数是多少？」）</td>
+<td>RAG Raw 层优先</td>
+<td>需要原始精确值</td>
+</tr>
+<tr>
+<td>综合性问题（「A 系统的缓存故障和 B 系统的缓存故障有什么共性和差异？」）</td>
+<td>Wiki 概念页 + RAG 补充</td>
+<td>需要跨文档对比 + 细节补充</td>
+</tr>
+</tbody>
+</table>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>LLM Wiki 的维护需要严格的 Schema 约束</strong>：必须在 <code>CLAUDE.md</code> 或 <code>AGENTS.md</code> 中明确规范 Wiki 页面的 YAML Frontmatter 格式、链接语法、命名约定，否则 LLM 生成的内容会越来越乱。</li>
+<li><strong>增量更新的一致性</strong>：当原始文档更新时，Wiki 层需要同步更新对应的 Source Note 和 Concept Page。建议在文档变更事件中触发异步的 Wiki 更新任务。</li>
+<li><strong>不要试图让 LLM Wiki 覆盖所有文档</strong>：对于高频变更的运维手册、实时数据报表，走传统 RAG 更合适；LLM Wiki 更适合沉淀「相对稳定、需要深度理解」的知识资产。</li>
+<li><strong>Wiki 层的内容质量依赖 LLM 的提炼能力</strong>：建议在 Wiki 生成流程中加入「质量校验」步骤，比如让 LLM 对比 Source Note 与原文，检查是否有事实性错误或遗漏。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>引入知识盲区检测</strong>：定期用图算法（如 Louvain 社区检测）分析 Wiki 的知识图谱，自动识别「孤立节点」（缺少链接的概念）和「知识空洞」（某些领域文档覆盖不足），指导团队补充文档。</li>
+<li><strong>与 Obsidian 生态结合</strong>：如果团队已经在用 Obsidian，可以直接使用 Karpathy LLM Wiki 插件，让 AI 自动在 Graph View 上长出概念实体和双向链接，降低团队的学习成本。</li>
+<li><strong>Wiki 驱动的 Agent 记忆系统</strong>：将 LLM Wiki 作为 Agent 的长期记忆层，Agent 在对话中产生的有价值知识可以异步写入 Wiki，后续对话通过检索 Wiki 获得更连贯的上下文。</li>
+</ul>
+<hr />
+<h1>🛠 应用题 · Q3 · 工程实现</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>向量库磁盘占用</code> <code>Qdrant 部署</code> <code>sparse file</code> <code>Windows/Linux 差异</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你负责将一个基于 Qdrant 的 RAG 服务从本地开发环境（Windows + Docker Desktop）迁移到线上 Linux 服务器。本地开发时，Qdrant 的 storage 目录占用高达 2.5GB，但迁移到 Linux 服务器后，同样的数据量只占了几 MB。团队里一位同事认为「线上数据肯定丢了」，另一位同事怀疑「Windows 和 Linux 的 Qdrant 版本不一致导致数据格式不同」。</p>
+<p>请解释：① 为什么同样的数据在 Windows 上显示 2.5GB，在 Linux 上只有几 MB？「sparse file（稀疏文件）」在这个现象中扮演了什么角色？② 为什么本地降到 432MB 后仍然比线上大很多？③ 如果要让本地开发环境的磁盘占用接近线上，应该怎么调整部署方式？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>先定位问题本质</strong>：这不是数据丢失，也不是版本差异，而是「文件系统对稀疏文件（sparse file）的统计和落盘机制不同」导致的显示差异。</li>
+<li><strong>理解 Qdrant 的存储机制</strong>：Qdrant 会创建逻辑上较大的固定页文件（如 32MB 的 <code>page_0.dat</code>、<code>chunk_0.mmap</code>、WAL 文件），但这些文件中大量是「预分配但未实际写入」的空洞。</li>
+<li><strong>对比 Linux 与 Windows 的处理差异</strong>：Linux 文件系统（ext4/xfs）原生支持 sparse file，未写入的空洞不占磁盘块；而 Windows 的 NTFS 在 Docker bind mount 场景下，容易按完整文件大小落盘。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>第一步：验证 sparse file 的存在</strong></p>
+<p>在 Linux 服务器上执行以下命令，对比逻辑大小和实际占用：</p>
+<pre><code class="language-bash"># 显示实际磁盘占用（可能只有几 MB）
+du -h /path/to/qdrant/storage
+
+# 显示逻辑大小（可能显示几百 MB 甚至 GB）
+du -h --apparent-size /path/to/qdrant/storage
+</code></pre>
+<p>如果 <code>--apparent-size</code> 远大于 <code>du -h</code> 的结果，说明存在大量稀疏文件。</p>
+<p><strong>第二步：解释 Windows bind mount 的落盘差异</strong></p>
+<p>本地开发环境使用 Docker Desktop + Windows 目录 bind mount（<code>./storage:/qdrant/storage</code>），Qdrant 容器内部写入的是 Linux 路径，但数据最终落在 Windows 的 NTFS 文件系统上。在 bind mount 场景下，NTFS 不会像 ext4 那样高效处理稀疏文件，预分配的 32MB 页文件会按完整大小占用磁盘空间。</p>
+<p><strong>第三步：解释 2.5GB → 432MB 的下降原因</strong></p>
+<p>之前 2.5GB 的主要原因是 <strong>segment 数量过多</strong>。Qdrant 中每个 collection 的每个 segment 都有独立的页文件和 WAL 文件，即使 segment 内数据很少，预分配的文件也会占用空间。通过优化（如合并 segment、减少 collection 数量），segment 数量下降后，预分配文件的总量减少，因此降到 432MB。剩余的 432MB 主要是：</p>
+<ul>
+<li>两个 collection 的 segment 固定页文件；</li>
+<li>两个 collection 的 WAL；</li>
+<li>payload index 预分配文件。</li>
+</ul>
+<p>这些在 Windows bind mount 下仍然按完整大小落盘，所以比线上大很多。</p>
+<p><strong>第四步：让本地开发环境接近线上的部署方式</strong></p>
+<p>有三种可选方案：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>操作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方案 A：Docker named volume</td>
+<td>将 bind mount 改为 <code>qdrant_storage:/qdrant/storage</code></td>
+<td>数据存在 WSL2 的 ext4 文件系统，稀疏文件正常处理</td>
+</tr>
+<tr>
+<td>方案 B：WSL2 文件系统</td>
+<td>将 storage 目录放到 WSL2 的 Linux 文件系统路径下（如 <code>~/qdrant/storage</code>）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>方案 C：接受差异</td>
+<td>本地继续用 bind mount，但定期清理旧 segment</td>
+<td>简单但磁盘占用仍然偏大</td>
+</tr>
+</tbody>
+</table>
+<p>推荐方案 A，改动最小且效果最好。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong><code>du -h</code> 和 <code>ls -lh</code> 的结果可能差异巨大</strong>：<code>ls -lh</code> 显示的是逻辑大小，<code>du -h</code> 显示的是实际占用。在 Linux 上排查磁盘占用时，一定要用 <code>du -h</code>。</li>
+<li><strong>segment 过多是磁盘膨胀的另一大元凶</strong>：即使每个 segment 的预分配文件不大，但几十上百个 segment 叠加起来就会非常可观。定期触发 Qdrant 的 segment 合并（optimize）可以有效降低磁盘占用。</li>
+<li><strong>不要把 Qdrant storage 放在 Windows 项目目录里</strong>：这是最常见的错误。Windows 项目目录通过 bind mount 挂载到容器后，稀疏文件的优势完全丧失。</li>
+<li><strong>备份时注意</strong>：如果备份的是 Windows bind mount 目录，备份文件会包含大量「空洞」，备份体积远大于实际数据量。建议在 Linux 环境或 named volume 中做备份。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>在 Qdrant 中开启标量量化（Scalar Quantization）</strong>：将向量从 float32 压缩为 int8，可以进一步降低存储和内存占用。</li>
+<li><strong>使用 On-disk 索引</strong>：对于数据量较大（亿级）的场景，将 HNSW 索引放在 SSD 上，只在计算时动态加载到内存，可以大幅降低内存需求。</li>
+<li><strong>监控 segment 数量和磁盘占用趋势</strong>：在 Qdrant 的监控面板中跟踪 segment 数量，当超过阈值时自动触发 optimize 操作。</li>
+</ul>
+<hr />
+<h1>🛠 应用题 · Q4 · 排障优化</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Skills 安装</code> <code>Codex 目录结构</code> <code>Agent 调用失败</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你的团队在使用 Codex 构建 AI Agent 项目。一位同事从 GitHub 上找到了一个名为 <code>knowledge-deploy</code> 的开源 Skill，按照网上的教程将其复制到了 <code>D:\FM\ai-agents-py\.codex\skills\knowledge-deploy\</code> 目录下，然后重启了 Codex。但在 Codex 的 Skills 面板中找不到这个 Skill，用 <code>$knowledge-deploy</code> 调用时也报错「Skill not found」。</p>
+<p>同时，另一位同事从某个仓库下载了一批 <code>agency-agents</code>，复制到了 <code>C:\Users\Administrator\.codex\agents\</code> 目录下，重启后同样在 Skills/Plugins 列表中看不到，但用 <code>用 ai-engineer agent 简单介绍一下自己</code> 测试时却能正常调用。</p>
+<p>请分析：① 第一个同事的 Skill 为什么调用失败？正确的项目级 Skill 应该放在什么目录？② 第二个同事的 agents 为什么在 UI 列表中看不到，但能正常调用？③ 请总结 Codex 中 Skills、Agents、Plugins 三者的目录位置和调用方式的区别。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>先定位第一个问题的根因</strong>：<code>.codex/skills/</code> 不是项目级 Skill 的标准目录。项目级 Skill 应该放在 <code>.agents/skills/</code> 下，而 <code>~/.codex/skills/</code> 是全局个人 Skill 目录。</li>
+<li><strong>分析第二个问题的现象</strong>：Custom Agents 存放在 <code>~/.codex/agents/</code>，它们不会出现在 Skills 或 Plugins 的 UI 列表中，但可以通过点名调用或 spawn 子 Agent 的方式使用。这是正常的，不是安装失败。</li>
+<li><strong>总结三者的本质区别</strong>：Skills 是「技能包」（通过 <code>$skill-name</code> 调用），Agents 是「自定义子代理」（通过点名或 spawn 调用），Plugins 是「插件」（出现在 Plugins 面板）。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>第一步：修复第一个同事的 Skill 安装路径</strong></p>
+<p>错误路径：</p>
+<pre><code>D:\FM\ai-agents-py\.codex\skills\knowledge-deploy\
+</code></pre>
+<p>正确路径（项目级）：</p>
+<pre><code>D:\FM\ai-agents-py\.agents\skills\knowledge-deploy\
+</code></pre>
+<p>正确路径（全局个人）：</p>
+<pre><code>C:\Users\Administrator\.codex\skills\knowledge-deploy\
+</code></pre>
+<p>验证 Skill 是否标准：检查目录下是否有 <code>SKILL.md</code> 文件，且 <code>SKILL.md</code> 中是否包含必需的 YAML Frontmatter：</p>
+<pre><code class="language-markdown">---
+name: knowledge-deploy
+description: 什么时候使用这个 skill
+---
+
+具体工作流说明。
+</code></pre>
+<p><strong>第二步：验证修复后的调用</strong></p>
+<p>将 Skill 文件夹复制到正确目录后，重启 Codex 或执行 Force Reload Skills，然后测试：</p>
+<pre><code>$knowledge-deploy
+</code></pre>
+<p><strong>第三步：解释 agents 的「不可见但可调用」现象</strong></p>
+<p>Custom Agents 存放在 <code>~/.codex/agents/</code> 目录下，它们属于「Subagents」概念。Codex 的 UI 中三类组件是分开管理的：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>存放位置</th>
+<th>UI 可见性</th>
+<th>调用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skills</td>
+<td><code>~/.codex/skills/</code> 或 <code>.agents/skills/</code></td>
+<td>出现在 Skills 面板</td>
+<td><code>$skill-name</code></td>
+</tr>
+<tr>
+<td>Plugins</td>
+<td><code>~/.codex/plugins/</code></td>
+<td>出现在 Plugins 面板</td>
+<td>插件机制</td>
+</tr>
+<tr>
+<td>Agents</td>
+<td><code>~/.codex/agents/</code></td>
+<td>不一定有单独列表</td>
+<td>点名调用或 spawn</td>
+</tr>
+</tbody>
+</table>
+<p>所以第二个同事的 agents 安装是<strong>成功的</strong>，只是不会出现在 Skills/Plugins 列表中。</p>
+<p><strong>第四步：验证 agents 可用性</strong></p>
+<p>用以下方式测试：</p>
+<pre><code>用 ai-engineer agent 简单介绍一下自己，不要调用工具
+</code></pre>
+<p>或者：</p>
+<pre><code>用 agents-orchestrator agent 帮我选择适合这个任务的 agent
+</code></pre>
+<p>如果 agent 能正常响应，说明安装成功。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong><code>.codex/skills/</code> 不是项目级 Skill 的标准目录</strong>：很多人误以为 <code>.codex/</code> 下所有东西都是 Codex 的配置目录，但实际上 <code>.codex/</code> 更多偏 Codex 配置、插件缓存和项目配置。项目级 Skill 的标准位置是 <code>.agents/skills/</code>。</li>
+<li><strong>项目级 vs 全局的优先级</strong>：当项目级和全局级存在同名 Skill 时，项目级优先。这适合团队协作场景，项目专用 Skill 随项目共享，个人通用 Skill 放全局。</li>
+<li><strong>SkillsLLM 上的东西不一定是标准 Skill</strong>：SkillsLLM 是一个聚合搜索站，里面混有 MCP Server、CLI 工具、普通 GitHub 项目等。安装前必须检查是否有 <code>SKILL.md</code>。</li>
+<li><strong>Agents 和 Skills 不能互换</strong>：如果想在 Skills 面板中看到某个 agent 的能力，需要将其改造成 <code>SKILL.md</code> 格式，但这不是 agents 的标准安装方式。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>建立团队级 Skill 仓库</strong>：将团队常用的 Skills 统一放在一个 Git 仓库中，通过 CI/CD 自动同步到各开发者的 <code>.agents/skills/</code> 目录。</li>
+<li><strong>编写 Skill 安装脚本</strong>：自动化检查 <code>SKILL.md</code> 的格式、复制到正确目录、触发 Force Reload，减少人工操作失误。</li>
+<li><strong>使用 agents-orchestrator 做动态路由</strong>：当项目中有多个 Custom Agents 时，可以配置一个 orchestrator agent，根据任务类型自动选择合适的子 Agent。</li>
+</ul>
+<hr />
+<h1>🛠 应用题 · Q5 · 综合落地</h1>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>百炼 RAG 选型</code> <code>多模态检索</code> <code>成本控制</code> <code>分阶段演进</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你负责从 0 到 1 交付一个面向中小企业的「智能合同审查 Agent」产品。该产品需要处理用户上传的合同文档（PDF 格式，包含文字条款和少量印章图片），支持以下功能：① 合同条款的语义检索（如「找一下关于违约金的条款」）；② 合同风险点自动识别；③ 跨合同对比分析。</p>
+<p>团队已经确定使用阿里云百炼平台的大模型和向量检索服务。在技术选型阶段，一位同事提出「既然合同里有图片，就应该直接用多模态向量模型 <code>qwen3-vl-embedding</code>」，另一位同事则认为「纯文本的 <code>text-embedding-v4</code> 就够了」。</p>
+<p>请给出你的完整落地思路：① 第一阶段应该选什么 Embedding 和 Rerank 模型？为什么？② 合同中的印章图片在什么情况下才需要引入多模态向量模型？③ 给出一个从 MVP 到完整产品的分阶段演进路线图，包括每个阶段的核心目标、技术方案和成本考量。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li><strong>先明确「文档中有图片」不等于「必须多模态检索」</strong>：如果图片中的信息可以通过 OCR 提取为文字，走纯文本链路通常更划算。只有当图片本身是检索目标（如「找一下有这种印章的合同」）时，才需要多模态向量模型。</li>
+<li><strong>从成本和稳定性出发选型</strong>：<code>text-embedding-v4</code> 速度快、成本低、维度选择多，是纯文本 RAG 的首选。<code>qwen3-rerank</code> 作为纯文本重排模型，可以显著提升检索精度。</li>
+<li><strong>设计分阶段演进路线</strong>：MVP 阶段用纯文本链路快速验证业务价值，后续根据真实用户反馈决定是否引入多模态能力。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>第一阶段：MVP（纯文本链路）</strong></p>
+<ul>
+<li><strong>Embedding</strong>：<code>text-embedding-v4</code></li>
+<li><strong>Rerank</strong>：<code>qwen3-rerank</code></li>
+<li><strong>处理流程</strong>：<br />
+  1. 用户上传 PDF 合同；<br />
+  2. 用 OCR 引擎（如阿里云 OCR）提取文字内容，包括印章区域的文字（如「XX 公司合同专用章」）；<br />
+  3. 将提取的文字按条款、段落切分，存入百炼向量库；<br />
+  4. 查询时先向量检索，再用 <code>qwen3-rerank</code> 重排。</li>
+<li><strong>核心目标</strong>：验证合同条款检索和风险点识别的业务价值，积累真实用户反馈。</li>
+</ul>
+<p><strong>第二阶段：引入多模态（按需）</strong></p>
+<p>当出现以下信号时，才考虑引入 <code>qwen3-vl-embedding</code> 和 <code>qwen3-vl-rerank</code>：</p>
+<ul>
+<li>用户明确需要「以图搜图」：比如上传一张印章图片，查找所有盖了相同印章的合同；</li>
+<li>合同中的图片包含无法通过 OCR 提取的关键信息：比如手写签名、复杂的流程图、印章的防伪纹路；</li>
+<li>纯文本检索的准确率无法满足用户需求，且问题定位为「图片信息丢失」。</li>
+</ul>
+<p><strong>第三阶段：跨合同对比分析</strong></p>
+<ul>
+<li>在纯文本链路的基础上，引入 <strong>LLM Wiki 模式</strong>：对每份合同生成结构化的 Source Note（核心条款摘要、风险点清单、关键数据提取），建立跨合同的概念页（如「违约金条款」「竞业限制」），通过双向链接实现跨合同对比。</li>
+<li>查询时优先检索 Wiki 层，RAG 层作为补充。</li>
+</ul>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li><strong>OCR 质量直接影响 RAG 效果</strong>：合同文档的排版复杂，OCR 提取的文字可能存在错别字、段落错乱等问题。建议在 OCR 后增加「文本清洗和结构化」步骤，比如用 LLM 对 OCR 结果进行纠错和分段。</li>
+<li><strong>印章图片的处理策略</strong>：如果印章只是「存在」但不影响合同条款的理解，OCR 提取印章文字（如「XX 公司合同专用章」）作为元数据即可，不需要多模态向量化。</li>
+<li><strong>成本控制</strong>：<code>qwen3-vl-embedding</code> 和 <code>qwen3-vl-rerank</code> 的调用成本远高于纯文本模型。在 MVP 阶段，纯文本方案可以节省 80% 以上的向量化成本。</li>
+<li><strong>不要一开始就追求「全自动」</strong>：合同审查涉及法律风险，建议在 MVP 阶段保留「人工审核」环节，AI 只做初筛和提示，最终结论由人类律师确认。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li><strong>引入 Few-Shot 提升风险识别准确率</strong>：在风险点识别 Prompt 中提供 2~5 个「条款示例 → 风险标签」的样本，引导 LLM 按照预期的格式和判断边界输出。</li>
+<li><strong>与 LLM Wiki 结合做知识沉淀</strong>：将审查过的合同和律师的修改意见沉淀为 Wiki 知识库，后续审查时自动引用历史案例，提升审查质量。</li>
+<li><strong>多租户隔离</strong>：如果产品服务多个企业客户，需要在向量检索时注入 <code>tenant_id</code> 预过滤，确保合同数据隔离。</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
