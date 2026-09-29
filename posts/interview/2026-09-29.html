@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-09-29)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-09-29)</h1>
+    <div class="meta">更新于 2026-09-29 11:06</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · 微调 · FlashAttention<br />
+🔄 知识片段：#22, #1, #2（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LLM Wiki</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>知识库中提到 Andrej Karpathy 提出的 LLM Wiki 是新一代知识管理架构，它和传统 RAG 系统、普通笔记软件有什么本质区别？为什么说它解决了传统 RAG “临时抱佛脚”的痛点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>LLM Wiki 是一种「录入即思考、自动构建双链知识网」的知识管理模式，把传统 RAG 检索时的临时计算提前到文档入库阶段，自动生成结构化的私有维基百科，从根本上解决跨文档知识割裂的问题。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>三层架构分层：只读原始资料层、LLM 自动维护的 Markdown 维基层、提示词约束的规则层</li>
+<li>思考时机前置：文档入库时就完成实体提取、概念关联、观点汇总，而非查询时临时检索</li>
+<li>双向链接网络：用 Markdown <code>[[双链]]</code> 自动建立概念、人物、文档之间的关联，形成知识图谱</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以用图书馆的类比来理解三种模式的差异：普通笔记软件相当于你自己买书、自己贴标签、自己整理书架，所有工作全靠人工，知识量一大就管不过来；传统 RAG 相当于你雇了一个记性不好的助理，每次你问问题，他才临时跑到书堆里乱翻几页，拼凑出一个答案给你，经常断章取义、找不到跨书的关联；而 LLM Wiki 相当于雇了一个全职的资深图书管理员，你每买一本新书，他就提前读完，把核心观点摘出来、给相关概念建立交叉引用、更新整个图书馆的分类目录，等你提问时，他直接基于已经整理好的知识体系回答，深度和连贯性完全不是一个量级。<br />
+它的三层架构设计非常严谨：最底层是只读的原始文档，LLM 绝对不能修改，作为事实溯源的依据；中间层是 LLM 自动维护的 Wiki 目录，包含单文档摘要、核心概念页、观点对比页；最上层是类似 <code>CLAUDE.md</code> 的规则文件，严格规定 LLM 的写作模板、链接规范、纠错机制，保证知识质量不滑坡。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到 LLM Wiki 特别适合 Claude Code、Cursor 这类终端/IDE 场景，可实现代码级的知识插拔</li>
+<li>能指出社区已经有 Obsidian 插件、独立桌面端等落地实现，支持用 Louvain 图算法自动发现知识聚类和盲区</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为 LLM Wiki 要完全替代传统 RAG。实际上两者是互补关系：高频、结构化的核心知识用 Wiki 沉淀，长尾、临时的文档依然可以走传统 RAG 检索。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Few-Shot 提示工程</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>什么是 Few-Shot（少样本提示）？在企业级 Agent 开发中，它和模型微调（Fine-tuning）相比，在落地成本、迭代速度、适用场景上有什么核心差异？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Few-Shot 是通过在提示词中提供 2~5 个高质量示例，引导大模型“照猫画虎”输出符合预期格式和逻辑结果的提示工程技术，是业务冷启动阶段成本最低、迭代最快的效果优化手段。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>示例锚定效应：通过具体样本给模型明确三个边界——输出格式、语言风格、判断标准，比纯文字规则描述有效得多</li>
+<li>零训练成本：不需要修改模型权重、不需要GPU资源、不需要准备大规模标注数据集</li>
+<li>即时生效：修改示例即可调整模型行为，无需等待训练任务，迭代周期从天级降到分钟级</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>大模型本质上是一个“见多识广但容易自由发挥”的实习生：如果你只给它一句抽象的规则“请识别用户意图，返回JSON”，它大概率会输出一堆客套话、格式错乱、甚至判断边界模糊；但如果你给它看2-3个标准的“输入-输出”范例，它瞬间就能明白你要什么，直接输出干净的结果，这就是 Few-Shot 的核心价值。<br />
+和微调的差异可以用员工培训来类比：微调相当于把员工送去参加几个月的封闭式培训班，系统性改变他的知识结构和行为习惯，适合需要大批量、稳定处理、且规则长期不变的场景，但成本高、周期长、改起来麻烦；Few-Shot 相当于你给员工看几张优秀作业模板，告诉他“就照着这个格式做”，1分钟就能上手，适合业务快速迭代、规则经常调整、标注数据不足的冷启动阶段。比如智能客服的意图识别，业务刚上线时分类标签可能每周都在调整，这时候用 Few-Shot 改提示词里的示例就行，完全没必要每次都去微调模型。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到 Few-Shot 的示例质量远重于数量，2-5个精心挑选的边界 case 比堆砌20个普通样本效果好得多</li>
+<li>能指出当业务规则稳定、样本量积累到几千条以上、且对推理成本敏感时，再考虑把 Few-Shot 沉淀的能力迁移到小模型微调上，是性价比最高的落地路径</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为示例越多越好。实际上过多的示例会占用大量 Token 上下文，增加推理成本，甚至会引入噪声干扰模型判断，通常2-5个高质量样本就足够。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Python环境管理</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Python 项目开发中，venv、Conda、uv 是三种最常用的环境隔离工具，它们的核心差异是什么？在大模型/Agent 项目开发中应该如何选型？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>三者的核心差异在于依赖管理范围和速度：venv 是 Python 自带的轻量虚拟环境，Conda 是跨语言全栈环境管理器，uv 是 Rust 编写的现代极速包管理工具，Agent 开发中日常场景优先用 uv，数据科学/需要CUDA依赖用Conda，临时小脚本用venv。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>venv：Python 标准库自带，仅能隔离 Python 包版本，不管理 Python 解释器本身和系统级依赖，速度一般</li>
+<li>Conda：跨语言包管理器，不仅管 Python 包，还能管理 Python 版本、CUDA、C 语言库等系统级依赖，但体积大、解析依赖速度慢</li>
+<li>uv：Astral 团队用 Rust 开发的现代工具，完全兼容 pip/venv 生态，依赖解析和安装速度比 pip 快10-100倍，轻量且无冗余</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>环境隔离的本质是解决“项目A需要依赖X的1.0版本，项目B需要依赖X的2.0版本”的版本冲突问题，就像给每个项目准备一个独立的“工具箱”，互不干扰。三种工具的差异可以用租房来类比：venv 相当于你租了个空房子，家具得自己买，而且只能放Python相关的家具，适合临时凑合用；Conda 相当于拎包入住的精装公寓，不仅有Python家具，连CUDA、编译器这些系统级的家电都给你配好了，适合做深度学习训练这种需要复杂系统依赖的场景，但房租贵、占空间、进出慢；uv 相当于现代化的极简公寓，和空房子用一样的户型标准（完全兼容pip生态），但家具配送速度快了10倍，没有冗余装修，是日常开发的最优选择。<br />
+在大模型Agent项目中，绝大多数场景都是纯Python代码开发，依赖LangChain、LangGraph这类Python包，用uv可以把依赖安装时间从几分钟降到几秒，大幅提升开发效率；如果是做模型微调、需要搭配不同版本的CUDA、PyTorch，这时候Conda的跨语言依赖管理能力就不可替代；如果只是写个几十行的临时小脚本，没必要额外安装工具，直接用自带的venv就行。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到 uv 不仅能替代 venv/pip，还支持脚本管理、Python版本管理，未来会成为Python生态的标准工具</li>
+<li>能指出生产环境Docker镜像构建中用uv安装依赖，可以大幅缩短镜像构建时间，减小镜像体积</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为Conda是Python专属的工具。实际上Conda最初是为数据科学场景设计的，可以管理R、C++、Nodejs等任意语言的依赖，这也是它在深度学习场景不可替代的核心原因。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>向量数据库存储原理</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>同样数据量的 Qdrant/Milvus 向量数据库，为什么部署在 Linux 服务器上只占几 MB 磁盘空间，而本地 Windows 用 Docker bind mount 部署却要占几百 MB？是数据丢失了吗？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>两者数据内容完全一致，空间占用差异是 Linux 稀疏文件（Sparse File）机制和 Windows NTFS 对预分配文件落盘策略不同导致的，属于文件系统的正常特性，不是数据丢失或损坏。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>预分配机制：向量数据库为了保证写入性能，会提前创建固定大小的段文件、WAL日志文件、页文件（比如单文件32MB），预留存储空间</li>
+<li>Linux稀疏文件：逻辑上看起来是32MB的文件，没有实际写入的空白部分不占用真实磁盘块，只有真正写入数据的部分才会占空间，用<code>du -h</code>看到的是实际占用大小</li>
+<li>Windows bind mount 落盘：当Docker把容器内的Linux目录挂载到Windows NTFS分区时，系统不支持稀疏文件机制，预分配的文件会直接占满全部逻辑大小</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>这个现象非常像你去餐厅吃饭提前预定包厢：逻辑上这个包厢能坐10个人，不管实际来了几个人，包厢都是给你留着的。Linux的机制是“按实际到的人数算钱”，来了2个人就只收2个人的费，剩下的空位其他客人还能临时用；Windows的机制是“你预定了10人位就直接收10个人的钱”，哪怕只来2个人，位置也全给你占着，别人不能用。<br />
+向量数据库为了避免写入时频繁分配磁盘空间导致性能抖动，启动时就会提前创建一批固定大小的文件，比如32MB的页文件、WAL日志、payload索引文件。在Linux原生文件系统（ext4/xfs）上，这些文件是稀疏文件，你用<code>ls -l</code>看显示32MB，但用<code>du -h</code>看实际可能只占几百KB，只有当你真的写满32MB数据，才会占满全部空间；但如果你把Qdrant的存储目录通过Docker bind mount映射到Windows的NTFS分区，NTFS不识别Linux的稀疏文件标记，会直接把32MB的逻辑大小全部落盘，所以同样的数据看起来大了几十上百倍。另外如果向量库的segment段数量太多，即使是空段也会累积占用空间，定期做段合并可以减少这部分浪费。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能给出解决方案：本地开发时把Qdrant/Milvus的存储目录放到WSL2的Linux文件系统里，或者用Docker named volume，而不是直接挂载到Windows目录，就能获得和线上一致的空间占用表现</li>
+<li>能提到用<code>du -h --apparent-size</code>命令可以查看Linux下文件的逻辑大小，和Windows下的统计口径对齐</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为Windows下占用大是因为向量库多存了数据或者有缓存没清。实际上只要数据写入正常，两边的向量数据、payload数据是完全一致的，只是文件系统统计方式不同。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Codex技能生态</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>SkillsLLM 是目前流行的AI工具聚合站，很多人会从上面下载Skill安装到Codex/Claude中使用。请解释：SkillsLLM上的内容是不是都能直接作为Codex Skill安装？如何判断一个资源应该安装为Skill、Agent、MCP Server还是CLI工具？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>SkillsLLM是AI工具/技能/仓库的聚合发现平台，不是一键安装源，上面的资源包含Skill、MCP Server、CLI工具、Agent、普通仓库等多种类型，必须根据结构判断类型后按对应方式安装，不能直接复制到Skill目录。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>标准Codex Skill的判断依据：目录下必须包含<code>SKILL.md</code>文件，且文件头部有name、description元信息，描述什么时候调用这个技能</li>
+<li>MCP Server的判断依据：项目说明里标注是MCP服务，需要按MCP协议配置到客户端，提供标准化的工具调用能力</li>
+<li>Custom Agent的判断依据：属于独立的子智能体，安装到<code>~/.codex/agents</code>目录，不会出现在Skill列表里，需要点名调用</li>
+<li>CLI工具的判断依据：提供可执行命令，需要通过pip/npm/二进制方式安装到系统路径，在命令行直接调用</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>SkillsLLM就像一个大型的数码产品超市，里面卖手机、电脑、耳机、充电器各种东西，你不能看到个东西就往手机卡槽里插，得先看它是什么类型的产品，再对应使用。很多新手最容易犯的错就是在SkillsLLM上看到个项目，不管三七二十一就复制到<code>~/.codex/skills</code>目录，结果发现Codex根本识别不了，就是因为没区分资源类型。<br />
+标准的Codex Skill是“能力插件”，就给你当前的Agent加一个特定技能，比如处理PDF、生成Markdown，必须有SKILL.md作为入口文件；Custom Agent是“独立员工”，比如专门写代码的ai-engineer、专门做调度的orchestrator，它们有自己独立的系统提示和工作流，要放到agents目录，需要的时候点名让它干活；MCP Server是“外接工具箱”，通过标准协议给所有Agent提供统一的工具能力，比如查数据库、操作浏览器，需要在配置文件里添加服务地址；CLI工具是“系统命令”，比如claude命令本身，安装后可以在终端直接运行，和Codex没有直接关系。另外还要区分全局安装和项目级安装：个人常用的通用Skill装到用户目录的<code>~/.codex/skills</code>，项目团队专用的Skill装到项目根目录的<code>.agents/skills</code>，随项目代码一起共享，不要把项目专属的Skill放到全局目录。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Codex中Skills、Plugins、Agents三类资源是完全分开管理的，存放路径、UI展示位置、调用方式都不一样，安装错位置就无法识别</li>
+<li>能指出项目级Skill的标准目录是<code>.agents/skills</code>，而不是<code>.codex/skills</code>，后者是Codex的配置缓存目录，不适合放项目共享资源</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为安装到agents目录的自定义Agent应该出现在Codex的Skill列表里。实际上Custom Agent不会在Skill/Plugins面板展示，只有通过点名调用或者编排器调度时才会生效，这是正常现象，不是安装失败。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Obsidian知识管理</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Obsidian 被很多技术开发者称为构建“第二大脑”的终极工具，它和Notion、印象笔记这类云笔记软件相比，核心优势是什么？为什么特别适合程序员积累技术知识？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Obsidian是本地优先、基于纯Markdown文件、支持双向链接的知识管理工具，核心优势是用户完全掌握数据、支持双向链接构建知识网络、插件生态高度可定制，特别适合程序员构建可迁移、可版本控制的技术知识库。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>本地优先架构：所有笔记以纯文本Markdown格式存储在用户本地硬盘，不依赖云服务，即使软件停止服务，数据依然可以用任意文本编辑器打开</li>
+<li>双向链接机制：通过<code>[[笔记名]]</code>语法建立笔记之间的引用，自动生成反向链接和知识图谱，把碎片化的笔记编织成关联网络</li>
+<li>高度可定制插件生态：拥有上千个社区插件，可以按需配置成看板、思维导图、任务管理系统、代码片段管理器，不需要为用不到的功能付费</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统云笔记软件就像租了一个精装修的长租公寓，看起来很方便，但你的家具、行李都放在房东的房子里，房东哪天涨房租、改规则、甚至跑路，你的东西可能就拿不回来了；而且所有家具都是固定位置的，你想改个布局非常困难。Obsidian就像你自己买的一块地，所有的“家具”都是纯文本Markdown文件，永远属于你，你想怎么盖房子、怎么改布局都可以，完全不受制于厂商。<br />
+对于程序员来说，Obsidian的优势尤其明显：第一，纯Markdown格式完美兼容代码高亮，写技术笔记、存代码片段非常方便；第二，笔记文件夹可以直接用Git做版本控制，追踪每次修改的历史，和代码管理流程完全一致；第三，双向链接和知识图谱功能特别适合积累跨领域的技术知识——比如你学Python装饰器的时候，可以链接到你之前记的“闭包”笔记、“Agent工具注册”笔记，慢慢形成自己的知识网络，而不是一堆孤立的笔记文件；第四，完全离线可用，飞机上、没网的环境下也能随时查阅和记录笔记，没有云服务的限速和容量限制。新手最开始用的时候不要上来就装一堆插件，先当成普通记事本用，等笔记量上来了，再根据实际痛点找对应的插件，不然很容易陷入折腾工具的误区，反而忘了记笔记本身的目的。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Obsidian可以结合LLM Wiki插件，实现自动提取概念、生成双向链接，把AI作为知识管理的助理，大幅降低整理笔记的成本</li>
+<li>能指出卡片盒笔记法（Zettelkasten）和Obsidian双向链接是天作之合，适合碎片化积累灵感、逐步构建知识体系</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为Obsidian需要付费才能用。实际上Obsidian的个人版核心功能、全套社区插件都是完全免费的，只有同步、发布这类云服务需要付费，本地使用没有任何功能限制。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agentic Auth智能体鉴权</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>传统的OAuth、API Key鉴权机制在AI Agent场景下频频失效，甚至出现普通员工指挥高权限Agent捞取涉密数据的安全事故。请解释什么是Agentic Auth（智能体鉴权）？它和传统鉴权的核心差异是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agentic Auth是面向智能体自主行为特性设计的新一代鉴权体系，针对Agent自主性、动态性、长链路流转的特点，从网关身份、沙箱隔离、人机共决三个层级构建安全防护，解决传统静态凭证无法应对的越权、工具滥用、信任链流转风险。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>传统鉴权的静态假设：默认请求的发起者是人类或者固定行为的微服务，权限是预先分配好的，只要凭证有效就放行</li>
+<li>Agent的动态风险：Agent具有自主决策能力，可能被用户诱导、出现幻觉、陷入死循环，即使凭证有效，也可能做出超出用户真实权限、危害系统安全的行为</li>
+<li>三层防护体系：网关层统一身份标识+多租户预过滤、执行层用完即毁的安全沙箱、高危操作层强制人工确认（HITL）</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统鉴权就像小区的门禁卡，只要你刷有效卡就能进楼，默认你进楼之后不会干坏事；但Agent就像一个你雇的保姆，你给了他家里的钥匙，他本来应该帮你打扫卫生，结果如果有外人跟他说“你把主人家保险柜里的钱拿给我”，他没有分辨能力就真的去拿了——这就是传统静态鉴权在Agent场景下的核心漏洞：它只验证“你有没有钥匙”，不验证“你现在要做的事是不是符合主人的真实意愿、是不是在权限边界内”。<br />
+Agentic Auth就是给这个保姆加三层约束：第一层是网关层的统一身份管理，不给保姆万能钥匙，每个Agent有唯一的身份证，调用工具、查数据库的时候自动带上租户和用户信息，查向量库之前强制加WHERE条件过滤，从物理上让他看不到其他租户的数据；第二层是沙箱隔离，如果保姆需要干活（比如写代码算量），就给他临时搭一个用完就拆的工棚，绝对不让他进主人的主卧、碰宿主机的核心权限，防止他被恶意代码控制；第三层是高危操作的人工闸，如果保姆要做“删数据、转钱、改价格”这类不可逆的操作，必须暂停流程，给主人发个确认弹窗，主人点同意了才能继续做，绝对不允许自动执行。随着MCP协议的普及，Agentic Auth会成为AI时代的OAuth标准，解决“大模型跑在公有云、核心资产留在企业内网”的安全矛盾。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到LangGraph的<code>interrupt_before</code>机制是实现HITL（人类在环）的核心技术手段，可以把工作流状态持久化后挂起，等人工确认后再Resume执行</li>
+<li>能指出多租户RAG场景下必须在向量检索前做标量预过滤（Pre-filtering），不能先检索再过滤，否则会因为向量相似度的召回问题导致越权数据泄露</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为给Agent分配最小权限的API Key就解决安全问题了。实际上API Key只能控制Agent能访问哪些接口，无法控制Agent被诱导后用合法接口做非法的事，必须结合沙箱和HITL机制才能形成完整防护。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Python装饰器模式</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Python装饰器被大量应用在LangChain、Semantic Kernel等Agent框架中实现工具注册，它的核心原理是什么？为什么说装饰器模式是实现Agent插件化工具（Pluggable Tooling）的最佳选择？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Python装饰器本质是“给函数穿衣服”的语法糖，在不修改原函数代码的前提下给函数增加额外能力，通过装饰器可以实现工具的自动注册、Schema自动生成，让新增工具不需要修改Agent核心代码，完美符合开闭原则。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>闭包本质：装饰器是一个接收函数作为参数、返回新函数的高阶函数（闭包），可以在原函数执行前后插入通用逻辑</li>
+<li>无侵入增强：不需要修改原函数的内部代码，只需要在函数上面加<code>@装饰器名</code>语法糖，就能给函数增加额外能力</li>
+<li>元信息保留：装饰器可以自动提取函数的文档字符串（<strong>doc</strong>）、参数类型注解，自动生成符合大模型Function Calling要求的JSON Schema</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>装饰器的逻辑非常像给手机套壳：手机本身（核心业务函数）只负责打电话、上网的核心功能，你想防摔就套硅胶壳、想补电就套充电壳、想拍照就加镜头壳，不需要拆开手机改造内部结构，换不同的壳就能获得不同的能力——这就是装饰器“高内聚、低耦合”的核心价值。<br />
+在Agent开发中，工具注册是最适合用装饰器的场景：如果没有装饰器，你每新增一个工具，都要去Agent的核心代码里手动加一段注册逻辑，把函数名、函数描述、参数格式手动写一遍，不仅麻烦，还容易改出bug；用了装饰器之后，你只需要在写工具函数的时候加一个<code>@register_tool</code>装饰器，装饰器会自动把这个函数注册到Agent的工具列表里，同时自动读取函数的docstring和参数注解，生成大模型需要的Function Calling Schema，完全不需要修改Agent的核心大脑代码。比如你一开始有查天气、订机票三个工具，后来想增加查股票的能力，只需要新建一个查股票的函数，挂上<code>@register_tool</code>装饰器，Agent立刻就能识别并使用这个新工具，真正实现插件化扩展。这也是为什么所有主流Agent框架都大量使用装饰器模式——它把“工具是什么”和“工具怎么被Agent调用”完全解耦了。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到Python的<code>functools.wraps</code>是写装饰器的必备细节，它可以保留原函数的元信息（函数名、文档字符串），否则自动生成Schema的时候会拿到装饰器内部包装函数的信息，导致错误</li>
+<li>能指出装饰器不仅可以用来注册工具，还可以统一实现工具调用的鉴权、日志记录、超时熔断、错误重试等横切逻辑，避免每个工具函数重复写相同的代码</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为装饰器是很复杂的黑魔法。实际上装饰器的本质就是“函数作为参数传入，返回一个包装后的新函数”，<code>@decorator</code>语法只是Python提供的语法糖，完全可以用普通的函数调用实现同样的效果。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Python上下文管理器</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Python的<code>with</code>语句（上下文管理器）是开发中高频使用的语法，它的底层原理是什么？为什么在Agent开发中，用上下文管理器管理数据库连接、文件读写、锁资源比手动写try/finally更可靠？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>上下文管理器是Python提供的资源自动管理协议，通过实现<code>__enter__</code>和<code>__exit__</code>方法，保证不管代码正常执行还是抛出异常，资源都会被正确释放，从语法层面避免资源泄漏，是管理数据库连接、文件、锁等资源的最佳实践。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>协议约定：任何实现了<code>__enter__</code>（进入时执行，返回资源对象）和<code>__exit__</code>（退出时执行，不管是否发生异常都一定会调用）方法的对象，都可以作为上下文管理器使用</li>
+<li>异常安全：即使<code>with</code>块内部的代码抛出异常，<code>__exit__</code>方法依然会被执行，保证资源释放逻辑不会因为异常跳过</li>
+<li>语法简洁：把资源的获取和释放逻辑从业务代码中抽离出来，不需要在每个分支写重复的finally关闭逻辑</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>手动管理资源就像你借了公司的会议室开会，正常情况下开完会你会关灯锁门把钥匙还回去，但如果开会中途突然着火了（代码抛出异常），你可能慌慌张张跑了，忘了关灯锁门，会议室就一直被占着，别人用不了（资源泄漏）；上下文管理器就像一个专门的会议室管理员，你开会前他给你开门，不管你是正常开完会，还是中途出事跑了，他都会自动进去检查，关灯锁门收回钥匙，绝对不会出现会议室被一直占用的情况。<br />
+在Agent开发中，资源泄漏是非常隐蔽但影响很大的问题：比如数据库连接如果用完不关闭，积累多了就会把连接池占满，导致整个服务无法响应新的请求；文件不关闭会导致文件句柄泄漏，进程打开文件数超过系统限制就会崩溃；分布式锁不释放会导致其他进程永远拿不到锁，业务流程死锁。如果手动写try/finally，不仅代码冗长，而且很容易因为漏写finally、或者在try块里提前return导致释放逻辑被跳过；用上下文管理器的话，这些逻辑都被封装在<code>__exit__</code>方法里，语法层面强制保证一定会执行，代码也更简洁。Python标准库的<code>contextlib.contextmanager</code>装饰器还可以非常方便地把生成器函数转成上下文管理器，不需要写类就能实现自定义的资源管理逻辑。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到<code>__exit__</code>方法可以接收异常类型、异常值、_traceback三个参数，如果返回True可以吞掉异常，返回False则会继续向外抛出异常，可以灵活实现异常处理逻辑</li>
+<li>能结合Agent场景举例：比如大模型调用的超时上下文管理器、向量库连接的自动归还、Trace链路的自动收尾，都是上下文管理器的典型应用场景</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为只有文件操作能用with语句。实际上数据库连接、Redis连接、线程锁、HTTP会话、甚至大模型调用的计时、日志追踪，都可以实现成上下文管理器，应用场景非常广。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型应用选型</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>阿里云百炼等大模型平台同时提供纯文本Embedding、多模态Embedding、纯文本重排、多模态重排模型，企业构建RAG系统时应该如何选型？为什么官方不推荐一开始就全量上多模态链路？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>RAG模型选型应该遵循“文本优先、按需多模态”的渐进式路线：第一阶段纯文本/表格/OCR内容用text-embedding-v4加qwen3-rerank，等有真实的图片检索需求时，再叠加多模态Embedding和重排模型，不要一开始就全量上多模态，避免不必要的成本和性能损耗。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>成本与性能权衡：纯文本Embedding速度更快、成本更低、向量维度选择更多，检索延迟和推理成本远低于多模态模型</li>
+<li>信息等价性：文档中绝大多数图片里的文字信息（比如表格、流程图文字、截图内容）都可以通过OCR提取成文本，走纯文本链路效果完全一样，成本只有多模态的几十分之一</li>
+<li>分场景匹配：纯文本检索用文本模型，图文混合检索用多模态模型，文搜图/图搜图等跨模态场景才需要用视觉专属Embedding，不要用大炮打蚊子</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>选型的本质是投入产出比的权衡，就像你出门买个菜，没必要开跑车，骑电动车最快最方便；只有当你需要跑长途、走烂路的时候，才需要开越野车。很多团队刚做RAG的时候容易陷入“技术追新”的误区，觉得多模态是更先进的技术，不管什么场景都上来就用多模态Embedding，结果上线之后发现成本高了好几倍，检索速度慢了很多，效果反而没有纯文本链路好——因为绝大多数企业文档里的图片，本质都是文字信息的载体：比如系统架构图里的文字、产品截图里的按钮文字、报表里的数字，这些内容通过OCR提取成文本之后，用纯文本Embedding检索的准确率远高于直接用多模态模型识别图片，而且成本低、速度快。<br />
+正确的落地路线是分阶段走：第一阶段先把纯文本链路做扎实，所有能OCR成文字的内容（包括图片里的文字）都走text-embedding-v4 + qwen3-rerank的组合，这个组合是官方经过大量场景验证的最优解，速度快、成本低、效果稳定；等第一阶段上线跑通了，真的遇到“必须看图片本身才能回答”的需求——比如用户问“产品登录页的截图里，忘记密码按钮在哪个位置”、“架构图里的网络拓扑是怎么连的”，这时候再针对这部分图片数据单独加qwen3-vl-embedding + qwen3-vl-rerank的多模态链路，做混合检索。如果是纯文搜图、图搜图这类场景，再用tongyi-embedding-vision-plus这类专属模型。这种渐进式路线风险最低、性价比最高，不会为了不存在的需求提前付出成本。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能提到重排模型（Rerank）的价值：向量检索是粗排，召回Top N候选，重排模型是精排，对候选结果做更精准的语义排序，能大幅提升检索准确率，是生产级RAG的必备组件，不是可选项</li>
+<li>能指出多模态链路的额外成本：不仅是Embedding成本高，多模态向量的维度更高，向量数据库的存储成本、检索延迟也会随之上升，全量上多模态会导致整个系统的资源成本翻数倍</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：认为“文档里有图片就必须用多模态”。实际上90%以上的企业文档场景，图片里的信息都可以通过OCR转成文本，纯文本链路完全可以覆盖，多模态只需要处理无法通过OCR提取的视觉信息（比如布局、颜色、图标位置、图像内容本身）。</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>LLM Wiki</code> <code>企业知识库</code> <code>传统RAG升级</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你所在的公司是一家拥有 2000 人规模的 SaaS 企业，内部散落着近 10 年的产品文档、客服话术、故障排查手册、技术方案等近 10 万份资料。目前上线的传统 RAG 客服系统被业务部门频繁吐槽：回答碎片化、跨文档关联能力差、新员工查一个问题要翻十几篇文档才能拼凑出完整答案。CTO 要求你基于知识库中提到的 LLM Wiki 架构，设计一套新一代企业内部知识库系统，替代原有的纯向量 RAG 方案。请说明你的架构设计思路。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先对齐传统 RAG 的核心痛点，明确 LLM Wiki 架构的三层边界，避免做成“换了个名字的 RAG”</li>
+<li>第二步：按照 Immutable Sources、The Wiki、The Schema 三层拆分模块，设计数据流转链路</li>
+<li>第三步：设计与现有办公系统（飞书/Confluence/工单系统）的增量同步机制，避免人工维护成本</li>
+<li>第四步：设计检索与问答链路，让 Wiki 层的结构化知识和原始 Sources 层的事实依据联动，避免幻觉</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整个系统分为三个核心层级，完全对齐 LLM Wiki 的设计理念：<br />
+第一层是 <strong>Immutable Sources 不变量源码层</strong>：对接企业内部所有数据源（飞书文档、Confluence、Git 仓库的 Markdown 文档、历史工单、客服聊天记录），所有原始文件只做只读存储，存在对象存储 OSS 中，附加版本号、上传人、更新时间等元数据，大模型永远不允许修改这一层的数据，作为所有回答的最终事实依据。<br />
+第二层是 <strong>The Wiki 维基层</strong>：这是整个系统的核心，由大模型异步维护。当新文档进入 Sources 层后，触发异步处理 Pipeline：首先对文档做切片和实体抽取，生成三类 Markdown 文件：① Source Notes：针对单篇文档的核心观点、关键步骤、适用场景摘要，标注原始文档的页码/段落位置；② Concept Pages：跨文档提取核心概念，比如“退款流程”“服务器502排查步骤”，把所有相关文档的描述整合到一个页面，用 <code>[[双链]]</code> 关联对应的 Source Notes；③ Debate Pages：针对不同文档中存在冲突的描述（比如新旧版本的流程差异），单独做页面标记冲突点和生效版本。所有 Wiki 文件统一存在 Git 仓库中，保留完整修改历史，支持人工审核编辑。<br />
+第三层是 <strong>The Schema 约束规范层</strong>：编写统一的 <code>AGENTS.md</code> 提示词文件，严格规定大模型生成 Wiki 页面的模板：必须使用 YAML Frontmatter 标注标签、生效部门、更新时间，必须用 <code>[[双括号]]</code> 关联相关概念，引用事实必须标注来源链接，存在信息冲突时必须明确说明而不是自行融合。<br />
+问答链路设计：用户提问时，首先检索 Wiki 层的 Concept Pages 获取结构化的完整知识，如果 Wiki 层的信息不足以回答，再通过 Concept Pages 上的双链跳转到对应的 Source Notes，最终追溯到原始 Sources 层的文档片段，把三级内容一起送给大模型生成回答，回答末尾自动附带来源链接。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要让大模型直接修改原始 Sources 层的文件，否则一旦出现幻觉篡改原始数据，整个知识库的可信度会彻底崩塌</li>
+<li>Wiki 层的生成必须做增量更新，不要每次全量重新生成所有页面，否则 10 万份文档的处理成本会高到无法承受</li>
+<li>不要完全替代传统向量检索：对于非常细碎的问题（比如“2024年3月的故障工单编号是多少”），还是要直接查 Sources 层的向量索引，Wiki 层主要解决跨文档的概念性、流程性问题</li>
+<li>Schema 层必须加自我校验 Lint 机制：每次大模型生成 Wiki 页面后，用一个轻量模型检查是否符合格式规范、是否标注了来源、是否存在未关联的实体，不符合要求的打回重生成</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以接入 Obsidian 作为 Wiki 层的人工编辑前端，让业务部门的专家可以直接在熟悉的界面里修改大模型生成的 Wiki 页面，修改后的内容自动同步回系统</li>
+<li>引入图算法（如 Louvain 社区发现）定期分析 Wiki 的双链网络，自动发现知识盲区：比如很多文档提到了“发票核销”但没有对应的 Concept Page，就自动触发任务让大模型生成</li>
+<li>增加权限控制：不同部门的用户只能检索到自己权限范围内的 Wiki 页面和原始文档，和企业内部的 OA 权限体系打通</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析题</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Few-Shot提示工程</code> <code>微调选型</code> <code>智能客服落地</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你带领团队开发一款电商智能客服系统，需要实现用户输入的意图分类能力，分类标签包含查物流、退换货、价格咨询、投诉建议、闲聊共5类。团队里的算法工程师提出要花2周时间标注2000条样本，用LoRA微调一个7B参数的开源模型来做意图分类，认为微调后的效果比提示工程好；而产品经理认为没必要微调，直接写提示词加几个例子就能上线，要求本周内必须上线。请结合知识库中关于Few-Shot和微调的特性，分析两种方案的适用场景，并给出你最终的落地决策。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先拆解当前场景的核心约束：上线周期紧（1周）、分类标签固定（5类）、业务规则清晰，先明确两种方案的成本和收益边界</li>
+<li>第二步：对比Few-Shot和微调在数据成本、迭代速度、效果上限、维护成本四个维度的差异</li>
+<li>第三步：设计分阶段落地的方案，先满足快速上线的需求，再根据线上数据决定是否需要做微调</li>
+<li>第四步：设计效果兜底机制，避免上线后分类错误影响用户体验</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>首先明确两种方案的适用边界：<br />
+<strong>微调方案的本质是“把知识写入模型权重”</strong>，适合的场景是：分类规则非常复杂、隐含的业务逻辑无法用几句话描述、有大量标注数据、分类体系长期稳定不会频繁变动。它的缺点也非常明显：需要至少几千条高质量标注数据，训练和部署需要GPU资源，后续如果要新增一个分类标签（比如新增“发票咨询”类），需要重新标注数据、重新训练、重新部署，迭代周期以周为单位。<br />
+<strong>Few-Shot方案的本质是“给模型看范例让它照猫画虎”</strong>，适合的场景是：分类规则清晰、标签数量少、需要快速上线、业务规则可能频繁调整。它的缺点是：如果分类边界非常模糊、例子选得不好，效果可能不如微调；每次推理都需要把例子带进Prompt，会消耗额外的Token。</p>
+<p>针对当前电商客服意图分类的场景，我会选择<strong>分阶段落地</strong>的方案：<br />
+第一阶段（本周内上线）：完全采用Few-Shot方案，不做微调。具体做法是：从历史客服聊天记录里挑选20条左右最典型的样本，每个分类选3-4个边界清晰的例子（比如查物流类选“我的快递到哪了”“怎么还没发货”，退换货类选“尺码小了能换吗”“我要退货”），严格按照知识库中的范例格式写进System Prompt，要求模型必须输出固定格式的JSON。上线初期把大模型的分类结果和真实客服的转接结果做对比，Bad Case 直接补充到Few-Shot例子池里，当天就能迭代优化。<br />
+第二阶段（上线1个月后）：如果积累了超过5000条经过人工校验的真实用户query标注数据，且发现Few-Shot在某些模糊边界（比如用户说“你们怎么还不发货我要退货”同时属于两个类别）上的准确率始终卡在85%上不去，再考虑用LoRA微调一个小参数模型（比如Qwen-7B），把微调后的模型作为第一层分类器，大模型Few-Shot作为第二层兜底：微调模型置信度高于90%的直接用结果，低于90%的送给大模型二次判断。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>Few-Shot的例子绝对不能随便选，一定要选最容易混淆的边界样本，而不是选最“标准”的样本：比如不要只放“我要查物流”这种直白的例子，要放“我上周买的衣服怎么还没收到”“快递显示签收了我没拿到”这种口语化、带噪声的真实用户query，否则模型遇到真实用户的口语化表达很容易分类错误</li>
+<li>不要一开始就追求100%的准确率，上线初期必须加兜底机制：如果模型输出的分类置信度低，直接转人工客服，不要硬分类导致用户体验差</li>
+<li>微调不是一劳永逸的：电商业务经常会搞大促、新增业务类型（比如直播带货、预售），分类标签会频繁变动，如果全靠微调，每次业务变动都要重新训练，响应速度根本赶不上业务需求</li>
+<li>很多算法工程师有“微调执念”，觉得不用微调就不够“技术”，但实际上对于5个固定分类的意图识别任务，高质量的Few-Shot提示词准确率可以达到90%以上，完全满足上线要求，没必要为了技术炫技耽误上线周期</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以做动态Few-Shot：把所有标注好的样本存在向量数据库里，每次用户提问时，检索和当前query最相似的3个历史例子，动态塞进Prompt里，比固定写死的例子效果好很多</li>
+<li>当线上Bad Case积累到一定程度，可以用这些Bad Case做小参数模型的微调，把微调后的小模型放在边缘节点做高并发分类，成本只有调用大模型的1/10</li>
+<li>增加主动学习机制：模型分类置信度在0.6-0.8之间的样本，自动送给人工标注，标注后的样本自动补充到Few-Shot例子池和微调数据集里，形成数据闭环</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现题</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Python包管理</code> <code>Agent项目工程化</code> <code>依赖隔离</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你所在的团队正在开发一套企业级建材报价Agent系统，团队里有5个Python开发工程师，大家的开发环境不统一：有人用本地Python虚拟环境，有人用Conda，经常出现“我本地能跑，你那边跑不起来”的问题，部署到服务器上时还经常因为系统依赖（比如处理PDF需要的poppler、处理CAD文件需要的libredwg）版本不对导致报错。另外，团队里有几个做算法的同事需要同时做模型微调，需要安装CUDA、PyTorch等大体积依赖。请结合知识库中提到的venv、Conda、uv三种Python环境管理工具的特性，设计一套团队统一的开发与部署环境方案，并给出关键实现步骤。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先梳理团队三类核心角色的需求差异：后端开发工程师需要轻量快速的依赖管理、算法工程师需要管理CUDA等系统级依赖、生产部署需要稳定可复现的环境</li>
+<li>第二步：根据知识库中三种工具的特性做角色匹配，不要强行要求所有人用同一种工具</li>
+<li>第三步：设计统一的依赖描述规范，不管用什么工具，依赖来源必须唯一，避免不同工具维护不同的依赖文件</li>
+<li>第四步：设计生产部署的隔离方案，确保开发环境和生产环境的一致性</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整个方案采用“统一依赖源、分场景选工具”的思路，不搞一刀切：<br />
+首先明确三种工具的使用场景，严格按照知识库的选型原则分配：<br />
+1. <strong>日常后端开发（3个写业务逻辑的工程师）：统一用uv作为包管理和虚拟环境工具</strong>。uv比pip和venv快10-100倍，完全兼容pip的依赖格式，对于只需要安装Python包（比如LangChain、FastAPI、pandas、pytest）的后端开发来说，没有任何额外的系统依赖负担，新建环境只需要几秒钟。具体做法是：在项目根目录下用<code>uv init</code>初始化项目，用<code>uv add</code>添加依赖，自动生成<code>pyproject.toml</code>和<code>uv.lock</code>锁文件，所有人提交代码时必须把锁文件提交到Git，确保所有人安装的依赖版本完全一致。<br />
+2. <strong>算法工程师（2个做微调、处理CAD/PDF文件的同事）：统一用Conda管理环境</strong>。因为他们需要安装CUDA、poppler、libredwg等非Python的系统依赖，这些依赖uv和venv都管不了，Conda可以跨语言管理系统级依赖，避免自己手动编译安装的麻烦。但Conda的环境也必须从项目根目录统一的<code>pyproject.toml</code>读取Python依赖，不要单独维护一个<code>environment.yml</code>，避免依赖不一致：具体做法是用Conda创建环境后，安装好CUDA等系统依赖，然后用<code>uv pip install -e .</code>从项目的pyproject.toml安装Python依赖，保证和后端开发的Python包版本完全一致。<br />
+3. <strong>生产环境部署：用uv + Docker多阶段构建</strong>。生产环境不需要Conda的额外开销，在Dockerfile里先拉取 slim 版本的Python基础镜像，然后安装uv，把<code>pyproject.toml</code>和<code>uv.lock</code>复制进去，用<code>uv sync --no-dev</code>安装生产环境依赖，最后把代码复制进去启动服务。对于需要系统依赖的场景（比如处理PDF），直接在Dockerfile里用apt安装对应版本的系统库，版本完全固定，不会出现本地和服务器依赖不一致的问题。</p>
+<p>额外增加统一的约束：所有临时的小脚本、测试工具，直接用venv就可以，不需要纳入项目的统一环境管理，避免污染项目依赖。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要把虚拟环境的目录（<code>.venv</code>、<code>conda环境目录</code>）提交到Git，必须在<code>.gitignore</code>里忽略，否则会出现不同操作系统的二进制文件互相覆盖的问题</li>
+<li>必须提交锁文件（<code>uv.lock</code>、如果用Conda的话导出<code>conda-lock.yml</code>），不要只提交<code>pyproject.toml</code>，否则不同时间安装的依赖版本可能不一致，出现“昨天还能跑今天就挂了”的问题</li>
+<li>不要在生产环境用Conda：Conda的环境体积大、启动慢，而且会带很多不必要的依赖，生产环境用uv安装Python依赖+apt安装系统依赖是最轻量稳定的方案</li>
+<li>很多人容易犯的错误是：后端开发用uv装了一个新版本的依赖，没有更新锁文件就提交代码，导致算法同事和生产环境安装的还是旧版本，所以必须在CI里加检查：如果PR修改了<code>pyproject.toml</code>但没有更新<code>uv.lock</code>，直接阻止合并</li>
+<li>注意Python包的<code>__init__.py</code>规范：项目里的业务模块必须加<code>__init__.py</code>，不要依赖Python 3.3+的namespace package，否则在不同环境下可能出现导入失败的问题，而且通过<code>__init__.py</code>里的<code>__all__</code>变量可以明确控制模块的导出内容，避免循环导入</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以在项目里加一个Makefile，把常用命令封装好：比如<code>make dev</code>自动创建uv环境并安装开发依赖，<code>make conda-dev</code>自动创建Conda环境安装系统依赖和Python依赖，<code>make docker-build</code>自动构建生产镜像，新同事入职只需要敲一行命令就能把环境搭起来，不需要看长长的文档</li>
+<li>引入pre-commit钩子，提交代码前自动检查依赖文件是否一致、代码格式是否符合规范，把问题拦在提交之前</li>
+<li>后续如果团队规模扩大，可以搭建内部的PyPI镜像源，用uv直接从内部源下载包，速度更快，也避免外部源挂掉影响开发和部署</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化题</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Qdrant向量库</code> <code>磁盘空间异常</code> <code>Docker存储</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你负责维护的企业知识库系统用Qdrant作为向量数据库，部署在阿里云Linux服务器上，数据量大概是100万条向量。运维同事反馈两个异常问题：① 本地开发环境（Windows + Docker Desktop，用bind mount把Qdrant的storage目录挂载到Windows的D盘项目目录下），只存了10万条测试向量，就占用了432MB磁盘空间，而线上服务器存了100万条向量才占用不到10MB空间，同事怀疑是本地Qdrant有内存泄漏或者数据重复写入；② 最近线上Qdrant重启后，磁盘占用从几MB突然涨到了2GB，查询速度也变慢了。请你结合知识库中关于Qdrant在Linux和Windows下的存储机制差异，分析这两个问题的原因，并给出优化方案。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先区分两个问题的本质：第一个问题是文件系统的sparse file（稀疏文件）机制导致的显示差异，不是真的占用了那么多空间；第二个问题是Qdrant的segment碎片导致的空间占用和性能下降</li>
+<li>第二步：针对第一个问题，解释Linux和Windows对空洞文件/预分配文件的落盘机制差异，排除“内存泄漏”“数据重复”的误判</li>
+<li>第三步：针对第二个问题，解释Qdrant的segment存储机制，找到重启后空间暴涨的原因</li>
+<li>第四步：给出对应的优化方案，分别解决本地开发环境的空间显示问题和线上的性能问题</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p><strong>第一个问题（本地Windows占用大、线上Linux占用小）的根因分析</strong>：<br />
+这根本不是内存泄漏或者数据重复写入，而是Linux和Windows文件系统对“稀疏文件（Sparse File）”的处理机制完全不同导致的：<br />
+Qdrant在运行时会预分配一批固定大小的文件，比如32MB的<code>page_0.dat</code>、<code>chunk_0.mmap</code>和WAL日志文件，这些文件逻辑上大小是32MB，但实际上如果里面还没有写入真实数据，在Linux的ext4/xfs文件系统上，这些文件是稀疏文件——操作系统不会给没有写入的空白部分分配真实的磁盘块，所以用<code>du -h</code>命令看实际占用只有几MB；但如果用<code>du -h --apparent-size</code>看逻辑大小，其实和Windows上是一样的。<br />
+而本地开发环境用的是Docker Desktop + Windows目录bind mount，也就是Qdrant在容器里写Linux路径，最终数据落在Windows的NTFS文件系统上，NTFS对bind mount过来的预分配文件不会做稀疏文件处理，会直接按照文件的逻辑大小分配完整的磁盘块，所以即使里面只写了几KB数据，也会占用完整的32MB空间。再加上本地测试的时候频繁写入删除数据，会产生很多小的segment碎片，所以才会出现10万条向量占432MB的情况。</p>
+<p><strong>第二个问题（线上重启后空间涨到2G、查询变慢）的根因分析</strong>：<br />
+这是Qdrant的segment机制导致的：Qdrant在写入数据时会生成很多小的segment，正常运行时会在后台异步做segment合并（Compaction），把小segment合并成大的segment，回收过期数据和删除标记占用的空间。如果Qdrant被强制重启（比如服务器宕机、kill -9杀掉进程），后台的合并任务会被中断，重启后会留下很多未合并的小segment，每个segment都有自己独立的预分配页文件、WAL文件和payload索引文件，这些文件加起来就会占用大量磁盘空间；而且查询的时候需要同时扫描很多个小segment，查询速度自然会变慢。</p>
+<p>对应的优化方案：<br />
+1. 针对本地开发环境的空间问题：不要把Qdrant的storage目录bind mount到Windows的项目目录下，改用Docker named volume，或者直接把storage放在WSL2的Linux文件系统里，这样就会和线上一样用稀疏文件机制，磁盘占用会从几百MB降到几十MB。<br />
+2. 针对线上重启后空间暴涨和性能问题：重启后手动触发Qdrant的collection优化接口，让它主动做segment合并；另外配置Qdrant的定时compaction策略，限制segment的最大数量，避免小segment堆积；同时不要用kill -9强制停止Qdrant，用<code>docker stop</code>给它留足够的时间做优雅退出，在退出前完成内存数据刷盘和segment合并。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要看到Windows上显示文件大就去删文件，那样会把真实的向量数据删掉，只要换Docker named volume存储，空间占用马上就降下来了</li>
+<li>线上排查Qdrant空间问题的时候，一定要分清楚“实际磁盘占用（du -h）”和“逻辑文件大小（du -h --apparent-size）”，不要把逻辑大小当成真实占用，误判成数据膨胀</li>
+<li>Qdrant的WAL文件是会自动清理的，不要手动删WAL文件，否则会导致重启后数据丢失</li>
+<li>如果线上segment数量太多，不要在业务高峰期触发手动合并，因为合并过程会占用大量CPU和IO，会影响正常的查询请求，建议在低峰期（比如凌晨）做</li>
+<li>很多人做本地开发的时候喜欢把所有容器的数据目录都挂载到Windows目录下方便查看，实际上对于数据库类的应用（Qdrant、PostgreSQL、Redis），bind mount到Windows目录不仅空间占用大，IO性能也会差很多，用Docker named volume是更好的选择</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以给线上Qdrant配置监控指标，监控每个collection的segment数量、磁盘占用、compaction任务状态，当segment数量超过阈值时自动报警，提前处理避免影响性能</li>
+<li>定期（比如每周一次）在低峰期触发一次全量collection优化，回收删除数据占用的空间，保持查询性能稳定</li>
+<li>本地开发环境如果不需要持久化数据，可以直接把Qdrant的storage目录挂成tmpfs（内存文件系统），读写速度极快，而且容器删除后数据自动清理，不会占用磁盘空间</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地题</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Codex Skills生态</code> <code>个人AI效率工具</code> <code>从0到1搭建</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你是一个独立开发者，想给自己的Codex CLI搭建一套个人专属的AI工作流，提升日常开发、写文章、做笔记的效率。你在SkillsLLM上搜索到了一批看起来很有用的资源：① 一个带SKILL.md的pdf解析skill、② 一个MCP Server实现的Figma设计稿转代码工具、③ 一个CLI命令行工具用来批量压缩图片、④ 一个别人写的custom agent用来自动写技术博客、⑤ 一个普通的GitHub仓库是Python写的Markdown转PPT工具。请你结合知识库中关于SkillsLLM的使用指南、Codex的三类扩展（Skills/Plugins/Agents）的存放路径和调用规则，设计一套从资源筛选、安装到日常使用的完整落地方案，说明每个资源应该怎么安装、放在哪个目录、怎么调用，以及后续怎么维护自己的技能库。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先对SkillsLLM上搜到的5个资源做类型判别，不要看到什么都往skills目录里放，先对应到Codex支持的三类扩展（Skills、MCP/CLI工具、Custom Agents）</li>
+<li>第二步：根据资源类型选择对应的安装路径和安装方式，严格区分全局个人目录和项目级目录的使用场景</li>
+<li>第三步：设计安装后的校验流程，确保每个资源都能正常调用，避免装了之后用不了</li>
+<li>第四步：设计后续的技能库维护机制，形成个人效率工具的闭环</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整个落地流程分为四个阶段：<br />
+第一阶段：资源类型判别，对号入座。首先不要急着复制文件，先点进每个资源的GitHub仓库判断类型：<br />
+- ① 带SKILL.md的pdf解析skill：属于标准的Codex Skill，因为有明确的SKILL.md描述文件，说明什么时候用这个skill、工作流是什么<br />
+- ② Figma转代码MCP Server：属于MCP工具服务，不是Skill也不是Plugin，需要按照MCP的配置方式注册，不能直接复制到skills目录<br />
+- ③ 批量压缩图片CLI工具：属于本机命令行工具，需要安装到系统环境里，让Codex能调用到这个命令<br />
+- ④ 自动写技术博客的custom agent：属于自定义子Agent，不是Skill，要放到agents目录<br />
+- ⑤ Python写的Markdown转PPT普通仓库：只是普通的Python项目，不能直接当Skill或Agent安装，需要自己封装或者直接当CLI工具用</p>
+<p>第二阶段：分类型安装，路径严格按照规范。因为这些工具都是个人日常使用，不是某个项目专用，所以全部安装到用户全局目录，不要放到项目目录里污染项目代码：<br />
+- ① pdf解析skill：先检查SKILL.md里的name和description字段是否完整，然后把整个skill文件夹复制到全局Skills目录<code>C:\Users\你的用户名\.codex\skills\pdf-parser\</code>，目录结构必须是<code>pdf-parser/SKILL.md</code>加对应的scripts、references目录，不要多套一层文件夹<br />
+- ② Figma转代码MCP Server：先看它的安装说明，用npm/pip安装对应的MCP Server包，然后编辑全局Codex配置文件<code>C:\Users\你的用户名\.codex\config.toml</code>，在mcp.servers配置段里添加这个MCP Server的启动命令、环境变量（比如Figma的API Key），配置完成后Codex会自动识别到这个MCP提供的工具<br />
+- ③ 批量压缩图片CLI工具：如果是Python写的就用uv tool install全局安装，如果是二进制文件就把它所在的目录加到系统PATH环境变量里，确保在任意终端敲命令名都能运行，Codex在需要的时候会自动调用这个命令<br />
+- ④ 自动写技术博客custom agent：把整个agent文件夹复制到全局Agents目录<code>C:\Users\你的用户名\.codex\agents\blog-writer\</code>，不需要改造成SKILL.md格式<br />
+- ⑤ Markdown转PPT普通仓库：用<code>git clone</code>把仓库克隆到自己的工具目录，用uv安装它的依赖，然后在系统里加一个<code>md2ppt</code>的命令别名，当成普通CLI工具来用，不需要放到Codex的目录里</p>
+<p>第三阶段：安装校验，确保可用。不要装完就不管了，每个资源都做一次可用性测试：<br />
+- Skill测试：重启Codex或者执行Force Reload Skills，然后输入“帮我解析这个PDF文件的内容”，看Codex会不会自动调用pdf-parser这个skill，也可以直接输入<code>$pdf-parser</code>手动调用<br />
+- MCP工具测试：输入“帮我把这个Figma链接里的设计稿转成React代码”，看Codex能不能识别到Figma MCP提供的工具<br />
+- CLI工具测试：在终端直接敲压缩图片的命令，确认能正常运行，然后让Codex“帮我把当前目录下的所有jpg图片压缩到80%质量”，看它能不能正确调用命令<br />
+- Custom Agent测试：输入“用blog-writer agent帮我写一篇关于Agent Harness的技术博客，不要调用其他工具”，看能不能正常唤起agent；也可以用<code>agents-orchestrator</code> agent让它自动选择适合写博客的agent，确认能识别到blog-writer<br />
+- 普通CLI工具测试：直接敲<code>md2ppt --help</code>确认命令可用即可</p>
+<p>第四阶段：日常维护。建立自己的技能库目录结构，把所有安装的skill、agent、MCP配置都做一个备份清单，每次安装新的资源都记录下来，定期清理不用的工具避免冲突。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要把所有东西都往<code>~/.codex/skills</code>目录里放：MCP Server、Custom Agent、普通CLI工具放进去是识别不了的，很多人装完发现用不了就是因为放错了目录</li>
+<li>复制Skill的时候不要多套一层目录：比如不要把解压出来的<code>pdf-parser-main/pdf-parser/SKILL.md</code>直接复制，导致路径变成<code>skills/pdf-parser-main/pdf-parser/SKILL.md</code>，这样Codex是识别不到的，必须让SKILL.md直接在skill文件夹的根目录下</li>
+<li>Custom Agents安装后不会出现在Skills或者Plugins的UI列表里，这是正常现象，不是安装失败，只要点名调用或者让orchestrator agent选择的时候能用到就可以</li>
+<li>不要把个人全局常用的skill放到项目的<code>.agents/skills</code>目录下，那样换个项目就用不了了；只有团队共享、跟项目强相关的skill才放到项目目录里，跟着Git一起提交给团队其他成员用</li>
+<li>安装MCP Server的时候不要把API Key硬编码在配置文件里，要用环境变量注入，避免把密钥提交到备份仓库里泄露</li>
+<li>不要把普通GitHub仓库直接当Skill安装：如果仓库里没有SKILL.md，放进去Codex也识别不了，浪费时间</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以把自己的全局<code>.codex</code>目录（去掉里面的缓存和密钥文件）用Git做备份，换电脑的时候只需要拉下来就能恢复所有的技能、Agent和配置，不用重新一个个安装</li>
+<li>可以自己封装常用的工作流为自定义Skill：比如把“写技术博客+配图+转PPT”的流程写成一个SKILL.md，组合调用已经安装的blog-writer agent、图片压缩CLI、md2ppt工具，形成自己的专属工作流</li>
+<li>定期去SkillsLLM上更新已安装的Skill和Agent，拉取最新版本，拿到新的功能和Bug修复</li>
+<li>对于团队共用的Skill，可以放到项目的<code>.agents/skills</code>目录下提交到Git，团队其他成员拉下来代码就能直接用，不需要每个人都单独配置一遍</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
