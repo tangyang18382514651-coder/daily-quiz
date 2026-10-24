@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-10-24)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-10-24)</h1>
+    <div class="meta">更新于 2026-10-24 11:07</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：RAG · Agent · LangGraph · LoRA · 微调 · Milvus<br />
+🔄 知识片段：#6, #7, #8（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<hr />
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Skill模块化架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在AI Agent项目落地中，我们常说要把不同能力拆分为独立的Skill文件（.skill），而不是把所有Prompt、工具都堆在主Agent里。请解释Skill和Tool的核心区别是什么？这种Skill矩阵拆分架构的核心价值是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Tool是无灵魂的原子化代码函数，Skill是封装了角色设定、SOP流程、工具权限的独立能力包，Skill矩阵拆分是解决Agent上下文混乱、实现模块化解耦的核心工程手段。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Tool是纯执行单元：本质是<code>def query_api()</code>这样的代码函数，只负责完成单一、确定的动作，没有自主决策逻辑，也不知道什么时候该被调用。</li>
+<li>Skill是能力封装单元：每个Skill包含专属System Prompt、绑定的工具列表、明确的输入输出规范，相当于一个带着岗位说明书、操作手册、工具权限的“专职员工”。</li>
+<li>Skill矩阵的运行逻辑：主Agent只负责路由调度，根据当前任务阶段或用户意图，动态加载对应Skill，将主Prompt与Skill局部Prompt拼接，同时仅开放该Skill绑定的工具给大模型。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以把整个Agent系统类比成一个工厂：主Agent是生产线厂长，他不需要亲自懂每一个工位的操作细节，只需要负责调度；而每个Skill就是生产线上的专职工位——比如热点分析岗只负责抓热榜提炼关键词，文案岗只负责写小红书风格内容，合规岗只负责查违禁词发平台。每个工位有自己的操作规范（System Prompt）、能用的工具（绑定的API）、明确的交付物（输入输出）。<br />
+如果把所有工位的职责都写在厂长的工作手册里，厂长会因为信息过载频繁出错（比如写文案的时候突然冒出合规岗的生硬话术，抓热点的时候想着怎么排版），而且只要某一个环节的要求变了（比如小红书改了违禁词规则），你就得整本重写厂长的手册，维护成本极高。而拆成独立Skill后，哪个环节效果不好，只需要修改对应.skill文件即可，完全不影响其他模块。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>能举出自媒体流水线和智能客服动态路由两个落地场景：前者是固定流水线顺序执行Skill（热点→脚本→发布），后者是根据用户情绪/意图动态挂载Skill（检测到投诉立刻切换客诉安抚Skill）。</li>
+<li>提到Skill加载的核心实现：动态Prompt拼接+工具白名单机制，不是把所有Skill的Prompt都塞到上下文里，而是激活哪个才加载哪个，从根源上避免上下文污染。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：把Skill当成Tool的别名，认为Skill只是Tool的组合。实际上Tool是被Skill调用的资源，Skill的核心是独立的Prompt设定和行为边界，没有Prompt的纯工具组合不能叫Skill。</li>
+<li>误区：拆Skill越细越好。实际上Skill的拆分粒度要匹配业务流程，过细会导致主Agent路由逻辑爆炸，过粗又会回到单Prompt混乱的问题，通常以“单一职责、可独立迭代”为拆分标准。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>本地部署硬件选型</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>2026年企业本地部署开源大模型时，通常分为轻量起步、中流砥柱、顶配中台三档硬件方案，请说明这三档方案分别对应什么硬件配置、适用模型和企业场景？为什么企业落地切忌一开始就上顶配B200集群？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>企业本地部署必须遵循“小步快跑、验证ROI再升级”的原则，从4090单机起步验证业务，再根据并发和模型需求逐步升级到H200、B200集群，盲目上顶配会导致极高的资源浪费和落地失败风险。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>轻量起步档：2张RTX 4090D（48GB总显存）或单张RTX 6000 Ada，配合vLLM跑INT4量化的Qwen3.5-32B或Gemma4 26B MoE，适合单部门知识库、代码助手等小范围场景，硬件成本仅4-8万。</li>
+<li>中流砥柱档：4卡H200服务器（564GB HBM3e显存），跑BF16原生精度的Qwen3.5-72B或Llama4-70B，适合全行级RAG、复杂Agent编排等核心业务，硬件成本40-60万。</li>
+<li>顶配中台档：8卡HGX B200集群（1440GB HBM3e显存），利用FP4精度跑DeepSeek-R1 671B MoE模型，适合集团级高并发、深度推理场景，单台硬件+机房改造成本达百万级。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多企业一开始做AI落地就有“算力焦虑”，觉得必须上最顶级的硬件、跑最大的模型才叫AI，这是完全错误的。首先，本地部署的核心价值从来不是跑最大的模型，而是用企业独有的私有数据解决业务问题——80%的效果提升来自于数据清洗、切片、RAG优化，把模型从32B升到72B带来的效果提升，远不如把内部乱码的PDF、格式混乱的Excel清理干净来得明显。<br />
+其次，顶配硬件对基础设施的要求极高：8卡B200单机功耗接近15kW，普通企业机房的机柜供电、空调散热根本带不动，买了服务器还要额外花几十万做电力扩容和液冷改造，ROI极低。正确的路径是先用几万块的4090单机，跑通客服、HR文档检索这类高频痛点业务，算清楚“每投入1块钱能省多少人力成本”之后，再根据实际并发量和业务需求逐步升级硬件。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到Blackwell架构的FP4精度黑科技：B200的FP4吞吐量比H100的FP8翻倍，单Token成本比H200低66%，但这种优势只有在万级并发、跑671B MoE模型时才能体现出来，中小业务完全感知不到。</li>
+<li>提到MoE模型的显存特性：比如Gemma4 26B MoE每次只激活4B参数，DeepSeek-R1 671B每次只激活37B参数，实际运行时的显存需求远小于总参数量对应的理论值，不需要盲目堆显存。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：模型越大效果越好。实际上70B模型经过优秀的微调+RAG优化，在垂直业务场景的效果完全可以超过未优化的671B通用模型，而且推理成本低一个数量级。</li>
+<li>误区：量化会严重损失模型效果。实际上AWQ/GPTQ的4bit量化，性能损失仅在1%-2%以内，但显存占用直接减少50%-75%，是生产环境的标配方案。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>本地部署高可用</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级大模型本地部署绝不是简单执行<code>ollama run</code>，生产环境必须考虑六大核心维度，请解释“语义缓存”和“动态批处理”分别解决什么核心痛点？为什么这两项技术是高并发场景的必备配置？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>语义缓存解决重复请求的Token成本和响应延迟问题，动态批处理解决GPU利用率低的问题，两者配合可以在不增加硬件成本的前提下，将大模型服务的并发能力提升5-10倍。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>语义缓存（Semantic Caching）：在LLM网关层部署向量缓存（如GPTCache），当用户请求到来时，先将问题转向量与缓存中的历史请求做相似度匹配，如果相似度超过阈值，直接返回缓存中的答案，不需要请求GPU推理。</li>
+<li>动态批处理（Continuous Batching）：vLLM等推理框架的核心特性，不是等一批请求凑齐了再统一推理，而是在Token级别动态拼装请求——某一个请求生成完一个Token后，立刻把等待中的其他请求的Token塞进去计算，不需要等整批请求全部生成完。</li>
+<li>传统静态批处理的痛点：批大小固定，必须等批次里最慢的请求生成完所有Token才能处理下一批，GPU大量时间在空等，利用率通常不到20%。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以把GPU推理类比成一条公交车运输线路：静态批处理就是整点发车的公交，不管车上有没有坐满、有没有乘客已经到目的地，必须等到点才能开，而且要等最后一个乘客下车才能回来接下一批，效率极低；动态批处理就是不停靠站的循环班车，只要有座位就随时上客，乘客到目的地就随时下车，GPU的利用率可以提升到70%以上。<br />
+而语义缓存就像线路上的“顺风车拼车群”——如果有人已经问过“2025年公积金提取规则”，后面有人问“去年公积金怎么取”这种语义高度相似的问题，直接把之前的答案给他就行，根本不需要麻烦公交车（GPU）跑一趟。在企业内部场景，80%的员工咨询都是重复的高频问题（比如请假流程、报销规则），语义缓存的命中率通常能到60%以上，不仅毫秒级返回，还完全不消耗Token成本。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到语义缓存和传统Redis缓存的区别：传统缓存是精确字符串匹配，换个说法就命中不了；语义缓存是基于向量相似度匹配，能识别不同表述的相同问题，更适合大模型场景。</li>
+<li>提到vLLM的PagedAttention技术：和动态批处理配合，通过类似操作系统虚拟内存的分页机制管理KV Cache，彻底解决显存碎片问题，是目前工业级推理框架的首选。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：高并发就靠堆GPU。实际上没有动态批处理和语义缓存，堆再多GPU也会因为利用率低、重复计算而浪费，大部分企业的GPU利用率在优化前甚至不到10%。</li>
+<li>误区：缓存会导致答案过时。实际上可以给缓存设置TTL（过期时间），同时在知识库更新时主动清除相关缓存，完全可以平衡响应速度和答案时效性。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>RAG与微调选型</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业本地部署做业务知识注入时，行业里普遍遵循“90%场景用RAG，10%场景用LoRA微调”的原则，请解释为什么RAG是知识注入的首选？什么场景下才必须用微调，而不能用RAG解决？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>RAG适合处理需要频繁更新、有明确事实依据的显性知识，成本低、更新快、可溯源；微调适合改变模型的行为模式、输出风格、格式遵循能力，两者是互补关系而非替代关系。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>RAG的核心优势：知识存储在外部向量数据库，更新知识只需要增删数据库条目，秒级生效，不需要重新训练模型；回答时可以引用来源，解决幻觉问题；成本极低，不需要GPU训练资源。</li>
+<li>LoRA微调的核心价值：不改变模型的知识储备，而是调整模型的权重参数，让模型学会某种稳定的行为模式——比如特定的说话语气、严格的JSON输出格式、行业专属的黑话体系、复杂的推理思维链。</li>
+<li>两者的边界：如果是“模型知道不知道某个事实”的问题，用RAG；如果是“模型会不会按照某种方式说话/做事”的问题，用微调。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多企业一开始做AI就想着“把公司所有文档喂给模型微调”，这是典型的误区。首先，微调是一个“训练”过程，需要大量高质量标注数据、8卡H200级别的训练算力，周期长成本高；其次，微调后的知识是“黑盒”的，刻在模型权重里，一旦公司政策变了（比如年假天数从5天改成10天），你不可能每次改个规则就重新微调一次模型，不仅更新慢，而且根本没法保证模型不会记混新旧知识。<br />
+而RAG就像给模型配了一个随时可以查阅的“活页文件夹”，文件夹里的内容随时可以替换，模型回答的时候翻到对应的页照着念就行，不仅更新快，还能标注页码（来源溯源），出了错可以直接定位到是哪份文档的问题。只有当你需要模型改变“行为习惯”的时候，比如要求模型不管用户问什么都必须用小红书的语气说话，或者必须输出严格嵌套的复杂JSON格式，或者必须学会医疗/法律行业的专业表述逻辑，这种“刻在骨子里”的行为模式，才需要用微调来解决，RAG是教不会的。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到实际工程中的配合方式：用微调让模型学会“什么时候调用RAG、怎么调用RAG、怎么把检索到的内容组织成符合风格的回答”，用RAG存储动态变化的业务知识，两者结合效果最好。</li>
+<li>提到微调的成本门槛：一次70B模型的LoRA微调需要至少8卡H200跑几个小时，成本数千元，而RAG搭建一个向量库只需要几个小时的开发时间，成本几乎为零。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：微调可以让模型“学会”企业知识。实际上微调更像是让模型“记住”知识，不仅容易遗忘、容易混淆，而且会产生幻觉，事实类知识注入RAG的效果远好于微调。</li>
+<li>误区：RAG完全不需要微调。实际上基础模型的RAG检索能力、回答组织能力参差不齐，用少量数据做RAG专项微调（比如让模型学会不要编造检索结果里没有的内容），可以大幅提升RAG的准确率。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LangGraph容器化</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在K8s上部署LangGraph自研多智能体系统时，业内普遍推荐“多Dockerfile方案”为不同Agent节点打包独立镜像，而不是把所有节点打包成一个通用镜像。请解释这种多镜像拆分方案的核心优势是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>多Dockerfile拆分的核心是实现Agent节点的依赖隔离、资源弹性差异化，避免单镜像臃肿导致的K8s弹性伸缩效率低下，是LangGraph生产部署的最佳实践。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>依赖异构性：LangGraph中的不同节点依赖差异极大——路由Agent只需要做意图判断，只需要轻量的Python基础依赖，镜像大小可能只有几百MB；而数据分析Agent、本地推理Agent需要带CUDA驱动、torch、pandas等重型依赖，镜像大小可能达到几个G甚至十几G。</li>
+<li>资源差异化：不同节点需要的算力资源完全不同——路由Agent只需要0.25核CPU、512M内存就能跑；数据Agent需要分配GPU、大内存；如果打包成一个镜像，即使是跑轻量的路由节点，也需要拉取几G的大镜像，资源浪费严重。</li>
+<li>弹性效率：K8s弹性伸缩时需要先拉取镜像到节点，镜像越大拉取时间越长，冷启动速度越慢。高并发场景下，如果路由节点的镜像有10G，扩容一次需要几分钟，完全跟不上流量波动。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以把多Agent系统类比成一个餐厅：路由Agent是门口的迎宾，只需要穿个制服（轻量依赖），站在门口就行；后厨的炒菜师傅（数据Agent）需要带锅碗瓢盆、炉灶食材（重型GPU依赖）。如果为了省事，给所有人都配一套全套的后厨装备，那迎宾员每次换岗（弹性扩容）都要扛着几十斤的厨具跑到门口，不仅慢，而且浪费空间。<br />
+多Dockerfile方案就是给不同岗位配不同的装备包：迎宾的装备包只有几百克，拿起来就能走，扩容秒级启动；后厨的装备包虽然重，但只有需要开新灶台（扩容数据节点）的时候才会拉取，完全不影响前台的响应速度。而且每个节点可以独立迭代——比如你升级了数据分析Agent的逻辑，只需要重新打包data-agent的镜像就行，路由、发布等其他节点完全不受影响，发布风险更小。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到解耦的核心关键：不管用哪种打包方案，都必须把每个Agent节点通过FastAPI/gRPC封装成独立的网络服务，通过K8s Service做通信，而不是在同一个进程里调用函数，这样才能实现真正的独立扩缩容。</li>
+<li>提到单镜像方案的适用场景：只有当所有Agent的依赖差异极小、没有GPU重型依赖时，才适合用单镜像+变参启动的方案，能减少CI/CD的维护成本。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：多Dockerfile需要拆多个代码仓库。实际上完全可以在同一个Monorepo仓库里维护多个Dockerfile，CI/CD时通过<code>-f</code>参数指定不同的Dockerfile构建即可，不需要拆分代码。</li>
+<li>误区：镜像越大功能越全越好。实际上生产环境的镜像追求最小化，不仅拉取快，而且攻击面小，安全性更高，轻量节点用slim基础镜像甚至distroless镜像才是最佳实践。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>企业部署安全合规</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>金融、政府、军工等行业部署本地大模型时，要求满足物理隔离的Air-Gapped（网闸/光闸）环境，请解释这种离线部署场景下必须做哪两项核心安全配置？如果不做会有什么风险？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>离线环境必须同时清除所有外部联网依赖、部署前置内容安全网关，否则即使物理断网，也会存在敏感数据泄露、违规内容输出的合规风险。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>离线依赖清除：很多开源推理框架（如早期版本的vLLM、Triton）、模型权重加载逻辑里，默认会携带动态联网校验逻辑（比如启动时连HuggingFace检查更新、上报遥测数据），在物理隔离环境里不仅会启动失败，还可能存在未公开的数据外传通道。</li>
+<li>敏感数据拦截：在LLM服务的最前端部署内容安全网关（如开源Bifrost或自研PII过滤器），对用户输入和模型输出做双向检测——输入侧拦截员工发送的涉密代码、客户身份证号、财务报表等敏感数据，输出侧拦截模型生成的违规内容、涉密信息。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多企业以为只要把服务器断网、不连公网，就满足了等保合规要求，实际上这远远不够。首先，很多开源组件的“联网默认行为”是埋在代码深处的：比如Transformers库默认会从HuggingFace下载tokenizer配置，vLLM默认会上报匿名使用统计，如果你的网络是完全物理隔离的，这些请求会被网闸拦截，导致服务启动失败；更严重的是，如果有恶意构造的请求，可能利用这些隐藏的联网通道，通过网闸的协议漏洞外传数据。<br />
+其次，断网只能保证数据不流出到公网，但没法保证内部员工不把敏感数据喂给模型，也没法保证模型不生成违规内容。比如员工不小心把客户的身份证号、银行卡号贴到对话框里，如果没有前置PII检测，这些数据会进入模型的上下文、被存入对话日志，造成内部数据泄露；模型如果生成了违反监管要求的内容，即使没有传到公网，也会在内部造成合规风险。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到离线部署的依赖处理技巧：提前在有网环境下把所有Python依赖、模型权重、tokenizer文件全部下载到本地私有源，部署时完全不访问外部网络，同时在代码层面关闭所有遥测、自动更新开关。</li>
+<li>提到内容安全网关的双向检测逻辑：不仅要检测输入输出的敏感词，还要做实体识别，检测身份证、银行卡、涉密文件编号等结构化敏感信息，从输入层就阻断敏感数据进入模型。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：物理断网就等于绝对安全。实际上内部威胁、供应链风险、违规内容生成都是断网解决不了的，必须在应用层做多层防护。</li>
+<li>误区：敏感数据检测只需要做输出侧。实际上如果敏感数据进入了模型的上下文窗口，即使输出不泄露，也会被存在日志、KV Cache里，留下数据安全隐患，必须在输入侧就拦截。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>并发一致性控制</code> · 难度：⭐⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在多Agent并发执行的内容生产系统中，经常出现多个Agent节点同时处理同一条热点选题、重复生成文案的问题，我们通常会用PostgreSQL的<code>SELECT ... FOR UPDATE</code>悲观锁来解决。请解释悲观锁是如何避免并发冲突的？为什么Agent场景下悲观锁比乐观锁更常用？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>悲观锁通过在事务中锁定待处理的数据行，强制并发的Agent节点串行处理同一任务，避免重复执行和数据覆盖，非常适合Agent任务执行时间长、冲突概率高的业务场景。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>悲观锁的工作机制：当一个Agent节点开启事务，执行<code>SELECT * FROM tasks WHERE status='pending' LIMIT 1 FOR UPDATE</code>时，数据库会给查询到的这行数据加上排他锁，在事务提交之前，其他所有尝试查询、修改这行数据的请求都会被阻塞排队，直到第一个节点把任务状态改成“处理中”并提交事务，下一个节点才能查到下一条待处理任务。</li>
+<li>乐观锁的工作机制：不提前加锁，而是在更新数据时检查版本号（如<code>UPDATE tasks SET status='processing' WHERE id=1 AND version=0</code>），如果版本号已经被其他节点改了，就回滚重试。</li>
+<li>场景适配性：Agent的任务处理通常是秒级甚至分钟级的（比如生成文案、调用图片API），执行时间长，冲突概率高，如果用乐观锁会导致大量重试，浪费大模型Token成本。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以把任务队列类比成银行柜台取号办业务：悲观锁就是你取到号之后，这个窗口就只为你服务，直到你办完业务离开，下一个人才能过来，绝对不会出现两个人同时在同一个窗口办同一份业务的情况；而乐观锁就是大家都挤在窗口前，谁先把材料递进去谁办，后面的人发现已经有人在办了，就退回来重新排队。<br />
+如果是普通的互联网短请求（比如点赞、扣库存，执行时间几毫秒），乐观锁因为不需要提前加锁，并发性能更好；但Agent的任务是“重任务”——拿到一个选题之后，需要调用大模型生成文案、调用工具查emoji、做敏感词检测，整个过程可能要十几秒，如果用乐观锁，可能10个Agent节点同时拿到了同一个选题，都花了十几秒、消耗了几万Token生成了文案，最后更新的时候才发现冲突，9个节点的工作全部白做，Token成本浪费极其严重。而悲观锁虽然让并发稍微降了一点，但能100%保证同一个任务不会被重复处理，对于Token成本极高的Agent场景来说，这点性能损失完全可以接受。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到悲观锁的注意事项：必须加索引、必须在事务中使用、事务提交要快，拿到锁之后要立刻把任务状态改成“处理中”然后提交事务，不要把整个大模型生成过程都放在锁的事务里，否则会导致锁等待时间过长，并发能力下降。</li>
+<li>提到任务队列的进阶设计：给任务加“处理超时时间”，如果某个Agent节点拿到锁之后崩溃了，超过一定时间没更新状态，就自动把任务改回待处理状态，避免任务死锁。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：悲观锁性能差。实际上在任务冲突概率高的场景，悲观锁的性能远好于乐观锁——因为乐观锁的大量重试会带来更高的开销，尤其是重试的成本是大模型Token调用时，成本更是天差地别。</li>
+<li>误区：加了FOR UPDATE就不会有并发问题。如果FOR UPDATE的查询条件没有加索引，会导致锁全表，整个任务表都被锁住，所有节点都无法处理任务，必须确保查询条件走索引，锁的范围精确到行。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LLMOps监控指标</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型服务的运维监控和传统后端服务有很大区别，除了常规的GPU温度、利用率之外，还必须监控TTFT、TPOT两个核心推理指标。请解释这两个指标分别代表什么含义？为什么这两个指标对用户体验的影响远大于GPU利用率？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>TTFT是首字延迟时间，决定用户等待多久才能看到第一个字；TPOT是每个Token的生成时间，决定输出的流畅度，这两个指标是直接影响用户体验的“黄金指标”，GPU利用率只是内部成本指标。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>TTFT（Time To First Token）：从用户发送请求，到模型返回第一个Token的时间，包含了请求排队、Prompt处理、KV Cache初始化、第一个Token生成的全部时间。对于C端对话场景，TTFT超过1秒用户就会明显感觉到卡顿，超过3秒用户会认为系统坏了。</li>
+<li>TPOT（Time Per Output Token）：生成每个后续Token的平均时间，也就是“打字速度”。正常人类的阅读速度是每秒3-5个字，TPOT如果低于200ms/Token（即每秒生成5个Token以上），用户会感觉输出非常流畅；如果超过500ms/Token，就会感觉到明显的“打字卡顿”。</li>
+<li>GPU利用率是后台成本指标：代表GPU有没有被用满，但用户完全感知不到——哪怕GPU利用率100%，如果TTFT是5秒、TPOT是1秒/字，用户体验依然是灾难。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>传统后端服务的监控通常关注QPS、响应时间、错误率，因为传统接口是“一次性返回全部结果”，总响应时间短就可以；但大模型的流式输出是“边生成边返回”，用户对体验的感知是分阶段的：首先是“我发了消息之后，多久能看到AI开始回复”——这就是TTFT，如果等了3秒还没动静，用户就会开始焦虑，甚至退出页面；然后是“AI回复的速度跟不跟得上我的阅读速度”——这就是TPOT，如果AI半天蹦一个字，用户看着着急，如果输出太快一下子出完全部内容，又会失去“对话感”。<br />
+很多技术团队做监控的时候只盯着GPU利用率，觉得GPU跑到100%就是性能好，实际上如果动态批处理配置得不好，可能GPU利用率100%，但所有请求都在排队，TTFT高达10秒，用户早就跑光了。反过来，如果GPU利用率只有50%，但TTFT稳定在300ms以内，TPOT稳定在100ms/Token，用户体验会非常好，只是成本稍微高一点——对于C端产品来说，用户体验永远比硬件成本重要。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到两个指标的优化方向：TTFT优化主要靠减少排队、开启前缀缓存（Prefix Caching）复用相同系统Prompt的KV Cache；TPOT优化主要靠开启动态批处理、使用vLLM/TensorRT-LLM等高性能推理框架、适当量化。</li>
+<li>提到企业级LLMOps平台的选型：TrueFoundry、Weights &amp; Biases Weave这类K8s原生平台，默认会采集这两个核心指标，不需要自己手动埋点。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：总响应时间短就代表体验好。如果总响应时间是2秒，但TTFT是1.9秒，最后100ms出完全部200个字，用户的体验是“等了2秒突然蹦出一大段文字”，远不如TTFT 300ms、然后匀速打字输出的体验好。</li>
+<li>误区：TPOT越快越好。实际上TPOT太快（比如低于20ms/Token，每秒出50个字），用户会来不及看，反而失去了对话的真实感，通常会在前端做人为的限速，把输出速度控制在每秒5-10个字，模拟真人打字的节奏。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>结构化输出方案</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型结构化输出是前后端对接的核心能力，目前行业里有Prompt软约束、API层JSON Mode硬约束、后端代码兜底三层防御体系，请解释这三层方案分别是什么？为什么不能只靠Prompt约束保证JSON格式正确？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>结构化输出必须构建“软约束引导-硬限制采样-代码校验兜底”的三层防御，只靠Prompt约束会因为模型幻觉、长上下文遗忘导致格式错误，引发生产环境的前端崩溃。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>第一层（软约束）：在Prompt里明确要求“请返回严格的JSON格式，不要有任何额外解释”，甚至给出JSON示例，引导模型按照格式输出。这一层的作用是提高模型输出正确格式的概率，但没有强制力。</li>
+<li>第二层（硬约束）：调用大模型API时传入<code>response_format</code>参数，指定JSON Schema，从模型的Token采样阶段就限制输出——比如当模型需要输出字段名的时候，只允许从Schema定义的Key里选择，不允许输出Key之外的Token，从底层保证输出的JSON语法合法、字段完整。</li>
+<li>第三层（兜底层）：后端拿到模型输出后，先用JSON.parse做解析，再用Pydantic等校验库检查字段类型、必填项是否完整，如果解析失败或者校验不通过，要么自动修复常见格式错误（比如去掉多余的markdown标记、补全缺失的括号），要么触发重试，绝对不把非法JSON传给前端。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多开发者刚开始做大模型对接的时候，觉得“我在Prompt里写清楚要JSON就行了”，结果上线后频繁出问题：有时候模型会在JSON外面加一句“好的，这是你要的结果：”，导致JSON解析失败；有时候模型输出到一半被截断，少了半个括号；有时候长上下文里模型“忘记”了字段要求，多了一个不存在的字段，或者把数字类型的字段输出成字符串。这些错误在测试的时候可能很难复现，但线上只要出现一次，就会导致前端页面白屏、流程卡住，引发生产事故。<br />
+Prompt软约束本质是“恳请”模型按照要求输出，模型听不听是没有保障的——尤其是上下文很长、模型温度设得比较高的时候，格式错误的概率会飙升到10%以上；API层的JSON Mode硬约束是“强制”模型只能输出符合Schema的Token，从概率层面把格式错误率降到0.1%以下，但依然可能因为模型截断、极端采样出现问题；最后一层代码兜底是“最后一道防线”，不管模型输出什么，都能保证传给前端的一定是合法、符合要求的结构化数据，做到100%不翻车。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到国内外工程实践的差异：国外开发者更依赖API层的Strict Structured Output，认为只要底层API保证格式正确，就不需要额外兜底；国内开发者因为不同大模型厂商的JSON Mode实现质量参差不齐，普遍会做更重的后端兜底校验，稳定性更高。</li>
+<li>提到常见的自动修复技巧：如果模型输出的JSON外面包了markdown的<code>json</code>标记，自动用正则提取标记里的内容；如果括号不匹配，用栈结构自动补全缺失的括号，能把兜底重试率降低80%以上。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：开了JSON Mode就100%不会出错。实际上JSON Mode通常只保证输出是合法的JSON语法，不保证字段完全符合Schema要求，比如你要求字段是整数，模型可能输出字符串格式的数字，依然需要后端做类型校验。</li>
+<li>误区：兜底就是报错返回。生产环境的兜底应该尽可能自动修复，只有修复不了的时候才触发重试，重试依然失败才返回友好的错误提示，不要一遇到格式错误就直接抛异常给用户。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Milvus部署选型</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Milvus向量数据库提供Lite嵌入式、Standalone单机版、Distributed分布式集群版三种部署模式，企业内部知识库场景（1万份文档、百万级向量、峰值QPS&lt;50）为什么绝对首选Standalone单机版，而不是分布式集群版？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Milvus Standalone单机版完全能满足亿级向量的毫秒级检索需求，对于中小规模企业内部场景，分布式集群版属于典型的过度设计，会带来极高的运维成本和不必要的复杂度。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Milvus Standalone的能力边界：单机版所有核心组件打包在一个Docker镜像里，配合etcd存元数据、MinIO存原始文件，单台32G内存的服务器就能轻松承载1亿级向量，QPS可达上千，完全覆盖百万级向量、50 QPS以内的企业内部需求。</li>
+<li>分布式集群版的成本：分布式版本需要部署K8s集群、Pulsar消息队列、多个协调节点/工作节点/索引节点/查询节点，至少需要5-8台服务器，需要专业的DevOps团队维护，运维成本是单机版的10倍以上。</li>
+<li>场景适配性：企业内部知识库的用户是内部员工，不是互联网C端用户，并发量极低，90%的企业内部系统峰值QPS都不会超过50，单机版的性能有几十倍的冗余。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多技术团队做技术选型的时候有“技术崇拜”，觉得分布式集群听起来更高级、更稳定，不管业务规模多大都要上集群，这是典型的为了技术而技术。Milvus分布式集群的设计目标是支撑互联网级的百亿级向量、几万QPS的高并发场景，比如抖音的推荐系统、淘宝的商品搜索，这种场景下单机版确实扛不住；但对于企业内部知识库来说，1万份文档切片后也就100-200万条向量，这个数据量只用到了单机版1%的能力，就像你只是上下班代步，却买了一辆重型卡车，不仅油耗高、难停车，而且故障率比小轿车高得多。<br />
+而且分布式系统本身就带来了更多的故障点：Pulsar挂了、节点之间网络不通、元数据不一致，任何一个组件出问题都会导致整个服务不可用；而单机版用Docker Compose一键启动，三个容器（Milvus、etcd、MinIO），普通后端工程师就能维护，出问题重启一下就能恢复，稳定性远高于需要专业运维的分布式集群。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>提到单机版的高可用兜底方案：只要做好数据持久化（把Docker内的数据目录挂载到宿主机云硬盘）、每日磁盘快照备份、业务代码里留好降级开关（Milvus挂了自动切换到PostgreSQL全文检索），完全能满足企业级的可用性要求，不需要分布式集群的多副本能力。</li>
+<li>提到硬件配置的核心要求：向量检索是内存密集型应用，必须把索引全部加载到内存才能实现毫秒级查询，所以内存要够（32G足够百万级向量），存储必须用NVMe SSD，机械硬盘的随机读写速度会导致查询延迟飙升。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：单机版不适合生产环境。实际上Milvus单机版是生产可用的，官方文档明确说明单机版适合10亿级向量以下的生产场景，分布式版只是为了更大规模的扩展性，不是稳定性更好。</li>
+<li>误区：分布式版查询更快。实际上在百万级向量的规模下，单机版的查询延迟比分布式版更低——因为分布式版需要跨节点网络通信、调度，反而会增加额外的延迟，单机版所有计算都在本地，速度更快。</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Skill模块化设计</code> <code>多场景Agent解耦</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你们团队要同时落地「自媒体内容生产流水线」和「智能客服动态路由」两套完全不同的Agent系统，如果不做架构抽象，两套系统会各自重复开发Prompt管理、工具绑定、大模型调用逻辑，维护成本极高。请你基于Skill技能文件的设计思想，设计一套统一的Skill加载运行内核，让两套系统可以复用同一套底层引擎，只需要维护各自的Skill配置文件即可运行，说明核心的模块拆分和运行逻辑。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先抽象出所有Skill文件的通用元数据结构，统一配置规范，不管是内容生产类还是客服类Skill，都遵循同一套字段约定，避免不同业务自定义格式导致引擎无法兼容。</li>
+<li>第二步：拆分内核层和业务层的边界，内核层只做通用的Skill加载、Prompt拼接、工具绑定、大模型调用、上下文传递，完全不感知具体业务逻辑；业务层只需要编写符合规范的YAML格式Skill文件，不需要修改引擎代码。</li>
+<li>第三步：针对两类系统的不同运行模式（流水线串行 vs 动态路由），在内核层抽象出统一的执行器接口，分别实现串行流水线执行器和动态路由执行器，复用底层的Skill运行能力。</li>
+<li>第四步：设计统一的输入输出校验层，所有Skill的入参出参都做Schema校验，避免不同Skill之间传参格式不统一导致的流程断裂。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>首先定义统一的Skill文件标准结构，所有业务的Skill必须包含5个核心字段：<code>skill_id</code>（全局唯一标识）、<code>name</code>（技能名称）、<code>system_prompt</code>（局部专属Prompt，不包含主Agent通用设定）、<code>bound_tools</code>（该技能允许调用的工具列表，精确到工具名和参数权限）、<code>inputs_schema</code>/<code>outputs_schema</code>（基于Pydantic定义的入参出参结构，自动做格式校验）。比如小红书文案改写Skill、热点分析Skill、客诉安抚Skill、订单处理Skill都严格按照这个格式编写YAML文件，存放在统一的skills目录下按业务分类。</p>
+<p>然后实现通用的SkillEngine内核，核心能力包括四个部分：第一是Skill加载器，启动时自动扫描指定目录下的所有YAML文件，解析后存入内存的Skill注册表，支持热更新——修改某个Skill的Prompt后不需要重启服务，调用reload接口即可重新加载对应配置；第二是Prompt动态拼接器，运行时根据当前激活的Skill，把主Agent的通用系统Prompt、Skill专属的局部Prompt、当前上下文的输入数据按照固定模板拼接成最终发给大模型的system_prompt，严格保证Skill的局部Prompt优先级高于主Prompt，避免主Agent的通用设定干扰Skill的专属行为；第三是工具权限控制器，每次调用大模型时，只把当前Skill绑定的工具列表传给大模型，即使大模型产生幻觉想要调用未授权的工具，引擎层也会直接拦截，比如客诉安抚Skill绝对不能拿到订单删除的工具权限；第四是结果校验器，大模型返回结果后，自动按照Skill的outputs_schema做格式校验，如果校验失败自动触发重试，最多重试2次，避免非法格式传入下一个环节。</p>
+<p>最后在引擎上层实现两类执行器：流水线执行器用于自媒体内容生产场景，按照预先配置的流程顺序（热点分析→脚本生成→合规发布）依次加载对应Skill，把上一个Skill的输出作为下一个Skill的输入，串行执行直到流程结束；动态路由执行器用于智能客服场景，首先用一个轻量分类器判断用户当前意图和情绪，然后动态激活对应的Skill，执行过程中如果用户意图发生变化（比如用户一开始问政策，中途突然开始投诉），立刻切换激活的Skill，清空之前Skill的临时上下文，用新的Skill设定继续对话。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不能把主Agent的通用设定写得过于具体，比如主Prompt不要规定“你必须用小红书语气说话”，否则会和Skill的局部Prompt产生冲突，主Prompt只需要保留最通用的行为准则（比如不能生成违法内容、不能泄露系统提示），所有业务相关的角色设定全部下沉到Skill的局部Prompt中。</li>
+<li>Skill绑定工具时必须遵循最小权限原则，比如政策解答Skill只需要绑定向量检索工具，绝对不能绑定订单修改、短信发送这类写操作工具，避免大模型误调用产生生产事故；如果一个Skill确实需要调用多个工具，要在Skill的system_prompt里明确规定每个工具的调用顺序和触发条件。</li>
+<li>动态切换Skill时，必须做上下文隔离：每个Skill运行过程中产生的临时变量、中间思考结果不能直接透传给下一个Skill，只传递结构化的必要信息，避免之前Skill的设定残留干扰新Skill的行为，比如用户从政策咨询切换到客诉安抚时，不能让政策解答的生硬语气残留到安抚流程中。</li>
+<li>Skill文件不要硬编码敏感信息（比如API密钥、数据库地址），所有敏感配置全部放到环境变量中，Skill文件里只引用变量名，引擎加载时自动替换，避免把敏感信息提交到代码仓库。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>增加Skill版本管理能力，每个Skill的修改都保留历史版本，支持一键回滚，上线新的Prompt版本时可以先切10%流量做灰度测试，对比不同版本的效果（比如文案点击率、客诉解决率），效果更好的版本再全量发布。</li>
+<li>增加Skill执行链路的全链路日志，每次Skill调用记录输入、输出、耗时、工具调用情况、Token消耗，自动统计每个Skill的成功率和效果指标，比如统计发现合规审核Skill的违禁词漏过率超过5%时自动触发告警。</li>
+<li>支持Skill的组合复用，比如“小红书文案生成+合规审核”可以封装成一个组合Skill，上层业务调用时不需要关心内部两个Skill的流转逻辑，直接传入原始素材即可拿到最终合规的文案。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>企业大模型部署</code> <code>算力选型</code> <code>ROI评估</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某三线城市的本地连锁超市集团，总员工1200人，目前需要落地三个AI场景：① 内部HR/行政政策问答知识库（总文档量3000份）；② 门店每日促销文案生成（每天生成约200条朋友圈/社群文案）；③ 客服中心客诉自动安抚+工单流转（每天约500条进线）。公司CTO听了厂商宣传，想要直接采购8卡B200集群搭建“集团AI中台”，预算约200万。请你结合企业落地的实际情况，给出最合适的部署方案，说明为什么不建议直接上顶配集群，以及分阶段落地的路径。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先评估三个场景的实际算力需求，不要被“大模型参数越大越好”的误区误导，分别计算每个场景需要的模型体量、并发量、响应时间要求，算出实际需要的算力规模。</li>
+<li>第二步：核算不同部署方案的TCO（总拥有成本），不仅要算硬件采购成本，还要算机房改造、电力、运维人力成本，对比云API调用的长期成本，算出ROI回本周期。</li>
+<li>第三步：按照“小步快跑、验证ROI再扩容”的原则，设计分阶段落地路径，第一阶段用最低成本跑通核心场景，验证业务价值后再逐步升级硬件，避免一次性投入过大导致项目烂尾。</li>
+<li>第四步：考虑企业的实际运维能力，本地连锁超市通常没有专业的AI运维团队，方案必须足够简单、易维护，不能选择运维复杂度太高的集群方案。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>首先明确三个场景的实际算力需求：第一，HR政策知识库属于典型的RAG场景，对模型的推理能力要求不高，不需要超长上下文，32B级别的开源模型完全可以满足，并发峰值不会超过20（员工上班时间零散查询）；第二，促销文案生成为离线批处理任务，不需要实时响应，每天200条的量级即使单卡也能在1小时内跑完；第三，客诉安抚+工单流转场景，并发峰值约10（客服坐席同时在线约50人，不是所有人同时发消息），对响应速度要求较高，但7B/14B级别经过微调的模型完全可以胜任，不需要70B以上的大模型。三个场景加起来的总并发不到50，根本不需要8卡B200集群的算力——B200集群是为上万并发、671B MoE模型深度推理设计的，用来跑这三个场景属于“大炮打蚊子”，硬件利用率不到5%，极度浪费。</p>
+<p>第一阶段（0-6个月，验证期）的最优方案是选择轻量化单机部署，总硬件成本控制在6万以内：采购1台双路CPU服务器，配置2张RTX 4090D（24G显存/张，总计48G显存），用vLLM框架部署Qwen3.5-32B INT4量化版模型，显存占用约20G，剩下的显存足够支撑50并发的请求。三个场景全部复用这一个模型服务：RAG场景配合本地Milvus Standalone存文档向量，文案生成场景挂载文案写作Skill，客诉场景挂载安抚Skill和工单系统工具。这个方案不需要专门的AI运维团队，现有后端工程师经过1周培训即可维护，vLLM的动态批处理能力完全可以支撑当前的并发量，TTFT（首字延迟）控制在1秒以内，满足业务体验要求。成本方面，硬件6万加上每年电费、机房托管费约5000元，对比直接调用公有云API（按每天100万Token计算，一年API费用约12万），6个月即可收回硬件成本。</p>
+<p>为什么绝对不建议一开始就上8卡B200集群？第一，TCO严重超标：单台8卡B200服务器硬件成本约150万，加上机房液冷改造（单机功耗15kW，普通机房的供电和空调根本带不动，改造费用约30-50万），第一年总投入超过200万，而三个场景一年的公有云API成本才12万，相当于要16年才能回本，完全不符合商业逻辑；第二，运维能力不匹配：B200集群需要专业的MLOps团队做张量并行拆分、FP4量化、集群调度、故障排查，超市集团的IT部门通常只有3-5个传统运维人员，根本没有能力维护，最后大概率集群买过来跑不起来，变成机房里的“废铁”；第三，业务价值未验证：三个场景目前都只是需求阶段，还没有验证实际能带来多大的效率提升（比如客诉处理效率提升30%还是50%），一次性投入200万风险极高，一旦业务效果不达预期，投入全部打水漂。</p>
+<p>第二阶段（6-18个月，扩张期）：如果第一阶段的三个场景跑通，验证了ROI（比如客服人力成本每年节省80万，文案人员成本每年节省30万），并且新增了更多场景（比如门店智能补货预测、会员营销智能外呼），并发量超过200，再考虑升级到单卡H200服务器（成本约15万），部署Qwen3.5-72B BF16原生精度模型，支撑更高的并发和更复杂的推理需求，总硬件投入依然控制在25万以内。第三阶段（18个月以上，集团级中台）：如果全集团所有业务线都接入AI，并发超过1000，并且需要运行DeepSeek-R1这类深度推理模型做复杂的供应链优化，再考虑采购B200集群，此时已经有明确的业务价值和足够的运维团队支撑，投入的ROI是可预期的。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要被硬件厂商的“算力焦虑”营销误导，很多厂商会刻意夸大模型参数的重要性，忽悠企业买最贵的硬件，实际上企业80%的场景用32B量化模型就可以达到和70B模型90%以上的效果，成本只有1/10。</li>
+<li>本地部署不要忽略机房配套成本，很多企业买了大功率GPU服务器，才发现机房机柜供电只有5kW，带不动15kW的B200服务器，专门去扩容电力和改造液冷的成本甚至超过服务器本身的价格，对于中小企业来说完全没必要。</li>
+<li>第一阶段落地时，不要一开始就做“大一统AI中台”，先选一个最痛的高频场景（比如客诉处理，直接节省人力成本）跑通，拿到明确的业务结果再申请预算扩张，否则很容易因为“看不到价值”导致项目被砍。</li>
+<li>数据清洗比模型升级重要得多，第一阶段要把80%的精力放在清洗内部HR文档、历史客诉记录、过往优质促销文案上，把数据质量做好，用32B模型加高质量数据的效果，比用脏数据跑72B模型效果好得多。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>第一阶段可以采用“本地+云”混合部署模式，日常请求全部走本地32B模型，遇到本地模型处理不了的复杂问题（比如复杂的劳动纠纷咨询），自动转发到公有云的大模型API处理，既保证数据安全，又能覆盖长尾场景，不需要一开始就上大模型。</li>
+<li>引入语义缓存层，把员工常见的政策问题、客服常见的客诉问题的回答缓存起来，相似问题直接返回缓存结果，不需要每次都调用GPU计算，可以降低70%以上的GPU负载，进一步降低硬件要求。</li>
+<li>当后续场景增多时，不需要把所有模型都跑在本地，比如图片生成、语音合成这类低频且算力消耗大的场景，直接调用公有云API即可，只把涉及敏感数据（员工信息、客户信息、销售数据）的场景放在本地，平衡成本、安全和体验。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>LangGraph容器化</code> <code>Docker部署</code> <code>微服务解耦</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你用LangGraph开发了一套短视频内容生产Multi-Agent系统，包含三个节点：① 路由节点（纯CPU，负责判断用户需求、调度后续节点，依赖只有langchain、fastapi，镜像体积约300M）；② 文案脚本生成节点（需要GPU，加载14B大模型，依赖torch、vllm，镜像体积约15G）；③ 数据爬取分析节点（需要CPU+大内存，依赖pandas、numpy、playwright爬虫框架，镜像体积约2G）。请你基于多Dockerfile方案给出完整的工程实现，包括目录结构、核心Dockerfile编写、K8s部署时的资源配置要点，说明为什么不推荐用单一镜像+变参启动的方案。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：按照节点职责拆分代码目录结构，把每个节点的业务逻辑和服务启动入口分开，保证不同节点的代码可以独立打包，不需要依赖其他节点的代码文件。</li>
+<li>第二步：为每个节点编写独立的Dockerfile，严格按照“最小依赖”原则选择基础镜像，只安装当前节点需要的依赖，避免把GPU依赖、爬虫依赖打包到不需要的镜像中，控制镜像体积。</li>
+<li>第三步：设计服务间的通信方式，每个节点通过FastAPI暴露独立的HTTP接口，节点之间通过HTTP/gRPC通信，不做进程内调用，保证每个节点可以独立部署、独立扩缩容。</li>
+<li>第四步：编写K8s部署配置时，针对不同节点的资源需求配置不同的requests和limits，GPU节点单独配置GPU资源配额，避免资源争抢。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>首先设计Monorepo单仓库的目录结构，不需要拆分成多个代码仓库，所有代码放在同一个git仓库中方便版本管理，结构如下：</p>
+<pre><code>short-video-agent/
+├── common/                 # 公共工具模块，所有节点共用
+│   ├── __init__.py
+│   ├── llm_client.py       # 大模型调用封装
+│   └── schema.py           # 节点间传参的Pydantic模型定义
+├── agents/
+│   ├── router_agent/       # 路由节点逻辑
+│   │   └── core.py
+│   ├── script_agent/       # 文案生成节点逻辑
+│   │   └── core.py
+│   └── crawler_agent/      # 爬虫分析节点逻辑
+│       └── core.py
+├── server/                 # 每个节点的独立服务启动入口
+│   ├── run_router.py       # 路由节点FastAPI服务，端口8000
+│   ├── run_script.py       # 文案生成节点FastAPI服务，端口8001
+│   └── run_crawler.py      # 爬虫节点FastAPI服务，端口8002
+├── requirements/           # 拆分依赖文件，避免全量安装
+│   ├── base.txt            # 公共依赖：fastapi、pydantic、langchain-core
+│   ├── router.txt          # 路由节点额外依赖：无
+│   ├── script.txt          # 文案节点额外依赖：vllm、torch
+│   └── crawler.txt         # 爬虫节点额外依赖：pandas、numpy、playwright
+├── docker/                 # 统一存放Dockerfile
+│   ├── Dockerfile.router
+│   ├── Dockerfile.script
+│   └── Dockerfile.crawler
+└── k8s/                    # K8s部署配置文件
+    ├── router-deploy.yaml
+    ├── script-deploy.yaml
+    └── crawler-deploy.yaml
+</code></pre>
+<p>然后编写三个独立的Dockerfile，每个Dockerfile只安装当前节点需要的依赖：<br />
+第一是路由节点的Dockerfile（Dockerfile.router），选择最轻量的python:3.10-slim基础镜像，只安装base和router的依赖，最终镜像体积控制在300M左右：</p>
+<pre><code class="language-dockerfile">FROM python:3.10-slim
+WORKDIR /app
+# 先复制依赖文件，利用Docker缓存，依赖不变时不需要重新安装
+COPY requirements/base.txt requirements/router.txt ./requirements/
+RUN pip install --no-cache-dir -r requirements/base.txt -r requirements/router.txt \
+    &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+# 复制代码
+COPY common/ ./common/
+COPY agents/router_agent/ ./agents/router_agent/
+COPY server/run_router.py ./server/
+# 启动路由服务
+CMD [&quot;uvicorn&quot;, &quot;server.run_router:app&quot;, &quot;--host&quot;, &quot;0.0.0.0&quot;, &quot;--port&quot;, &quot;8000&quot;]
+</code></pre>
+<p>第二是文案生成节点的Dockerfile（Dockerfile.script），选择NVIDIA官方的CUDA基础镜像，安装GPU相关依赖，注意只复制当前节点需要的代码，不要把爬虫相关的代码复制进去，最终镜像体积约15G：</p>
+<pre><code class="language-dockerfile">FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+# 安装Python环境，清理不必要的包减小镜像体积
+RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends python3-pip python3-dev \
+    &amp;&amp; ln -s /usr/bin/python3 /usr/bin/python \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements/base.txt requirements/script.txt ./requirements/
+# 安装vllm和torch时指定国内源，加快安装速度
+RUN pip install --no-cache-dir -r requirements/base.txt -r requirements/script.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+COPY common/ ./common/
+COPY agents/script_agent/ ./agents/script_agent/
+COPY server/run_script.py ./server/
+# vllm启动服务需要暴露8001端口
+EXPOSE 8001
+CMD [&quot;python&quot;, &quot;server/run_script.py&quot;]
+</code></pre>
+<p>第三是爬虫节点的Dockerfile（Dockerfile.crawler），选择带浏览器依赖的slim基础镜像，安装playwright和爬虫依赖，提前安装浏览器内核避免运行时下载，最终镜像体积约2G：</p>
+<pre><code class="language-dockerfile">FROM python:3.10-slim
+# 安装playwright需要的系统依赖（浏览器、字体等）
+RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libdbus-1-3 libxkbcommon0 libatspi2.0-0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2 wget fonts-noto-cjk \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements/base.txt requirements/crawler.txt ./requirements/
+RUN pip install --no-cache-dir -r requirements/base.txt -r requirements/crawler.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
+    &amp;&amp; playwright install --with-deps chromium  # 提前安装浏览器，避免运行时下载
+COPY common/ ./common/
+COPY agents/crawler_agent/ ./agents/crawler_agent/
+COPY server/run_crawler.py ./server/
+CMD [&quot;uvicorn&quot;, &quot;server.run_crawler:app&quot;, &quot;--host&quot;, &quot;0.0.0.0&quot;, &quot;--port&quot;, &quot;8002&quot;]
+</code></pre>
+<p>接下来在CI/CD流程中，分别构建三个镜像推送到镜像仓库，然后编写K8s部署配置，针对不同节点配置不同的资源：路由节点属于CPU轻量服务，配置0.25核CPU、512M内存即可，支持最小1个副本、最大10个副本HPA自动伸缩；爬虫节点需要大内存，配置4核CPU、8G内存，根据任务队列长度伸缩；文案生成节点需要GPU，配置1张T4/A10显卡、16G内存，因为GPU资源比较贵，配置最小0个副本、最大5个副本，没有请求时自动缩容到0，节省GPU成本。节点之间通过K8s内部Service域名通信，比如路由节点调用文案节点时直接请求http://script-agent-service:8001/generate即可，不需要暴露公网。</p>
+<p>为什么绝对不推荐用单一镜像+变参启动的方案？第一，镜像体积极度臃肿：如果把三个节点的依赖全部打包到一个镜像里，镜像体积会达到17G以上，路由节点本来只需要300M的镜像，现在要拉17G的镜像，K8s弹性伸缩时，新的Pod启动需要几分钟时间拉镜像，遇到流量突增时根本来不及扩容，会导致请求大量超时；第二，资源隔离失效：单一镜像里包含了所有依赖，即使路由节点不需要GPU，也会把CUDA库、torch这些重型依赖加载到内存里，浪费内存资源，甚至可能因为依赖冲突导致服务启动失败（比如playwright依赖的glibc版本和torch依赖的版本不兼容）；第三，安全风险更高：路由节点是暴露在公网的入口服务，如果镜像里包含了爬虫的浏览器内核、GPU驱动的依赖，会增大攻击面，一旦路由节点被攻破，攻击者可以直接利用镜像里的工具发起内网攻击；第四，迭代效率极低：每次只修改路由节点的一行代码，也要重新打包17G的镜像，CI/CD构建和推送的时间从1分钟变成15分钟，严重影响开发迭代效率。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>Docker构建时一定要注意层缓存优化，把依赖复制和安装的步骤放在代码复制之前，只要依赖文件没有变化，就不需要重新安装依赖，大幅加快构建速度；如果把代码复制放在前面，每次修改一行代码都会导致后面的依赖安装步骤重新执行，构建时间会增加好几倍。</li>
+<li>文案生成节点的Dockerfile不要用devel版本的CUDA基础镜像，devel镜像包含了编译工具链，体积比runtime版本大10G以上，生产环境只需要runtime版本即可，足够运行vllm和模型。</li>
+<li>K8s部署GPU节点时，一定要正确配置nvidia.com/gpu的资源limits，不要把GPU资源配置成requests而不配置limits，否则K8s不会把GPU分配给容器，导致服务启动时找不到GPU设备；另外GPU资源是不可超卖的，配置了1张GPU就会独占1张卡，所以要配置缩容到0的策略，避免GPU资源空转浪费钱。</li>
+<li>节点之间的接口调用要配置超时和重试机制，比如路由节点调用文案节点时，设置30秒超时，失败重试2次，避免因为某个节点临时故障导致整个流程崩溃；另外要配置链路追踪，每个请求带上唯一的trace_id，方便排查跨节点的问题。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以把公共依赖做成基础镜像，比如三个节点都需要的common模块和base依赖，打包成一个基础镜像，各个节点的Dockerfile直接FROM这个基础镜像，进一步减少重复构建，减小镜像体积。</li>
+<li>针对文案生成节点这类GPU重负载服务，可以配置K8s的GPU共享策略，比如用阿里云的cGPU方案，让多个低优先级的任务共享同一张GPU，提升GPU利用率，降低成本。</li>
+<li>引入服务网格（如Istio）做节点间的流量治理，实现灰度发布、流量熔断、限流降级，比如上线新版本的文案生成节点时，先切10%流量过去，观察错误率没问题再全量，避免新版本有问题导致整个内容生产流程崩溃。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>大模型部署性能优化</code> <code>高并发排障</code> <code>成本优化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你们团队用单卡H200（141G显存）+ vLLM部署了Qwen3.5-72B BF16模型，支撑内部3000人使用的知识库和Agent助手，上线初期运行正常，最近上班高峰期（9点-10点）频繁出现三个问题：① 首字延迟（TTFT）从原来的500ms飙升到10秒以上，用户输入问题后要等很久才开始出字；② 显存使用率经常冲到100%，触发OOM导致服务重启；③ 每天的Token成本比上线初期高了3倍，但实际的用户请求量只增长了30%。请你给出完整的问题排查思路和优化方案，把TTFT降回1秒以内，同时消除OOM，把Token成本降下来。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先搭建监控大盘，采集核心指标，包括TTFT、TPOT（每Token生成时间）、GPU利用率、显存使用率、请求队列长度、缓存命中率、每个请求的输入输出Token长度，先定位到问题的根因，不要盲目优化。</li>
+<li>第二步：针对三个问题分别排查根因：TTFT高通常是因为请求排队、动态批处理参数不合理、KV Cache占用过高；OOM通常是因为KV Cache配置过大、没有做显存限制、长上下文请求过多；Token成本高通常是因为没有做缓存、上下文重复发送、RAG检索的冗余片段太多。</li>
+<li>第三步：按照“无成本优化→低成本优化→架构优化”的优先级落地优化方案，先改配置参数，再做缓存和限流，最后考虑架构调整，避免过度优化。</li>
+<li>第四步：优化后做压测验证，模拟高峰期的请求量和请求长度，确认三个问题都解决后再上线，同时配置告警规则，后续出现指标异常提前发现。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>首先排查根因，通过vLLM自带的metrics接口和LLM网关的日志，通常会发现三个典型问题：第一，vLLM默认的max_num_seqs（最大并发序列数）配置过高，设置成了256，高峰期大量请求同时进来，KV Cache把显存占满，后续的请求在队列里排队等待，导致TTFT飙升；第二，没有配置max_model_len，有些用户上传几百页的PDF直接丢给模型，输入Token长度达到100K以上，单个请求的KV Cache就占用几十G显存，把其他请求的KV Cache挤掉，触发OOM；第三，没有部署语义缓存，大量员工问相同的问题（比如“今年的年假怎么休”“报销流程是什么”），每次都要重新调用模型计算，重复消耗Token和GPU算力，导致Token成本虚高。</p>
+<p>接下来按照优先级落地优化：<br />
+第一，先优化vLLM的运行参数，零成本解决OOM和排队问题：首先把max_model_len设置成业务实际需要的长度，内部知识库场景根本不需要128K上下文，设置成32K足够覆盖99.9%的请求，单个请求的KV Cache占用从原来的几十G降到几G；然后调整KV Cache的显存占用比例，vLLM默认会把90%的显存分给KV Cache，调整成gpu_memory_utilization=0.8，留20%的显存给模型运行和临时计算，避免显存打满触发OOM；接着调整动态批处理参数，把max_num_batched_tokens设置成8192，max_num_seqs设置成64，不要让太多请求同时进入批处理，避免批处理时间过长导致排队；开启prefix caching（前缀缓存），因为系统Prompt和RAG的公共提示词每个请求都是一样的，把这部分的KV Cache缓存起来，不需要每个请求都重新计算，能直接降低30%的KV Cache占用，TTFT可以降低40%以上。<br />
+第二，在LLM网关层部署语义缓存（GPTCache），解决Token成本过高的问题：把员工常见的问题和回答缓存起来，用向量相似度做匹配，当用户的问题和缓存里的问题相似度超过0.95时，直接返回缓存结果，完全不经过GPU计算。内部知识库场景下，80%的请求都是重复的高频问题（比如年假、报销、考勤规则），部署语义缓存后，缓存命中率可以达到70%以上，意味着70%的请求不需要消耗Token和GPU算力，Token成本直接降到原来的30%，同时GPU负载大幅降低，TTFT也会随之下降。另外，在网关层做请求拦截，限制单个请求的输入Token长度不能超过16K，超过的话直接返回提示“请缩短问题或拆分文档”，避免个别超长请求占用大量显存。<br />
+第三，优化RAG检索逻辑，减少无效Token消耗：很多时候RAG会把Top10的相关片段全部塞给模型，里面有大量不相关的冗余内容，导致输入Token过长。加入Reranker重排模型，把Top20的候选片段重排后只保留最相关的Top3片段，输入Token长度可以减少60%以上，不仅降低Token成本，还能减少幻觉，提升回答准确率。另外，优化对话历史的传递逻辑，不要把所有历史对话全部塞给模型，只保留最近3轮对话，更早的对话通过摘要压缩成100字以内的摘要，避免对话越来越长导致输入Token膨胀。<br />
+第四，做流量控制和服务降级，高峰期避免服务被打垮：在网关层配置限流，每个用户每分钟最多请求10次，避免个别用户批量调用脚本占用所有资源；把请求分成高低优先级，比如政策咨询类请求是高优先级，文案生成类离线任务是低优先级，高峰期GPU资源不足时，优先处理高优先级请求，低优先级请求进入队列等待或者直接返回“当前高峰期，请稍后再试”，避免所有请求都排队导致TTFT飙升。</p>
+<p>优化完成后做压测验证，用压测工具模拟高峰期50并发的请求，每个请求输入Token平均1000，输出Token平均500，验证TTFT稳定在1秒以内，TPOT稳定在50ms以内，显存使用率稳定在70%左右，没有OOM，缓存命中率达到70%以上，Token成本降到优化前的30%以下。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>调整vLLM参数时不要盲目调大max_num_seqs，很多人以为并发数设置越大越好，实际上并发数过高会导致每个批处理的等待时间变长，TTFT反而升高，要根据模型大小和显存大小找到最优值，72B模型在H200上max_num_seqs设置成32-64是比较合理的，设置成256一定会导致排队严重。</li>
+<li>语义缓存一定要设置合理的相似度阈值，不能为了提高命中率把阈值设得太低，比如相似度0.8就返回缓存，会导致很多问题答非所错，比如用户问“2025年的年假规则”，缓存里是“2024年的年假规则”，相似度0.85，如果直接返回就会给出错误答案，阈值设置在0.92-0.95之间比较合理，同时缓存要设置过期时间，政策更新时及时清空对应缓存。</li>
+<li>不要为了降低TTFT关闭动态批处理，动态批处理是vLLM提升GPU利用率的核心，关闭后GPU利用率会降到20%以下，并发能力只有原来的1/10，正确的做法是调整批处理的参数，在TTFT和吞吐量之间找到平衡。</li>
+<li>注意vLLM的版本问题，旧版本的vLLM在处理长上下文时存在显存泄漏问题，运行时间长了显存会慢慢涨满，一定要升级到最新稳定版，并且配置服务自动重启策略，即使出现OOM也能在10秒内自动恢复服务，不影响用户使用。</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入投机采样（Speculative Decoding），用一个小模型（比如Qwen3.5-7B）做草稿模型，大模型做验证，在不损失准确率的情况下，可以把生成速度提升2-3倍，TPOT从50ms降到20ms以内，进一步降低TTFT，提升并发能力。</li>
+<li>对常用的System Prompt和RAG提示词做Prompt缓存，很多大模型服务和vLLM都支持Prompt缓存功能，相同的前缀不需要重复计算KV Cache，对于内部知识库这种固定Prompt的场景，缓存命中率可以达到90%以上，TTFT可以再降低50%。</li>
+<li>配置自动扩缩容，如果高峰期GPU利用率持续超过80%，自动在K8s上启动新的GPU副本，平峰期自动缩容，在保证体验的前提下尽可能降低GPU成本。</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>从0到1落地</code> <code>企业Agent交付</code> <code>避坑指南</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你作为技术负责人，需要给一家100人规模的制造业工厂交付一套生产一线员工使用的AI助手，</p>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
