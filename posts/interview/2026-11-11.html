@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-11-11)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-11-11)</h1>
+    <div class="meta">更新于 2026-11-11 11:07</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：MCP · RAG · Agent · LangGraph · 微调 · Milvus<br />
+🔄 知识片段：#10, #11, #12（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Linux运维基础</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在Linux服务器上部署Agent服务时，为什么生产环境必须使用Systemd/Supervisor托管服务，而不能仅依赖Tmux/Screen做后台常驻？两者的核心差异是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Tmux/Screen仅适合开发调试阶段的临时后台运行，生产环境必须用Systemd/Supervisor实现服务的生命周期托管，才能满足开机自启、崩溃自愈、资源管控的企业级稳定性要求。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Tmux/Screen的本质是终端会话复用工具，核心能力是隔离终端与SSH进程的生命周期，不具备服务管控能力</li>
+<li>Systemd是Linux系统级的服务管理器，Supervisor是进程级的守护进程，两者核心能力是监控进程状态、自动拉起异常退出的服务</li>
+<li>生产服务的核心要求是“无人值守下的高可用”，而非单纯的“后台不挂”</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多刚接触Agent开发的同学会觉得“我用Tmux把程序跑在后台，关了SSH也不中断，这不就够了吗？”，这是典型的开发思维而非生产运维思维。Tmux的会话虽然不受SSH断开影响，但它完全不关心进程本身的状态：如果Agent因为显存OOM、代码异常、网络断连直接崩溃退出，Tmux只会留一个死的会话窗口，不会做任何重启动作；如果服务器因为内核升级、电力故障重启，Tmux里的程序不会自动启动，必须人工登录重新拉起，这对于7*24小时运行的线上服务是不可接受的。<br />
+而Systemd作为系统的1号进程，会在系统启动时自动拉起配置好的服务，同时会持续监控进程的PID状态，一旦发现进程异常退出（不管是崩溃还是被误杀），会按照配置的重启策略（比如always、on-failure）在几秒内自动拉起服务，还可以配置重启间隔、最大重启次数防止雪崩。此外Systemd还支持配置服务的资源限制（CPU、内存、文件句柄数）、运行用户（避免用root跑服务的安全风险）、日志统一收集（journalctl直接查看所有服务日志），这些都是Tmux完全不具备的能力。Supervisor则适合没有Systemd权限的非root用户场景，能力类似但更轻量。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到可以在Systemd配置中设置<code>Restart=always</code>、<code>RestartSec=5</code>实现崩溃5秒后自动重启，同时配置<code>User=agent</code>指定非root用户运行，配合<code>LimitNOFILE=65536</code>调整文件句柄上限，避免高并发下Agent报错</li>
+<li>补充开发调试用Tmux的优势：可以随时attach到会话看实时输出、断点调试，比Systemd看日志更灵活，两者是互补关系不是替代关系</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：觉得Tmux更简单，生产也能用——实际上只要出现一次服务器重启或者服务崩溃没人发现，就会导致业务中断，对于面向内部员工或者外部用户的Agent服务是严重的生产事故</li>
+<li>误区：Systemd配置很复杂——实际上一个标准的Agent服务配置文件只需要10行左右，5分钟就能写完，收益远大于成本</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent安全</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>如果Agent具备Code Interpreter（代码解释器）能力，可以执行LLM生成的Python/Bash代码，为什么绝对不能直接在Linux宿主机上用root权限运行？Docker沙箱隔离需要配置哪些核心限制才能真正安全？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>直接在宿主机给Agent开root权限相当于把服务器的完全控制权交给了有幻觉概率的大模型，一次错误的命令就可能导致系统崩溃、数据泄露，必须通过Docker做最小权限的资源与环境隔离，从底层限制Agent的破坏半径。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>LLM存在固有幻觉概率，无法100%保证生成的代码是安全的，可能出现误执行<code>rm -rf /</code>、格式化系统盘、篡改系统配置等高危操作</li>
+<li>Docker的核心能力是通过Linux内核的Namespace、Cgroups机制实现文件系统、进程、网络、资源的四层隔离，让容器内的进程感知不到宿主机的存在</li>
+<li>沙箱安全的核心原则是“最小权限原则”：默认不给任何不必要的权限，只开放完成任务必须的资源</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多开发者在做Code Interpreter的时候图方便，直接用subprocess在宿主机上执行LLM生成的代码，甚至为了装方便直接用root用户跑，这是生产环境的致命安全漏洞。大模型的幻觉不是靠Prompt就能100%避免的：比如用户问“怎么清理磁盘空间”，LLM可能生成<code>rm -rf /tmp/*</code>但路径写错成<code>rm -rf / *</code>；或者Agent在执行依赖安装的时候被恶意构造的prompt诱导，执行挖矿脚本、遍历/etc目录下的密钥文件上传到外部服务器，这些风险一旦发生就是灾难性的。<br />
+用Docker做隔离的时候也不是随便起个容器就安全了，必须配置几个核心限制：第一是运行用户，必须在容器内创建普通用户，绝对不能用root用户运行代码，防止容器逃逸后拿到宿主机权限；第二是资源限制，通过<code>--memory</code>、<code>--cpus</code>参数限制容器最多能用多少内存、CPU，防止Agent写出死循环代码把宿主机资源占满导致其他服务宕机；第三是文件系统限制，把容器的根文件系统设为只读（<code>--read-only</code>），只挂载一个单独的、有大小限制的工作目录给Agent写临时文件，防止它篡改容器内的系统文件；第四是网络限制，默认不给公网访问权限（<code>--network=none</code>），如果确实需要调用外部API，单独配置白名单，防止Agent执行恶意脚本向外泄露数据；第五是进程与权限限制，通过<code>--security-opt=no-new-privileges</code>禁止容器内进程提权，加上<code>--pids-limit</code>限制最大进程数，防止fork炸弹把系统打挂。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到除了Docker之外，更高安全等级的场景可以用gVisor、Kata Containers等轻量虚拟化沙箱，比传统Docker的内核隔离更彻底，即使存在容器逃逸漏洞也无法突破到宿主机</li>
+<li>补充可以在代码执行前加一层静态扫描，用AST解析检测有没有<code>rm -rf</code>、<code>os.system</code>、网络请求等高危操作，作为沙箱之外的第二层安全防线</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：觉得“我Prompt写得好，告诉LLM不要执行危险命令就没事”——Prompt是软约束，永远可以被越狱绕过，安全必须靠底层硬隔离</li>
+<li>误区：用了Docker就绝对安全——如果用特权模式启动容器（<code>--privileged</code>）、或者挂载宿主机的/、/root等敏感目录到容器里，相当于没做隔离，一样会被打穿</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>GPU资源调度</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在多卡Linux服务器上运行多个Agent项目时，为什么通过<code>CUDA_VISIBLE_DEVICES</code>环境变量隔离GPU是成本最低、最通用的方案？它的核心原理是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong><code>CUDA_VISIBLE_DEVICES</code>通过CUDA驱动层的设备掩码机制，在用户态对进程屏蔽指定的GPU设备，无需修改业务代码、没有额外性能损耗，是多项目共享GPU服务器时最通用的算力隔离方案。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>CUDA驱动在程序初始化时会读取<code>CUDA_VISIBLE_DEVICES</code>环境变量，只把变量中指定的物理GPU枚举给应用程序，进程完全感知不到其他GPU的存在</li>
+<li>这种隔离是在驱动层实现的，对上层的PyTorch、TensorFlow等所有CUDA生态的框架完全透明，代码里写<code>cuda:0</code>永远会映射到被允许看到的第一块卡</li>
+<li>相比其他虚拟化隔离方案，环境变量方案零开销、配置极简，适合开发和生产环境的多项目部署</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多同学在多卡服务器上跑项目的时候，会遇到两个PyTorch进程默认抢0号卡导致显存OOM的问题，最优雅的解决方式不是去改代码里的<code>torch.cuda.set_device()</code>，而是在启动进程前设置<code>CUDA_VISIBLE_DEVICES</code>环境变量。比如服务器有4张卡，启动HR客服Agent的时候执行<code>export CUDA_VISIBLE_DEVICES=0</code>，启动内容运营Agent的时候执行<code>export CUDA_VISIBLE_DEVICES=1,2</code>，那么两个进程看到的GPU设备是完全独立的：第一个进程里不管怎么枚举GPU设备，都只能看到1张卡，第二个进程能看到2张卡，它们之间完全不会互相抢显存，也不需要修改任何业务代码。<br />
+这个方案的优势非常明显：第一是无侵入，不需要改框架、改代码，不管是用PyTorch、vLLM还是TensorRT部署的服务，都支持这个环境变量；第二是零性能损耗，它本质是驱动层做了设备ID的映射，没有做任何虚拟化或者资源截获，GPU的算力和显存访问是完全裸金属的性能；第三是配置灵活，可以随时在启动脚本里调整，比如某个项目高峰期临时多分配一张卡，只需要改启动命令不需要改代码。当然它也有局限性：它只能做物理卡级别的隔离，不能把一张卡的显存拆分给多个进程（比如一张24G的卡分给两个进程各12G），如果要做更细粒度的显存隔离，需要配合vLLM的显存配额、或者MPS、MIG等技术，但对于绝大多数多项目共享服务器的场景，<code>CUDA_VISIBLE_DEVICES</code>已经足够用了。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到如果要实现更细粒度的GPU共享，可以配合NVIDIA MPS（多进程服务）实现同一张卡上多个进程的算力按比例分配，或者用A100/H100的MIG（多实例GPU）功能把一张物理卡切分成多个独立的虚拟GPU实例，每个实例有独立的显存和算力，隔离性更强</li>
+<li>补充可以在Systemd服务配置里直接写<code>Environment="CUDA_VISIBLE_DEVICES=0"</code>，不需要在启动脚本里export，服务托管和资源隔离一起配置更规范</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：<code>CUDA_VISIBLE_DEVICES</code>可以限制显存使用——它只能控制进程能看到哪些卡，不能限制进程用多少显存，如果一个进程把卡上的显存占满了，同一张卡上的其他进程还是会OOM，所以最好是不同项目绑定不同的物理卡</li>
+<li>误区：在代码里import torch之后再设置<code>os.environ["CUDA_VISIBLE_DEVICES"]</code>有用——CUDA驱动是在第一次调用CUDA API的时候初始化的，必须在import torch、初始化CUDA上下文之前设置环境变量才会生效，否则设置无效</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>意图识别架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业级智能客服/Agent的意图识别为什么要采用“规则+向量相似度+大模型推理”的三级分流架构，而不是所有请求都直接丢给大模型做意图识别？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>三级分流架构通过“硬规则兜底高频强诉求、向量匹配处理标准化问题、大模型处理复杂长尾问题”的分层设计，同时兼顾了响应速度、Token成本和识别准确率，是工业界落地的最优解，全量大模型方案在高并发场景下成本和时延都不可接受。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>意图识别的三个核心指标：响应延迟（越低越好）、推理成本（越低越好）、识别准确率（越高越好），三者在单一大模型方案下不可能同时最优</li>
+<li>80%的用户请求是高频、标准化的诉求，完全不需要大模型就能处理，用规则和向量匹配可以做到毫秒级响应、零Token成本</li>
+<li>大模型只用来处理剩下20%的复杂、长尾、多意图请求，把好钢用在刀刃上，在保证整体准确率的前提下把成本和时延降到最低</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多刚做大模型应用的同学会觉得“大模型能力强，所有意图识别都交给GPT-4不就行了，写什么规则、搞什么向量匹配多麻烦”，这种方案在Demo阶段没问题，但一旦上线到生产环境，面对每天几万、几十万的请求量，成本和时延都会爆炸。比如用户发“转人工”、“投诉”这种强诉求，用关键词正则匹配只需要1毫秒就能识别，直接走转人工流程，根本不需要等大模型几秒钟的响应，也不需要花Token钱；对于“年假有几天”、“怎么报销差旅费”这种高频标准问题，把常见问法做Embedding存在向量库里，用户请求进来先算相似度，相似度超过0.85的直接返回对应意图，整个过程几毫秒，成本几乎为零。<br />
+如果所有请求都丢给大模型，首先是成本：按10万次请求/天算，每次意图识别输入输出加起来1000Token，用GPT-3.5一天就要几百块，一年就是十几万成本，而规则和向量匹配的成本几乎可以忽略；其次是时延：大模型推理即使优化得再好，平均也要1-2秒才能返回，而规则和向量匹配都是毫秒级，用户体验差很多；第三是稳定性：大模型API可能会超时、报错、格式输出错误，而规则和向量匹配的稳定性是100%。当然三级分流不是说大模型不重要，对于那些规则匹配不上、向量相似度低的长尾问题，比如用户说“我上周三提交的那个医疗发票，因为我去年刚转的部门，司龄怎么算啊，能报多少”，这种多条件、带上下文、表述模糊的复杂请求，规则和向量都处理不了，就必须交给大模型去做深度语义理解、多意图拆解，同时结合上下文做Query改写，保证识别准确率。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到三级分流架构是可以持续迭代的：冷启动阶段没有标注数据，先用大模型+Few-shot快速上线，跑一段时间之后把高频的、大模型识别正确的请求沉淀到向量库，把特别固定的诉求（比如转人工、投诉）写成规则，慢慢降低大模型的流量占比，形成“数据越多、成本越低、速度越快”的正向循环</li>
+<li>补充必须要有OOD（域外意图）兜底，不管哪一级都识别不出来的请求，不要强行匹配意图，直接走转人工或者兜底回复，避免答非所问</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：规则是过时的方案，不够智能——实际上对于强诉求、高频固定指令，规则是最可靠、最快、成本最低的方案，没有任何替代方案，工业界从来不会为了“看起来智能”而放弃可靠性和成本</li>
+<li>误区：向量匹配可以替代大模型——向量匹配只能处理和种子句语义非常接近的问题，稍微换个说法、带点复杂条件就匹配不准，必须靠大模型兜底</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent工具设计</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在设计HR智能助手的工具列表时，为什么要把几百个政策咨询类的需求合并成一个<code>hr_knowledge_rag</code>总工具，而不是给每个政策都写一个单独的工具？核心设计原则是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>工具数量过多会超出大模型的Function Calling注意力上限，导致路由准确率大幅下降，必须按照“强管控流程单独做工具、弱管控知识统一走RAG”的原则拆分工具，才能在保证路由准确率的前提下覆盖所有业务场景。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>大模型的Function Calling能力存在“工具过载”问题：当工具列表超过20-30个时，大模型对工具描述的注意力会被稀释，很容易选错工具、漏填参数</li>
+<li>工具的本质是“需要Agent触发动作、调用系统接口、改变系统状态的能力”，而纯知识问答不需要改变状态，本质是信息检索，完全不需要拆成单独工具</li>
+<li>工具设计的核心原则是“高内聚、低耦合”：同类能力合并，不同类型的能力拆分，把工具数量控制在大模型能稳定处理的范围内</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多开发者在做Agent工具设计的时候会走入一个误区：觉得工具拆得越细越好，比如“查年假”做一个工具、“查婚假”做一个工具、“查差旅报销标准”做一个工具、“查医疗报销比例”又做一个工具，最后工具列表里有上百个工具，每个工具的描述都差不多，大模型根本记不住哪个工具对应哪个场景，经常出现用户问“婚假有几天”，模型选成了“查年假”工具的情况，路由准确率惨不忍睹。<br />
+实际上工具拆分的核心判断标准是：这个能力是不是需要调用后端接口、是不是会触发业务流程、是不是需要特定的结构化参数。比如“开在职证明”需要调用OA审批接口、需要用户提供证明类型、用途，是强管控的动作类能力，必须单独做成工具；而“婚假有几天”、“年假怎么算”、“外卖能不能报销”这类纯政策咨询类的问题，本质都是去知识库找对应的文档片段回答用户，不需要触发任何系统动作，也不需要特殊的参数，完全可以合并成一个<code>hr_knowledge_rag</code>工具，工具描述就写“当用户询问公司HR政策、制度、规则等纯知识类问题时调用，输入用户的问题，返回相关的知识片段”。这样整个工具列表的数量可以控制在10个以内，大模型路由的准确率会非常高，后续新增政策类知识的时候也不需要改工具列表，直接往向量库里加文档就行，维护成本极低。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到工具设计的“二八原则”：80%的知识类需求统一走RAG工具，20%的动作类、流程类需求做成单独的强管控工具，整体工具数量控制在15个以内，是大模型Function Calling准确率最高的区间</li>
+<li>补充对于RAG工具的返回结果，还要经过安全合规Agent的审核，防止返回敏感信息、跨部门的保密内容，而强管控工具本身就会做权限校验，不需要额外处理</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：工具拆得越细，大模型越容易选——实际上工具数量超过阈值后，准确率会指数级下降，因为大模型的上下文注意力是有限的，太多相似的工具描述会互相干扰</li>
+<li>误区：RAG不需要做成工具，直接在系统Prompt里告诉模型可以查知识库就行——Function Calling的工具是结构化的，大模型知道什么时候该调用、传什么参数，如果不做成工具，模型很容易在该查知识库的时候凭自己的训练数据瞎编，出现幻觉</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>多轮对话设计</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>Agent在多轮对话中做槽位填充（Slot Filling）、追问用户补全参数时，为什么不能每轮都重新做意图识别，必须要有会话状态机（State）挂起当前意图？核心工程流程是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>多轮追问的核心是维护会话的上下文状态，把已经识别到的意图和已经收集到的参数持久化存储，用户补充信息后直接续接之前的流程，否则会出现意图漂移、重复追问、答非所问的问题，严重影响对话体验。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>用户在补全参数的时候，回答往往是短文本、碎片式的（比如用户只回答“在职证明”、“满两年”），本身不包含完整意图，如果每轮重新做意图识别，根本识别不出来用户要做什么</li>
+<li>会话状态机的核心是记录当前会话的“阶段”：是等待用户输入新问题、还是已经识别到意图正在补参数、还是已经在执行工具，不同阶段走不同的处理逻辑</li>
+<li>状态必须持久化到Redis/数据库中，不能存在服务内存里，否则服务重启、多实例部署的时候状态会丢失，导致对话中断</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多新手做的多轮对话Agent都会犯一个错误：每收到用户的一句话，不管上下文是什么，都丢给意图识别Agent重新判断意图。比如用户说“帮我开个证明”，Agent识别到要开证明，缺<code>cert_type</code>参数，于是问“请问您要开在职证明还是收入证明？”，用户回答“在职证明”，这时候如果重新做意图识别，用户只说了“在职证明”四个字，意图识别模型根本不知道用户要干嘛，可能会去RAG里搜“什么是在职证明”，或者又问一遍“请问您要办什么业务？”，体验非常差。<br />
+正确的工程流程是：当Router Agent识别到用户的意图，但是发现必填参数不全的时候，不是直接结束本轮，而是把当前会话的状态设置为“PENDING_补全cert_type参数”，把已经识别到的意图<code>apply_employment_certificate</code>、已经收集到的参数都存在会话State里，持久化到Redis中；等用户下一轮发消息过来的时候，先检查当前会话有没有挂起的待补全任务，如果有，就直接把用户的回答作为缺失的参数补进去，而不是重新做意图识别；等所有必填参数都补全了，再把状态改成“EXECUTING_TOOL”，调用对应的工具执行，执行完之后把状态清空，回到等待新意图的状态。这种机制本质就是把多轮对话当成一个状态流转的过程，而不是每轮独立的单轮对话，和传统客服机器人的槽位填充逻辑是一致的，只不过大模型可以更灵活地理解用户的回答、提取参数，不需要写死正则匹配。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到用LangGraph的StateGraph和Checkpointer机制可以非常方便地实现这种状态管理，不需要自己从头写状态机，Checkpointer会自动把每个节点的状态持久化到Postgres/Redis里，甚至支持状态回滚、时间旅行调试，出问题的时候可以回溯到任意一轮对话的状态排查问题</li>
+<li>补充可以设置状态超时时间，比如挂起的待补全状态超过30分钟用户没回复，就自动清空状态，下次用户再发消息重新识别意图，避免状态一直挂着导致后续对话混乱</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：靠大模型的上下文记忆来维持多轮状态——大模型的上下文是无状态的，很容易忘记之前的意图，尤其是对话轮次多了之后，经常出现“忘了之前要干嘛”的情况，必须靠外部的状态机做硬管控，不能完全依赖模型记忆</li>
+<li>误区：必须把所有参数都收集齐了才能执行——对于非必填参数，可以设置默认值，不要什么参数都追问，比如开证明默认开在职证明、默认开3份，用户没提就用默认值，减少追问轮次，提升体验</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>开源平台选型</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>企业搭建内部Agent编排平台时，为什么基于Dify等成熟开源项目二次开发是性价比最高的路线，而不是从零手写所有功能？二开的核心边界是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>开源二开的核心价值是站在社区验证过的基建之上，把研发资源集中在企业自己的业务差异化能力上，避免重复造通用轮子，能把项目交付周期从半年缩短到几周，同时大幅降低技术风险。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Agent编排平台的80%是通用基建：前端的流程画布、流式输出、多模型适配、RAG管道、权限系统，这些能力没有业务差异化，所有企业做出来都差不多</li>
+<li>成熟开源项目已经经过了数万开发者的验证，Bug、性能、稳定性都比自己从零写的版本好很多，踩坑成本极低</li>
+<li>二开不是完全依赖开源，而是把通用能力交给开源，把和企业自身业务、数据、系统相关的差异化能力自己开发，既保持灵活性又提升效率</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多技术团队在做内部平台的时候会有“自研情结”，觉得开源的东西不够灵活、要自己从零写一套才显得有技术实力，这是非常典型的技术思维而非商业思维。要做一个能用的Agent编排平台，前端需要做基于React Flow的拖拽式工作流画布、流式对话渲染、应用管理界面，后端需要做多模型网关（适配几十种大模型的API、处理流式响应、错误重试）、DAG工作流引擎（支持分支、循环、并行节点）、RAG管道（文档解析、切片、向量化、混合检索、重排）、LLMOps监控（Token统计、日志、Trace链路），这些东西没有任何业务特殊性，但是一个5-8人的资深团队全职做至少要半年才能做到生产可用，期间还要踩无数的坑，等你做出来，业务部门的需求早就等不及了。<br />
+而基于Dify这种成熟开源项目二开，首先是交付快：用Docker部署半天就能跑起来，业务部门马上就能试用、搭原型，1个月内就能出业务成果；其次是协议友好：Apache 2.0协议允许商用、修改，不需要开源自己的二开代码，没有合规风险；第三是可持续：只要Fork官方仓库，后续官方出的新功能、性能优化、安全补丁，都可以通过git merge同步到自己的分支里，不会出现自己自研的版本最后没人维护、变成技术债的问题。二开的核心边界非常清晰：不要去改Dify的核心流程代码，通用能力尽量用原生的，只在三个地方做定制：第一是和企业内部系统打通的部分（SSO登录、组织架构、内网工具、本地模型），第二是企业特有的业务节点（比如OA审批、ERP查询），第三是品牌和UI定制，这样后续同步官方代码的时候冲突最少，维护成本最低。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到二开的时候要遵循“新增优先、修改兜底”的原则：能通过插件、自定义工具、OpenAPI接入实现的功能，就不要改核心源码；必须改核心源码的地方，尽量用继承、钩子的方式扩展，不要直接改原有逻辑，新建独立的文件存放二开代码，方便后续合并官方更新</li>
+<li>补充对比Coze Studio：Coze更偏向零代码做Bot，生态和字节的火山引擎绑定更深，适合快速做C端Bot；Dify的工作流更灵活、私有化部署更成熟，更适合企业内部复杂场景的落地，两者定位有差异</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：二开就是被开源绑定，以后想换就换不了——实际上只要你把业务逻辑都做成独立的插件、工具，核心数据存在自己的数据库里，后续不管是换其他开源平台还是自研，都可以平滑迁移，不存在绑定问题</li>
+<li>误区：开源项目不安全——实际上开源项目的代码是公开的，有全世界的开发者帮着找安全漏洞，反而比几个开发闭门写的闭源系统更安全，尤其是私有化部署在内网，数据完全可控</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Tokenizer原理</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型的Tokenizer为什么要做BPE（字节对编码）合并高频词，而不是直接把每个汉字/单词当成一个Token？这种设计有什么核心优势？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>BPE算法通过“从字符开始、不断合并最高频的相邻字节对”的方式构建词表，在词表大小和编码效率之间找到了最优平衡，既能覆盖所有可能的文本，又能大幅压缩序列长度，提升模型推理效率、降低成本。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>如果把每个单字/字符作为Token，词表只需要几万个，但同样的文本会被切分成非常长的序列，导致上下文窗口浪费、推理速度变慢</li>
+<li>如果把所有单词/词组都放进词表，词表会大到几百万、几千万，模型的Embedding层参数量会爆炸，训练和推理成本极高，而且永远无法覆盖新词、生僻词、错别字</li>
+<li>BPE的核心逻辑是数据驱动：从最小的字符开始，统计语料中相邻字符对的出现频率，每次把频率最高的对合并成一个新的Token，直到词表大小达到预设值（通常是32k、128k）</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多人会觉得Tokenizer不就是个分词工具吗，为什么要搞这么复杂？实际上Tokenizer是连接人类语言和模型数学计算的核心桥梁，它的设计直接决定了模型的训练效率、推理速度和对语言的理解能力。如果用单字作为Token，比如“人工智能”四个字，就会被切成4个Token，同样的上下文窗口能装的文本长度就会变短，而且单字本身的语义很弱，模型需要更多的参数去学习字和字组合起来的语义；如果把所有词都放进词表，比如“人工智能”、“人工智能大模型”都作为单独的Token，那词表会无限大，因为语言是不断演化的，总会有新词出现（比如“AI Agent”、“Prompt工程”），你永远不可能把所有词都收进词表，而且生僻字、错别字、特殊符号根本覆盖不到，遇到不在词表里的词就会变成[UNK]（未知标记），模型直接就看不懂了。<br />
+BPE算法完美解决了这个矛盾：它一开始的基础词表只有256个单字节（可以覆盖所有可能的字符，根本不会出现未知标记），然后在大规模语料上统计，发现“人”和“工”经常一起出现，就合并成“人工”一个Token；发现“人”和“民”经常一起出现，就合并成“人民”；不断迭代直到词表达到预设大小。这样出来的词表，高频的常见词、词组都会被合并成单个Token，大幅压缩序列长度（比如中文常见词平均1.5个汉字一个Token，英文常见词平均0.7个单词一个Token），而遇到生僻词、新词的时候，又可以拆成基础的单字/字节表示，不会出现未知标记。比如“ChatGPT”这个词刚出来的时候，可能会被拆成“Chat”+“G”+“PT”几个Token，等语料里出现多了，后续的模型Tokenizer就会把它合并成一个单独的Token，编码效率更高。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到不同模型的Tokenizer词表是不通用的，比如GPT的Tokenizer和Llama的Tokenizer切分同一个文本的Token数量可能差很多，所以算Token成本的时候不能通用，必须用对应模型的Tokenizer计算</li>
+<li>补充中文场景下的Tokenizer优化：很多早期开源模型的Tokenizer是在英文语料上训练的，中文会被拆成单字节，Token效率很低，现在的国产模型（比如Qwen、DeepSeek）都在中文语料上做了BPE训练，中文的Token压缩率比早期模型高30%以上，相同上下文窗口能装更多中文文本</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：一个中文汉字就是一个Token——实际上常见的中文词组会被合并成一个Token，而生僻字、特殊符号可能会被拆成多个字节Token，平均下来100个汉字大概是100-150个Token，不是固定的1:1</li>
+<li>误区：词表越大越好——词表越大，Embedding层的参数量就越大，推理时的Softmax计算量就越大，会拖慢推理速度，通常128k大小的词表是目前效果和速度的平衡点</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型推理优化</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型推理中，上下文缓存（Context Cache/前缀缓存）技术的核心原理是什么？为什么能同时降低推理成本和响应延迟？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>前缀缓存通过复用相同系统Prompt、历史对话的KV Cache，避免重复计算公共前缀部分的注意力，在多轮对话、长文档问答等场景下可以把首Token响应延迟降低50%以上，同时大幅减少Input Token的计算成本。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>KV Cache是可以复用的：对于两个请求，如果前面的文本前缀完全相同，那么这部分前缀对应的K和V矩阵是完全一样的，不需要重新计算</li>
+<li>大模型推理的计算量和Input Token长度正相关，重复计算长前缀会浪费大量算力，尤其是系统Prompt通常有几百上千个Token，每个请求都重新计算非常浪费</li>
+<li>前缀缓存把公共前缀的KV Cache存在显存或者内存里，后续请求只要匹配到相同前缀，就直接复用缓存的KV，只需要计算新增部分的Token</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多用过OpenAI API或者本地部署大模型的同学会发现，多轮对话的时候，第一轮问问题响应很慢，后面几轮带着历史对话问，首Token响应速度应该更慢才对（因为Input更长了），但实际上有时候反而更快，这就是前缀缓存在起作用。比如一个HR助手的系统Prompt有2000个Token，所有请求都带这个相同的系统Prompt，那么第一次请求的时候，这2000个Token的KV Cache会被计算出来存在缓存里；第二个请求来的时候，前面2000个Token和第一个请求完全一样，就不需要重新计算这部分的K和V，直接从缓存里读，只需要计算后面新增的历史对话和用户新问题的Token，相当于Input长度从“2000Token系统Prompt+历史对话+新问题”变成了只有新增部分，计算量大幅减少，首Token延迟自然就降下来了。<br />
+现在的大模型API服务商（比如OpenAI、Anthropic）和推理框架（vLLM、SGLang）都实现了前缀缓存，甚至把缓存作为计费的优惠项：比如命中缓存的Input Token只收正常价格的10%甚至免费，因为这部分不需要重新计算，算力成本很低。前缀缓存的命中率在很多场景下非常高：比如基于同一个长文档的问答，前面几千Token的文档内容是完全一样的，命中率接近100%；多轮对话的历史对话是不断累加的，前面的轮次都是相同的前缀，命中率也很高。为了提升缓存命中率，工程上通常会把固定的系统Prompt放在最前面，不要在系统Prompt里加动态变化的内容（比如时间戳、随机数），否则会导致前缀匹配失败，缓存失效。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到vLLM的PagedAttention技术天然支持前缀缓存，因为KV Cache是按块存储的，只要块的内容相同就可以共享，不需要连续的内存，比传统的连续缓存的命中率高很多</li>
+<li>补充前缀缓存的失效机制：通常会用LRU策略淘汰不常用的缓存，同时支持设置缓存的TTL，对于更新频繁的系统Prompt可以缩短TTL，保证内容更新后缓存能及时刷新</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：前缀缓存会导致内容不更新——只要系统Prompt内容变了，前缀匹配不上，就会自动重新计算新的KV Cache，不会出现用旧缓存的问题，只要在Prompt设计的时候把动态内容放在前缀后面就行</li>
+<li>误区：缓存会占用很多显存——实际上KV Cache本来就是要存在显存里的，前缀缓存只是把本来就要计算的KV共享给多个请求，不会额外占用太多显存，反而因为减少了重复计算，能提升整体的并发吞吐量</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>大模型量化技术</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>KV Cache量化技术是解决什么问题的？为什么把KV Cache从FP16量化到INT8/INT4不会明显影响模型生成效果？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>KV Cache量化通过把存储在显存中的K、V矩阵从16位浮点数压缩到8位甚至4位整数，在几乎不损失生成效果的前提下把KV Cache的显存占用降低50%-75%，能让相同的显卡承载更长的上下文、更高的并发量，是长上下文推理的核心优化手段。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>KV Cache是大模型推理中显存占用的大头：上下文越长、并发越高，KV Cache占的显存就越多，通常会占到总显存的60%以上，是长上下文场景下的显存瓶颈</li>
+<li>KV矩阵存储的是注意力计算的中间结果，数值分布相对平滑、对精度的敏感度远低于模型权重本身，不需要用16位浮点数存储</li>
+<li>量化的核心是把浮点数的数值范围线性映射到整数的表示范围，只需要保存缩放因子（Scale）和零点（Zero Point），计算的时候再反量化回浮点数，误差非常小</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多同学部署大模型的时候会发现，模型权重本身只占10G左右显存（7B模型FP16是14G），但是一开长上下文、多并发，显存很快就爆了，这其中大部分显存都是被KV Cache吃掉的：比如128K上下文的7B模型，单请求的KV Cache在FP16精度下就要占2G左右显存，8并发就要16G，加上权重本身的14G，24G的4090显卡直接就OOM了。KV Cache量化就是为了解决这个问题：把每个Token对应的K、V向量从16位浮点数转成8位或者4位整数存储，显存占用直接减半或者减到1/4，同样的显存就能支持2-4倍的上下文长度或者并发量。<br />
+很多人会担心量化会影响模型效果，实际上KV Cache的量化精度损失非常小，几乎感知不到：首先，K和V是注意力计算的中间值，不是模型的权重，本身就存在一定的噪声，低精度带来的微小误差会被Softmax计算稀释；其次，现在的KV量化不是简单的截断，而是用逐通道、逐Token的非对称量化，每个通道单独计算缩放因子，把量化误差降到最低，实际测试中INT8量化的KV Cache和FP16的生成效果几乎没有区别，INT4量化在大多数场景下也只有非常微小的精度损失，完全可以用在生产环境。现在主流的推理框架（vLLM、TensorRT-LLM、Llama.cpp）都默认支持KV Cache量化，是投入产出比非常高的优化手段，几乎没有额外的计算开销，就能换来显存的大幅节省。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到KV Cache量化和权重量化的区别：权重量化是把模型本身的参数压缩，降低模型加载的显存占用，而KV Cache量化是压缩推理过程中生成的中间缓存，两者可以叠加使用，比如用4位权重量化+8位KV量化，7B模型只需要5G左右显存就能跑32K上下文，在消费级显卡上就能部署</li>
+<li>补充量化的适用场景：INT8 KV量化几乎没有精度损失，适合所有生产场景；INT4 KV量化适合对显存要求极高、对精度要求不是极致的场景，比如内部知识库问答、客服场景，完全够用</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：量化一定会严重影响模型效果——实际上KV的INT8量化的精度损失在绝大多数场景下人类根本感知不到，比模型本身的幻觉概率小得多，完全可以放心用</li>
+<li>误区：量化会让推理变慢——KV Cache量化因为减少了显存读写的数据量（显存带宽是推理的瓶颈），反而会让推理速度变快，因为从显存读数据的时间比反量化计算的时间长得多，是净收益</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>HR智能助手</code> <code>三级意图分流</code> <code>成本优化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你所在团队要上线覆盖全公司3000人的HR智能客服，高峰期QPS达到200，其中70%是高频固定问题（如“转人工”“年假几天”“报销流程”），20%是常规政策咨询，10%是跨系统复杂流程（如开证明、查提成）。如果所有请求都走大模型推理，会导致Token成本高、响应慢。请设计一套兼顾速度、成本、准确率的三级意图分流架构，说明每一层的处理逻辑、适用场景和流转规则。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：按照请求的复杂度和频次分层，把最高频、规则最明确的请求拦截在最外层，用最低成本处理</li>
+<li>第二步：中间层用向量相似度处理语义明确但无需深度推理的咨询，平衡成本和准确率</li>
+<li>第三步：最内层用大模型处理长尾、复杂、多意图的请求，保证兜底能力</li>
+<li>第四步：设计明确的流转阈值和兜底机制，防止漏判、误判导致答非所问</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整体采用「硬规则层→向量匹配层→大模型推理层」的三级漏斗架构，逐层过滤，只有上一层无法处理的请求才会流入下一层：<br />
+1. 第一层：硬规则快速分流层（一快）。针对“转人工”“投诉”“你好”等强诉求、高频固定指令，用关键词匹配+正则表达式做硬编码拦截，比如匹配到“转人工”直接触发客服坐席分配逻辑，匹配到“密码重置”直接返回固定操作指引。这一层处理70%的高频请求，响应时间控制在10ms以内，Token成本为0。<br />
+2. 第二层：向量相似度分流层（二省）。把所有常见政策问答（如年假规则、报销比例、入职流程）整理成标准问答对，每个问题生成Embedding向量存入向量库。用户请求进来后先转向量，和库中标准问题做相似度计算，如果相似度得分超过0.85的阈值，直接返回对应答案，无需调用大模型。这一层处理20%的常规咨询，响应时间控制在100ms以内，仅产生Embedding的极低Token成本。<br />
+3. 第三层：大模型深度推理层（三准）。对于前两层都无法命中、相似度低于0.6的复杂、长尾、多意图请求，才会送入大模型，通过Function Calling能力做意图拆解、工具调用和多轮推理。比如用户问“我去年的提成什么时候发，顺便帮我开个收入证明”，大模型会拆解为“提成查询”和“开证明”两个意图，分别调用对应工具处理。<br />
+流转规则上，向量层相似度在0.6-0.85之间的模糊请求，会送入大模型做二次判断，避免误拦截；所有层都无法识别的请求，统一走“OTHER”兜底逻辑，引导用户转人工或重新表述问题。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>规则层不能过度扩张，否则维护成本会指数级上升，只需要覆盖Top20的高频固定诉求即可，其余交给下层处理</li>
+<li>向量层的阈值不能设得太低，否则会把不相关的问题错误匹配，导致答非所问；也不能太高，否则会把过多请求推给大模型，增加成本，建议上线前用真实用户query做AB测试调优阈值</li>
+<li>必须带上最近2-3轮的对话历史做Query改写，防止用户用代词（如“那个怎么报”“来两个”）导致识别失败</li>
+<li>大模型层必须支持多意图数组返回，不能强制只返回一个意图，否则会漏处理用户的复合诉求</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>冷启动阶段可以先用大模型+Few-shot快速上线，运行1-2个月积累真实用户query后，把高频命中的问题逐步下沉到向量层和规则层，持续降低成本</li>
+<li>当业务稳定后，可以用积累的标注数据微调一个小参数的BERT级别的专属意图分类模型，替代向量层做分流，响应速度更快、成本更低</li>
+<li>增加用户反馈闭环，用户点“踩”的错误回答自动回流到标注队列，持续优化规则、向量库和大模型Prompt</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析题</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>代码解释器</code> <code>安全沙箱</code> <code>Docker隔离</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某团队开发了面向数据分析师的Agent产品，核心功能是支持用户用自然语言提问，Agent自动生成Python代码并执行，返回数据分析结果和可视化图表。上线测试阶段，有测试人员输入“帮我清理测试数据”，Agent生成了<code>rm -rf /data/*</code>的命令，差点删除服务器上的所有业务数据。请分析这个场景下的安全风险，设计一套从容器隔离到权限控制的完整沙箱方案，说明为什么不能直接在宿主机上给Agent开放执行权限。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先梳理Code Interpreter场景下的核心风险点，包括文件系统破坏、资源耗尽、数据泄露、网络攻击四类</li>
+<li>第二步：从最底层的隔离机制入手，用Docker容器做执行环境的强隔离，从根源上避免影响宿主机</li>
+<li>第三步：在容器内部做权限、资源、网络、文件系统的多层限制，即使Agent生成恶意代码也无法造成破坏</li>
+<li>第四步：增加执行前的代码审计环节，提前拦截高危操作，形成多层防御</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>首先必须明确：绝对不能让Agent直接在Linux宿主机上执行代码，因为大模型存在幻觉，可能生成<code>rm -rf /</code>、格式化系统盘、写入恶意脚本、消耗全部CPU/内存等危险操作，一旦在宿主机执行会直接导致服务崩溃、数据丢失，甚至引发内网安全事故。<br />
+完整的沙箱方案分为四层防御：<br />
+1. 第一层：Docker容器强隔离。所有代码执行都在独立的Docker容器中运行，容器和宿主机完全隔离：文件系统上只挂载临时的工作目录，不挂载宿主机的系统目录、业务数据目录；每个用户的每次执行请求都启动一个全新的临时容器，执行完成后立即销毁，不保留任何状态，避免不同用户之间的数据交叉泄露。<br />
+2. 第二层：容器内部最小权限控制。容器内运行的用户绝对不能用root用户，而是创建一个没有任何系统权限的普通用户，禁止执行sudo、mount、useradd等系统级命令；对文件系统设置只读权限，只有临时工作目录允许写入，禁止修改系统文件、访问其他用户的目录。<br />
+3. 第三层：资源与网络限制。启动容器时通过Docker参数严格限制资源使用：CPU限制为1核、内存限制为2G，防止Agent写出死循环代码把服务器资源耗尽；网络层面默认禁止容器访问公网和内网，只在需要调用特定内部接口（如数据库查询接口）时，通过白名单开放最小范围的网络权限，防止Agent被诱导发起内网扫描、端口攻击。<br />
+4. 第四层：代码执行前审计。在代码送入容器执行前，先做一层静态扫描：用AST语法树解析Python代码、用正则匹配Shell命令，拦截包含<code>rm -rf</code>、<code>os.system</code>、<code>subprocess</code>、<code>sys.exit</code>、文件写入系统目录、访问敏感路径等高危操作的代码，直接返回错误让大模型重新生成，不进入执行环节。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不能用普通的Python虚拟环境（venv/conda）做隔离，因为虚拟环境只是隔离了Python包，没有隔离系统调用、文件系统和进程，Agent生成的Shell命令依然可以直接操作宿主机</li>
+<li>容器必须设置执行超时时间，比如最多运行30秒就强制杀死，防止死循环代码长期占用资源</li>
+<li>不要为了方便把宿主机的Docker Socket挂载进容器，否则容器内的进程可以直接控制宿主机的Docker，等于绕过了所有隔离</li>
+<li>临时工作目录要定期清理，防止用户上传的恶意文件、生成的垃圾文件占满磁盘</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>对于安全要求更高的场景，可以用gVisor、Kata Containers等轻量虚拟化技术替代普通Docker容器，提供更强的内核级隔离，防止容器逃逸漏洞</li>
+<li>增加执行行为审计，记录所有代码执行的日志、系统调用，一旦出现异常操作可以快速溯源</li>
+<li>支持用户自定义沙箱权限，比如允许访问指定的数据集目录、允许调用特定的第三方API，满足不同场景的需求</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现题</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>槽位填充</code> <code>会话状态管理</code> <code>多轮追问</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你需要用Python+FastAPI实现HR助手的“开具在职证明”功能：该功能对应的工具是<code>apply_employment_certificate</code>，必填参数是<code>cert_type</code>（证明类型：在职/收入/离职）和<code>receive_email</code>（接收邮箱）。用户第一次说“帮我开个证明”时，Agent需要先追问证明类型，用户回答“在职的”之后，再追问邮箱，用户提供邮箱后才调用工具提交申请。请写出核心的状态管理与追问逻辑的伪代码，说明如何实现槽位填充、会话状态挂起与恢复。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先定义工具的Schema，明确每个工具的必填参数、参数类型和枚举值</li>
+<li>第二步：设计会话状态结构，记录当前会话的意图、已填充的槽位、待填充的槽位</li>
+<li>第三步：实现请求处理逻辑：先判断当前会话是否有挂起的意图，如果有则优先填充槽位，没有则做意图识别</li>
+<li>第四步：每次识别到工具调用后，检查必填参数是否齐全，缺参数则生成对应的追问话术，挂起状态等待用户回复；参数齐全则调用工具执行</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>核心实现分为四个模块，伪代码如下：</p>
+<pre><code class="language-python">from pydantic import BaseModel
+from typing import Optional, List, Dict
+from fastapi import FastAPI
+import redis
+
+# 1. 定义工具Schema，明确必填参数
+class ToolSchema(BaseModel):
+    name: str
+    required_params: Dict[str, dict]  # key: 参数名, value: {type, desc, enum}
+
+# 在职证明工具的Schema定义
+apply_cert_tool = ToolSchema(
+    name=&quot;apply_employment_certificate&quot;,
+    required_params={
+        &quot;cert_type&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;desc&quot;: &quot;证明类型&quot;, &quot;enum&quot;: [&quot;在职证明&quot;, &quot;收入证明&quot;, &quot;离职证明&quot;]},
+        &quot;receive_email&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;desc&quot;: &quot;接收证明的邮箱地址&quot;}
+    }
+)
+
+# 2. 会话状态结构，存在Redis中（TTL设为30分钟，超时自动清理）
+class SessionState(BaseModel):
+    session_id: str
+    pending_intent: Optional[str] = None  # 挂起的意图/工具名
+    filled_slots: Dict[str, str] = {}     # 已填充的槽位参数
+    missing_slots: List[str] = []         # 待填充的槽位列表
+
+redis_client = redis.Redis()
+app = FastAPI()
+
+# 3. 核心处理接口
+@app.post(&quot;/chat&quot;)
+def chat(session_id: str, user_message: str):
+    # 先从Redis读取当前会话状态
+    state = redis_client.get(f&quot;session:{session_id}&quot;)
+    if state:
+        state = SessionState.model_validate_json(state)
+    else:
+        state = SessionState(session_id=session_id)
+
+    # 情况1：当前有挂起的意图，优先填充槽位
+    if state.pending_intent:
+        # 用小模型/规则从用户回复中提取对应槽位的值
+        current_slot = state.missing_slots[0]
+        slot_value = extract_slot_value(current_slot, user_message)
+        state.filled_slots[current_slot] = slot_value
+        state.missing_slots.pop(0)
+
+        # 如果还有缺失的槽位，继续追问
+        if state.missing_slots:
+            next_slot = state.missing_slots[0]
+            reply = generate_follow_up_question(next_slot, apply_cert_tool.required_params[next_slot])
+            redis_client.setex(f&quot;session:{session_id}&quot;, 1800, state.model_dump_json())
+            return {&quot;reply&quot;: reply}
+        # 槽位全部填充完成，调用工具
+        else:
+            result = call_tool(state.pending_intent, state.filled_slots)
+            # 清空挂起状态
+            state.pending_intent = None
+            state.filled_slots = {}
+            state.missing_slots = []
+            redis_client.setex(f&quot;session:{session_id}&quot;, 1800, state.model_dump_json())
+            return {&quot;reply&quot;: f&quot;已为您提交申请，证明将发送至您的邮箱：{result}&quot;}
+
+    # 情况2：没有挂起的意图，做意图识别
+    intent = router_agent(user_message)
+    if intent.tool_name == &quot;apply_employment_certificate&quot;:
+        # 检查缺失的参数
+        missing = [p for p in apply_cert_tool.required_params.keys() if p not in intent.params]
+        if missing:
+            # 挂起意图，开始追问第一个缺失的参数
+            state.pending_intent = intent.tool_name
+            state.filled_slots = intent.params
+            state.missing_slots = missing
+            first_slot = missing[0]
+            reply = generate_follow_up_question(first_slot, apply_cert_tool.required_params[first_slot])
+            redis_client.setex(f&quot;session:{session_id}&quot;, 1800, state.model_dump_json())
+            return {&quot;reply&quot;: reply}
+        else:
+            # 参数齐全直接调用
+            result = call_tool(intent.tool_name, intent.params)
+            return {&quot;reply&quot;: f&quot;已为您提交申请：{result}&quot;}
+</code></pre>
+<p>核心逻辑是通过Redis持久化会话状态，把多轮追问拆成“识别意图→检查槽位→缺参追问→填充槽位→参数齐全执行”的状态机流转，不需要把所有历史对话都传给大模型，仅通过状态机就能完成多轮交互。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>槽位提取不能完全依赖大模型，对于邮箱、手机号、身份证号这类固定格式的参数，要用正则表达式做校验，防止大模型提取错误</li>
+<li>必须支持用户中途打断意图，比如用户在被追问邮箱时说“算了我不开了”，要能识别到意图终止，清空挂起的状态，不能一直追问</li>
+<li>会话状态必须设置TTL过期时间，防止用户中途放弃后，状态一直残留在Redis中占用内存</li>
+<li>追问话术要自然，不能生硬地说“请提供参数xxx”，要结合参数描述生成人性化的提问，比如问邮箱时要说“请问证明需要发送到哪个邮箱地址呢？”</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>支持槽位的一次性提取，比如用户说“帮我开在职证明，发到xxx@qq.com”，可以一次性提取两个参数，不需要分两次追问</li>
+<li>增加槽位值的校验逻辑，比如用户提供的邮箱格式不对，要提示用户重新输入，而不是直接提交</li>
+<li>基于LangGraph的StateGraph实现状态流转，利用内置的Checkpointer把状态持久化到PostgreSQL/Redis，不需要自己手写状态管理逻辑，支持状态回溯和“时间旅行”调试</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化题</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agentic RAG</code> <code>性能优化</code> <code>延迟优化</code> <code>成本优化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某团队上线了基于LangGraph实现的Agentic RAG员工助手，支持多跳检索、自我反思和Query重写功能，上线后发现两个严重问题：① 平均响应时间达到15秒，员工经常等不及关闭页面；② 单用户单次对话的Token成本是传统RAG的8倍，运行一个月后云服务账单严重超支。请分析问题成因，给出一套可落地的优化方案，在不明显降低回答准确率的前提下，把响应时间降到3秒以内、Token成本降低70%。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先拆解Agentic RAG的耗时和成本构成，定位瓶颈点：多次大模型调用、冗余检索、无效反思循环是核心来源</li>
+<li>第二步：从请求入口开始做分层分流，把简单请求拦截在Agent循环之外，避免“大炮打蚊子”</li>
+<li>第三步：优化Agent内部的执行流程，减少不必要的大模型调用和检索次数，缩短循环路径</li>
+<li>第四步：通过缓存、小模型替代、参数调优等手段，进一步降低延迟和成本</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>首先明确问题根源：Agentic RAG的高延迟和高成本本质上来自于“多轮循环的大模型调用”——传统RAG只需要1次Embedding+1次大模型生成，而Agentic RAG为了支持多跳推理和自我反思，往往需要经历“意图识别→第一次检索→文档打分→Query重写→第二次检索→幻觉检测→生成回答”至少5-6次大模型调用，每次调用都有网络延迟和Token消耗，再加上无效的循环迭代，自然会导致延迟和成本飙升。<br />
+优化方案分四层落地：<br />
+1. 第一层：入口分流，简单请求不走Agent循环。和三级意图分流架构类似，先对用户query做分类：对于单跳、高频、事实明确的简单问题（如“年假有几天”“怎么报销打车费”），直接走传统的高级RAG流程（向量检索+单次大模型生成），不进入Agent的多步循环；只有复杂的、需要跨文档/跨系统的多跳问题（如“我入司3年，今年做了2个大项目，提成加上年终奖一共能拿多少，要交多少税”）才进入Agentic RAG流程。这一步可以直接过滤掉80%的请求，整体成本和延迟直接下降80%。<br />
+2. 第二层：优化Agent内部执行流，减少冗余调用。<br />
+   - 把原来串行的“文档打分→幻觉检测→完备性验证”三个独立的大模型调用，合并成一个大模型Prompt，让模型一次性输出三个判断结果，减少2次大模型往返<br />
+   - 设置最大循环次数为2次，禁止无限迭代：如果重写Query检索2次后依然没有找到足够的信息，直接告诉用户“当前没有找到相关信息，建议转人工”，避免无意义的循环消耗<br />
+   - 反思环节只在检索结果得分低于阈值时触发，如果第一次检索的文档相似度已经很高、内容足够回答问题，直接跳过反思和重写流程，进入生成环节<br />
+3. 第三层：用小模型替代大模型处理非核心任务。意图分类、文档打分、Query重写、幻觉检测这些不需要强推理能力的任务，用部署在本地的7B/14B开源小模型（如Qwen2.5-7B）处理，只有最终的回答生成和复杂的多跳推理用GPT-4o/DeepSeek等大模型，小模型的推理速度是大模型的3-5倍，成本只有大模型的1/10。<br />
+4. 第四层：缓存优化降低重复计算。<br />
+   - 开启大模型API的Context Cache，把固定的System Prompt、工具描述、常用的RAG文档片段的KV Cache缓存起来，相同前缀的请求直接命中缓存，减少重复计算<br />
+   - 对高频问题的检索结果和回答做Redis缓存，用户问相同问题时直接返回缓存结果，不需要重新走检索和推理流程</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不能为了速度和成本直接砍掉反思和纠错环节，否则会导致幻觉率上升，回答准确率下降；正确的做法是“按需触发”，只有在检索结果质量差的时候才启动反思，而不是所有请求都走完整流程</li>
+<li>小模型替代要做充分的效果测试，确保小模型在意图分类、文档打分这些任务上的准确率和大模型差距在5%以内，否则会导致路由错误、漏判，反而影响用户体验</li>
+<li>缓存要注意租户隔离和权限控制，A部门的缓存结果不能返回给B部门的用户，防止敏感信息泄露</li>
+<li>不要盲目开启流式输出就以为解决了延迟问题，流式输出只是降低了首字延迟（TTFT），整体的总响应时间和Token成本并没有下降，核心还是要减少大模型调用次数</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>引入语义缓存，不只是精确匹配用户query，而是对语义相似的query也命中缓存，进一步提升缓存命中率</li>
+<li>对大模型的输出做Prompt压缩，在多轮循环传递上下文时，把之前的检索结果、中间结论做摘要压缩，减少上下文Token长度，降低Input Token成本</li>
+<li>采用推理加速框架（如vLLM）部署本地小模型，开启PagedAttention和KV缓存量化，进一步提升小模型的推理吞吐量，降低单请求延迟</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地题</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>GPU资源调度</code> <code>服务高可用</code> <code>开发生产环境隔离</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你作为AI架构师，需要带领3人小团队在1个月内从0到1交付面向内部2000名员工的HR智能助手产品，团队只有2台8卡A10服务器（共16张GPU卡），没有专门的运维团队，需要同时支撑开发调试、模型部署、线上服务三类需求。请设计完整的落地交付方案，包括环境规划、GPU资源调度、服务部署架构、开发流程规范，确保项目能按时上线，且线上服务稳定、开发效率不受影响。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：先做资源整体规划，把服务器资源按开发、测试、生产做逻辑隔离，避免开发调试影响线上服务稳定性</li>
+<li>第二步：基于Miniconda+Docker+Tmux+Systemd的技术栈，搭建统一的开发和部署环境，降低环境配置成本</li>
+<li>第三步：通过CUDA_VISIBLE_DEVICES做GPU资源的硬隔离，合理分配在线服务、离线模型、开发调试的资源</li>
+<li>第四步：设计最小可行的高可用和监控方案，在没有专职运维的情况下保证线上服务稳定</li>
+<li>第五步：制定敏捷开发流程，按照“原型→P0功能→上线→迭代”的节奏，确保1个月内交付</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整体方案遵循“基建极简、资源隔离、快速迭代、稳定优先”的原则，具体如下：<br />
+1. 环境与资源规划：<br />
+   - 两台服务器做明确分工：服务器1作为生产环境服务器，拿出其中4张卡部署线上大模型推理服务（用vLLM部署Qwen2.5-72B-int4，占用4卡），2张卡部署Embedding和Rerank模型服务，剩下2张卡预留做流量峰值扩容；服务器2作为开发测试服务器，8张卡分配给开发人员做调试、小模型部署、离线数据处理，完全和生产环境物理隔离，开发人员的任何操作都不会影响线上服务。<br />
+   - GPU资源隔离通过Linux环境变量<code>CUDA_VISIBLE_DEVICES</code>实现：启动生产服务时，在Systemd服务文件中设置<code>Environment=CUDA_VISIBLE_DEVICES=0,1,2,3</code>，让生产服务只能看到指定的GPU卡；开发人员启动自己的调试任务时，只能使用分配给自己的卡，从系统层避免资源抢占。<br />
+2. 技术栈与开发流程规范：<br />
+   - 统一开发环境：所有开发人员统一使用Miniconda管理Python环境，用Docker打包生产服务镜像，避免“我本地能跑线上跑不起来”的环境问题；开发调试阶段用Tmux管理会话，断网或关闭SSH后任务不会中断，随时可以恢复现场。<br />
+   - 开发流程采用敏捷迭代：第一周完成最小MVP——基于Docker快速部署Dify开源平台，接入内部大模型，快速搭建HR政策咨询的RAG原型，给HR部门做演示收集反馈；第二周完成P0级功能开发：接入公司SSO单点登录、打通OA审批接口、实现开证明、查年假两个核心流程类功能；第三周做安全加固和性能优化：完成代码沙箱隔离、权限控制、三级意图分流优化，把响应时间降到3秒以内；第四周做压力测试和灰度上线，先给HR部门开放使用，逐步推广到全公司。<br />
+3. 生产服务部署架构：<br />
+   - 不用复杂的K8s，基于Systemd把所有生产服务托管为系统服务，配置开机自启、崩溃自动重启、资源限制，不需要专职运维就能管理；比如Agent服务、vLLM推理服务、向量数据库服务都编写对应的Systemd配置文件，设置<code>Restart=always</code>，服务崩溃后10秒自动重启。<br />
+   - 用Nginx做反向代理和负载均衡，配置HTTPS、访问日志、限流规则，防止单个用户刷接口把服务打挂；前端页面直接用Dify的内置前端，做简单的品牌换肤，不需要从零开发前端，节省开发量。<br />
+4. 最小可行监控与排障体系：<br />
+   - 写一个简单的监控脚本，用<code>nvidia-smi</code>监控GPU显存和利用率，用<code>ps -ef | grep python</code>监控服务进程状态，用<code>ss -tuln</code>检查端口存活，异常时自动发企业微信告警。<br />
+   - 所有服务的日志都输出到指定目录，用<code>tail</code>和<code>grep</code>就能快速排查问题，不需要搭复杂的ELK日志系统；制定标准排障流程：服务异常时先看GPU显存是否OOM，再看服务进程是否存在，再查错误日志，僵死进程直接<code>kill -9</code>重启，快速恢复服务。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不能把开发环境和生产环境部署在同一张GPU卡上，否则开发人员调试时加载模型会把显存占满，导致线上服务OOM崩溃；资源隔离必须从物理卡层面做，不能只靠进程优先级</li>
+<li>API Key等敏感信息绝对不能硬编码在代码里，统一用.env文件存储，通过环境变量注入，.env文件加入.gitignore，避免提交到代码库泄露</li>
+<li>生产环境的Code Interpreter功能必须放在Docker沙箱中运行，绝对不能直接在宿主机上执行代码，防止大模型幻觉导致系统故障</li>
+<li>上线初期一定要做灰度，不要一开始就全量开放，先给小部分用户使用，收集问题修复稳定后再逐步扩大范围，避免大面积故障影响全公司员工</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>当用户量增长、服务稳定后，可以引入Supervisor做更精细的进程管理，替代Systemd管理多进程服务</li>
+<li>逐步搭建简单的LLMOps监控面板，统计Token消耗、响应时间、回答准确率、用户满意度等指标，持续优化效果</li>
+<li>当后续有更多业务需求时，可以基于Dify的插件机制开发更多内部系统工具，不需要重构核心架构，快速扩展Agent能力</li>
+<li>资源有余力时，可以搭建模型推理的自动扩缩容机制，根据QPS动态调整vLLM服务的实例数，在低峰期释放GPU资源给离线任务使用，提升资源利用率</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
