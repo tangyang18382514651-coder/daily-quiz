@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 每日面试题 (2026-11-25)</title>
+    <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f5f7f9;
+        color: #333;
+        padding: 15px;
+        margin: 0;
+        line-height: 1.7;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1f2329;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: #07c160;
+        font-size: 17px;
+        margin-top: 0;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+    h3 { color: #1f2329; font-size: 16px; margin-top: 18px; }
+    blockquote {
+        margin: 10px 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-left: 3px solid #07c160;
+        color: #666;
+        font-size: 13px;
+    }
+    small { font-size: 12px; color: #888; }
+    pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 13px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    pre code { background: transparent; padding: 0; }
+    .content a,
+    a.article-link {
+        color: #576b95;
+        text-decoration: underline;
+        word-break: break-all;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(87, 107, 149, 0.2);
+    }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px dashed #e5e5e5; margin: 20px 0; }
+    .placeholder { color: #999; font-style: italic; }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .home-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #576b95;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .meta {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 12px;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .archive-section { margin-bottom: 24px; }
+    .archive-section h2 {
+        font-size: 16px;
+        color: #1f2329;
+        border: none;
+        padding: 0;
+        margin-bottom: 12px;
+    }
+    .archive-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .archive-list li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .archive-list li a {
+        color: #1f2329;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+    }
+    .archive-list li span {
+        color: #999;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+</head>
+<body>
+    <a class="home-link" href="../../index.html">← 返回历史归档</a>
+    <h1>💡 每日面试题 (2026-11-25)</h1>
+    <div class="meta">更新于 2026-11-25 11:05</div>
+
+    <div class="card">
+        <h2>💡 随时备战 · 每日面试题</h2>
+        <div class="content"><h2>📚 今日面试备战 · 概念 + 应用</h2>
+<blockquote>
+<p>📅 题量：<strong>10 道概念题</strong> + <strong>5 道应用题</strong><br />
+🎯 今日知识点：RAG · Agent · LangGraph · 微调 · Milvus · PostgreSQL<br />
+🔄 知识片段：#8, #9, #10（自动轮换，避免重复）</p>
+</blockquote>
+<hr />
+<h1>一、概念题（10 道）</h1>
+<h3>📌 概念题 · Q1</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>云原生部署</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在阿里云上部署不同规模的AI Agent系统时，FC（函数计算）、SAE（微服务应用引擎）、ACK Serverless三者的核心定位差异是什么？分别适合什么场景？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>三者是阿里云Serverless体系下从“单函数”到“完整K8s生态”的三层递进选型，核心差异是抽象层级和管控粒度不同，选型时应根据Agent系统的复杂度从低到高匹配，避免过度运维或能力不足。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>FC是Function as a Service，抽象层级最高，用户只需要写单段代码，完全不用管容器、网络和服务器，触发时才运行，缩容到0。</li>
+<li>SAE是App as a Service，抽象层级居中，用户只需要上传打包好的Docker镜像，平台自动负责伸缩和运维，不需要掌握K8s的YAML语法。</li>
+<li>ACK Serverless是Container as a Service，抽象层级最低，提供完整的K8s API兼容能力，支持Helm、Kubectl等标准K8s生态工具，底层无服务器节点。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以把这三个服务类比成租房的三种模式：FC相当于住酒店，你只需要拎包入住，不用管水电物业，按天付钱，适合短期待办，比如Agent需要临时调用一个Python脚本解析PDF、处理图片，作为工具端的安全沙箱用完即毁，完全不用常驻；SAE相当于租长租公寓，你带自己的家具（Docker镜像）就能住，物业负责维修打扫，不用懂房屋结构，适合快速上线中小型Agent Web应用，比如基于Dify/Coze搭建的对话前端，不需要复杂编排能力；ACK Serverless相当于买精装别墅，你可以完全按照自己的需求装修布局，用所有标准化的家居生态，适合复杂的Multi-Agent平台，需要动态安全沙箱、长连接、有状态存储挂载、复杂微服务治理的场景，同时还能享受Serverless的弹性，缩容到0节省GPU开销。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>
+<p>主动提到选型的核心判断标准：如果用LangGraph做复杂多智能体协同，必须选ACK Serverless，因为需要K8s的编排能力支撑状态流转和动态扩缩容；如果只是快速上线封装好的单体Agent应用，SAE的学习成本最低；FC最适合做Agent的工具执行沙箱，天然隔离，用完释放，成本极低。<br />
+<strong>▎常见误区</strong></p>
+</li>
+<li>
+<p>误区：不管什么Agent都直接上K8s，导致运维成本极高，小团队根本扛不住；或者所有场景都用函数计算，遇到长连接、状态存储需求时完全无法支撑。</p>
+</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q2</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>数据库选型</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>为什么很多AI Agent团队会选择PostgreSQL作为核心存储枢纽，同时承担记忆库、知识库、业务账本三个角色，而不是单独部署MongoDB存JSON、Milvus存向量、MySQL存业务数据？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>PostgreSQL通过“传统SQL列+JSONB+pgvector”的组合能力，一套数据库同时满足结构化业务数据、半结构化对话记忆、向量语义检索三类需求，核心价值是减少多组件同步延迟、降低运维复杂度，避免小团队陷入多数据库运维的泥潭。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>结构化数据用传统SQL列存储：聊天记录的发送人、时间、会话ID等固定字段，查询性能最高、稳定性最强。</li>
+<li>半结构化动态数据用JSONB类型存储：对话中的动态上下文、临时变量、用户标签等频繁变动的字段，不需要修改表结构，配合GIN倒排索引可以实现JSON内部字段的秒级查询。</li>
+<li>向量数据用pgvector插件存储：文本Embedding后的向量直接存入vector字段，配合HNSW索引实现低延迟相似度检索，支持和SQL业务条件混合过滤。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多新手做Agent架构时，容易陷入“每个场景用最专业的组件”的过度设计陷阱：存JSON用MongoDB，存向量用Milvus，存业务数据用MySQL，看起来每个组件都是最优解，但实际落地时会遇到三个致命问题：第一是数据同步延迟，用户的对话记录需要同时写到三个数据库，一旦某一个组件写入失败，就会出现数据不一致，比如记忆库有对话记录但向量库没同步，导致RAG检索漏召回；第二是运维成本极高，小团队本来人就少，要同时运维三个数据库的备份、扩容、故障排查，精力完全被分散；第三是事务能力弱，跨组件无法实现强一致的事务控制，比如多Agent节点并发处理同一个任务时，很容易出现状态覆盖。而PostgreSQL的方案相当于“一库打三份工”：传统列存骨架，JSONB存动态零碎数据，pgvector存向量，甚至还能用SELECT...FOR UPDATE实现悲观锁解决并发冲突，对于中小规模的Agent项目来说，性能完全足够，运维成本只有多组件方案的1/3。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到混合检索的实现：用pgvector做语义相似度检索的同时，可以直接在WHERE语句里加业务过滤条件（比如“成都本地、近30天”），不需要像专用向量库那样先检索再回表过滤，实现起来更简单，性能也更高。</li>
+<li>提到规模边界：当向量规模超过1亿、QPS超过上千时，pgvector的性能会不如专用向量库，这时候再考虑拆分Milvus也不迟，早期完全没必要过度设计。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：JSONB性能比传统列差。实际上JSONB是二进制存储，建立GIN索引后，对内部Key的查询性能和普通列几乎没有差异，只是不适合做频繁的全表聚合统计，用来存动态上下文完全足够。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q3</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>数据库索引</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>PostgreSQL中给JSONB字段加GIN索引、给vector字段加HNSW索引，这两种索引的核心原理是什么？分别解决什么场景的问题？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>GIN索引是针对半结构化JSON数据的倒排索引，解决JSON内部字段的快速检索问题；HNSW索引是针对向量数据的图结构索引，解决高维向量的近似最近邻检索问题，两者都是为了让PostgreSQL在非结构化数据场景下达到毫秒级查询响应。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>GIN（广义倒排索引）的核心原理：把JSON结构内部的每一个Key-Value都拆出来建立倒排映射，相当于给JSON的“大括号内部”做索引，而不是只给整个JSON列建索引，查询时可以直接定位到包含指定Key-Value的行。</li>
+<li>HNSW（分层导航小世界）索引的核心原理：把所有向量构建成多层的图结构，上层是稀疏的“高速公路网”连接远距离节点，下层是密集的“普通道路”连接近距离节点，检索时从上层开始快速缩小范围，到下层精准找到最近邻，查询延迟极低、召回率高。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以把GIN索引类比成一本书的“全文目录”：普通索引只能告诉你哪一页有哪个章节标题，而GIN索引可以把书里每一个关键词、每一个注释的位置都标出来，比如你要找“所有通过抖音渠道投递的候选人”，不需要把所有行的JSON字段都解析一遍，直接通过GIN索引就能瞬间捞出来，用JSONB的@&gt;包含操作符就能查询，性能和普通列查询几乎一致。而HNSW索引可以类比成城市的交通网络：如果你要从城市的东边到西边，不需要走每一条小路挨家挨户找，先走城市快速路（上层图）到目标区域附近，再走支路（下层图）精准定位到目的地，相比IVFFlat等先聚类再检索的索引，HNSW不需要提前预估聚类数量，查询时的跳数更少，延迟更稳定，非常适合Agent对话这种对响应速度要求极高的场景。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到索引选型的 trade-off：GIN索引的缺点是写入时需要更新倒排表，写入性能比普通B树索引稍差，但对于Agent场景下写少读多的对话记忆、用户标签数据来说，完全可以接受；HNSW索引的缺点是建索引时间更长、内存占用比IVFFlat高，但查询性能和召回率的优势足以覆盖这些成本，是目前Agent场景的向量索引首选。</li>
+<li>提到FOR UPDATE悲观锁和索引的配合：在高并发多Agent任务处理场景下，用SELECT...FOR UPDATE锁定行时，有索引的情况下只会锁定符合条件的行，不会锁全表，性能更高。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：给JSONB字段加了B树索引就能查内部字段。实际上B树索引只能对整个JSON值做索引，要查询JSON内部的Key必须用GIN索引，否则每次查询都会全表解析JSON，数据量大了之后会非常慢。</li>
+<li>误区：HNSW索引是精确检索。实际上HNSW是近似最近邻（ANN）检索，允许极小的精度损失来换查询速度，对于RAG和记忆检索场景来说，这点精度损失完全可以接受。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q4</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>LLM工程</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>大模型的五种核心输出模式（全量文本、流式SSE、结构化JSON、工具调用、多模态输出）分别适合什么业务场景？各自的核心优缺点是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>五种输出模式是大模型对接不同业务场景的标准接口范式，选型核心是匹配交互体验需求和工程对接确定性要求，不存在绝对的优劣，只有场景适配的差异。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>全量文本输出：模型生成完所有Token后一次性返回，基于标准HTTP协议，开发最简单，但首字延迟极高。</li>
+<li>流式输出（SSE）：模型每生成几个Token就通过SSE单向连接推送给前端，实现打字机效果，首字延迟极低，但需要管理长连接。</li>
+<li>结构化输出（JSON）：通过JSON Schema从模型采样层限制输出格式，保证100%可被程序解析，但会略微限制模型的发散能力。</li>
+<li>工具调用（Function Calling）：模型不直接返回答案，而是返回要调用的工具名和参数，是Agent的核心能力，但需要处理多轮迭代逻辑。</li>
+<li>多模态输出：模型直接原生输出音频、图像、可运行代码等非文本内容，表现力强，但算力成本高。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>这五种模式其实对应了大模型从“内容生成工具”到“系统接口”再到“智能体”的演进路径：全量输出是最原始的模式，适合后台批处理任务，比如批量生成报告、离线翻译，用户不需要实时等结果，开发起来最简单；流式SSE是C端产品的标配，因为国内用户对“秒开率”极度敏感，打字机效果能极大缓解等待焦虑，比WebSocket更轻量，专门适合服务端到客户端的单向推送；结构化输出是工程对接的基础，当大模型需要作为微服务和其他系统交互时，必须保证输出格式100%正确，不能有幻觉，否则JSON.parse失败会导致整个流程崩溃；工具调用是Agent的核心，让大模型从“只会说话”变成“能动手调用外部能力”，比如查天气、查数据库、调用API，是大模型和现实世界交互的入口；多模态输出是最新的交互范式，比如GPT-4o直接输出带情感的语音、Claude直接输出可运行的网页组件，实现端到端的交互，不需要中间经过TTS、前端渲染等额外环节。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>
+<p>主动提到国内外工程实践的差异：国内更偏向用SSE流式输出提升用户体验，结构化输出多用Prompt+后端Pydantic校验做兜底，工具调用大多由Dify/Coze等低代码平台封装；国外更偏向用底层严格的Structured Outputs保证JSON确定性，工具调用倾向于用LangGraph硬编码拓扑，多模态输出落地更快。<br />
+<strong>▎常见误区</strong></p>
+</li>
+<li>
+<p>误区：所有场景都要做流式输出。实际上对于后端服务之间的调用、结构化数据提取、工具调用场景，流式输出反而会增加解析复杂度，用全量JSON输出更稳定可靠。</p>
+</li>
+<li>误区：结构化输出只需要在Prompt里写“请返回JSON”。实际上纯Prompt约束有概率出现幻觉输出多余文本，生产环境必须用模型原生的JSON Mode配合Schema约束，后端再加一层校验兜底。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q5</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>向量库部署</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>对于3000人规模的企业内部知识库场景，文件总量不超过1万份，为什么Milvus单机版（Standalone）是最优选择，而分布式集群版属于过度设计？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>该场景下向量总量仅百万级、峰值QPS不足50，Milvus单机版的性能冗余度超过99%，而分布式集群版需要额外运维K8s、Pulsar等重量级组件，运维成本是单机版的10倍以上，投入产出比极低。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>数据量测算：1万份文件平均每份切100个Chunk，总向量条数在100万-200万条之间，即使是1536维的向量，建立HNSW索引后内存占用仅几GB到十几GB，单机32G内存完全可以装下整个索引，实现10ms以内的检索延迟。</li>
+<li>并发量测算：3000人企业内部系统按10%活跃率、5%并发峰值计算，峰值QPS仅15-50，单机版Milvus在普通CPU服务器上就能跑出几百上千QPS，性能远超业务需求。</li>
+<li>运维成本对比：分布式集群版需要部署K8s、etcd、Pulsar、MinIO等一整套微服务组件，需要专门的K8s运维团队，而单机版用Docker Compose一键就能拉起三个容器（Milvus核心、etcd、MinIO），普通后端开发就能运维。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多团队做向量库选型时容易陷入“追求顶配”的误区，觉得分布式集群更高级、更稳定，实际上对于中小规模的企业内部场景来说，分布式架构反而会带来更多的故障点：集群的网络波动、Pulsar消息队列积压、K8s节点故障都可能导致服务不可用，而单机版架构简单，故障点少，只要做好数据持久化和备份，稳定性反而更高。类比一下，你只是每天通勤代步买个菜，买个家用轿车就足够了，完全没必要买一辆重型卡车，虽然卡车拉得多跑得快，但油耗高、停车难、保养贵，根本不适合日常使用。Milvus单机版可以轻松支持1亿条以内的向量，200万条的规模只用了它1%的能力，完全绰绰有余。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到高可用兜底方案：单机部署时不要把数据存在Docker容器内部，要把数据卷挂载到宿主机云盘，开启每日磁盘快照，配合Milvus Backup做定时备份；同时在业务层留降级开关，万一Milvus挂了，自动切换到PostgreSQL的全文检索，保证业务不断线。</li>
+<li>提到硬件配置的性价比：不需要买昂贵的GPU服务器，8核16/32G内存、500G NVMe SSD的普通Linux虚拟机就足够，SSD是必须的，因为Milvus频繁读写索引文件，机械硬盘的IO速度会严重拖慢检索性能。</li>
+</ul>
+<p><strong>▎常见误区</strong></p>
+<ul>
+<li>误区：Milvus单机版不能用于生产环境。实际上Milvus单机版是官方明确推荐的中小型生产环境方案，性能和稳定性完全经过验证，只有当向量规模超过1亿、QPS超过上千的互联网级场景，才需要上分布式集群。</li>
+<li>误区：向量检索必须用GPU。实际上HNSW索引在CPU上的检索性能已经足够应对绝大多数企业内部场景，GPU只有在超大规模向量、极高QPS的场景下才需要。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q6</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Agent安全</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>当Agent需要具备操作SQL数据库的能力时，必须遵守哪三个核心安全原则？为什么不能直接给Agent数据库的最高权限让它自由生成SQL执行？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Agent操作数据库必须遵循“读权限放行、写权限人工确认、执行环境沙箱隔离”三个核心原则，因为大模型存在幻觉风险，一旦生成破坏性SQL会导致核心数据丢失或泄露，绝对不能无条件信任LLM生成的SQL。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>读权限默认放行：对于SELECT类的查询操作，可以在只读账号权限下让Agent生成SQL执行，即使SQL写得不对，也不会修改或删除数据，风险可控。</li>
+<li>增删改操作必须人工确认：对于INSERT、UPDATE、DELETE、DDL类的修改操作，Agent生成SQL后必须弹出给人类审核，确认SQL逻辑正确、影响范围符合预期后才能执行，不能自动执行。</li>
+<li>SQL执行环境必须沙箱隔离：给Agent用的数据库账号要严格限制权限，只开放必要的库表权限，禁止访问敏感数据，同时配置SQL执行超时时间、返回行数限制，防止Agent写出慢SQL拖垮整个数据库。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>大模型本质上是概率生成模型，即使你在Prompt里反复强调“不要生成删除语句”“只查指定的表”，也存在小概率出现幻觉，比如用户问“帮我清理一下测试数据”，模型可能生成<code>DELETE FROM user WHERE 1=1</code>把全表用户都删了；或者模型生成的SQL没有加WHERE条件，导致全表扫描把数据库CPU打满，影响线上业务；甚至可能因为提示词注入，攻击者诱导Agent生成SQL查询用户密码、薪酬等敏感数据，造成数据泄露。这些风险不是靠Prompt就能完全避免的，必须从权限层、流程层、执行层做多层防护。类比一下，你不能因为一个实习生说“我会写SQL”就给他公司生产数据库的root权限，让他随便改数据，肯定是先给他只读权限查数据，要改数据必须经过上级审批，同时只能访问他负责的业务库，操作数据库的时候还要有人盯着，防止误操作。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>
+<p>主动提到多层防护机制：除了三个核心原则，还可以加SQL审计层，用规则引擎拦截危险SQL（比如不带WHERE条件的DELETE/UPDATE、访问敏感表的查询），即使人工审核漏过了，也能在执行前拦截；同时所有Agent生成的SQL都要留日志，方便事后审计追溯。<br />
+<strong>▎常见误区</strong></p>
+</li>
+<li>
+<p>误区：只要Prompt写得好，就能让Agent不生成危险SQL。实际上Prompt是非常容易被绕过的，比如通过提示词注入、间接注入（把恶意指令存在数据库里让RAG检索到），都可能诱导模型生成危险SQL，权限控制和流程管控才是根本的安全保障。</p>
+</li>
+<li>误区：给Agent开放读写权限能提升自动化效率。实际上对于涉及核心业务数据修改的场景，人工确认的成本远远低于数据被误删、误改的恢复成本，尤其是HR、财务等场景的核心数据，一旦出错影响极大，绝对不能追求全自动而忽略安全。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q7</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Linux运维</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>当AI Agent线上服务出现死锁或者GPU显存溢出（OOM）时，标准的排查和解决流程是什么？每一步的核心目的是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>线上OOM和死锁排查遵循“先看资源、再找进程、定位日志、强杀恢复”的四步标准流程，核心原则是先快速恢复服务，再事后根因分析，不能在服务挂掉的时候慢慢排查问题。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>第一步查资源：用<code>nvidia-smi</code>或者<code>watch -n 1 nvidia-smi</code>查看GPU显存利用率、温度、进程占用，确认是不是显存被占满了，有没有异常进程占着显存不释放。</li>
+<li>第二步找进程：用<code>ps -ef | grep python</code>找到Agent服务对应的进程ID（PID），确认是不是有多个僵尸进程、死循环进程占着资源。</li>
+<li>第三步看日志：用<code>tail -n 100 agent.log</code>查看最近的报错日志，或者用<code>grep -i "error" agent.log</code>过滤错误信息，定位是代码bug、并发太高还是模型加载问题导致的OOM。</li>
+<li>第四步强杀重启：如果进程已经僵死无响应，用<code>kill -9 &lt;PID&gt;</code>强行杀死进程，释放显存资源，然后重新启动服务，优先恢复业务。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多新手遇到线上服务挂了的时候，容易手忙脚乱，上来就去翻代码找bug，结果找了半小时服务还没恢复，导致大量用户请求失败。实际上线上故障处理的第一优先级是恢复服务，而不是定位根因。就像医院急诊，病人送过来首先要做的是心肺复苏恢复生命体征，而不是慢慢做全面检查找病因。比如Agent服务因为突发并发高峰导致显存OOM，进程僵死了，这时候你先通过nvidia-smi看到显存占满了，找到对应的Python进程PID，kill掉释放显存，重启服务，用户侧几分钟就恢复正常了，等业务低峰期的时候再去看日志，分析是并发控制没做好、显存泄漏还是模型加载的问题，后续再优化。平时开发的时候也要养成监控显存的习惯，用watch命令实时看推理时的显存变化，提前发现显存上涨的异常趋势。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>
+<p>主动提到预防机制：在服务前面加并发限流，控制同时处理的请求数量，防止突发高峰把显存打满；在代码里加入显存自动清理逻辑，请求处理完后及时释放不用的张量；用Systemd托管服务，配置OOM自动重启策略，万一服务挂了能自动拉起来，减少人工介入时间。<br />
+<strong>▎常见误区</strong></p>
+</li>
+<li>
+<p>误区：用kill命令杀进程会丢数据。实际上Agent服务大多是无状态的，请求上下文存在外部数据库或缓存里，杀进程重启只会丢失当前正在处理的几个请求，相比服务长时间不可用的影响要小得多；而且kill -9是最后一步，只有进程完全僵死、无法正常退出的时候才用，平时优先用正常停止命令。</p>
+</li>
+<li>误区：OOM了就直接加GPU。实际上绝大多数OOM问题都是代码bug（比如显存泄漏、没有及时释放张量）或者并发配置不合理导致的，先排查问题再扩容，否则加再多卡也会被占满。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q8</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Linux运维</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在Linux上开发和部署Agent时，为什么要使用Miniconda+Docker+Tmux的工具组合？这三个工具分别解决什么核心痛点？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>Miniconda解决Python环境依赖冲突问题，Docker解决运行环境隔离和安全沙箱问题，Tmux解决SSH断开后进程中断的问题，三者组合可以覆盖Agent开发调试阶段90%以上的环境和进程管理痛点，是AI开发者的标准效率工具集。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>Miniconda是轻量级的Python环境管理工具，可以为每个Agent项目创建独立的Python虚拟环境，不同项目的依赖包、Python版本完全隔离，不会出现“A项目要PyTorch 2.0，B项目要PyTorch 1.13”的版本冲突问题，还能通过environment.yml一键导出复制环境。</li>
+<li>Docker是容器化工具，可以把Agent运行需要的系统依赖、Python包、代码全部打包成镜像，在任何机器上都能一键运行，同时提供文件系统、进程、网络的隔离，作为Agent代码执行的安全沙箱，防止幻觉破坏宿主机。</li>
+<li>Tmux是终端复用工具，可以在服务器上创建独立的持久化终端会话，即使本地电脑断网、关闭SSH窗口，会话里运行的Agent进程依然会在后台继续执行，重新连接后可以恢复之前的终端现场。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>做过AI开发的人都被Python环境问题折磨过：在本地电脑上跑的好好的代码，放到服务器上就报“找不到包”“版本不对”“CUDA不匹配”的错误，折腾半天环境才能跑起来；好不容易把代码跑起来了，电脑一关网一断，SSH连接断开，跑了几个小时的批量生成任务就中断了；测试Agent的代码执行功能时，模型生成个rm -rf命令，把宿主机上的项目文件全删了。这三个工具就是专门解决这些痛点的：Miniconda给每个项目建独立的“小房间”，依赖互不干扰；Docker给代码运行建“安全隔离舱”，哪怕里面闹翻天也影响不到外面；Tmux给进程建“永不掉线的终端”，你关电脑睡觉都不影响任务跑。这三个工具上手都非常简单，不需要掌握复杂的K8s或者运维知识，就能解决绝大多数开发阶段的问题。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>
+<p>主动区分开发和生产环境的工具差异：开发调试阶段用Tmux跑进程方便灵活，生产环境部署的时候要换成Systemd托管服务，实现开机自启、崩溃自动重启，比Tmux更稳定可靠；Docker在开发和生产环境都能用，开发时挂载本地代码目录方便调试，生产时把代码打包进镜像实现 immutable 部署。<br />
+<strong>▎常见误区</strong></p>
+</li>
+<li>
+<p>误区：用了Docker就不需要Conda了。实际上Docker镜像里依然可以用Conda管理Python依赖，两者不是互斥的，Docker负责系统级隔离，Conda负责Python项目级的环境管理，配合使用体验更好。</p>
+</li>
+<li>误区：Tmux可以替代Systemd做生产部署。Tmux只是会话持久化工具，没有进程监控、崩溃自动重启、开机自启的能力，生产环境用Tmux跑服务，万一进程崩溃了不会自动拉起来，必须人工介入，稳定性没有保障。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q9</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>工程规范</code> · 难度：⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>在Linux上部署Agent服务时，为什么不能把OpenAI API Key、数据库密码等敏感信息硬编码在代码里？正确的管理方式是什么？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>硬编码敏感信息会导致密钥泄露风险（代码提交到Git仓库、被日志打印、被其他开发者看到），正确的做法是通过环境变量注入敏感信息，代码里只通过环境变量读取，实现代码和配置的完全分离。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>风险隔离：API Key、数据库密码属于敏感配置，硬编码在代码里的话，只要代码仓库泄露（比如Git权限配置错了、员工离职带走代码），所有密钥就全部泄露了，攻击者可以直接盗用你的大模型API额度、登录你的数据库。</li>
+<li>环境切换：开发、测试、生产环境的API Key、数据库地址是不一样的，如果硬编码在代码里，每次换环境都要改代码重新打包，非常容易出错，用环境变量的话同一份代码可以在不同环境运行，只需要注入不同的配置即可。</li>
+<li>权限管控：环境变量可以在部署时由运维人员配置，开发者不需要知道生产环境的密钥，实现开发和运维的权限分离，减少密钥泄露的范围。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>很多新手写代码的时候图方便，直接把<code>OPENAI_API_KEY="sk-xxxx"</code>写在Python代码的开头，觉得自己本地跑没问题，结果一提交到GitHub公共仓库，没过几分钟API Key就被爬虫爬走了，被盗刷几千甚至几万块的API额度，这种真实案例非常多。还有的团队把密钥写在配置文件里，和代码一起提交到仓库，只要有仓库权限的人都能看到生产环境的密码，人员流动的时候非常容易泄露。正确的做法是：本地开发的时候把密钥存在.env文件里，用python-dotenv等工具加载，.env文件加入.gitignore不提交到仓库；生产环境部署的时候，在Systemd服务文件、Docker启动命令或者K8s配置里通过export注入环境变量，代码里只用<code>os.environ.get("OPENAI_API_KEY")</code>读取，代码里完全不出现硬编码的密钥。就像你不会把家门钥匙直接放在家门口的脚垫下面，也不会把银行卡密码写在银行卡背面，敏感信息必须和代码分开放，才能保证安全。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>
+<p>主动提到更高级的密钥管理方案：对于大型企业的生产环境，可以用云厂商的KMS密钥管理服务或者HashiCorp Vault来存储敏感信息，密钥不落地，应用启动时动态拉取，进一步降低泄露风险；同时要定期轮换API Key，即使不小心泄露了也能把损失降到最低。<br />
+<strong>▎常见误区</strong></p>
+</li>
+<li>
+<p>误区：代码仓库是私有的就可以硬编码密钥。实际上私有仓库也存在权限泄露、员工误操作、仓库被攻破的风险，安全规范要求从根源上避免硬编码，而不是依赖仓库的权限控制。</p>
+</li>
+<li>误区：把密钥存在配置文件里不算硬编码。如果配置文件和代码一起提交到代码仓库，和硬编码没有本质区别，一样会泄露，配置文件如果存敏感信息也必须排除在版本控制之外，或者做加密处理。</li>
+</ul>
+<hr />
+<h3>📌 概念题 · Q10</h3>
+<blockquote>
+<p><strong>考点标签</strong></p>
+<p><small><code>Multi-Agent架构</code> · 难度：⭐⭐⭐</small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>设计复杂的HR多智能体系统时，为什么不能把所有能力（多模态识别、意图路由、RAG检索、追问填槽、安全审核）都写在一个巨大的Prompt里让大模型一次性完成，而必须拆成独立的Agent节点用状态机编排？</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎一句话结论</strong></p>
+<p><strong>单Prompt堆砌所有能力会导致模型注意力分散、指令遵循能力下降、错误无法定位、成本极高，拆成独立节点做职责单一的编排，是复杂Agent系统工程落地的最佳实践，能大幅提升稳定性、降低成本、方便迭代调试。</strong></p>
+<p><strong>▎核心原理</strong></p>
+<ul>
+<li>注意力稀释问题：大模型的上下文窗口注意力是有限的，如果一个Prompt里同时塞了“识别图片”“判断意图”“检索知识”“追问参数”“审核内容”五六个任务，模型很容易顾此失彼，比如忘记做安全审核、或者意图判断错误，指令遵循率会大幅下降。</li>
+<li>错误隔离和调试困难：所有逻辑揉在一个Prompt里，一旦结果出错，你根本不知道是哪个环节出了问题——是图片识别错了？还是意图路由错了？还是RAG检索漏了？根本没办法针对性优化。</li>
+<li>成本和性能问题：不管什么请求都调用最强大的模型走完全部流程，比如简单的“年假有几天”的问题，本来只需要走RAG检索，结果还要做多模态识别、安全审核等多余步骤，Token成本高、响应延迟长。</li>
+</ul>
+<p><strong>▎深入解释</strong></p>
+<p>我们可以把单Prompt大模型类比成一个全科医生，让他同时做挂号、验血、拍片、诊断、开药、审核处方所有事情，他肯定会忙中出错，而且每个环节都做不精；而拆成独立节点的多Agent系统就像医院的分诊流程：先有导诊台（意图路由Agent）判断你要挂什么科，然后去对应的科室做检查（多模态Agent识别图片、RAG Agent检索知识），如果缺检查报告就回去补做（填槽追问Agent要参数），最后医生开完药还要有药剂师审核有没有配错药（安全合规Agent），每个环节只做一件事，职责清晰，哪个环节出问题就优化哪个环节，简单的问题甚至不用找专家医生，用小模型就能处理，成本更低、速度更快。比如员工发一张发票问报销多少，流程是一步步流转的：多模态Agent只负责识别发票内容，不用管报销政策；意图路由Agent只负责判断是报销咨询，不用管参数全不全；RAG Agent只负责检索报销政策；填槽Agent只负责判断缺什么参数然后追问；安全Agent只负责检查回复有没有泄露隐私，每个节点的Prompt都非常短、任务非常明确，模型几乎不会出错。</p>
+<p><strong>▎面试加分点</strong></p>
+<ul>
+<li>主动提到异构模型调度：拆成独立节点后，可以根据节点的任务难度用不同的模型，比如意图路由、参数提取这种简单任务用7B/14B的开源小模型就行，成本只有GPT-4的几十分之一；只有最终总结回复、复杂推理的时候才用大模型，整体成本能降一个数量级。</li>
+<li>
+<p>提到可观测性优势：每个节点的输入输出都可以单独打日志、做监控，比如意图识别的准确率是多少、RAG的召回率是多少、安全审核拦截了多少违规回复，都可以单独统计优化，而黑盒的单Prompt根本做不到细粒度的监控。<br />
+<strong>▎常见误区</strong></p>
+</li>
+<li>
+<p>误区：Agent拆得越细越好。实际上节点拆得太细会导致流程太长、状态流转太复杂，反而增加出错概率，一般按照“职责单一、高内聚低耦合”的原则拆分，把相同领域的能力合并成一个节点，比如所有和RAG检索相关的逻辑放在一个节点里，不要拆成“检索Query重写”“向量检索”“重排序”三个独立节点，除非确实有优化需求。</p>
+</li>
+<li>误区：用多Agent就不需要Prompt工程了。实际上每个独立节点的Prompt更需要精心设计，因为节点职责单一，Prompt可以写得更精准，指令遵循率比大杂烩Prompt高得多。</li>
+</ul>
+<hr />
+<h1>二、应用题（5 道 · 分类型）</h1>
+<h3>🛠 应用题 · Q1 · 架构设计</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>架构设计</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>阿里云部署选型</code> <code>Multi-Agent平台</code> <code>成本优化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你所在的创业团队要上线一套面向B端客户的Multi-Agent内容营销平台：核心能力是基于LangGraph实现多智能体协同（热点爬取Agent、文案生成Agent、配图生成Agent、合规审核Agent），需要支持长连接Web对话、动态创建代码执行沙箱、挂载共享素材存储，同时要求闲时GPU资源能缩容到0以控制成本，团队没有专职K8s运维工程师。请结合阿里云Serverless产品矩阵，设计整套部署架构，并说明每个模块的选型理由，拒绝过度设计。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：按照系统的能力分层拆分模块，区分核心编排层、无状态服务层、工具执行层，避免所有组件堆在同一种服务上</li>
+<li>第二步：针对每个模块的资源特性、运维复杂度、弹性需求匹配对应的Serverless产品，核心原则是“能力匹配、运维成本最低、弹性最大化”</li>
+<li>第三步：设计模块间的网络通信、权限隔离、存储挂载方案，确保生产可用</li>
+<li>第四步：补充成本优化规则和高可用兜底机制</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整套架构采用三层部署结构，完全基于阿里云Serverless生态，无需专职运维：<br />
+1.  <strong>核心编排层（Multi-Agent大脑）：选择ACK Serverless</strong><br />
+    因为LangGraph的多智能体调度需要持久化状态、支持长连接、需要动态拉起沙箱容器，ACK Serverless提供完整的K8s API能力，可以直接用Helm部署LangGraph Server、配置HPA自动伸缩，闲时可以把GPU推理节点缩容到0，完全不需要管理ECS节点。这一层只部署LangGraph编排引擎、状态存储组件、服务注册发现，不运行业务代码和工具。<br />
+2.  <strong>前端与应用接入层：选择SAE（Serverless应用引擎）</strong><br />
+    平台的用户管理、计费系统、对话前端、运营后台都是无状态Web应用，直接把打包好的Dify前端、业务管理后台Docker镜像部署到SAE，不需要写K8s YAML，SAE自动负责弹性伸缩、负载均衡、HTTPS证书配置，团队开发人员只需要传镜像即可上线，极大降低运维门槛。<br />
+3.  <strong>工具执行层（动态沙箱）：选择FC（函数计算）</strong><br />
+    所有Agent需要调用的单任务工具——比如热点爬取脚本、PDF解析、图片尺寸处理、临时Python代码执行，全部封装成FC函数，触发时才运行，执行完立即释放资源。特别是代码执行类的工具，FC天然提供运行时隔离，不需要自己维护Docker沙箱池，用完即毁，完全避免恶意代码或幻觉破坏宿主系统。<br />
+4.  <strong>共享存储层：直接挂载阿里云NAS</strong><br />
+    所有Agent生成的文案、素材、用户上传的文件都存在NAS上，ACK Serverless和SAE、FC都可以通过内网挂载同一个NAS文件系统，不需要额外搭建文件服务。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>不要为了“纯粹的K8s生态”把所有组件都部署在ACK Serverless上：前端Web应用、管理后台这类无状态应用放在SAE上，运维成本比K8s低80%，出问题的概率也小很多</li>
+<li>FC作为工具执行层时，一定要配置VPC内网访问，避免FC调用ACK上的LangGraph引擎走公网产生流量费和延迟</li>
+<li>ACK Serverless配置GPU节点伸缩时，要设置缩容冷却时间（至少5分钟），避免因为请求短暂波动频繁创建/销毁GPU实例，反而增加冷启动时间和成本</li>
+<li>不要用FC跑长耗时的配图生成、大模型推理任务：FC最长执行时间通常是15分钟，长耗时任务放在ACK Serverless的GPU节点池运行更稳定</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>后续客户量增长后，可以在SAE层增加WAF防护，抵御B端客户的恶意请求</li>
+<li>可以给FC配置预置并发，解决热点工具（如PDF解析）的冷启动问题</li>
+<li>当工具调用量达到每天百万级时，可以把高频调用的工具从FC迁移到SAE常驻运行，降低冷启动开销</li>
+<li>可以基于ACK Serverless的虚拟节点能力，在大促活动时临时弹出抢占式GPU实例，进一步降低推理成本</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q2 · 场景分析题</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>场景分析</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>大模型输出模式</code> <code>国内外工程差异</code> <code>C端产品体验</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某团队同时开发两款AI产品：一款是面向国内C端用户的AI口语陪练APP，要求对话响应极快、支持实时语音交互、打字机式文字输出；另一款是面向海外企业客户的销售线索自动处理系统，要求从客户邮件中100%准确提取结构化字段（客户姓名、公司、预算、意向等级），直接推送到CRM系统，不需要流式输出。请为两款产品分别选择最合适的大模型输出模式组合，并对比国内外工程实践的差异，说明为什么不能用同一套输出架构支撑两个产品。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：拆解两款产品的核心业务诉求，区分“体验优先”和“准确性优先”两类场景</li>
+<li>第二步：匹配对应的大模型输出模式，明确每个模式的技术实现和适用边界</li>
+<li>第三步：结合国内外用户习惯、工程生态的差异，解释架构差异化的原因</li>
+<li>第四步：补充两种架构下的兜底校验机制，避免上线后出现体验或准确性问题</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>两款产品的输出模式架构完全不同，核心差异源于场景诉求的本质区别：<br />
+1.  <strong>国内C端AI口语陪练APP：采用「SSE流式输出 + 端到端多模态输出」组合模式</strong><br />
+    首先，文字回复必须用SSE协议实现流式输出，确保首字延迟控制在300ms以内，实现打字机效果，缓解用户等待焦虑；其次，语音回复不能采用传统的“大模型生成文本→TTS转语音”的两阶段模式，要对接GPT-4o、豆包等支持端到端语音流输出的模型，直接低延迟返回语音流，实现自然的对话打断效果。这完全符合国内C端产品“死磕流式体验”的工程习惯，国内用户对“秒开”“实时反馈”的敏感度极高，如果采用全量输出模式，首包延迟超过1秒用户就会觉得卡顿。<br />
+2.  <strong>海外B端销售线索处理系统：采用「严格结构化输出（JSON Schema约束）」模式</strong><br />
+    不需要任何流式输出，直接调用大模型的Structured Outputs能力，通过底层JSON Schema约束，强制模型输出100%符合格式的JSON数据，直接解析后写入CRM系统。这符合海外工程界“把LLM当成100%可信的结构化API”的实践，不需要在Prompt里写大量格式约束，也不需要后端做复杂的正则兜底，从模型采样层就保证格式正确性，避免因为格式错误导致CRM数据污染。</p>
+<p>之所以不能用同一套架构支撑：如果给C端产品用全量结构化输出，会导致首字延迟过高，体验完全不可用；如果给B端线索系统用流式输出，不仅无法保证JSON格式100%正确，还会增加后端解析的复杂度，一旦出现格式错误就会导致线索漏录，给企业造成直接业务损失。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>国内做C端流式输出时，不要直接照搬国外的WebSocket方案：SSE是服务端单向推送，比WebSocket更轻量，对移动端弱网环境的兼容性更好，实现打字机效果完全够用</li>
+<li>国内开发结构化输出功能时，不要完全信任大模型的JSON Mode：即使模型支持JSON格式，也要在后端用Pydantic做二次校验，配合正则表达式做兜底，因为国内部分大模型的JSON Mode稳定性不如OpenAI/Anthropic的底层严格约束</li>
+<li>海外B端场景不要在Prompt里写大量“请返回JSON格式”的提示词：直接调用API的response_format参数传入JSON Schema，不仅输出更稳定，还能减少Prompt Token消耗</li>
+<li>口语陪练的流式输出要做好断句处理：不要每个Token都推给前端播放语音，要按语义分句推送，避免语音卡顿</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>C端口语陪练可以在流式输出的同时，提前缓存用户常用的回复语，进一步降低首字延迟</li>
+<li>B端结构化系统可以增加输出校验层，如果模型返回的字段不符合要求，自动触发一次重试，不需要人工介入</li>
+<li>后续C端产品可以增加多模态画布输出能力，比如陪练过程中实时生成单词卡、语法提示，提升产品体验</li>
+<li>B端系统可以结合工具调用模式，在提取完线索后自动调用CRM接口创建跟进任务，实现全流程自动化</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q3 · 工程实现题</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>工程实现</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>Agent操作数据库</code> <code>安全管控</code> <code>人工确认</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你需要实现一个企业内部的HR数据查询Agent，支持员工通过自然语言查询自己的年假余额、报销进度，同时支持HR通过自然语言执行批量操作（比如给所有入职满3年的员工增加1天年假、批量更新候选人状态）。按照安全规范，所有读操作可以直接执行，所有涉及增删改的写操作必须经过对应负责人的人工确认后才能执行，同时要做SQL执行的沙箱隔离。请写出核心实现逻辑，包含权限校验、写操作确认流程、沙箱隔离的关键代码思路（可伪代码）。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：在工具定义层就严格区分读操作工具和写操作工具，给每个工具标记操作类型和所需权限，从入口层避免越权</li>
+<li>第二步：实现SQL生成与校验层，所有生成的SQL必须经过语法解析，禁止危险语句，同时根据用户身份自动加权限过滤条件</li>
+<li>第三步：实现写操作的人工确认流程，通过状态机挂起待确认任务，确认后再执行，拒绝自动执行写操作</li>
+<li>第四步：设计SQL执行沙箱，限制执行权限、超时时间、返回行数，避免拖垮数据库或泄露数据</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>核心实现分为四层逻辑，关键伪代码如下：<br />
+1.  <strong>工具定义与权限层</strong><br />
+    首先定义两个独立的工具，而不是用一个通用的sql_executor工具：<br />
+    ```python<br />
+    # 读操作工具：所有用户可调用，直接执行<br />
+    @tool(permission="all_user", op_type="read")<br />
+    def query_hr_data(sql: str, user_context: UserContext):<br />
+        # 自动给SQL加用户过滤条件，比如普通员工只能查自己的数据<br />
+        parsed_sql = add_permission_filter(sql, user_context)<br />
+        return sandbox_exec_sql(parsed_sql, readonly=True)</p>
+<pre><code># 写操作工具：仅HR/管理员可调用，必须走人工确认
+@tool(permission="hr_admin", op_type="write", need_human_confirm=True)
+def update_hr_data(sql: str, user_context: UserContext, approver_id: str):
+    # 生成审批单，挂起任务等待确认
+    approval_ticket = create_approval_ticket(
+        sql=sql,
+        applicant=user_context.user_id,
+        approver=approver_id,
+        status="pending"
+    )
+    return f"已提交审批，单号{approval_ticket.id}，请等待{approver_id}确认后执行"
+```
+</code></pre>
+<ol start="2">
+<li><strong>SQL校验层</strong><br />
+    所有传给执行器的SQL必须经过解析校验：<ul>
+<li>读操作只允许SELECT语句，禁止出现INSERT/UPDATE/DELETE/DROP等关键字，自动加上LIMIT 1000防止一次拉取全表数据</li>
+<li>写操作必须校验影响范围，禁止不带WHERE条件的全表更新/删除，影响行数超过100条必须额外走高级别审批</li>
+<li>绝对禁止任何系统命令调用、文件读写类的SQL语句</li>
+</ul>
+</li>
+<li><strong>人工确认流程</strong><br />
+    当Agent识别到用户要执行写操作时，首先生成SQL预览、影响行数、操作说明，通过企业微信/邮件给审批人发送确认卡片，卡片上有“同意执行”和“拒绝”按钮；审批人点击同意后，系统回调执行接口，把SQL投递到执行队列；如果24小时未确认则自动取消任务。任务状态存在会话状态机中，等待确认期间用户可以随时取消操作。</li>
+<li><strong>沙箱执行层</strong><br />
+    SQL执行账号必须是仅拥有对应权限的数据库账号：读操作账号只有SELECT权限，写操作账号只有对应表的增删改权限，绝对不能用数据库root账号执行Agent生成的SQL。同时给每次SQL执行设置超时时间（比如读操作5秒超时，写操作10秒超时），防止慢查询拖垮主库；所有执行的SQL和结果都要留审计日志，支持事后追溯。</li>
+</ol>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要给Agent开放数据库主库的写权限：写操作必须走从库校验SQL影响范围，确认没问题后再在主库执行</li>
+<li>不要相信大模型生成的SQL一定是安全的：即使Prompt里反复强调，大模型也可能生成不带WHERE条件的删除语句，必须在代码层做硬校验</li>
+<li>人工确认环节必须把完整的SQL语句、影响的行数、具体修改前后的数据对比展示给审批人，不能只展示一句“是否同意更新年假”，避免审批人误操作</li>
+<li>读操作也要做权限过滤：比如普通员工查询“年假余额”时，必须自动在SQL后面加<code>WHERE user_id = 当前用户ID</code>，防止Agent生成SQL查询全公司的薪资数据</li>
+<li>不要在生产库直接执行Agent生成的SQL：可以在数据库层建一个只读的Agent专属账号，只能访问指定的视图，不能访问敏感表</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>可以增加SQL审计层，对所有Agent生成的SQL做风险评分，高危SQL（比如批量更新薪资）必须由二级审批</li>
+<li>可以实现SQL回滚机制：写操作执行前自动生成回滚SQL，一旦执行出错可以快速回滚</li>
+<li>可以给高频查询做结果缓存，比如员工查询年假余额，结果缓存1小时，减少数据库压力</li>
+<li>后续可以增加自然语言生成SQL的准确率优化，把常见的查询语句做成Few-Shot示例注入Prompt，降低SQL生成错误率</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q4 · 排障优化题</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>排障优化</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>PostgreSQL性能问题</code> <code>Agent状态并发冲突</code> <code>混合检索优化</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>某团队用PostgreSQL作为社媒运营Agent的核心存储，上线后出现三个问题：① Agent判断“某个热点选题是否已经被处理过”时，随着数据量涨到50万条，查询延迟从100ms涨到3s以上；② 多个并发的文案生成Agent节点同时处理热点时，经常出现两个节点同时处理同一个选题，导致重复生成文案；③ 做爆款文案语义检索时，向量相似度查询速度慢，加上业务条件过滤后准确率下降。请定位每个问题的根因，并给出对应的优化方案。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：针对每个问题，结合PostgreSQL的特性和Agent的业务场景，定位根因，区分是索引缺失、锁机制问题还是检索方案问题</li>
+<li>第二步：针对每个根因给出可落地的优化方案，优先用数据库原生能力解决，不引入额外组件</li>
+<li>第三步：补充优化后的验证方法，确保问题真正解决</li>
+<li>第四步：给出长期的性能监控和兜底方案，避免问题复发</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>三个问题的根因和优化方案分别如下：<br />
+1.  <strong>问题1：半结构化字段查询慢</strong><br />
+    - 根因：Agent存储热点选题的标签、来源、处理状态时，把这些动态字段存在了JSONB类型的列里，但是没有给JSONB字段加GIN索引，每次查询“状态=已处理、来源=抖音”的时候，都要做全表扫描，遍历50万条记录的JSONB内容，所以随着数据量增长延迟飙升。<br />
+    - 优化方案：给JSONB字段创建GIN索引，比如<code>CREATE INDEX idx_hotspot_meta ON hotspots USING GIN(meta);</code>，这样查询时可以直接通过倒排索引定位到符合条件的记录，查询延迟会从3s降到10ms以内。同时，对于“处理状态”这种查询频率极高的固定字段，可以从JSONB里拆出来做成独立的SQL列，加B树索引，查询速度会更快。<br />
+2.  <strong>问题2：并发处理重复选题</strong><br />
+    - 根因：多个Agent节点并发查询“待处理”状态的选题时，都是先<code>SELECT * FROM hotspots WHERE status='pending' LIMIT 1</code>，然后再UPDATE状态为“处理中”，这两个操作之间没有加锁，高并发下多个节点会查到同一条记录，导致重复处理。<br />
+    - 优化方案：使用<code>SELECT ... FOR UPDATE</code>悲观锁机制，把查询和更新放在同一个数据库事务里，核心SQL是：<br />
+<code>sql
+      BEGIN;
+      SELECT id FROM hotspots WHERE status='pending' LIMIT 1 FOR UPDATE SKIP LOCKED;
+      -- 拿到ID后立即更新状态
+      UPDATE hotspots SET status='processing', worker_id=$worker_id WHERE id=$id;
+      COMMIT;</code><br />
+      加上<code>FOR UPDATE</code>之后，一个事务查到的记录会被加排他锁，其他事务无法读取和修改，配合<code>SKIP LOCKED</code>可以跳过已经被加锁的记录，直接拿下一个待处理任务，既解决了重复处理问题，又不会出现锁等待，性能非常高，不需要引入额外的消息队列。<br />
+3.  <strong>问题3：向量检索慢、过滤后准确率低</strong><br />
+    - 根因：团队给向量字段加了IVFFlat索引，并且是先做余弦相似度检索返回Top100，再在内存里过滤“近7天、点赞量&gt;1000”的业务条件，这样不仅IVFFlat索引查询速度慢，还会因为先向量召回再过滤，导致符合条件的结果被提前截断，准确率下降。<br />
+    - 优化方案：首先把向量索引换成HNSW索引，虽然建索引时间稍长，但是查询延迟更低、召回率更高；其次，使用PostgreSQL的混合检索能力，直接在SQL里把向量相似度条件和业务过滤条件写在一起，比如：<br />
+<code>sql
+      SELECT content, 1 - (embedding &lt;=&gt; $query_vector) AS similarity
+      FROM copywriting
+      WHERE publish_time &gt; now() - interval '7 days' AND likes &gt; 1000
+      ORDER BY embedding &lt;=&gt; $query_vector
+      LIMIT 20;</code><br />
+      这样数据库会在索引层面同时做过滤和相似度排序，不会出现结果截断的问题，兼顾速度和准确率。</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>给JSONB字段加GIN索引时，不要给整个JSONB文档建索引，如果只需要查询某几个固定Key，可以建表达式索引，比如<code>CREATE INDEX idx_hotspot_status ON hotspots((meta-&gt;&gt;'status'));</code>，索引体积更小，查询更快</li>
+<li>使用<code>FOR UPDATE SKIP LOCKED</code>做任务队列时，一定要给status字段加索引，否则查询待处理任务时会锁全表，导致性能急剧下降</li>
+<li>HNSW索引创建时要合理设置m和ef_construction参数，m设为16、ef_construction设为64就可以满足绝大多数Agent场景的需求，不需要追求过高的参数导致索引体积过大</li>
+<li>不要在向量查询时把返回的TopK设得太大：混合检索场景下TopK设为20-50就足够，设太大会增加计算量</li>
+<li>所有慢查询一定要打开PostgreSQL的慢查询日志，定期排查，不要等用户反馈了再处理</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>对于超过1年的历史热点数据，可以做冷热数据分离，归档到冷存储，减少热表的数据量，进一步提升查询速度</li>
+<li>可以给高频的混合查询条件创建部分索引，比如只给status=pending的记录建索引，索引体积更小</li>
+<li>并发量更高的时候，可以把任务按选题类型做分库分表，或者引入消息队列做任务分发，但在QPS低于1000的场景下，PostgreSQL的FOR UPDATE方案完全够用</li>
+<li>可以启用PostgreSQL的并行查询能力，进一步提升大表向量检索的速度</li>
+</ul>
+<hr />
+<h3>🛠 应用题 · Q5 · 综合落地题</h3>
+<blockquote>
+<p><strong>题型</strong></p>
+<p><small>综合落地</small></p>
+<p><strong>场景标签</strong></p>
+<p><small><code>从0到1交付</code> <code>中小企业内部Agent</code> <code>轻量架构</code></small></p>
+</blockquote>
+<p><strong>📝 题目</strong></p>
+<p>你作为AI架构师，需要带领2人小团队在3周内为一家200人规模的创业公司交付内部IT支持Agent，核心需求包括：① 员工通过企业微信咨询IT问题（如VPN怎么连、打印机怎么装、报销系统报错），支持打字机式回复；② 可以自动查询员工的IT工单状态、提交新工单；③ 所有知识库文档共2000份左右，并发峰值QPS不超过20；④ 公司没有专职运维，预算有限，不希望维护太多复杂组件。请设计从0到1的完整落地方案，包含技术选型、部署架构、核心流程、运维兜底，确保3周内上线且稳定运行。</p>
+<p><strong>💡 参考答案</strong></p>
+<p><strong>▎解题思路</strong></p>
+<ol>
+<li>第一步：遵循“最小可行、拒绝过度设计”的原则，优先选择成熟、运维成本低的组件，不追求技术新潮，确保3周内能交付</li>
+<li>第二步：按照接入层、Agent编排层、存储层、工具层做模块拆分，每个模块选择团队最熟悉、运维成本最低的方案</li>
+<li>第三步：设计核心对话流程，覆盖80%的高频场景，剩下的场景兜底转人工</li>
+<li>第四步：设计极简的运维和容灾方案，不需要专职运维也能稳定运行</li>
+<li>第五步：制定分阶段上线计划，确保3周内按时交付。</li>
+</ol>
+<p><strong>▎详细方案</strong></p>
+<p>整套方案全栈轻量部署，总服务器成本不超过每月500元，两个开发人员3周即可交付上线：<br />
+1.  <strong>技术选型（全栈无复杂依赖）</strong><br />
+    - 接入层：直接用企业微信官方机器人API，不需要自己开发APP，SSE协议实现流式打字机输出，开发量极小<br />
+    - Agent编排层：不用复杂的LangGraph分布式部署，直接用Python FastAPI + LangChain核心能力实现，单进程异步即可支撑20QPS的峰值，不需要微服务拆分<br />
+    - 向量知识库：完全不需要单独部署Milvus等向量数据库，直接用PostgreSQL + pgvector插件，因为总共2000份文档，切片后向量总量只有10-20万条，pgvector的HNSW索引完全可以做到毫秒级响应<br />
+    - 业务存储：直接用同一个PostgreSQL数据库存对话记录、工单信息、员工信息，用JSONB列存动态的对话上下文和标签，不需要单独部署Redis、MongoDB等组件，一套数据库搞定所有存储需求<br />
+    - 大模型：直接调用公有云大模型API（如豆包、通义千问），不需要自己部署GPU大模型，按调用量付费，200人规模每月API成本不超过100元<br />
+    - 部署环境：买一台4核8G的Linux云服务器（约200元/月），所有组件全部用Docker Compose部署，不需要K8s集群。<br />
+2.  <strong>核心对话流程设计</strong><br />
+    采用极简的三级路由，不搞复杂的Multi-Agent：<br />
+    - 第一步：用户发消息后，先经过规则匹配，高频问题（如“转人工”“VPN下载地址”）直接返回固定答案，零成本<br />
+    - 第二步：规则没命中的，调用大模型做意图识别，区分是“咨询知识库问题”还是“查询/提交工单”：<br />
+      - 如果是知识库问题：调用pgvector做混合检索，把匹配到的IT文档喂给大模型生成回复<br />
+      - 如果是工单查询/提交：检查参数是否齐全，缺参数就追问，参数齐全后调用公司现有IT工单系统的API完成操作<br />
+    - 第三步：所有大模型生成的回复都经过敏感词校验，避免出现错误指引，置信度低于0.7的直接转IT人工客服<br />
+3.  <strong>部署架构</strong><br />
+    单台云服务器上用Docker Compose启动三个容器：<br />
+    - Nginx容器：负责反向代理、HTTPS卸载<br />
+    - FastAPI应用容器：跑Agent逻辑、企业微信回调、SSE流式输出<br />
+    - PostgreSQL容器：开启pgvector插件，存所有业务数据、向量、对话记录，数据目录挂载到宿主机云盘<br />
+    整个部署过程只需要写一个docker-compose.yml文件，一键启动，不需要复杂的配置。<br />
+4.  <strong>上线计划（3周排期）</strong><br />
+    - 第1周：完成企业微信对接、知识库文档切片导入pgvector、基础对话流程开发<br />
+    - 第2周：完成工单系统对接、槽位填充追问、敏感词校验、流式输出功能<br />
+    - 第3周：测试、修复Bug，给IT部门做使用培训，灰度上线（先给50个员工用，没问题再全量开放）</p>
+<p><strong>▎关键细节 &amp; 踩坑点</strong></p>
+<ul>
+<li>绝对不要过度设计：200人规模、20QPS的场景，完全不需要分布式架构、不需要微服务、不需要K8s、不需要专门的向量数据库，单台服务器+单数据库完全足够，多一个组件就多一份运维成本</li>
+<li>不要把所有问题都丢给大模型：高频固定问题用规则直接返回，不仅响应快，还能省API成本，准确率100%</li>
+<li>PostgreSQL一定要做自动备份：每天凌晨自动做一次云盘快照，防止数据丢失</li>
+<li>企业微信的SSE流式输出要注意超时配置：企业微信接口的超时时间是15秒，要控制大模型回复长度，避免超时</li>
+<li>一定要做兜底转人工机制：Agent答不上来的问题不要硬答，直接转IT群里的人工客服，避免误导员工</li>
+<li>不要给Agent开放工单系统的删除/修改权限：Agent只能查询工单和创建新工单，所有工单状态变更必须由人工操作，避免误操作</li>
+</ul>
+<p><strong>▎可扩展优化</strong></p>
+<ul>
+<li>上线稳定后，可以把高频问题的回复做缓存，进一步降低API成本和响应延迟</li>
+<li>后续可以增加多模态能力，支持员工发报错截图，Agent自动识别问题给出解决方案</li>
+<li>当员工规模涨到2000人、QPS超过100的时候，再考虑把应用拆成两个实例做负载均衡，向量库如果数据量超过1000万条再考虑迁移到Milvus</li>
+<li>可以增加反馈按钮，员工可以对Agent的回复点“赞/踩”，收集Bad Case持续优化知识库</li>
+<li>后续可以把IT常见问题的解决流程做成工具调用，比如自动给员工重置VPN密码、解锁账号，进一步减少IT部门的重复工作</li>
+</ul>
+<hr />
+<blockquote>
+<p>💪 <strong>复习建议</strong>：概念题重在「能讲清楚原理」；应用题重在「能落地、能排坑」。<br />
+建议先闭卷作答，再对照参考答案查漏补缺。</p>
+</blockquote></div>
+    </div>
+
+    <div class="footer">保持饥饿，保持战斗力 · Agent Sniper 自动生成</div>
+</body>
+</html>
